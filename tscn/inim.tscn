@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3rx86rbxoxc6"]
+
+[ext_resource type="Script" uid="uid://v44k846b8is0" path="res://scripts/inim.gd" id="1_3jeos"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjan2"]
+albedo_color = Color(0.360784, 0.360784, 0.360784, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rjan2"]
+material = SubResource("StandardMaterial3D_rjan2")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p1ba3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1ba3"]
+albedo_color = Color(0.360784, 0.360784, 0.360784, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kskji"]
+material = SubResource("StandardMaterial3D_p1ba3")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3jeos"]
+height = 0.5
+radius = 1.5
+
+[node name="inim" type="CharacterBody3D" groups=["Inimigo"]]
+script = ExtResource("1_3jeos")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_rjan2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_p1ba3")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.795, -0.568)
+mesh = SubResource("BoxMesh_kskji")
+
+[node name="detectar" type="Area3D" parent="."]
+
+[node name="detectar pers" type="CollisionShape3D" parent="detectar"]
+shape = SubResource("CylinderShape3D_3jeos")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -106.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="detectar" to="." method="_atacar_pers"]
+[connection signal="body_exited" from="detectar" to="." method="_parar_de_atacar"]

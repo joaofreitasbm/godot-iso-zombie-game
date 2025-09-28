@@ -1,0 +1,164 @@
+[gd_scene load_steps=20 format=3 uid="uid://cc787tq3ba81c"]
+
+[ext_resource type="Script" uid="uid://ckyhrdbqr1l2j" path="res://scripts/main.gd" id="1_8wxc5"]
+[ext_resource type="PackedScene" uid="uid://cp1ec74mip4v1" path="res://tscn/street_lamp.tscn" id="2_ao1ln"]
+[ext_resource type="PackedScene" uid="uid://dvn37ms8ejnbg" path="res://tscn/street_environment_v_01.tscn" id="2_ap273"]
+[ext_resource type="Script" uid="uid://d01r8jur6wwh4" path="res://scripts/gamemode.gd" id="3_8wxc5"]
+[ext_resource type="PackedScene" uid="uid://begah3674cfa2" path="res://tscn/pers.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cu4mv48kig2yv" path="res://tscn/fridge_mini.tscn" id="4_a7rub"]
+[ext_resource type="PackedScene" uid="uid://crn4ee1hm1e0s" path="res://tscn/chair.tscn" id="5_8kplt"]
+[ext_resource type="PackedScene" uid="uid://cur5vn4ads5kr" path="res://tscn/dresser.tscn" id="6_ao1ln"]
+[ext_resource type="Script" uid="uid://dhoamrgqc0j36" path="res://scripts/hud1.gd" id="8_q8ief"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_h2yge"]
+sky_material = SubResource("ProceduralSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
+sky = SubResource("Sky_h2yge")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lquwl"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6ans"]
+albedo_color = Color(0.752941, 0.25098, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7mycd"]
+material = SubResource("StandardMaterial3D_g6ans")
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8kplt"]
+albedo_color = Color(0.752941, 0.25098, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a7rub"]
+material = SubResource("StandardMaterial3D_8kplt")
+size = Vector3(40, 5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a7rub"]
+size = Vector3(40, 5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8wxc5"]
+size = Vector3(300, 1, 300)
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_8wxc5")
+
+[node name="pers" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="coisas" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="coisas"]
+environment = SubResource("Environment_1bvp3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="coisas"]
+transform = Transform3D(-0.459482, -0.784574, -0.416316, 0.703836, -0.607535, 0.368125, -0.541748, -0.123871, 0.831364, -30.494, 11.916, -31.888)
+light_energy = 0.515
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="debug info" type="Label" parent="coisas"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="cenário" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.9401, 0)
+
+[node name="chao" type="StaticBody3D" parent="cenário"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/chao"]
+shape = SubResource("BoxShape3D_lquwl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/chao"]
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="parede" type="StaticBody3D" parent="cenário"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9335, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/parede"]
+mesh = SubResource("BoxMesh_a7rub")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/parede"]
+shape = SubResource("BoxShape3D_a7rub")
+
+[node name="fora do mapa" type="Area3D" parent="cenário"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.2153, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/fora do mapa"]
+shape = SubResource("BoxShape3D_8wxc5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="cenário/fora do mapa"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 67.7386, 0)
+shape = SubResource("BoxShape3D_8wxc5")
+
+[node name="spawn inimigo" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0421815, 7.66411, -9.91901)
+script = ExtResource("3_8wxc5")
+
+[node name="spawn1" type="Node3D" parent="spawn inimigo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.831, 1, -35.652)
+
+[node name="spawn2" type="Node3D" parent="spawn inimigo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.544, 1, -36.006)
+
+[node name="spawn3" type="Node3D" parent="spawn inimigo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.259, 1, 54.128)
+
+[node name="spawn4" type="Node3D" parent="spawn inimigo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.306, 1, 54.843)
+
+[node name="Timer" type="Timer" parent="spawn inimigo"]
+autostart = true
+
+[node name="Label" type="Label" parent="spawn inimigo"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="objs cenario" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.76771, -25.9401, 1.44447)
+
+[node name="Fridge_mini" parent="objs cenario" instance=ExtResource("4_a7rub")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.182418, 0)
+
+[node name="Chair" parent="objs cenario" instance=ExtResource("5_8kplt")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 2.09501, -0.00522482, 2.03152)
+
+[node name="Dresser" parent="objs cenario" instance=ExtResource("6_ao1ln")]
+transform = Transform3D(2.035, 0, 0, 0, 2.035, 0, 0, 0, 2.035, -4.13157, 0, 0)
+
+[node name="StreetLamp" parent="objs cenario" instance=ExtResource("2_ao1ln")]
+transform = Transform3D(-2.18557e-06, 0, -50, 0, 50, 0, 50, 0, -2.18557e-06, 2.27361, 0, 0.205193)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_q8ief")
+
+[node name="hp" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Street environment_V01" parent="." instance=ExtResource("2_ap273")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
+
+[connection signal="body_entered" from="cenário/fora do mapa" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="spawn inimigo/Timer" to="spawn inimigo" method="_on_timer_timeout"]

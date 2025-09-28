@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://begah3674cfa2"]
+
+[ext_resource type="Script" uid="uid://dqnmbags1hg48" path="res://scripts/pers.gd" id="1_0t7jd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5vw27"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_272bh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kek77"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_upo20"]
+outer_radius = 0.6
+
+[node name="pers" type="CharacterBody3D" groups=["Player"]]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_0t7jd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_5vw27")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.869, -0.5)
+mesh = SubResource("BoxMesh_272bh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_kek77")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 309.0
+offset_top = 38.0
+offset_right = 349.0
+offset_bottom = 61.0
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+
+[node name="raycastmira" type="RayCast3D" parent="."]
+top_level = true
+target_position = Vector3(0, 0, 0)
+
+[node name="circulo cursor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+top_level = true
+visible = false
+mesh = SubResource("TorusMesh_upo20")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0.183013, -0.683013, 0, 0.965926, 0.258819, 0.707107, -0.183013, 0.683013, -200, 80, 200)
+top_level = true
+projection = 1
+size = 30.0
+near = 0.001
+far = 350.0
+
+[node name="raycastopacidade" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, -1.49012e-08, -8.9407e-08, -2.98023e-08, 1, 2.98023e-08, -8.9407e-08, 1.49012e-08, 1, 1.52588e-05, -5.72205e-06, -1.52588e-05)
+top_level = true
+debug_shape_thickness = 5

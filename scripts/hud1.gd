@@ -22,7 +22,8 @@ func _process(delta: float) -> void:
 		"Aim > RMB", "\n",
 		"Shoot > LMB", "\n", 
 		"Run > shift", "\n", "\n",
-		"Movement speed: ", get_node("/root/main/pers").velandar
+		"Movement speed: ", get_node("/root/main/pers").velandar, "\n", "\n",
+		"vsync on / FPS: ", Engine.get_frames_per_second()
 		
 	)
 	pass

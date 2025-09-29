@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cc787tq3ba81c"]
+[gd_scene load_steps=22 format=3 uid="uid://cc787tq3ba81c"]
 
 [ext_resource type="Script" uid="uid://ckyhrdbqr1l2j" path="res://scripts/main.gd" id="1_8wxc5"]
 [ext_resource type="PackedScene" uid="uid://cp1ec74mip4v1" path="res://tscn/street_lamp.tscn" id="2_ao1ln"]
@@ -46,6 +46,12 @@ size = Vector3(40, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8wxc5"]
 size = Vector3(300, 1, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ap273"]
+size = Vector3(30, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8d387"]
+size = Vector3(30, 1, 10)
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_8wxc5")
@@ -100,6 +106,28 @@ shape = SubResource("BoxShape3D_8wxc5")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="cenário/fora do mapa"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 67.7386, 0)
 shape = SubResource("BoxShape3D_8wxc5")
+
+[node name="angulo" type="StaticBody3D" parent="cenário"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 18.3475, 35.5389, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/angulo"]
+shape = SubResource("BoxShape3D_ap273")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/angulo"]
+mesh = SubResource("BoxMesh_8d387")
+
+[node name="angulo2" type="StaticBody3D" parent="cenário"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5879, 46.0103, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/angulo2"]
+shape = SubResource("BoxShape3D_ap273")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/angulo2"]
+mesh = SubResource("BoxMesh_8d387")
 
 [node name="spawn inimigo" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0421815, 7.66411, -9.91901)

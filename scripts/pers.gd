@@ -102,7 +102,7 @@ func _physics_process(delta: float) -> void:
 			movtank = true
 			return
 
-	cam.position = position + Vector3(-50, 20, 50) # posicionamento fixo da camera funcionando
+	cam.position = position + Vector3(-100, 40, 100) # posicionamento fixo da camera funcionando
 	move_and_slide()
 
 
@@ -144,15 +144,15 @@ func mirarzomboid():
 	ray_query.collision_mask = 2 
 	var raycast_results = space.intersect_ray(ray_query)
 	#print(raycast_results)
-	raycast_results["position"].y = 1 
+	raycast_results["position"].y += 1
 	if !raycast_results.is_empty():
 		print(raycast_results["position"], "   ", rotation)
 		circ.show()
 		look_at(raycast_results["position"], Vector3.UP)
 		raio.position = position
-		raio.target_position = (raycast_results["position"] - position) * Vector3(30, 0, 30)
+		raio.target_position = (raycast_results["position"] - position) #* Vector3(30, 0, 30)
 		circ.position = raycast_results["position"]
-		circ.position.y = 0.1
+		circ.position.y = raycast_results["position"].y - 1
 
 
 func opacidade():
@@ -161,7 +161,7 @@ func opacidade():
 	opac.force_raycast_update()
 	var col = opac.get_collider()
 	if col != null and !col.is_in_group("Player") and !col.is_in_group("Inimigo"):
-		#print(col, "OPACIDADE")
+		#col.modulate.a = 0.3
 		pass
 	else:
 		pass

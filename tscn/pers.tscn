@@ -15,6 +15,8 @@ outer_radius = 0.6
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
+floor_constant_speed = true
+floor_snap_length = 1.0
 script = ExtResource("1_0t7jd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -61,3 +63,11 @@ far = 350.0
 transform = Transform3D(1, -1.49012e-08, -8.9407e-08, -2.98023e-08, 1, 2.98023e-08, -8.9407e-08, 1.49012e-08, 1, 1.52588e-05, -5.72205e-06, -1.52588e-05)
 top_level = true
 debug_shape_thickness = 5
+
+[node name="rayescada" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.572519)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 30.0

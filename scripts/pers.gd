@@ -10,6 +10,7 @@ var correndo = false
 @onready var circ = $"circulo cursor"
 @onready var cam = $Camera3D
 @onready var opac = $Camera3D/raycastopacidade
+@onready var rayesc = $rayescada
 
 @onready var vida = 100
 @onready var movtank = false
@@ -27,13 +28,12 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor(): # gravidade
 		velocity += get_gravity() * delta
 
-	if movtank == true:
+	if movtank == true: # MOVIMENTAÇÃO DE TANK
 		var frente = -global_transform.basis.z # variavel pra salvar direção pra onde o personagem anda
 
 		# andar pra frente
 		if Input.is_action_pressed("W"): # mover pra func _input (avaliar necessidade)
 			position += frente * velandar * delta
-			position.normalized()
 
 		# rotação do personagem
 		rotation.y -= Input.get_axis("A", "D") * velgiro ## criar como alterar a velocidade de girar
@@ -42,21 +42,19 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("S"): 
 			correndo = false
 			position += -frente * velandar * delta
-			position.normalized()
 			if Input.is_action_just_pressed("correr"):
 				rotation.y += deg_to_rad(180)
 
 		if Input.is_action_just_released("W"):
 			correndo = false
 	
-	if movtank == false:
+	if movtank == false: #MOVIMENTAÇÃO 3D LIVRE
 		var input_dir = Input.get_vector("A", "D", "W", "S")
 		var direction = (cam.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if direction != Vector3.ZERO:
 			position += direction * velandar * delta
-			var target_rot = atan2(-direction.x, -direction.z)
-			rotation.y = lerp_angle(rotation.y, target_rot, delta * 10)
-		if input_dir == Vector2.ZERO:
+			rotation.y = lerp_angle(rotation.y, atan2(-direction.x, -direction.z), delta * 10)
+		else:
 			correndo = false
 		
 
@@ -87,7 +85,7 @@ func _physics_process(delta: float) -> void:
 		if mirando == true:
 			var col = raio.get_collider()
 			if col != null and col.is_in_group("Inimigo"):
-				print(col.vida)
+				#print(col.vida)
 				col.vida -= 30
 
 
@@ -146,11 +144,11 @@ func mirarzomboid():
 	#print(raycast_results)
 	raycast_results["position"].y += 1
 	if !raycast_results.is_empty():
-		print(raycast_results["position"], "   ", rotation)
+		#print(raycast_results["position"], "   ", rotation)
 		circ.show()
 		look_at(raycast_results["position"], Vector3.UP)
 		raio.position = position
-		raio.target_position = (raycast_results["position"] - position) #* Vector3(30, 0, 30)
+		raio.target_position = ((raycast_results["position"] - position).normalized() * ray_lenght) #* Vector3(30, 0, 30)
 		circ.position = raycast_results["position"]
 		circ.position.y = raycast_results["position"].y - 1
 

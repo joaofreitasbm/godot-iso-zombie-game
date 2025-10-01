@@ -30,14 +30,11 @@ func _process(delta: float) -> void:
 func iniciar_nova_onda() -> void:
 	onda += 1
 	var quantidade = onda * randi_range(1, 3) # 1x, 2x ou 3x o número da onda
-	for i in range(quantidade):
+	for i in quantidade:
 		var spawnaleatorio = listaspawn.pick_random()
 		var inimigo = inimpreload.instantiate()
 		inimigo.position = spawnaleatorio
-		# adiciona no nó "main"
 		get_tree().get_root().get_node("main").add_child(inimigo)
-		#add_child(inimigo)
-		# conecta sinal de morte se o inimigo emitir
 		if inimigo.has_signal("morreu"):
 			inimigo.morreu.connect(_on_inimigo_morreu)
 	inimrestantes = quantidade

@@ -43,12 +43,13 @@ offset_bottom = 61.0
 top_level = true
 target_position = Vector3(0, 0, 0)
 
-[node name="circulo cursor" type="MeshInstance3D" parent="."]
+[node name="cursor3d" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 top_level = true
 visible = false
-transparency = 0.25
+transparency = 0.5
 cast_shadow = 0
+ignore_occlusion_culling = true
 mesh = SubResource("TorusMesh_upo20")
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -63,9 +64,6 @@ far = 350.0
 transform = Transform3D(1, -1.49012e-08, -8.9407e-08, -2.98023e-08, 1, 2.98023e-08, -8.9407e-08, 1.49012e-08, 1, 1.52588e-05, -5.72205e-06, -1.52588e-05)
 top_level = true
 debug_shape_thickness = 5
-
-[node name="rayescada" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.572519)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 shadow_enabled = true

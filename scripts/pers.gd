@@ -1,19 +1,20 @@
 extends CharacterBody3D
 
 # variaveis usadas pro sistema de mira e movimentação
-var velgiro = .025
-@onready var velandar = 5
 var mirando = false
 var correndo = false
 
 @onready var raio = $raycastmira
-@onready var circ = $"circulo cursor"
+@onready var circ = $cursor3d
 @onready var cam = $Camera3D
 @onready var opac = $Camera3D/raycastopacidade
-@onready var rayesc = $rayescada
 
+var velgiro = .025
+@onready var velandar = 5
 @onready var vida = 100
 @onready var movtank = false
+
+var listaopac = []
 
 func _ready() -> void:
 	pass
@@ -153,16 +154,23 @@ func mirarzomboid():
 		circ.position.y = raycast_results["position"].y - 1
 
 
+
 func opacidade():
 	opac.position = cam.position
 	opac.target_position = opac.to_local(position)
 	opac.force_raycast_update()
 	var col = opac.get_collider()
-	if col != null and !col.is_in_group("Player") and !col.is_in_group("Inimigo"):
-		#col.modulate.a = 0.3
-		pass
-	else:
-		pass
-		#print("OPACIDADE")
-	
+	if col != null and !col.is_in_group("Player") and !col.is_in_group("Inimigo") and !listaopac.has(col.get_children()):
+		for i in col.get_children():
+			if i is MeshInstance3D and !listaopac.has(i):
+				listaopac.append(i)
+				i.transparency = listaopac.size() * 0.75
+				print(listaopac)
+				break
+
+	if col.is_in_group("Player"):
+		for i in listaopac:
+			i.transparency = 0
+		listaopac.clear()
+
 	

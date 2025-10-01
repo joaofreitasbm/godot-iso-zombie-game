@@ -1,8 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://cc787tq3ba81c"]
+[gd_scene load_steps=25 format=3 uid="uid://cc787tq3ba81c"]
 
 [ext_resource type="Script" uid="uid://ckyhrdbqr1l2j" path="res://scripts/main.gd" id="1_8wxc5"]
 [ext_resource type="PackedScene" uid="uid://cp1ec74mip4v1" path="res://tscn/street_lamp.tscn" id="2_ao1ln"]
-[ext_resource type="PackedScene" uid="uid://dvn37ms8ejnbg" path="res://tscn/street_environment_v_01.tscn" id="2_ap273"]
 [ext_resource type="Script" uid="uid://d01r8jur6wwh4" path="res://scripts/gamemode.gd" id="3_8wxc5"]
 [ext_resource type="PackedScene" uid="uid://begah3674cfa2" path="res://tscn/pers.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cu4mv48kig2yv" path="res://tscn/fridge_mini.tscn" id="4_a7rub"]
@@ -44,6 +43,20 @@ size = Vector3(40, 5, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_a7rub"]
 size = Vector3(40, 5, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_q8ief"]
+material = SubResource("StandardMaterial3D_8kplt")
+size = Vector3(40, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8d387"]
+size = Vector3(40, 10, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mn4ff"]
+material = SubResource("StandardMaterial3D_8kplt")
+size = Vector3(40, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d2uin"]
+size = Vector3(40, 10, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_8wxc5"]
 size = Vector3(300, 1, 300)
 
@@ -75,7 +88,6 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="cenário" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.9401, 0)
 
 [node name="chao" type="StaticBody3D" parent="cenário"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -90,12 +102,33 @@ mesh = SubResource("BoxMesh_7mycd")
 
 [node name="parede" type="StaticBody3D" parent="cenário"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9335, 0, 0)
+metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/parede"]
 mesh = SubResource("BoxMesh_a7rub")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/parede"]
 shape = SubResource("BoxShape3D_a7rub")
+
+[node name="parede2" type="StaticBody3D" parent="cenário"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5652, 4.59512, -8.75994)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/parede2"]
+mesh = SubResource("BoxMesh_q8ief")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/parede2"]
+shape = SubResource("BoxShape3D_8d387")
+
+[node name="parede3" type="StaticBody3D" parent="cenário"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.24682, 5.00041, -9.90761)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/parede3"]
+mesh = SubResource("BoxMesh_mn4ff")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/parede3"]
+shape = SubResource("BoxShape3D_d2uin")
 
 [node name="fora do mapa" type="Area3D" parent="cenário"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.2153, 0)
@@ -108,7 +141,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 67.7386, 0)
 shape = SubResource("BoxShape3D_8wxc5")
 
 [node name="angulo" type="StaticBody3D" parent="cenário"]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 18.3475, 35.5389, 0)
+transform = Transform3D(-0.00449222, 0.00449223, 0.99998, 0.707107, 0.707107, -5.26836e-09, -0.707093, 0.707093, -0.00635297, 31.0479, 6.44213, 21.6189)
 collision_layer = 3
 collision_mask = 3
 
@@ -119,7 +152,7 @@ shape = SubResource("BoxShape3D_ap273")
 mesh = SubResource("BoxMesh_8d387")
 
 [node name="angulo2" type="StaticBody3D" parent="cenário"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.588, 45.965, 0)
+transform = Transform3D(-0.00635297, 0, 0.99998, 0, 1, 0, -0.99998, 0, -0.00635297, 30.8876, 16.8682, -3.62106)
 collision_layer = 3
 collision_mask = 3
 
@@ -157,7 +190,7 @@ offset_bottom = 23.0
 grow_horizontal = 0
 
 [node name="objs cenario" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.76771, -25.9401, 1.44447)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.768, 0, 1.444)
 
 [node name="Fridge_mini" parent="objs cenario" instance=ExtResource("4_a7rub")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.182418, 0)
@@ -182,11 +215,6 @@ script = ExtResource("8_q8ief")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="Street environment_V01" parent="." instance=ExtResource("2_ap273")]
-transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
-collision_layer = 3
-collision_mask = 3
 
 [connection signal="body_entered" from="cenário/fora do mapa" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="spawn inimigo/Timer" to="spawn inimigo" method="_on_timer_timeout"]

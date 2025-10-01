@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://begah3674cfa2"]
+[gd_scene load_steps=7 format=3 uid="uid://begah3674cfa2"]
 
 [ext_resource type="Script" uid="uid://dqnmbags1hg48" path="res://scripts/pers.gd" id="1_0t7jd"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upo20"]
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5vw27"]
+material = SubResource("StandardMaterial3D_upo20")
 
 [sub_resource type="BoxMesh" id="BoxMesh_272bh"]
 

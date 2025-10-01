@@ -4,13 +4,14 @@ var velocidade = 0.1 #randf_range(2.0, 6.0) # velocidade linear entre 2 e 6
 var vida = randi_range(70, 140)
 var area = false
 var body
-
+@onready var stencil = false
 @onready var pers = get_node("/root/main/pers")
 @onready var gamemode = get_node("/root/main/spawn inimigo")
 
 
 func _physics_process(delta: float) -> void:
 	#$Label.text = str($Timer.time_left, $Timer.is_stopped(), area)
+	print(stencil)
 	
 	if area == true and $Timer.is_stopped():
 			pers.vida += randi_range(-10, -40)
@@ -39,6 +40,18 @@ func _physics_process(delta: float) -> void:
 	look_at(Vector3(pers.position.x, position.y, pers.position.z), Vector3.UP)
 
 	move_and_slide()
+	
+	if stencil == true:
+		for i in self.get_children():
+			if i is MeshInstance3D:
+				i.mesh.material.stencil_mode = 1 
+				i.mesh.material.stencil_color = Color(1,0,0)
+				i.mesh.material.stencil_outline_thickness = .1
+	if stencil == false:
+		for i in self.get_children():
+			if i is MeshInstance3D:
+				i.mesh.material.stencil_mode = 0
+
 
 
 func _atacar_pers(body: Node3D) -> void:

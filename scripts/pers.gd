@@ -15,6 +15,7 @@ var velgiro = .025
 @onready var movtank = false
 
 var listaopac = []
+var ultimoalvo
 
 func _ready() -> void:
 	pass
@@ -66,7 +67,7 @@ func _physics_process(delta: float) -> void:
 
 	# controlar velocidade de andar
 	if mirando: correndo = false; velandar = 3
-	if correndo: mirando = false; velandar = 7.5
+	if correndo: mirando = false; velandar = 20 #7.5
 	if not mirando and not correndo: velandar = 5
 
 
@@ -80,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		raio.target_position = Vector3.ZERO
 		rotation.x = 0
 		rotation.z = 0
-
+		ultimoalvo.stencil = false
 
 	if Input.is_action_just_pressed("atirar"):
 		if mirando == true:
@@ -152,7 +153,18 @@ func mirarzomboid():
 		raio.target_position = ((raycast_results["position"] - position).normalized() * ray_lenght) #* Vector3(30, 0, 30)
 		circ.position = raycast_results["position"]
 		circ.position.y = raycast_results["position"].y - 1
+		var col = raio.get_collider()
+		
+		if col != null and col.is_in_group("Inimigo") and col.stencil == false:
+			col.stencil = true
+			ultimoalvo = col
+			print(ultimoalvo)
+		if col is not CharacterBody3D and ultimoalvo is CharacterBody3D:
+			print("falso")
+			ultimoalvo.stencil = false
 
+			
+					
 
 
 func opacidade():
@@ -167,7 +179,6 @@ func opacidade():
 				i.transparency = listaopac.size() * 0.75
 				print(listaopac)
 				break
-
 	if col.is_in_group("Player"):
 		for i in listaopac:
 			i.transparency = 0

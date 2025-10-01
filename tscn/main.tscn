@@ -24,14 +24,14 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.01
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lquwl"]
-size = Vector3(100, 1, 100)
+size = Vector3(150, 1, 150)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6ans"]
 albedo_color = Color(0.752941, 0.25098, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7mycd"]
 material = SubResource("StandardMaterial3D_g6ans")
-size = Vector3(100, 1, 100)
+size = Vector3(150, 1, 150)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8kplt"]
 albedo_color = Color(0.752941, 0.25098, 0, 1)
@@ -93,6 +93,7 @@ offset_bottom = 23.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 collision_layer = 3
 collision_mask = 3
+metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/chao"]
 shape = SubResource("BoxShape3D_lquwl")
@@ -141,7 +142,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 67.7386, 0)
 shape = SubResource("BoxShape3D_8wxc5")
 
 [node name="angulo" type="StaticBody3D" parent="cenário"]
-transform = Transform3D(-0.00449222, 0.00449223, 0.99998, 0.707107, 0.707107, -5.26836e-09, -0.707093, 0.707093, -0.00635297, 31.0479, 6.44213, 21.6189)
+transform = Transform3D(-0.00449222, 0.00449223, 0.99998, 0.707107, 0.707107, -5.26836e-09, -0.707093, 0.707093, -0.00635297, 31.0479, 6.44213, 38.0504)
 collision_layer = 3
 collision_mask = 3
 
@@ -152,7 +153,7 @@ shape = SubResource("BoxShape3D_ap273")
 mesh = SubResource("BoxMesh_8d387")
 
 [node name="angulo2" type="StaticBody3D" parent="cenário"]
-transform = Transform3D(-0.00635297, 0, 0.99998, 0, 1, 0, -0.99998, 0, -0.00635297, 30.8876, 16.8682, -3.62106)
+transform = Transform3D(-0.00635297, 0, 0.99998, 0, 1, 0, -0.99998, 0, -0.00635297, 30.8876, 16.8682, 12.8105)
 collision_layer = 3
 collision_mask = 3
 

@@ -22,11 +22,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
-
 	opacidade()
-	
-	
+
 	if not is_on_floor(): # gravidade
 		velocity += get_gravity() * delta
 
@@ -49,7 +46,8 @@ func _physics_process(delta: float) -> void:
 
 		if Input.is_action_just_released("W"):
 			correndo = false
-	
+
+
 	if movtank == false: #MOVIMENTAÇÃO 3D LIVRE
 		var input_dir = Input.get_vector("A", "D", "W", "S")
 		var direction = (cam.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -58,7 +56,6 @@ func _physics_process(delta: float) -> void:
 			rotation.y = lerp_angle(rotation.y, atan2(-direction.x, -direction.z), delta * 10)
 		else:
 			correndo = false
-		
 
 
 	if Input.is_action_just_pressed("correr"):
@@ -84,6 +81,7 @@ func _physics_process(delta: float) -> void:
 		if ultimoalvo != null:
 			ultimoalvo.stencil = false
 
+
 	if Input.is_action_just_pressed("atirar"):
 		if mirando == true:
 			var col = raio.get_collider()
@@ -97,7 +95,7 @@ func _physics_process(delta: float) -> void:
 			print("não movtank")
 			movtank = false
 			return
-			
+
 		if movtank == false:
 			print("sim movtank")
 			movtank = true
@@ -144,10 +142,8 @@ func mirar():
 	ray_query.to = to
 	ray_query.collision_mask = 2 
 	var raycast_results = space.intersect_ray(ray_query)
-	#print(raycast_results)
 	raycast_results["position"].y += 1
 	if !raycast_results.is_empty():
-		#print(raycast_results["position"], "   ", rotation)
 		circ.show()
 		look_at(raycast_results["position"], Vector3.UP)
 		raio.position = position

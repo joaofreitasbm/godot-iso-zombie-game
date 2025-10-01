@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 
 
 	if Input.is_action_pressed("mirar"):
-		mirarzomboid()
+		mirar()
 
 
 	if Input.is_action_just_released("mirar"):
@@ -81,7 +81,8 @@ func _physics_process(delta: float) -> void:
 		raio.target_position = Vector3.ZERO
 		rotation.x = 0
 		rotation.z = 0
-		ultimoalvo.stencil = false
+		if ultimoalvo != null:
+			ultimoalvo.stencil = false
 
 	if Input.is_action_just_pressed("atirar"):
 		if mirando == true:
@@ -130,7 +131,7 @@ func _physics_process(delta: float) -> void:
 		get_tree().reload_current_scene()
 
 
-func mirarzomboid(): 
+func mirar(): 
 	mirando = true
 	velandar = 3
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -154,17 +155,12 @@ func mirarzomboid():
 		circ.position = raycast_results["position"]
 		circ.position.y = raycast_results["position"].y - 1
 		var col = raio.get_collider()
-		
 		if col != null and col.is_in_group("Inimigo") and col.stencil == false:
 			col.stencil = true
 			ultimoalvo = col
-			print(ultimoalvo)
-		if col is not CharacterBody3D and ultimoalvo is CharacterBody3D:
-			print("falso")
+		if is_instance_valid(ultimoalvo) and col is not CharacterBody3D and ultimoalvo is CharacterBody3D:
 			ultimoalvo.stencil = false
 
-			
-					
 
 
 func opacidade():

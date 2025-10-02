@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://begah3674cfa2"]
+[gd_scene load_steps=10 format=3 uid="uid://begah3674cfa2"]
 
 [ext_resource type="Script" uid="uid://dqnmbags1hg48" path="res://scripts/pers.gd" id="1_0t7jd"]
+[ext_resource type="Resource" uid="uid://cric5pgld8pdt" path="res://resources/Arma01.tres" id="2_u1lqi"]
+[ext_resource type="Resource" uid="uid://lsfxs6x0i7cj" path="res://resources/Arma02.tres" id="3_xd6ky"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upo20"]
 
@@ -11,7 +13,11 @@ material = SubResource("StandardMaterial3D_upo20")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kek77"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1lqi"]
+shading_mode = 0
+
 [sub_resource type="TorusMesh" id="TorusMesh_upo20"]
+material = SubResource("StandardMaterial3D_u1lqi")
 outer_radius = 0.6
 
 [node name="pers" type="CharacterBody3D" groups=["Player"]]
@@ -21,6 +27,7 @@ axis_lock_angular_z = true
 floor_constant_speed = true
 floor_snap_length = 1.0
 script = ExtResource("1_0t7jd")
+inventario = [ExtResource("2_u1lqi"), ExtResource("3_xd6ky"), null]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_5vw27")
@@ -50,7 +57,7 @@ target_position = Vector3(0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 top_level = true
 visible = false
-transparency = 0.5
+transparency = 0.75
 cast_shadow = 0
 ignore_occlusion_culling = true
 mesh = SubResource("TorusMesh_upo20")

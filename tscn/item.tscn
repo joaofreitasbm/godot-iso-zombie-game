@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bewnn3va07d6f"]
+
+[ext_resource type="Script" uid="uid://bfbhou4bvivs3" path="res://scripts/item.gd" id="1_hlyq3"]
+[ext_resource type="Resource" uid="uid://cric5pgld8pdt" path="res://resources/Arma01.tres" id="2_pw8kr"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pw8kr"]
+radius = 2.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_hlyq3"]
+
+[node name="item" type="Area3D"]
+script = ExtResource("1_hlyq3")
+item = ExtResource("2_pw8kr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_pw8kr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_hlyq3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

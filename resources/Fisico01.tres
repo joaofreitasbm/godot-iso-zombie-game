@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="fisico" load_steps=2 format=3 uid="uid://bo3nbvqynhpht"]
+
+[ext_resource type="Script" uid="uid://c8lh8xvl2838k" path="res://resources/class_fisico.gd" id="1_u3ph3"]
+
+[resource]
+script = ExtResource("1_u3ph3")
+nome_item = "Fisico 01"
+durabilidade = 3
+dano = 20
+metadata/_custom_type_script = "uid://c8lh8xvl2838k"

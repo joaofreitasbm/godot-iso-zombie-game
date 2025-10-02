@@ -14,14 +14,23 @@ var velgiro = .025
 @onready var vida = 100
 @onready var movtank = false
 
+var colmira
 var listaopac = []
 var ultimoalvo
+
+@export var inventario: Array[Resource]
+@onready var arma_atual
+
+var interagir = false
 
 func _ready() -> void:
 	pass
 
 
 func _physics_process(delta: float) -> void:
+	#print(inventario)
+	
+		
 	opacidade()
 
 	if not is_on_floor(): # gravidade
@@ -83,14 +92,11 @@ func _physics_process(delta: float) -> void:
 
 
 	if Input.is_action_just_pressed("atirar"):
-		if mirando == true:
-			var col = raio.get_collider()
-			if col != null and col.is_in_group("Inimigo"):
-				#print(col.vida)
-				col.vida -= 30
+		if mirando and colmira != null and colmira.is_in_group("Inimigo") and inventario:
+			colmira.vida -= causardano()
 
 
-	if Input.is_action_just_pressed("E"):
+	if Input.is_action_just_pressed("B"):
 		if movtank == true:
 			print("não movtank")
 			movtank = false
@@ -109,6 +115,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):
 		get_tree().quit()
 
+	if Input.is_action_just_pressed("E"): interagir = true; print(interagir)
+	if Input.is_action_just_released("E"): interagir = false; print(interagir)
+
 
 	# zoom da camera
 	if Input.is_action_just_pressed("mouse+"):
@@ -117,6 +126,18 @@ func _physics_process(delta: float) -> void:
 		cam.size += 1
 	cam.size = clamp(cam.size, 5, 30)
 
+	if Input.is_action_just_pressed("F"):
+		var inim = preload("res://tscn/inim.tscn")
+		var spawn = inim.instantiate()
+		spawn.position = position + Vector3(10, 0, 0)
+		get_tree().get_root().get_node("main").add_child(spawn)
+
+	if Input.is_action_just_pressed("key1"):
+		print("arma equipada: ", inventario[0].nome_item)
+		arma_atual = inventario[0]
+	if Input.is_action_just_pressed("key2"):
+		print("arma equipada: ", inventario[1].nome_item)
+		arma_atual = inventario[1]
 
 	#$Label.text = str(
 		#movtank, "\n",
@@ -150,30 +171,31 @@ func mirar():
 		raio.target_position = ((raycast_results["position"] - position).normalized() * ray_lenght) #* Vector3(30, 0, 30)
 		circ.position = raycast_results["position"]
 		circ.position.y = raycast_results["position"].y - 1
-		var col = raio.get_collider()
-		if col != null and col.is_in_group("Inimigo") and col.stencil == false:
-			col.stencil = true
-			ultimoalvo = col
-		if is_instance_valid(ultimoalvo) and col is not CharacterBody3D and ultimoalvo is CharacterBody3D:
+		colmira = raio.get_collider()
+		if colmira != null and colmira.is_in_group("Inimigo") and colmira.stencil == false:
+			colmira.stencil = true
+			ultimoalvo = colmira
+		if is_instance_valid(ultimoalvo) and colmira is not CharacterBody3D and ultimoalvo is CharacterBody3D:
 			ultimoalvo.stencil = false
-
 
 
 func opacidade():
 	opac.position = cam.position
 	opac.target_position = opac.to_local(position)
 	opac.force_raycast_update()
-	var col = opac.get_collider()
-	if col != null and !col.is_in_group("Player") and !col.is_in_group("Inimigo") and !listaopac.has(col.get_children()):
-		for i in col.get_children():
+	var colopac = opac.get_collider()
+	if colopac != null and !colopac.is_in_group("Player") and !colopac.is_in_group("Inimigo") and !listaopac.has(colopac.get_children()):
+		for i in colopac.get_children():
 			if i is MeshInstance3D and !listaopac.has(i):
 				listaopac.append(i)
 				i.transparency = listaopac.size() * 0.75
 				print(listaopac)
 				break
-	if col.is_in_group("Player"):
+	if colopac.is_in_group("Player"):
 		for i in listaopac:
 			i.transparency = 0
 		listaopac.clear()
 
-	
+func causardano():
+	if inventario:
+		return arma_atual.dano

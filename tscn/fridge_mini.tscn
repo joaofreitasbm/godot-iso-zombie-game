@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=4 uid="uid://cu4mv48kig2yv"]
 
-[ext_resource type="Texture2D" uid="uid://b8riad54qnyqm" path="res://texturas/Fridge_mini_Base_color.png" id="1_epii8"]
-[ext_resource type="Texture2D" uid="uid://bw6k67t1xomnn" path="res://texturas/Fridge_mini_Height.png" id="2_sw3tv"]
-[ext_resource type="Texture2D" uid="uid://b7wkvwe758kfy" path="res://texturas/Fridge_mini_Metallic.png" id="3_ojopy"]
-[ext_resource type="Texture2D" uid="uid://dp3rb0k56bmr2" path="res://texturas/Fridge_mini_Normal.png" id="4_8nupr"]
-[ext_resource type="Texture2D" uid="uid://bw6sa1fkjeofj" path="res://texturas/Fridge_mini_Roughness.png" id="5_n1pom"]
+[ext_resource type="Texture2D" uid="uid://b8riad54qnyqm" path="res://textures/Fridge_mini_Base_color.png" id="1_epii8"]
+[ext_resource type="Texture2D" uid="uid://bw6k67t1xomnn" path="res://textures/Fridge_mini_Height.png" id="2_sw3tv"]
+[ext_resource type="Texture2D" uid="uid://b7wkvwe758kfy" path="res://textures/Fridge_mini_Metallic.png" id="3_ojopy"]
+[ext_resource type="Texture2D" uid="uid://dp3rb0k56bmr2" path="res://textures/Fridge_mini_Normal.png" id="4_8nupr"]
+[ext_resource type="Texture2D" uid="uid://bw6sa1fkjeofj" path="res://textures/Fridge_mini_Roughness.png" id="5_n1pom"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t4qi6"]
 resource_name = "Fridge_mini"

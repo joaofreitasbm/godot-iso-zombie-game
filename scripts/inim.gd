@@ -11,7 +11,7 @@ var body
 
 func _physics_process(delta: float) -> void:
 	#$Label.text = str($Timer.time_left, $Timer.is_stopped(), area)
-	print(stencil)
+
 	
 	if area == true and $Timer.is_stopped():
 			pers.vida += randi_range(-10, -40)

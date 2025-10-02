@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="fisico" load_steps=2 format=3 uid="uid://lsfxs6x0i7cj"]
+
+[ext_resource type="Script" uid="uid://c8lh8xvl2838k" path="res://resources/class_fisico.gd" id="1_s22ep"]
+
+[resource]
+script = ExtResource("1_s22ep")
+nome_item = "Arma 02"
+dano = 200
+metadata/_custom_type_script = "uid://c8lh8xvl2838k"

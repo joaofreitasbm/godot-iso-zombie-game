@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dp3rb0k56bmr2"
-path.s3tc="res://.godot/imported/Fridge_mini_Normal.png-a52b334473549305e9b025bcbe4f04c8.s3tc.ctex"
+path.s3tc="res://.godot/imported/Fridge_mini_Normal.png-89933a45e5996619d3ab43f9c79cbf9f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,14 +11,16 @@ metadata={
 
 [deps]
 
-source_file="res://texturas/Fridge_mini_Normal.png"
-dest_files=["res://.godot/imported/Fridge_mini_Normal.png-a52b334473549305e9b025bcbe4f04c8.s3tc.ctex"]
+source_file="res://textures/Fridge_mini_Normal.png"
+dest_files=["res://.godot/imported/Fridge_mini_Normal.png-89933a45e5996619d3ab43f9c79cbf9f.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=1
 compress/channel_pack=0
@@ -26,6 +28,10 @@ mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
 roughness/src_normal="res://meshes/Fridge_mini_Normal.png"
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

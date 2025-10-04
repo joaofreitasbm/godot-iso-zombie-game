@@ -32,15 +32,22 @@ func atirar(alvo): #, pers):
 	if municao_atual == 0 and tipo == 1:
 		recarregar()
 
-	if semiauto == true and aux == true and tipo == 1 and municao_atual >= 1:
+	if semiauto == true and aux == true and tipo == 1 and municao_atual >= 1 and alvo != null:
 		municao_atual -= 1
 		print("atirou semi, munição atual: ", municao_atual)
 		aux = false
 		if alvo.is_in_group("Inimigo"):
 			alvo.vida -= dano
+			var part = preload("res://tscn/particula_sangue.tscn").instantiate()
+			part.top_level = true
+			print(part.position," ", alvo.position)
+			part.position = alvo.position
+			print(part.position)
+			part.emitting = true
+			alvo.add_child(part)
 		return
 
-	if semiauto == false and aux == true and tipo == 1 and municao_atual >= 1:
+	if semiauto == false and aux == true and tipo == 1 and municao_atual >= 1 and alvo != null:
 		municao_atual -= 1
 		print("atirou auto, ", municao_atual)
 		if alvo.is_in_group("Inimigo"):

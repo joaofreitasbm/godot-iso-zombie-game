@@ -1,14 +1,16 @@
-[gd_scene load_steps=26 format=3 uid="uid://cc787tq3ba81c"]
+[gd_scene load_steps=30 format=3 uid="uid://cc787tq3ba81c"]
 
 [ext_resource type="PackedScene" uid="uid://cp1ec74mip4v1" path="res://tscn/street_lamp.tscn" id="2_ao1ln"]
+[ext_resource type="Texture2D" uid="uid://dnb7w1f3qg1xc" path="res://textures/texture_10.png" id="2_mn4ff"]
 [ext_resource type="Script" uid="uid://d01r8jur6wwh4" path="res://scripts/gamemode.gd" id="3_8wxc5"]
+[ext_resource type="Texture2D" uid="uid://ytbm4432st6d" path="res://textures/texture_01.png" id="3_d2uin"]
 [ext_resource type="PackedScene" uid="uid://begah3674cfa2" path="res://tscn/pers.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cu4mv48kig2yv" path="res://tscn/fridge_mini.tscn" id="4_a7rub"]
 [ext_resource type="PackedScene" uid="uid://crn4ee1hm1e0s" path="res://tscn/chair.tscn" id="5_8kplt"]
 [ext_resource type="PackedScene" uid="uid://cur5vn4ads5kr" path="res://tscn/dresser.tscn" id="6_ao1ln"]
 [ext_resource type="PackedScene" uid="uid://bewnn3va07d6f" path="res://tscn/item.tscn" id="8_ap273"]
 [ext_resource type="Script" uid="uid://dhoamrgqc0j36" path="res://scripts/hud1.gd" id="8_q8ief"]
-[ext_resource type="Resource" uid="uid://lsfxs6x0i7cj" path="res://resources/Arma02.tres" id="9_ap273"]
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/class_armas.gd" id="9_ap273"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -28,7 +30,9 @@ volumetric_fog_density = 0.01
 size = Vector3(150, 1, 150)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6ans"]
-albedo_color = Color(0.752941, 0.25098, 0, 1)
+albedo_texture = ExtResource("2_mn4ff")
+uv1_scale = Vector3(0.145, 0.145, 0.145)
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_7mycd"]
 material = SubResource("StandardMaterial3D_g6ans")
@@ -36,6 +40,9 @@ size = Vector3(150, 1, 150)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8kplt"]
 albedo_color = Color(0.752941, 0.25098, 0, 1)
+albedo_texture = ExtResource("3_d2uin")
+uv1_scale = Vector3(0.05, 0.05, 0.05)
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_a7rub"]
 material = SubResource("StandardMaterial3D_8kplt")
@@ -66,6 +73,36 @@ size = Vector3(30, 1, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8d387"]
 size = Vector3(30, 1, 10)
+
+[sub_resource type="Resource" id="Resource_ap273"]
+resource_local_to_scene = true
+script = ExtResource("9_ap273")
+nome_item = "Pistol"
+dps = 1.0
+alcance = 50
+velocidade_ataque = 0.5
+tempocarregamento = 50.0
+tipo = 1
+pente = 12
+municao_atual = 12
+municao_reserva = 48
+semiauto = true
+dano = 65
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_bnc66"]
+resource_local_to_scene = true
+script = ExtResource("9_ap273")
+nome_item = "Semiauto rifle"
+dps = 1.0
+alcance = 50
+velocidade_ataque = 0.2
+tempocarregamento = 100.0
+tipo = 1
+pente = 30
+municao_reserva = 90
+dano = 20
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [node name="main" type="Node3D"]
 
@@ -217,13 +254,22 @@ script = ExtResource("8_q8ief")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 12
+
+[node name="arma" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 608.0
+offset_right = 63.0
+offset_bottom = 631.0
 
 [node name="item" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.132095, 0.52075624, 7.101964)
+item = SubResource("Resource_ap273")
 
 [node name="item2" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.455368, 0.848896, 9.8380375)
-item = ExtResource("9_ap273")
+item = SubResource("Resource_bnc66")
 
 [connection signal="body_entered" from="cenário/fora do mapa" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="spawn inimigo/Timer" to="spawn inimigo" method="_on_timer_timeout"]

@@ -1,6 +1,6 @@
 extends Control
 
-
+@onready var pers = $"../pers"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print()
@@ -26,4 +26,10 @@ func _process(delta: float) -> void:
 		"vsync on / FPS: ", Engine.get_frames_per_second()
 		
 	)
-	pass
+	
+	if pers.arma_atual != null:
+		$arma.text = str(
+			get_node("/root/main/pers").inventario, "\n",
+			get_node("/root/main/pers").arma_atual.nome_item, "\n",
+			#get_node("/root/main/pers").inventario, "\n",
+			)

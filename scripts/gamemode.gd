@@ -17,7 +17,7 @@ var onda = 0
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 
 	$Label.text = str("Wave ", onda, "\n",
 					"Enemies left ", inimrestantes, "\n")

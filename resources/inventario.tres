@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="Inventario" load_steps=3 format=3 uid="uid://d0vo4fdyq0o0g"]
+[gd_resource type="Resource" script_class="Inventario" load_steps=2 format=3 uid="uid://d0vo4fdyq0o0g"]
 
 [ext_resource type="Script" uid="uid://rmkhrbjpgoyu" path="res://resources/Inventario.gd" id="1_bke5i"]
-[ext_resource type="Resource" uid="uid://cric5pgld8pdt" path="res://resources/Arma01.tres" id="1_rk44j"]
 
 [resource]
 script = ExtResource("1_bke5i")
-inventario = [null, null, ExtResource("1_rk44j"), null, null]
+inventario = [null, null, null, null, null]
 metadata/_custom_type_script = "uid://rmkhrbjpgoyu"

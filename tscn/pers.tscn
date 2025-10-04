@@ -1,8 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://begah3674cfa2"]
+[gd_scene load_steps=8 format=3 uid="uid://begah3674cfa2"]
 
 [ext_resource type="Script" uid="uid://dqnmbags1hg48" path="res://scripts/pers.gd" id="1_0t7jd"]
-[ext_resource type="Resource" uid="uid://cric5pgld8pdt" path="res://resources/Arma01.tres" id="2_u1lqi"]
-[ext_resource type="Resource" uid="uid://lsfxs6x0i7cj" path="res://resources/Arma02.tres" id="3_xd6ky"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upo20"]
 
@@ -27,7 +25,7 @@ axis_lock_angular_z = true
 floor_constant_speed = true
 floor_snap_length = 1.0
 script = ExtResource("1_0t7jd")
-inventario = [ExtResource("2_u1lqi"), ExtResource("3_xd6ky"), null]
+inventario = Array[Resource]([null, null, null, null, null, null, null, null, null])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_5vw27")
@@ -44,6 +42,7 @@ offset_left = 309.0
 offset_top = 38.0
 offset_right = 349.0
 offset_bottom = 61.0
+theme_override_font_sizes/font_size = 12
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -79,3 +78,30 @@ debug_shape_thickness = 5
 shadow_enabled = true
 spot_range = 20.0
 spot_angle = 30.0
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="inventarioUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="inventarioUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="inventarioUI"]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 555.0
+offset_right = 1023.0
+offset_bottom = 636.0
+columns = 9

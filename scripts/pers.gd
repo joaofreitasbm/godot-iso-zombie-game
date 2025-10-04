@@ -20,6 +20,7 @@ var ultimoalvo
 
 @export var inventario: Array[Resource]
 @onready var arma_atual
+var equipado = false
 
 var interagir = false
 
@@ -29,13 +30,16 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#print(inventario)
-	
-		
+
+
 	opacidade()
+
 
 	if not is_on_floor(): # gravidade
 		velocity += get_gravity() * delta
 
+	if !equipado:
+		arma_atual = preload("res://resources/maoslivres.tres")
 	if movtank == true: # MOVIMENTAÇÃO DE TANK
 		var frente = -global_transform.basis.z # variavel pra salvar direção pra onde o personagem anda
 
@@ -91,11 +95,27 @@ func _physics_process(delta: float) -> void:
 			ultimoalvo.stencil = false
 
 
-	if Input.is_action_just_pressed("atirar"):
-		if mirando and colmira != null and colmira.is_in_group("Inimigo") and inventario:
-			colmira.vida -= causardano()
+
+	if not $timer.is_stopped():
+		$Label.text = str(round($timer.time_left))
+	else:
+		$Label.text = "Pronto!"
 
 
+	if Input.is_action_pressed("atirar"):
+		if mirando and colmira != null and colmira.is_in_group("Inimigo"):
+			if $timer.is_stopped(): 
+				var dano = arma_atual.atirar()
+				if dano != null:
+					colmira.vida -= arma_atual.dano
+					$timer.wait_time = arma_atual.velocidade_ataque
+					$timer.start()
+				
+
+	if Input.is_action_just_released("atirar"):
+		arma_atual.aux = true
+
+				
 	if Input.is_action_just_pressed("B"):
 		if movtank == true:
 			print("não movtank")
@@ -114,6 +134,8 @@ func _physics_process(delta: float) -> void:
 	# fechar jogo
 	if Input.is_action_just_pressed("esc"):
 		get_tree().quit()
+		
+	if Input.is_action_just_pressed("R"): arma_atual.recarregar()
 
 	if Input.is_action_just_pressed("E"): interagir = true; print(interagir)
 	if Input.is_action_just_released("E"): interagir = false; print(interagir)
@@ -126,24 +148,31 @@ func _physics_process(delta: float) -> void:
 		cam.size += 1
 	cam.size = clamp(cam.size, 5, 30)
 
+
 	if Input.is_action_just_pressed("F"):
-		var inim = preload("res://tscn/inim.tscn")
-		var spawn = inim.instantiate()
-		spawn.position = position + Vector3(10, 0, 0)
-		get_tree().get_root().get_node("main").add_child(spawn)
+		var inim = preload("res://tscn/inim.tscn").instantiate()
+		inim.position = position + Vector3(10, 0, 0)
+		get_tree().get_root().get_node("main").add_child(inim)
 
+	
+	
 	if Input.is_action_just_pressed("key1"):
-		print("arma equipada: ", inventario[0].nome_item)
-		arma_atual = inventario[0]
+		if arma_atual == inventario[0]:
+			equipado = false
+		else:
+			equipado = true
+			arma_atual = inventario[0]
 	if Input.is_action_just_pressed("key2"):
-		print("arma equipada: ", inventario[1].nome_item)
+		pass
+		print("arma equipada: ", inventario[1].nome_item, " semiauto: ", inventario[1].semiauto)
 		arma_atual = inventario[1]
-
-	#$Label.text = str(
-		#movtank, "\n",
-		#velocity, "\n",
-		#raio.target_position
-		#)
+	
+	
+	#if arma_atual != null:
+		#$Label.text = str(
+			#arma_atual.nome_item, "\n",
+			#arma_atual.municao_atual,"/",arma_atual.municao_reserva, "\n",
+			#)
 
 
 	if vida <= 0:
@@ -168,7 +197,7 @@ func mirar():
 		circ.show()
 		look_at(raycast_results["position"], Vector3.UP)
 		raio.position = position
-		raio.target_position = ((raycast_results["position"] - position).normalized() * ray_lenght) #* Vector3(30, 0, 30)
+		raio.target_position = ((raycast_results["position"] - position).normalized() * arma_atual.alcance) #substituir ray_length pelo alcance da arma
 		circ.position = raycast_results["position"]
 		circ.position.y = raycast_results["position"].y - 1
 		colmira = raio.get_collider()

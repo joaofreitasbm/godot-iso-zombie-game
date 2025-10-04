@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfaf7otec38k8"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5bk8c"]
+direction = Vector3(0, 1, 0)
+spread = 64.87
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -15, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kobq1"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u07o2"]
+material = SubResource("StandardMaterial3D_kobq1")
+
+[node name="particula_sangue" type="GPUParticles3D"]
+lifetime = 5.0
+speed_scale = 2.13
+explosiveness = 1.0
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_5bk8c")
+draw_pass_1 = SubResource("BoxMesh_u07o2")

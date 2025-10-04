@@ -24,12 +24,15 @@ var equipado = false
 
 var interagir = false
 
+var hotkey
+
+var part = preload("res://tscn/particula_sangue.tscn").instantiate()
+
 func _ready() -> void:
 	pass
 
 
 func _physics_process(delta: float) -> void:
-	#print(inventario)
 
 
 	opacidade()
@@ -103,14 +106,11 @@ func _physics_process(delta: float) -> void:
 
 
 	if Input.is_action_pressed("atirar"):
-		if mirando and colmira != null and colmira.is_in_group("Inimigo"):
-			if $timer.is_stopped(): 
-				var dano = arma_atual.atirar()
-				if dano != null:
-					colmira.vida -= arma_atual.dano
-					$timer.wait_time = arma_atual.velocidade_ataque
-					$timer.start()
-				
+		if mirando and $timer.is_stopped(): 
+			$timer.wait_time = arma_atual.velocidade_ataque
+			$timer.start()
+			arma_atual.atirar(colmira)
+			print("atirou em: ", colmira)
 
 	if Input.is_action_just_released("atirar"):
 		arma_atual.aux = true
@@ -154,20 +154,7 @@ func _physics_process(delta: float) -> void:
 		inim.position = position + Vector3(10, 0, 0)
 		get_tree().get_root().get_node("main").add_child(inim)
 
-	
-	
-	if Input.is_action_just_pressed("key1"):
-		if arma_atual == inventario[0]:
-			equipado = false
-		else:
-			equipado = true
-			arma_atual = inventario[0]
-	if Input.is_action_just_pressed("key2"):
-		pass
-		print("arma equipada: ", inventario[1].nome_item, " semiauto: ", inventario[1].semiauto)
-		arma_atual = inventario[1]
-	
-	
+
 	#if arma_atual != null:
 		#$Label.text = str(
 			#arma_atual.nome_item, "\n",
@@ -179,7 +166,7 @@ func _physics_process(delta: float) -> void:
 		get_tree().reload_current_scene()
 
 
-func mirar(): 
+func alvo2d(): 
 	mirando = true
 	velandar = 3
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -193,19 +180,21 @@ func mirar():
 	ray_query.collision_mask = 2 
 	var raycast_results = space.intersect_ray(ray_query)
 	raycast_results["position"].y += 1
-	if !raycast_results.is_empty():
-		circ.show()
-		look_at(raycast_results["position"], Vector3.UP)
-		raio.position = position
-		raio.target_position = ((raycast_results["position"] - position).normalized() * arma_atual.alcance) #substituir ray_length pelo alcance da arma
-		circ.position = raycast_results["position"]
-		circ.position.y = raycast_results["position"].y - 1
-		colmira = raio.get_collider()
-		if colmira != null and colmira.is_in_group("Inimigo") and colmira.stencil == false:
-			colmira.stencil = true
-			ultimoalvo = colmira
-		if is_instance_valid(ultimoalvo) and colmira is not CharacterBody3D and ultimoalvo is CharacterBody3D:
-			ultimoalvo.stencil = false
+	return raycast_results["position"]
+
+func mirar():
+	circ.show()
+	look_at(alvo2d(), Vector3.UP)
+	raio.position = position
+	raio.target_position = ((alvo2d() - position).normalized() * arma_atual.alcance) #substituir ray_length pelo alcance da arma
+	circ.position = alvo2d()
+	circ.position.y = alvo2d().y - 1
+	colmira = raio.get_collider()
+	if colmira != null and colmira.is_in_group("Inimigo") and colmira.stencil == false:
+		colmira.stencil = true
+		ultimoalvo = colmira
+	if is_instance_valid(ultimoalvo) and colmira is not CharacterBody3D and ultimoalvo is CharacterBody3D:
+		ultimoalvo.stencil = false
 
 
 func opacidade():
@@ -225,6 +214,16 @@ func opacidade():
 			i.transparency = 0
 		listaopac.clear()
 
-func causardano():
-	if inventario:
-		return arma_atual.dano
+
+func _input(event: InputEvent) -> void: # controle do hotkey
+	if event is InputEventKey and event.as_text_key_label().is_valid_int() and event.pressed and not event.echo and event.keycode != 48:
+		print(event)
+		hotkey = int(event.as_text_key_label()) - 1
+		print(hotkey, len(inventario))
+		
+		if hotkey >= len(inventario):
+			return
+		if arma_atual == inventario[hotkey]: equipado = false; return
+		else: equipado = true; arma_atual = inventario[hotkey]; return
+		
+		

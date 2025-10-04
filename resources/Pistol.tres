@@ -10,6 +10,7 @@ dps = 1.0
 alcance = 50
 velocidade_ataque = 0.5
 tempocarregamento = 50.0
+impacto = 500.0
 tipo = 1
 pente = 12
 municao_atual = 12

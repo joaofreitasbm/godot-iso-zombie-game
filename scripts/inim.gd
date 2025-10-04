@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 var velocidade = 0.1 #randf_range(2.0, 6.0) # velocidade linear entre 2 e 6
-var vida = 999999999 #randi_range(70, 140)
+var vida = randi_range(70, 140)
 var area = false
 var body
 @onready var stencil = false

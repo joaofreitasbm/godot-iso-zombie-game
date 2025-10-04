@@ -6,7 +6,7 @@
 script = ExtResource("1_puqba")
 nome_item = "Mãos livres"
 dps = 10.0
-alcance = 20
+alcance = 10
 velocidade_ataque = 10.0
 semiauto = true
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

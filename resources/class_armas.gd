@@ -8,6 +8,7 @@ class_name armas
 @export var alcance: int
 @export var velocidade_ataque: float
 @export var tempocarregamento: float
+@export var impacto: float 
 @export var tipo: tipoarma
 enum tipoarma {
 	CORPO_A_CORPO,
@@ -27,33 +28,29 @@ enum tipoarma {
 @export var aux = true
 
 
-#func teste():
-	#if tipo == 0:
-		#return "corpo a corpo"
-		#
-	#if tipo == 1:
-		#return "arma de fogo"
-
-func atirar():
+func atirar(alvo): #, pers):
 	if municao_atual == 0 and tipo == 1:
 		recarregar()
-		
+
 	if semiauto == true and aux == true and tipo == 1 and municao_atual >= 1:
 		municao_atual -= 1
-		print("atirou semi, ", municao_atual)
+		print("atirou semi, munição atual: ", municao_atual)
 		aux = false
-		return dano
-		
+		if alvo.is_in_group("Inimigo"):
+			alvo.vida -= dano
+		return
+
 	if semiauto == false and aux == true and tipo == 1 and municao_atual >= 1:
 		municao_atual -= 1
 		print("atirou auto, ", municao_atual)
+		if alvo.is_in_group("Inimigo"):
+			alvo.vida -= dano
 		return dano
-	
+
 	if municao_atual == 0 and municao_reserva == 0:
 		print("sem munição")
 		return
-			
-			
+
 
 func recarregar():
 	var x = pente - municao_atual
@@ -65,5 +62,3 @@ func recarregar():
 		municao_reserva = 0
 	else:
 		return
-	
-	

@@ -105,3 +105,5 @@ offset_top = 555.0
 offset_right = 1023.0
 offset_bottom = 636.0
 columns = 9
+
+[node name="audio" type="AudioStreamPlayer3D" parent="."]

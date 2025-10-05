@@ -12,12 +12,13 @@ class_name armas
 @export var tipo: tipoarma
 enum tipoarma {
 	CORPO_A_CORPO,
-	ARMA_DE_FOGO
+	ARMA_DE_FOGO,
+	ARREMESSAVEL
 }
 
 #propriedades armas corpo a corpo
 @export var durabilidade: int
-@export var audio_impacto: AudioEffect
+@export var audio_impacto: AudioStreamMP3
 
 #propriedades armas de fogo
 @export var pente: int
@@ -28,35 +29,38 @@ enum tipoarma {
 @export var aux = true
 
 
-func atirar(alvo): #, pers):
-	if municao_atual == 0 and tipo == 1:
-		recarregar()
+func atirar(alvo):
+	if alvo != null:
+		var part = preload("res://tscn/particula_sangue.tscn").instantiate()
+		part.top_level = true
+		part.position = alvo.position
+		part.emitting = true
+		alvo.add_child(part)
+		
+		if municao_atual == 0 and tipo == 1:
+			recarregar()
 
-	if semiauto == true and aux == true and tipo == 1 and municao_atual >= 1 and alvo != null:
-		municao_atual -= 1
-		print("atirou semi, munição atual: ", municao_atual)
-		aux = false
-		if alvo.is_in_group("Inimigo"):
-			alvo.vida -= dano
-			var part = preload("res://tscn/particula_sangue.tscn").instantiate()
-			part.top_level = true
-			print(part.position," ", alvo.position)
-			part.position = alvo.position
-			print(part.position)
-			part.emitting = true
-			alvo.add_child(part)
+		if semiauto == true and aux == true and tipo == 1 and municao_atual >= 1:
+			municao_atual -= 1
+			print("atirou semi, munição atual: ", municao_atual)
+			aux = false
+			if alvo.is_in_group("Inimigo"):
+				alvo.vida -= dano
+			return
+
+		if semiauto == false and aux == true and tipo == 1 and municao_atual >= 1:
+			municao_atual -= 1
+			print("atirou auto, ", municao_atual)
+			if alvo.is_in_group("Inimigo"):
+				alvo.vida -= dano
+			return dano
+
+		if municao_atual == 0 and municao_reserva == 0:
+			print("sem munição")
+			return
+	else: 
 		return
-
-	if semiauto == false and aux == true and tipo == 1 and municao_atual >= 1 and alvo != null:
-		municao_atual -= 1
-		print("atirou auto, ", municao_atual)
-		if alvo.is_in_group("Inimigo"):
-			alvo.vida -= dano
-		return dano
-
-	if municao_atual == 0 and municao_reserva == 0:
-		print("sem munição")
-		return
+	
 
 
 func recarregar():

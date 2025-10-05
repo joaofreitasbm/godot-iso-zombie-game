@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="armas" load_steps=3 format=3 uid="uid://cric5pgld8pdt"]
+
+[ext_resource type="AudioStream" uid="uid://m50ftixuovst" path="res://audio/tiro.mp3" id="1_hyhe1"]
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/class_armas.gd" id="2_3xaox"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_3xaox")
+nome_item = "Fuzil automatico"
+dps = 1.0
+alcance = 50
+velocidade_ataque = 0.2
+tempocarregamento = 100.0
+tipo = 1
+audio_impacto = ExtResource("1_hyhe1")
+pente = 30
+municao_reserva = 90
+dano = 20
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

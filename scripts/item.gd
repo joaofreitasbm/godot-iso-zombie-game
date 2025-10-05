@@ -6,13 +6,13 @@ var area = false
 
 func _process(_delta: float) -> void:
 	if pers.interagir == true and area == true:
-		if pers.inventario.is_empty():
+		if pers.itenshotkey.is_empty():
 			print("pegou primeiro item")
-			pers.inventario.append(item)
+			pers.itenshotkey.append(item)
 			pers.arma_atual = item
 		else:
-			pers.inventario.append(item)
-			print("item adicionado na posição ", len(pers.inventario))
+			pers.itenshotkey.append(item)
+			print("item adicionado na posição ", len(pers.itenshotkey))
 		queue_free()
 
 func _on_body_entered(body: Node3D) -> void:

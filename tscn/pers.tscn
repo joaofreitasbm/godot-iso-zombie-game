@@ -25,7 +25,6 @@ axis_lock_angular_z = true
 floor_constant_speed = true
 floor_snap_length = 1.0
 script = ExtResource("1_0t7jd")
-inventario = Array[Resource]([null, null, null, null, null, null, null, null, null])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_5vw27")

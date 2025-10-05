@@ -79,16 +79,14 @@ size = Vector3(30, 1, 10)
 resource_local_to_scene = true
 script = ExtResource("9_ap273")
 nome_item = "Pistola"
-dps = 1.0
 alcance = 50
-velocidade_ataque = 0.5
-tempocarregamento = 50.0
-impacto = 500.0
-tipo = 1
 audio_impacto = ExtResource("11_d2uin")
-pente = 12
-municao_atual = 12
-municao_reserva = 48
+velocidade_ataque = 0.5
+tipo = 1
+qntmaxima = 12
+qntatual = 12
+qntreserva = 24
+tempocarregamento = 50.0
 semiauto = true
 dano = 65
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
@@ -97,14 +95,14 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 resource_local_to_scene = true
 script = ExtResource("9_ap273")
 nome_item = "Fuzil automatico"
-dps = 1.0
 alcance = 50
-velocidade_ataque = 0.2
-tempocarregamento = 100.0
-tipo = 1
 audio_impacto = ExtResource("11_d2uin")
-pente = 30
-municao_reserva = 90
+velocidade_ataque = 0.2
+tipo = 1
+qntmaxima = 30
+qntatual = 30
+qntreserva = 60
+tempocarregamento = 100.0
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
@@ -112,7 +110,6 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [node name="pers" parent="." instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-inventario = Array[Resource]([])
 
 [node name="coisas" type="Node3D" parent="."]
 
@@ -262,10 +259,11 @@ theme_override_font_sizes/font_size = 12
 
 [node name="arma" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 23.0
-offset_top = 608.0
-offset_right = 63.0
-offset_bottom = 631.0
+offset_left = 13.0
+offset_top = 536.0
+offset_right = 53.0
+offset_bottom = 559.0
+theme_override_font_sizes/font_size = 12
 
 [node name="item" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.132095, 0.52075624, 7.101964)

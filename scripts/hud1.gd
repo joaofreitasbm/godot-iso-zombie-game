@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	
 	if pers.arma_atual != null:
 		$arma.text = str(
-			get_node("/root/main/pers").inventario, "\n",
+			get_node("/root/main/pers").itenshotkey, "\n",
 			get_node("/root/main/pers").arma_atual.nome_item, "\n",
 			#get_node("/root/main/pers").inventario, "\n",
 			)

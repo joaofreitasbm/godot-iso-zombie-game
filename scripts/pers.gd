@@ -18,16 +18,14 @@ var colmira
 var listaopac = []
 var ultimoalvo
 
-@export var inventario: Array[Resource]
+@export var itenshotkey: Array[Resource]
+
 @onready var arma_atual
 var equipado = false
 
 var interagir = false
 
-var hotkey
-
-var part = preload("res://tscn/particula_sangue.tscn").instantiate()
-
+var mlivre = preload("res://resources/maoslivres.tres")
 func _ready() -> void:
 	pass
 
@@ -41,8 +39,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor(): # gravidade
 		velocity += get_gravity() * delta
 
-	if !equipado:
-		arma_atual = preload("res://resources/maoslivres.tres")
+		
 	if movtank == true: # MOVIMENTAÇÃO DE TANK
 		var frente = -global_transform.basis.z # variavel pra salvar direção pra onde o personagem anda
 
@@ -74,11 +71,10 @@ func _physics_process(delta: float) -> void:
 			correndo = false
 
 
-	if Input.is_action_just_pressed("correr"):
-		correndo = true
+	if Input.is_action_just_pressed("correr"): correndo = true
 
 
-	# controlar velocidade de andar
+	# controlar velocidade do movimento
 	if mirando: correndo = false; velandar = 3
 	if correndo: mirando = false; velandar = 20 #7.5
 	if not mirando and not correndo: velandar = 5
@@ -109,7 +105,7 @@ func _physics_process(delta: float) -> void:
 		if mirando and $timer.is_stopped(): 
 			$timer.wait_time = arma_atual.velocidade_ataque
 			$timer.start()
-			arma_atual.atirar(colmira)
+			arma_atual.usar_equipado(colmira, self)
 			print("atirou em: ", colmira)
 
 	if Input.is_action_just_released("atirar"):
@@ -121,15 +117,14 @@ func _physics_process(delta: float) -> void:
 			print("não movtank")
 			movtank = false
 			return
-
 		if movtank == false:
 			print("sim movtank")
 			movtank = true
 			return
 
-	cam.position = position + Vector3(-100, 40, 100) # posicionamento fixo da camera funcionando
 	move_and_slide()
 
+	if !equipado: arma_atual = mlivre
 
 	# fechar jogo
 	if Input.is_action_just_pressed("esc"):
@@ -141,18 +136,27 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("E"): interagir = false; print(interagir)
 
 
-	# zoom da camera
-	if Input.is_action_just_pressed("mouse+"):
-		cam.size -= 1 
-	elif Input.is_action_just_pressed("mouse-"):
-		cam.size += 1
+	# controle e posicionamento da camera
+	if Input.is_action_just_pressed("mouse+"): cam.size -= 1 
+	elif Input.is_action_just_pressed("mouse-"): cam.size += 1
 	cam.size = clamp(cam.size, 5, 30)
+	cam.position = position + Vector3(-100, 40, 100)
 
 
+	#spawnar inimigo (debug)
 	if Input.is_action_just_pressed("F"):
 		var inim = preload("res://tscn/inim.tscn").instantiate()
 		inim.position = position + Vector3(10, 0, 0)
 		get_tree().get_root().get_node("main").add_child(inim)
+
+
+	#dropar item
+	if Input.is_action_just_pressed("G"): ## falta implementar o drop
+		if arma_atual.nome_item != "Mãos livres":
+			for i in itenshotkey:
+				if arma_atual == i:
+					itenshotkey.erase(i)
+					arma_atual = mlivre
 
 
 	#if arma_atual != null:
@@ -181,6 +185,7 @@ func alvo2d():
 	var raycast_results = space.intersect_ray(ray_query)
 	raycast_results["position"].y += 1
 	return raycast_results["position"]
+
 
 func mirar():
 	circ.show()
@@ -218,12 +223,9 @@ func opacidade():
 func _input(event: InputEvent) -> void: # controle do hotkey
 	if event is InputEventKey and event.as_text_key_label().is_valid_int() and event.pressed and not event.echo and event.keycode != 48:
 		print(event)
-		hotkey = int(event.as_text_key_label()) - 1
-		print(hotkey, len(inventario))
-		
-		if hotkey >= len(inventario):
+		var hotkey = int(event.as_text_key_label()) - 1
+		$timer.stop()
+		if hotkey >= len(itenshotkey):
 			return
-		if arma_atual == inventario[hotkey]: equipado = false; return
-		else: equipado = true; arma_atual = inventario[hotkey]; return
-		
-		
+		if arma_atual == itenshotkey[hotkey]: equipado = false; return
+		else: equipado = true; arma_atual = itenshotkey[hotkey]; return

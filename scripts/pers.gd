@@ -19,19 +19,20 @@ var listaopac = []
 var ultimoalvo
 
 @export var itenshotkey: Array[Resource]
-
-@onready var arma_atual
-var equipado = false
+@export var inventario: Array[Resource]
+@export var hotkey: int = 0
 
 var interagir = false
 
 var mlivre = preload("res://resources/maoslivres.tres")
+var arma_atual = mlivre
+var equipado = false
+
 func _ready() -> void:
 	pass
 
 
 func _physics_process(delta: float) -> void:
-
 
 	opacidade()
 
@@ -102,6 +103,8 @@ func _physics_process(delta: float) -> void:
 
 
 	if Input.is_action_pressed("atirar"):
+		if arma_atual.tipo == 3: #consumivel
+			arma_atual.usar_equipado(colmira, self)
 		if mirando and $timer.is_stopped(): 
 			$timer.wait_time = arma_atual.velocidade_ataque
 			$timer.start()
@@ -109,7 +112,8 @@ func _physics_process(delta: float) -> void:
 			print("atirou em: ", colmira)
 
 	if Input.is_action_just_released("atirar"):
-		arma_atual.aux = true
+		if mirando: arma_atual.aux = true
+		else: return
 
 				
 	if Input.is_action_just_pressed("B"):
@@ -124,13 +128,12 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	if !equipado: arma_atual = mlivre
 
 	# fechar jogo
 	if Input.is_action_just_pressed("esc"):
 		get_tree().quit()
 		
-	if Input.is_action_just_pressed("R"): arma_atual.recarregar()
+	if Input.is_action_just_pressed("R"): itenshotkey[hotkey].recarregar()
 
 	if Input.is_action_just_pressed("E"): interagir = true; print(interagir)
 	if Input.is_action_just_released("E"): interagir = false; print(interagir)
@@ -151,12 +154,32 @@ func _physics_process(delta: float) -> void:
 
 
 	#dropar item
-	if Input.is_action_just_pressed("G"): ## falta implementar o drop
-		if arma_atual.nome_item != "Mãos livres":
+	if Input.is_action_just_pressed("G"): ## falta implementar o drop no cenario e remover item do inventario
+		if arma_atual != mlivre:
 			for i in itenshotkey:
-				if arma_atual == i:
-					itenshotkey.erase(i)
+				if i != null and arma_atual == i:
+					inventario.erase(i) #apaga do inventario
+					itenshotkey[hotkey] = null
 					arma_atual = mlivre
+					equipado = false
+
+
+	#guardar item
+	if Input.is_action_just_pressed("Q"):
+		if itenshotkey[hotkey].nome_item != "Mãos livres":
+			for i in itenshotkey:
+				if itenshotkey[hotkey] == i:
+					arma_atual = mlivre
+					equipado = false
+					return
+				if arma_atual == mlivre:
+					arma_atual = itenshotkey[hotkey]
+					equipado = true
+
+
+
+	$inventarioUI/hotkeys.text = str("slot atual: ", hotkey, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
+	$inventarioUI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual)
 
 
 	#if arma_atual != null:
@@ -220,12 +243,25 @@ func opacidade():
 		listaopac.clear()
 
 
-func _input(event: InputEvent) -> void: # controle do hotkey
+func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.as_text_key_label().is_valid_int() and event.pressed and not event.echo and event.keycode != 48:
-		print(event)
-		var hotkey = int(event.as_text_key_label()) - 1
-		$timer.stop()
-		if hotkey >= len(itenshotkey):
+		var index := int(event.as_text_key_label()) - 1
+		if index < 0 or index >= len(itenshotkey):
 			return
-		if arma_atual == itenshotkey[hotkey]: equipado = false; return
-		else: equipado = true; arma_atual = itenshotkey[hotkey]; return
+
+		hotkey = index
+		$timer.stop()
+
+		if itenshotkey[hotkey] == null:
+			equipado = false
+			arma_atual = mlivre  # mlivre = sem arma
+			print("Desequipou arma do slot ", hotkey)
+			return
+
+
+		if itenshotkey[hotkey] != null:
+			equipado = true
+			arma_atual = itenshotkey[hotkey]
+			print("Equipou arma: ", arma_atual.nome_item, " no slot ", hotkey)
+
+			

@@ -3,16 +3,14 @@ extends Area3D
 @export var item: Resource
 var area = false
 @onready var pers = $"../pers"
+@onready var lista_item: ItemList = $"../pers/inventarioUI/ItemList"
 
 func _process(_delta: float) -> void:
 	if pers.interagir == true and area == true:
-		if pers.itenshotkey.is_empty():
-			print("pegou primeiro item")
-			pers.itenshotkey.append(item)
-			pers.arma_atual = item
-		else:
-			pers.itenshotkey.append(item)
-			print("item adicionado na posição ", len(pers.itenshotkey))
+		pers.inventario.push_front(item)
+		print(item, item.nome_item)
+		lista_item.add_item(str(item.nome_item))
+		print("item adicionado na posição ", len(pers.inventario))
 		queue_free()
 
 func _on_body_entered(body: Node3D) -> void:

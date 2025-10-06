@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="armas" load_steps=2 format=3 uid="uid://e4n5u682ketj"]
+
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/class_armas.gd" id="1_qq41a"]
+
+[resource]
+script = ExtResource("1_qq41a")
+nome_item = "Cura1"
+stack = true
+tipo = 3
+qntreserva = 1
+semiauto = true
+dano = 30
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

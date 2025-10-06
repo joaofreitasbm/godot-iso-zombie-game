@@ -97,10 +97,10 @@ script = ExtResource("2_u1lqi")
 
 [node name="invlabel" type="Label" parent="inventarioUI"]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 605.0
-offset_right = 112.0
-offset_bottom = 628.0
+offset_left = 419.0
+offset_top = 599.0
+offset_right = 459.0
+offset_bottom = 622.0
 theme_override_font_sizes/font_size = 8
 
 [node name="hotkeys" type="Label" parent="inventarioUI"]

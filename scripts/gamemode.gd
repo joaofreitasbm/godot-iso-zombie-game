@@ -24,7 +24,8 @@ func _process(_delta: float) -> void:
 					
 	# se todos inimigos morreram e timer não está rodando, prepara nova onda
 	if inimrestantes <= 0:
-		iniciar_nova_onda()
+		pass
+		#iniciar_nova_onda() <- desmarcar isso pros inimigos voltarem a spawnar
 
 
 func iniciar_nova_onda() -> void:

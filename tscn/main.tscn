@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bewnn3va07d6f" path="res://tscn/item.tscn" id="8_ap273"]
 [ext_resource type="Script" uid="uid://dhoamrgqc0j36" path="res://scripts/hud1.gd" id="8_q8ief"]
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/class_armas.gd" id="9_ap273"]
+[ext_resource type="Resource" uid="uid://e4n5u682ketj" path="res://resources/cura1.tres" id="11_bnc66"]
 [ext_resource type="AudioStream" uid="uid://m50ftixuovst" path="res://audio/tiro.mp3" id="11_d2uin"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
@@ -74,22 +75,6 @@ size = Vector3(30, 1, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8d387"]
 size = Vector3(30, 1, 10)
-
-[sub_resource type="Resource" id="Resource_bnc66"]
-resource_local_to_scene = true
-script = ExtResource("9_ap273")
-nome_item = "Pistola"
-alcance = 50
-audio_impacto = ExtResource("11_d2uin")
-velocidade_ataque = 0.5
-tipo = 1
-qntmaxima = 12
-qntatual = 12
-qntreserva = 24
-tempocarregamento = 50.0
-semiauto = true
-dano = 65
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_uf0e4"]
 resource_local_to_scene = true
@@ -267,7 +252,7 @@ theme_override_font_sizes/font_size = 12
 
 [node name="item" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.132095, 0.52075624, 7.101964)
-item = SubResource("Resource_bnc66")
+item = ExtResource("11_bnc66")
 
 [node name="item2" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.455368, 0.848896, 9.8380375)

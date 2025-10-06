@@ -30,11 +30,6 @@ enum tipoarma {
 @export var dano: int
 @export var aux = true
 
-#funções:
-@export var dropavel: bool
-@export var deletavel: bool
-@export var combinavel: bool
-
 
 func usar_equipado(alvo, pers):
 	if tipo == 0: #CORPO A CORPO
@@ -90,7 +85,7 @@ func usar_equipado(alvo, pers):
 	
 	if tipo == 3: #CONSUMIVEL
 		pers.vida += dano
-		qntatual -= 1
+		qntreserva -= 1
 
 
 func recarregar():
@@ -103,7 +98,3 @@ func recarregar():
 		qntreserva = 0
 	else:
 		return
-		
-func equipar(slot):
-	
-	pass

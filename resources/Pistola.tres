@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="armas" load_steps=2 format=3 uid="uid://lsfxs6x0i7cj"]
+[gd_resource type="Resource" script_class="armas" load_steps=3 format=3 uid="uid://lsfxs6x0i7cj"]
 
+[ext_resource type="Texture2D" uid="uid://cwx6aytpdet2l" path="res://pngs/pist.png" id="1_gjfyh"]
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/class_armas.gd" id="2_pp7w1"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("2_pp7w1")
 nome_item = "Pistola"
+imagem = ExtResource("1_gjfyh")
 alcance = 50
 velocidade_ataque = 0.5
 impacto = 500.0

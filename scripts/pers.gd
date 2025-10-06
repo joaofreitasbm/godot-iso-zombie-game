@@ -162,6 +162,7 @@ func _physics_process(delta: float) -> void:
 					itenshotkey[hotkey] = null
 					arma_atual = mlivre
 					equipado = false
+					$inventarioUI.atualizar()
 
 
 	#guardar item
@@ -171,15 +172,17 @@ func _physics_process(delta: float) -> void:
 				if itenshotkey[hotkey] == i:
 					arma_atual = mlivre
 					equipado = false
+					$inventarioUI.atualizar()
 					return
 				if arma_atual == mlivre:
 					arma_atual = itenshotkey[hotkey]
 					equipado = true
+					$inventarioUI.atualizar()
 
 
 
-	$inventarioUI/hotkeys.text = str("slot atual: ", hotkey, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
-	$inventarioUI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual)
+	$inventarioUI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
+	$inventarioUI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual.nome_item)
 
 
 	#if arma_atual != null:
@@ -251,7 +254,7 @@ func _input(event: InputEvent) -> void:
 
 		hotkey = index
 		$timer.stop()
-
+		$inventarioUI.atualizar()
 		if itenshotkey[hotkey] == null:
 			equipado = false
 			arma_atual = mlivre  # mlivre = sem arma

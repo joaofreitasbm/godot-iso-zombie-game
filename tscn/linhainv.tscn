@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bafcy4krmvbaj"]
+
+[node name="linha" type="HBoxContainer"]
+
+[node name="nome" type="Label" parent="."]
+layout_mode = 2
+
+[node name="qnt" type="Label" parent="."]
+layout_mode = 2
+
+[node name="tipo" type="Label" parent="."]
+layout_mode = 2

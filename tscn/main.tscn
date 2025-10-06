@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cc787tq3ba81c"]
+[gd_scene load_steps=33 format=3 uid="uid://cc787tq3ba81c"]
 
 [ext_resource type="PackedScene" uid="uid://cp1ec74mip4v1" path="res://tscn/street_lamp.tscn" id="2_ao1ln"]
 [ext_resource type="Texture2D" uid="uid://dnb7w1f3qg1xc" path="res://textures/texture_10.png" id="2_mn4ff"]
@@ -11,8 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://bewnn3va07d6f" path="res://tscn/item.tscn" id="8_ap273"]
 [ext_resource type="Script" uid="uid://dhoamrgqc0j36" path="res://scripts/hud1.gd" id="8_q8ief"]
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/class_armas.gd" id="9_ap273"]
-[ext_resource type="Resource" uid="uid://e4n5u682ketj" path="res://resources/cura1.tres" id="11_bnc66"]
 [ext_resource type="AudioStream" uid="uid://m50ftixuovst" path="res://audio/tiro.mp3" id="11_d2uin"]
+[ext_resource type="Texture2D" uid="uid://cwx6aytpdet2l" path="res://pngs/pist.png" id="11_uf0e4"]
+[ext_resource type="Texture2D" uid="uid://2wuphdpa8jb7" path="res://pngs/fuzil.png" id="14_hegun"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -76,17 +77,35 @@ size = Vector3(30, 1, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_8d387"]
 size = Vector3(30, 1, 10)
 
+[sub_resource type="Resource" id="Resource_mn6q8"]
+resource_local_to_scene = true
+script = ExtResource("9_ap273")
+nome_item = "Pistola"
+imagem = ExtResource("11_uf0e4")
+alcance = 50
+velocidade_ataque = 0.5
+impacto = 500.0
+tipo = 1
+qntmaxima = 12
+qntatual = 12
+qntreserva = 24
+tempocarregamento = 1.0
+semiauto = true
+dano = 65
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
 [sub_resource type="Resource" id="Resource_uf0e4"]
 resource_local_to_scene = true
 script = ExtResource("9_ap273")
 nome_item = "Fuzil automatico"
+imagem = ExtResource("14_hegun")
 alcance = 50
 audio_impacto = ExtResource("11_d2uin")
 velocidade_ataque = 0.2
 tipo = 1
 qntmaxima = 30
 qntatual = 30
-qntreserva = 60
+qntreserva = 90
 tempocarregamento = 100.0
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
@@ -252,7 +271,7 @@ theme_override_font_sizes/font_size = 12
 
 [node name="item" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.132095, 0.52075624, 7.101964)
-item = ExtResource("11_bnc66")
+item = SubResource("Resource_mn6q8")
 
 [node name="item2" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.455368, 0.848896, 9.8380375)

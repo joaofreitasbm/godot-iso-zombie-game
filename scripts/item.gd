@@ -10,7 +10,8 @@ func _process(_delta: float) -> void:
 		pers.inventario.push_front(item)
 		print(item, item.nome_item)
 		lista_item.add_item(str(item.nome_item))
-		print("item adicionado na posição ", len(pers.inventario))
+		print("item adicionado na posição ", pers.hotkey + 1)
+		pers.get_node("inventarioUI").atualizar()
 		queue_free()
 
 func _on_body_entered(body: Node3D) -> void:

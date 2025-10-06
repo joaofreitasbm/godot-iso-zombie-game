@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="armas" load_steps=2 format=3 uid="uid://e4n5u682ketj"]
+[gd_resource type="Resource" script_class="armas" load_steps=3 format=3 uid="uid://e4n5u682ketj"]
 
+[ext_resource type="Texture2D" uid="uid://c8ofav2mlepvw" path="res://pngs/cura.png" id="1_85vik"]
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/class_armas.gd" id="1_qq41a"]
 
 [resource]
 script = ExtResource("1_qq41a")
 nome_item = "Cura1"
 stack = true
+imagem = ExtResource("1_85vik")
 tipo = 3
 qntreserva = 1
 semiauto = true

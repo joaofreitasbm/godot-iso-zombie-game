@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://begah3674cfa2"]
+[gd_scene load_steps=11 format=3 uid="uid://begah3674cfa2"]
 
 [ext_resource type="Script" uid="uid://dqnmbags1hg48" path="res://scripts/pers.gd" id="1_0t7jd"]
 [ext_resource type="Script" uid="uid://lyt2q3fdnysx" path="res://tscn/inventario_ui.gd" id="2_u1lqi"]
+[ext_resource type="PackedScene" uid="uid://bafcy4krmvbaj" path="res://tscn/linhainv.tscn" id="3_kmbe3"]
+[ext_resource type="PackedScene" uid="uid://btm5vxdprjvvb" path="res://tscn/slot.tscn" id="3_xd6ky"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upo20"]
 
@@ -76,11 +78,6 @@ transform = Transform3D(1, -1.49012e-08, -8.9407e-08, -2.98023e-08, 1, 2.98023e-
 top_level = true
 debug_shape_thickness = 5
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-shadow_enabled = true
-spot_range = 20.0
-spot_angle = 30.0
-
 [node name="timer" type="Timer" parent="."]
 one_shot = true
 
@@ -89,11 +86,23 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 7.0
-offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_u1lqi")
+
+[node name="tabela" type="VBoxContainer" parent="inventarioUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="linha" parent="inventarioUI/tabela" instance=ExtResource("3_kmbe3")]
+layout_mode = 2
+
+[node name="linha2" parent="inventarioUI/tabela" instance=ExtResource("3_kmbe3")]
+layout_mode = 2
+
+[node name="linha3" parent="inventarioUI/tabela" instance=ExtResource("3_kmbe3")]
+layout_mode = 2
 
 [node name="invlabel" type="Label" parent="inventarioUI"]
 layout_mode = 0
@@ -112,18 +121,58 @@ offset_bottom = 593.0
 theme_override_font_sizes/font_size = 8
 
 [node name="ItemList" type="ItemList" parent="inventarioUI"]
-layout_mode = 0
-offset_left = 748.0
-offset_top = 348.0
-offset_right = 975.0
-offset_bottom = 466.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -227.0
+offset_bottom = 118.0
+grow_horizontal = 0
 
-[node name="PopupMenu" type="PopupMenu" parent="inventarioUI"]
+[node name="PopupMenu" type="PopupMenu" parent="inventarioUI/ItemList"]
 oversampling_override = 1.0
-position = Vector2i(740, 485)
+position = Vector2i(926, 274)
 visible = true
 
-[node name="audio" type="AudioStreamPlayer3D" parent="."]
+[node name="hotkeycontainer" type="HBoxContainer" parent="inventarioUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -64.0
+offset_right = 304.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="1" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="2" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="3" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="4" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="5" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="6" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="7" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="8" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="9" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
 
 [connection signal="item_clicked" from="inventarioUI/ItemList" to="inventarioUI" method="_inventario_click"]
-[connection signal="id_pressed" from="inventarioUI/PopupMenu" to="inventarioUI" method="_on_popup_menu_id_pressed"]
+[connection signal="id_pressed" from="inventarioUI/ItemList/PopupMenu" to="inventarioUI" method="_on_popup_menu_id_pressed"]

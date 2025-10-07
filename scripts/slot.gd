@@ -19,8 +19,9 @@ func _process(_delta: float) -> void:
 		icon = null
 		$quantidade.text = ""
 		return
-
-	icon = item_slot.imagem
+	
+	if item_slot != null:
+		icon = item_slot.imagem
 
 	if item_slot.tipo == 1: # arma de fogo
 		$quantidade.text = str(item_slot.qntatual, "/", item_slot.qntreserva)
@@ -34,3 +35,9 @@ func _on_pressed() -> void:
 	var index = get_index()
 	pers.hotkey = index
 	print("Selecionou slot ", index)
+	
+func limpar():
+	item_slot = null
+	$quantidade.text = ""
+	$nome_slot.text = ""
+	icon = null

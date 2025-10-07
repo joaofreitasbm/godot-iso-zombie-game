@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var movimentação
 	if get_node("/root/main/pers").movtank == false:
 		movimentação = "3D free controls"

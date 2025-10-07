@@ -53,7 +53,6 @@ func _physics_process(delta: float) -> void:
 				i.mesh.material.stencil_mode = 0
 
 
-
 func _atacar_pers(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		area = true

@@ -156,16 +156,22 @@ func _physics_process(delta: float) -> void:
 	#dropar item
 	if Input.is_action_just_pressed("G"): ## falta implementar o drop no cenario e remover item do inventario
 		if arma_atual != mlivre:
-			for i in itenshotkey:
-				if i != null and arma_atual == i:
-					inventario.erase(i) #apaga do inventario
-					itenshotkey[hotkey] = null
-					arma_atual = mlivre
-					equipado = false
-					$inventarioUI.atualizar()
+			for x in itenshotkey:
+				if x != null and arma_atual == x:
+					inventario.erase(x) # apaga do inventario
+					itenshotkey[hotkey] = null # remove da hotkey atual
+					for y in $inventarioUI/tabela.get_children(): # retorna os PanelContainers 
+						print(y.itemtabela, arma_atual)
+						if y.itemtabela == arma_atual:
+							y.itemtabela = null
+					for z in $inventarioUI/hotkeycontainer.get_children():
+						if z.item_slot == arma_atual:
+							z.item_slot = null
+						arma_atual = mlivre
+						equipado = false
 
 
-	#guardar item
+	# guardar item (CONSERTAR)
 	if Input.is_action_just_pressed("Q"):
 		if itenshotkey[hotkey].nome_item != "Mãos livres":
 			for i in itenshotkey:
@@ -179,6 +185,13 @@ func _physics_process(delta: float) -> void:
 					equipado = true
 					$inventarioUI.atualizar()
 
+		# Abrir inventário
+	if Input.is_action_just_pressed("TAB"):
+		if $inventarioUI/tabela.visible == true:
+			$inventarioUI/tabela.hide()
+			return
+		if $inventarioUI/tabela.visible == false:
+			$inventarioUI/tabela.show()
 
 
 	$inventarioUI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
@@ -254,7 +267,6 @@ func _input(event: InputEvent) -> void:
 
 		hotkey = index
 		$timer.stop()
-		$inventarioUI.atualizar()
 		if itenshotkey[hotkey] == null:
 			equipado = false
 			arma_atual = mlivre  # mlivre = sem arma

@@ -1,17 +1,17 @@
 extends Area3D
 
-@export var item: Resource
-var area = false
+@export var item: Resource # item que está sendo adquirido
+var area = false # controlado pelos sinais no final do código (entrou/saiu da área)
 @onready var pers = $"../pers"
-@onready var lista_item: ItemList = $"../pers/inventarioUI/ItemList"
 
 func _process(_delta: float) -> void:
 	if pers.interagir == true and area == true:
-		pers.inventario.push_front(item)
-		print(item, item.nome_item)
-		lista_item.add_item(str(item.nome_item))
-		print("item adicionado na posição ", pers.hotkey + 1)
-		pers.get_node("inventarioUI").atualizar()
+		pers.inventario.push_front(item) # adiciona o item na primeira posição do inventario
+		for i in $"../pers/inventarioUI/tabela".get_children():
+			if i is PanelContainer and i.itemtabela == null:
+				i.itemtabela = item
+				print(i.itemtabela)
+				break
 		queue_free()
 
 func _on_body_entered(body: Node3D) -> void:

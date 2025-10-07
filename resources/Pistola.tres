@@ -11,6 +11,7 @@ imagem = ExtResource("1_gjfyh")
 alcance = 50
 velocidade_ataque = 0.5
 impacto = 500.0
+tipo = "Arma de fogo"
 tempocarregamento = 1.0
 semiauto = true
 dano = 65

@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 
 
 	if Input.is_action_pressed("atirar"):
-		if arma_atual.tipo == 3: #consumivel
+		if arma_atual.tipo == "Consumivel": #consumivel
 			arma_atual.usar_equipado(colmira, self)
 		if mirando and $timer.is_stopped(): 
 			$timer.wait_time = arma_atual.velocidade_ataque

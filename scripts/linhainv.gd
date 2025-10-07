@@ -15,8 +15,11 @@ func _process(_delta: float) -> void:
 	if skip == true:
 		return
 	if itemtabela != null and skip == false:
+		if itemtabela.tipo == "Arma de fogo":
+			$Button/qnt.text = str(itemtabela.qntatual, "/", itemtabela.qntreserva)
+		if itemtabela.tipo == "Arremessavel" or itemtabela.tipo == "Consumivel" or itemtabela.tipo == "Material":
+			$Button/qnt.text = str(itemtabela.qntreserva)
 		$Button/nome.text = str(itemtabela.nome_item)
-		$Button/qnt.text = str(itemtabela.qntreserva)
 		$Button/tipo.text = str(itemtabela.tipo)
 	if itemtabela == null:
 		$Button/nome.text = ""

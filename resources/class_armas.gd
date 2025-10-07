@@ -9,14 +9,13 @@ class_name armas
 @export var audio_impacto: AudioStreamMP3
 @export var velocidade_ataque: float
 @export var impacto: float 
-@export var tipo: tipoarma
-enum tipoarma {
-	CORPO_A_CORPO, #0
-	ARMA_DE_FOGO, #1
-	ARREMESSAVEL, #2
-	CONSUMIVEL, #3
-	ITEM_DE_CRAFT #4
-}
+@export_enum (
+	"Corpo a corpo", 
+	"Arma de fogo", 
+	"Arremessavel",
+	"Consumivel",
+	"Material") var tipo: String
+
 
 #propriedades armas corpo a corpo
 @export var durabilidade: int
@@ -32,7 +31,7 @@ enum tipoarma {
 
 
 func usar_equipado(alvo, pers):
-	if tipo == 0: #CORPO A CORPO
+	if tipo == "Corpo a corpo": #CORPO A CORPO
 		if alvo != null:
 			if aux == true and durabilidade >= 1:
 				print("bateu com corpo a corpo, durabilidade atual: ", durabilidade)
@@ -47,7 +46,7 @@ func usar_equipado(alvo, pers):
 					if nome_item != "Mãos livres":
 						durabilidade -= 1
 
-	if tipo == 1: #ARMA DE FOGO
+	if tipo == "Arma de fogo": #ARMA DE FOGO
 		if alvo != null:
 			var part = preload("res://tscn/particula_sangue.tscn").instantiate()
 			part.top_level = true
@@ -80,10 +79,10 @@ func usar_equipado(alvo, pers):
 		else: 
 			return
 
-	if tipo == 2: #ARREMESSAVEL
+	if tipo == "Arremessavel": #ARREMESSAVEL
 		pass
 	
-	if tipo == 3: #CONSUMIVEL
+	if tipo == "Consumivel": #CONSUMIVEL
 		pers.vida += dano
 		qntreserva -= 1
 

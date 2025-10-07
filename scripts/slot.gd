@@ -23,9 +23,9 @@ func _process(_delta: float) -> void:
 	if item_slot != null:
 		icon = item_slot.imagem
 
-	if item_slot.tipo == 1: # arma de fogo
+	if item_slot.tipo == "Arma de fogo": # arma de fogo
 		$quantidade.text = str(item_slot.qntatual, "/", item_slot.qntreserva)
-	elif item_slot.tipo == 3: # consumível
+	elif item_slot.tipo == "Consumivel": # consumível
 		$quantidade.text = str(item_slot.qntreserva)
 	else:
 		$quantidade.text = ""

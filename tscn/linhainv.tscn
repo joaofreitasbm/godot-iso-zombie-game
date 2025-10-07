@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://rjdoowuh0wru"]
 
-[ext_resource type="Script" uid="uid://76d1b7lmmr3b" path="res://tscn/linhainv.gd" id="1_fhvvc"]
+[ext_resource type="Script" uid="uid://76d1b7lmmr3b" path="res://scripts/linhainv.gd" id="1_fhvvc"]
 
 [node name="linhainv" type="PanelContainer"]
 offset_right = 421.0
@@ -45,6 +45,7 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+horizontal_alignment = 2
 
 [node name="submenu" type="PopupMenu" parent="."]
 

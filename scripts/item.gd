@@ -11,7 +11,7 @@ func _process(_delta: float) -> void:
 			if i is PanelContainer and i.itemtabela == null:
 				i.itemtabela = item
 				print(i.itemtabela)
-				break
+				break 
 		queue_free()
 
 func _on_body_entered(body: Node3D) -> void:

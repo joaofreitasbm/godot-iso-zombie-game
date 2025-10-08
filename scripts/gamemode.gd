@@ -19,9 +19,11 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 
-	$Label.text = str("Wave ", onda, "\n",
-					"Enemies left ", inimrestantes, "\n")
-					
+
+	#$Label.text = str("Wave ", onda, "\n",
+					#"Enemies left ", inimrestantes, "\n")
+
+
 	# se todos inimigos morreram e timer não está rodando, prepara nova onda
 	if inimrestantes <= 0:
 		pass

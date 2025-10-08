@@ -18,8 +18,8 @@ var colmira
 var listaopac = []
 var ultimoalvo
 
-@export var itenshotkey: Array[Resource]
 @export var inventario: Array[Resource]
+@export var itenshotkey: Array[Resource]
 @export var hotkey: int = 0
 
 var interagir = false
@@ -37,10 +37,10 @@ func _physics_process(delta: float) -> void:
 	opacidade()
 
 
-	if not is_on_floor(): # gravidade
-		velocity += get_gravity() * delta
+	if not is_on_floor(): velocity += get_gravity() * delta
 
-		
+
+
 	if movtank == true: # MOVIMENTAÇÃO DE TANK
 		var frente = -global_transform.basis.z # variavel pra salvar direção pra onde o personagem anda
 
@@ -93,7 +93,6 @@ func _physics_process(delta: float) -> void:
 		rotation.z = 0
 		if ultimoalvo != null:
 			ultimoalvo.stencil = false
-
 
 
 	if not $timer.is_stopped():
@@ -158,40 +157,43 @@ func _physics_process(delta: float) -> void:
 		if arma_atual != mlivre:
 			for x in itenshotkey:
 				if x != null and arma_atual == x:
+					# ----- trocar isso tudo pela função de dropar pra habilitar drop pelo inventario -----
 					inventario.erase(x) # apaga do inventario
 					itenshotkey[hotkey] = null # remove da hotkey atual
-					for y in $inventarioUI/tabela.get_children(): # retorna os PanelContainers 
-						print(y.itemtabela, arma_atual)
+					for y in %"Inventário".get_children(): # retorna os PanelContainers 
 						if y.itemtabela == arma_atual:
 							y.itemtabela = null
-					for z in $inventarioUI/hotkeycontainer.get_children():
+							break
+					for z in %hotkeycontainer.get_children():
 						if z.item_slot == arma_atual:
 							z.item_slot = null
-						arma_atual = mlivre
-						equipado = false
+							break
+					arma_atual = mlivre
+					equipado = false
+					print(get_parent())
+					# ----- daqui pra cima -----
 
 
-	# guardar item (CONSERTAR)
+	# guardar item
 	if Input.is_action_just_pressed("Q"):
 		if itenshotkey[hotkey].nome_item != "Mãos livres":
 			for i in itenshotkey:
 				if itenshotkey[hotkey] == i:
 					arma_atual = mlivre
 					equipado = false
-					$inventarioUI.atualizar()
 					return
 				if arma_atual == mlivre:
 					arma_atual = itenshotkey[hotkey]
 					equipado = true
-					$inventarioUI.atualizar()
+
 
 		# Abrir inventário
 	if Input.is_action_just_pressed("TAB"):
-		if $inventarioUI/tabela.visible == true:
-			$inventarioUI/tabela.hide()
+		if $inventarioUI/invcontainer.visible == true:
+			$inventarioUI/invcontainer.hide()
 			return
-		if $inventarioUI/tabela.visible == false:
-			$inventarioUI/tabela.show()
+		if $inventarioUI/invcontainer.visible == false:
+			$inventarioUI/invcontainer.show()
 
 
 	$inventarioUI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)

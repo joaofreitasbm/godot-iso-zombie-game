@@ -30,6 +30,10 @@ class_name armas
 @export var aux = true
 
 
+@export var dropavel: bool
+@export var stackavel: bool
+
+
 func usar_equipado(alvo, pers):
 	if tipo == "Corpo a corpo": #CORPO A CORPO
 		if alvo != null:

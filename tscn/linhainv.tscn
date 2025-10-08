@@ -3,8 +3,20 @@
 [ext_resource type="Script" uid="uid://76d1b7lmmr3b" path="res://scripts/linhainv.gd" id="1_fhvvc"]
 
 [node name="linhainv" type="PanelContainer"]
-offset_right = 421.0
-offset_bottom = 25.0
+layout_direction = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.5
+offset_top = -12.5
+offset_right = 210.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 focus_behavior_recursive = 1
 script = ExtResource("1_fhvvc")
 
@@ -12,15 +24,17 @@ script = ExtResource("1_fhvvc")
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = " "
+icon_alignment = 1
 
 [node name="nome" type="Label" parent="Button"]
 layout_mode = 0
 offset_left = 5.0
-offset_right = 95.91
+offset_right = 95.0
 offset_bottom = 23.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 12
+vertical_alignment = 1
 
 [node name="qnt" type="Label" parent="Button"]
 layout_mode = 0
@@ -29,25 +43,32 @@ offset_right = 220.0
 offset_bottom = 23.0
 size_flags_horizontal = 4
 size_flags_vertical = 1
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="tipo" type="Label" parent="Button"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -119.0
-offset_top = -11.5
-offset_right = -5.0
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+layout_mode = 0
+offset_left = 240.0
+offset_right = 417.7854
+offset_bottom = 23.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
 horizontal_alignment = 2
+vertical_alignment = 1
+text_direction = 2
 
 [node name="submenu" type="PopupMenu" parent="."]
+oversampling_override = 1.0
+size = Vector2i(80, 75)
+visible = true
+max_size = Vector2i(0, 0)
+theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_separator_size = 0
+item_count = 1
+item_0/text = "Equipar"
+item_0/id = 0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

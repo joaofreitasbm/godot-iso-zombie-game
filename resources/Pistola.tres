@@ -15,4 +15,5 @@ tipo = "Arma de fogo"
 tempocarregamento = 1.0
 semiauto = true
 dano = 65
+dropavel = true
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

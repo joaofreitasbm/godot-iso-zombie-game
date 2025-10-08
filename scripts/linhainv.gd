@@ -1,7 +1,7 @@
 extends PanelContainer
 
 @export var itemtabela: Resource
-@onready var pers = $"../../.."
+@onready var pers = $"../../../.."
 var skip: bool = false
 
 
@@ -29,12 +29,16 @@ func _process(_delta: float) -> void:
 
 func _on_button_pressed() -> void: # apertou botão do MENU
 	print("botão apertado! item atual: ", itemtabela, self.name)
-	for i in pers.inventario:
-		print(i)
-		if i != null and i == itemtabela:
-			print("i: ", i, "item clickado: ", str(itemtabela))
+	for x in pers.inventario:
+		print(x)
+		if x != null and x == itemtabela:
+			print("i: ", x, "item clickado: ", str(itemtabela))
 			$submenu.clear()
-			$submenu.add_item("Equipar")
+			if itemtabela.tipo == "Arma de fogo" or itemtabela.tipo == "Corpo a corpo":
+				$submenu.add_item("Equipar")
+			if itemtabela.dropavel == true:
+				$submenu.add_item("Dropar")
+			$submenu.position = Vector2(global_position.x, global_position.y + 25)
 			$submenu.popup()
 
 
@@ -57,7 +61,7 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 				for y in range(len(pers.itenshotkey)):
 					if pers.itenshotkey[y] == x: # Se a iteração y (item da hotkey) == iteração x (item do inventario)
 						pers.itenshotkey[y] = null # Remove iteração y da hotkey pra adicionar ela na posição nova
-						for i in $"../../hotkeycontainer".get_children(): # Itera sobre cada item do HOTKEY
+						for i in %hotkeycontainer.get_children(): # Itera sobre cada item do HOTKEY
 							if i.item_slot == x: # Se a variavel da hotkey for igual x (item do inventario)
 								i.item_slot = null # Limpa slot do hotkey
 								print("Item removido do slot ", y + 1)
@@ -66,10 +70,12 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 				pers.itenshotkey[pers.hotkey] = x
 				pers.arma_atual = x
 				pers.equipado = true
-				for z in $"../../hotkeycontainer".get_children(): # Itera sobre cada item do HOTKEY
+				for z in %hotkeycontainer.get_children(): # Itera sobre cada item do HOTKEY
 					print(z, " ", z.name, " ", z.item_slot)
 					print(z.name, pers.hotkey)
 					if int(z.name) == int(pers.hotkey) + 1:
 						z.item_slot = x
 						print("Item ", x.nome_item, " equipado no slot ", pers.hotkey + 1)
 						break
+	if aux == "Dropar":
+		print("AGUARDANDO DIGITAR FUNÇÃO EM linhainv.gd")

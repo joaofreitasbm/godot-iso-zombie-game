@@ -11,7 +11,7 @@ func _process(_delta: float) -> void:
 		
 	if pers.interagir != null and pers.interagir == true and area == true:
 		pers.inventario.push_front(item) # adiciona o item na primeira posição do inventario
-		for i in $"../pers/inventarioUI/invcontainer/Inventário".get_children():
+		for i in $"../pers/inventarioUI/invcontainer/Inventário [TAB]".get_children():
 			if i is PanelContainer and i.itemtabela == null:
 				i.itemtabela = item
 				print(i.itemtabela)

@@ -47,6 +47,7 @@ func _on_button_pressed() -> void: # apertou botão do MENU
 				$submenu.add_item("Equipar")
 			$submenu.add_item("Dropar")
 			$submenu.add_item("Descartar")
+			$submenu.add_item("Reciclar")
 			$submenu.position = Vector2(global_position.x, global_position.y + 25)
 			$submenu.popup()
 
@@ -113,12 +114,16 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 		pers.equipado = false
 		print("função rodou completamente")
 
-		
-				
-		
-	if aux == "Reciclar":
-		print("AGUARDANDO DIGITAR FUNÇÃO EM linhainv.gd")
-		
+
+	if aux == "Reciclar": ## EM ANDAMENTO
+		$craft.clear()
+		$craft.position = Vector2(global_position.x, global_position.y + 25)
+		for i in itemtabela.material_reciclado:
+			print(i)
+			$craft.add_item(str(i.nome_item))
+		$craft.popup()
+
+
 	if aux == "Descartar":
 		for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
 			if pers.inventario[x] != null and pers.inventario[x] == itemtabela:

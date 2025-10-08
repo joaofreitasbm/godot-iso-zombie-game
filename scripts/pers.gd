@@ -160,7 +160,7 @@ func _physics_process(delta: float) -> void:
 				if x != null and arma_atual == x:
 					inventario.erase(x) # apaga do inventario
 					itenshotkey[hotkey] = null # remove da hotkey atual
-					for y in $"inventarioUI/invcontainer/Inventário".get_children(): # retorna os PanelContainers 
+					for y in $"inventarioUI/invcontainer/Inventário [TAB]".get_children(): # retorna os PanelContainers 
 						if y is PanelContainer and y.itemtabela == arma_atual:
 							y.itemtabela = null
 							break

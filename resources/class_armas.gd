@@ -11,14 +11,15 @@ class_name armas
 @export var audio_impacto: AudioStreamMP3
 @export var velocidade_ataque: float
 @export var impacto: float 
+@export var receita_craft: Array[Resource]
+@export var material_reciclado: Array[Resource]
+
 @export_enum (
 	"Corpo a corpo", 
 	"Arma de fogo", 
 	"Arremessavel",
 	"Consumivel",
 	"Material") var tipo: String
-
-
 
 #propriedades armas de fogo
 @export var qntmaxima: int

@@ -74,6 +74,11 @@ item_0/id = 0
 [node name="hover" type="PopupMenu" parent="."]
 theme_override_font_sizes/font_size = 12
 
+[node name="craft" type="PopupMenu" parent="."]
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+
 [connection signal="mouse_entered" from="Button" to="." method="hover_on"]
 [connection signal="mouse_exited" from="Button" to="." method="hover_off"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

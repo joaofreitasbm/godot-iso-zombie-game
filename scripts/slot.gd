@@ -1,12 +1,12 @@
 extends Button
 
 @export var item_slot: Resource
-@onready var pers = $"../../.."
+@onready var pers = $"../../../.."
 
 @onready var slot = int(self.name) - 1
-
+var slotvazio = preload("res://pngs/vazio.png")
 func _ready() -> void:
-	pass
+	$nome_slot.text = self.name
 
 func _process(_delta: float) -> void:
 	if pers.hotkey == slot:
@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 	
 	
 	if item_slot == null:
-		icon = null
+		icon = slotvazio
 		$quantidade.text = ""
 		return
 	
@@ -39,5 +39,4 @@ func _on_pressed() -> void:
 func limpar():
 	item_slot = null
 	$quantidade.text = ""
-	$nome_slot.text = ""
 	icon = null

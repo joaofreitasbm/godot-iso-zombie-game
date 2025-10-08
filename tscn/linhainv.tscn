@@ -33,6 +33,7 @@ offset_right = 95.0
 offset_bottom = 23.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
 vertical_alignment = 1
 
@@ -43,6 +44,7 @@ offset_right = 220.0
 offset_bottom = 23.0
 size_flags_horizontal = 4
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -54,6 +56,7 @@ offset_right = 417.7854
 offset_bottom = 23.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -62,14 +65,16 @@ text_direction = 2
 [node name="submenu" type="PopupMenu" parent="."]
 oversampling_override = 1.0
 size = Vector2i(80, 75)
-visible = true
-max_size = Vector2i(0, 0)
 theme_override_font_sizes/font_size = 12
 theme_override_font_sizes/font_separator_size = 0
 item_count = 1
 item_0/text = "Equipar"
 item_0/id = 0
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[node name="hover" type="PopupMenu" parent="."]
+theme_override_font_sizes/font_size = 12
+
+[connection signal="mouse_entered" from="Button" to="." method="hover_on"]
+[connection signal="mouse_exited" from="Button" to="." method="hover_off"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="id_pressed" from="submenu" to="." method="_on_submenu_id_pressed"]

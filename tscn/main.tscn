@@ -95,6 +95,7 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Fuzil automatico"
+dropavel = true
 imagem = ExtResource("14_tfptk")
 alcance = 50
 audio_impacto = ExtResource("13_mn6q8")
@@ -105,7 +106,6 @@ qntatual = 30
 qntreserva = 90
 tempocarregamento = 100.0
 dano = 20
-dropavel = true
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [node name="main" type="Node3D"]

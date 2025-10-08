@@ -153,11 +153,10 @@ func _physics_process(delta: float) -> void:
 
 
 	#dropar item
-	if Input.is_action_just_pressed("G"): ## falta implementar o drop no cenario e remover item do inventario
+	if Input.is_action_just_pressed("G"): ## falta implementar o drop no cenario
 		if arma_atual != mlivre:
 			for x in itenshotkey:
 				if x != null and arma_atual == x:
-					# ----- trocar isso tudo pela função de dropar pra habilitar drop pelo inventario -----
 					inventario.erase(x) # apaga do inventario
 					itenshotkey[hotkey] = null # remove da hotkey atual
 					for y in %"Inventário".get_children(): # retorna os PanelContainers 
@@ -170,8 +169,8 @@ func _physics_process(delta: float) -> void:
 							break
 					arma_atual = mlivre
 					equipado = false
-					print(get_parent())
-					# ----- daqui pra cima -----
+					print(get_parent()) # spawnar item dropado nesse nodo
+
 
 
 	# guardar item
@@ -181,7 +180,7 @@ func _physics_process(delta: float) -> void:
 				if itenshotkey[hotkey] == i:
 					arma_atual = mlivre
 					equipado = false
-					return
+					break
 				if arma_atual == mlivre:
 					arma_atual = itenshotkey[hotkey]
 					equipado = true
@@ -193,8 +192,17 @@ func _physics_process(delta: float) -> void:
 			$inventarioUI/invcontainer.hide()
 			return
 		if $inventarioUI/invcontainer.visible == false:
+			$inventarioUI/invcontainer.current_tab = 0
 			$inventarioUI/invcontainer.show()
-
+	
+			# Abrir inventário (ABA 2)
+	if Input.is_action_just_pressed("K"):
+		if $inventarioUI/invcontainer.visible == true:
+			$inventarioUI/invcontainer.hide()
+			return
+		if $inventarioUI/invcontainer.visible == false:
+			$inventarioUI/invcontainer.current_tab = 1
+			$inventarioUI/invcontainer.show()
 
 	$inventarioUI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
 	$inventarioUI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual.nome_item)
@@ -280,5 +288,3 @@ func _input(event: InputEvent) -> void:
 			equipado = true
 			arma_atual = itenshotkey[hotkey]
 			print("Equipou arma: ", arma_atual.nome_item, " no slot ", hotkey)
-
-			

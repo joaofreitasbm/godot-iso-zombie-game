@@ -3,7 +3,8 @@ class_name armas
 
 #propriedades gerais
 @export var nome_item: String
-@export var stack: bool
+@export var dropavel: bool
+@export var stackavel: bool
 @export var imagem: Texture2D
 @export var alcance: int
 @export var audio_impacto: AudioStreamMP3
@@ -30,8 +31,6 @@ class_name armas
 @export var aux = true
 
 
-@export var dropavel: bool
-@export var stackavel: bool
 
 
 func usar_equipado(alvo, pers):

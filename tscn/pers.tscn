@@ -90,6 +90,63 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="fundo" type="Panel" parent="inventarioUI"]
+custom_minimum_size = Vector2(27.445, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -346.0
+offset_top = -87.0
+offset_right = 346.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="hotkeycontainer" type="HBoxContainer" parent="inventarioUI/fundo"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -69.0
+offset_right = 304.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="1" parent="inventarioUI/fundo/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="2" parent="inventarioUI/fundo/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="3" parent="inventarioUI/fundo/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="4" parent="inventarioUI/fundo/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="5" parent="inventarioUI/fundo/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="6" parent="inventarioUI/fundo/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="7" parent="inventarioUI/fundo/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="8" parent="inventarioUI/fundo/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
+[node name="9" parent="inventarioUI/fundo/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+layout_mode = 2
+
 [node name="invcontainer" type="TabContainer" parent="inventarioUI"]
 layout_mode = 1
 anchors_preset = 1
@@ -167,111 +224,70 @@ layout_mode = 2
 [node name="20" parent="inventarioUI/invcontainer/Inventário" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="tabela2" type="VBoxContainer" parent="inventarioUI/invcontainer"]
+[node name="Saúde" type="VBoxContainer" parent="inventarioUI/invcontainer"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 1
 metadata/_tab_index = 1
 
-[node name="1" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="1" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="2" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="2" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="3" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="3" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="4" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="4" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="5" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="5" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="6" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="6" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="7" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="7" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="8" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="8" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="9" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="9" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="10" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="10" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="11" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="11" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="12" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="12" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="13" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="13" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="14" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="14" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="15" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="15" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="16" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="16" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="17" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="17" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="18" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="18" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="19" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
+[node name="19" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
-[node name="20" parent="inventarioUI/invcontainer/tabela2" instance=ExtResource("3_kmbe3")]
-layout_mode = 2
-
-[node name="hotkeycontainer" type="HBoxContainer" parent="inventarioUI"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -304.0
-offset_top = -64.0
-offset_right = 304.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="1" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
-layout_mode = 2
-
-[node name="2" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
-layout_mode = 2
-
-[node name="3" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
-layout_mode = 2
-
-[node name="4" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
-layout_mode = 2
-
-[node name="5" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
-layout_mode = 2
-
-[node name="6" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
-layout_mode = 2
-
-[node name="7" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
-layout_mode = 2
-
-[node name="8" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
-layout_mode = 2
-
-[node name="9" parent="inventarioUI/hotkeycontainer" instance=ExtResource("3_xd6ky")]
+[node name="20" parent="inventarioUI/invcontainer/Saúde" instance=ExtResource("3_kmbe3")]
 layout_mode = 2
 
 [node name="invlabel" type="Label" parent="inventarioUI"]

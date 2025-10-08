@@ -9,7 +9,7 @@ func _ready() -> void:
 	$nome_slot.text = self.name
 
 func _process(_delta: float) -> void:
-	if pers.hotkey == slot:
+	if pers.hotkey == slot and pers.equipado == true:
 		$ColorRect.show()
 	else: 
 		$ColorRect.hide()

@@ -7,7 +7,7 @@ var skip: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -86,8 +86,35 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 						z.item_slot = x
 						print("Item ", x.nome_item, " equipado no slot ", pers.hotkey + 1)
 						break
+						
 	if aux == "Dropar":
-		print("AGUARDANDO DIGITAR FUNÇÃO EM linhainv.gd")
+		for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
+			if pers.inventario[x] != null and pers.inventario[x] == itemtabela:
+				print(aux, ", item removido do inventário: ", itemtabela)
+				pers.inventario[x] = null
+				break
+		for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
+			if pers.itenshotkey[y] != null and pers.itenshotkey[y] == itemtabela:
+				print(aux, ", item removido da hotkey")
+				pers.itenshotkey[y] = null
+				break
+		for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
+			if z.item_slot == itemtabela:
+				z.item_slot = null
+				print(aux, ", item removido da UI da hotkey")
+				break
+		var drop = pers.itemdrop.instantiate()
+		drop.item = itemtabela.duplicate(true)
+		drop.position = pers.position
+		get_tree().get_root().get_node("main").add_child(drop) # spawnar item dropado nesse nodo
+		print("dropou arma pelo menu: arma > ", pers.arma_atual.nome_item)
+		pers.arma_atual = pers.mlivre # troca pra mãos livres
+		itemtabela = null
+		pers.equipado = false
+		print("função rodou completamente")
+
+		
+				
 		
 	if aux == "Reciclar":
 		print("AGUARDANDO DIGITAR FUNÇÃO EM linhainv.gd")

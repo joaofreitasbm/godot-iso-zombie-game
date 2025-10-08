@@ -7,6 +7,7 @@ class_name armas
 @export var imagem: Texture2D
 @export var mesh: Mesh
 @export var alcance: int
+@export var timer: int
 @export var audio_impacto: AudioStreamMP3
 @export var velocidade_ataque: float
 @export var impacto: float 

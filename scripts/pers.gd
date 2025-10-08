@@ -22,7 +22,7 @@ var ultimoalvo
 @export var itenshotkey: Array[Resource]
 @export var hotkey: int = 0
 
-var interagir = false
+@onready var interagir = false
 
 var mlivre = preload("res://resources/maoslivres.tres")
 var arma_atual = mlivre
@@ -35,7 +35,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-
 	opacidade()
 
 
@@ -161,8 +160,8 @@ func _physics_process(delta: float) -> void:
 				if x != null and arma_atual == x:
 					inventario.erase(x) # apaga do inventario
 					itenshotkey[hotkey] = null # remove da hotkey atual
-					for y in %"Inventário".get_children(): # retorna os PanelContainers 
-						if y.itemtabela == arma_atual:
+					for y in $"inventarioUI/invcontainer/Inventário".get_children(): # retorna os PanelContainers 
+						if y is PanelContainer and y.itemtabela == arma_atual:
 							y.itemtabela = null
 							break
 					for z in %hotkeycontainer.get_children():
@@ -180,7 +179,6 @@ func _physics_process(delta: float) -> void:
 
 	# guardar item
 	if Input.is_action_just_pressed("Q"):
-		print(itenshotkey[hotkey], "TESTE Q")
 		if itenshotkey[hotkey] == null: # Se não tiver nada equipado na hotkey atual
 			arma_atual = mlivre
 			equipado = false
@@ -194,9 +192,6 @@ func _physics_process(delta: float) -> void:
 				else:
 					arma_atual = itenshotkey[hotkey]
 					equipado = true
-				
-
-					
 
 
 		# Abrir inventário

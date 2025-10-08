@@ -45,8 +45,7 @@ func _on_button_pressed() -> void: # apertou botão do MENU
 			$submenu.clear()
 			if itemtabela.tipo == "Arma de fogo" or itemtabela.tipo == "Corpo a corpo":
 				$submenu.add_item("Equipar")
-			if itemtabela.dropavel == true:
-				$submenu.add_item("Dropar")
+			$submenu.add_item("Dropar")
 			$submenu.add_item("Descartar")
 			$submenu.position = Vector2(global_position.x, global_position.y + 25)
 			$submenu.popup()
@@ -110,7 +109,6 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 		if pers.arma_atual == itemtabela:
 			pers.arma_atual = pers.mlivre
 		itemtabela = null
-
 
 
 func hover_on() -> void:

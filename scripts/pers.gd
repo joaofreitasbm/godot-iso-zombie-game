@@ -28,6 +28,8 @@ var mlivre = preload("res://resources/maoslivres.tres")
 var arma_atual = mlivre
 var equipado = false
 
+var itemdrop = preload("res://tscn/item.tscn")
+
 func _ready() -> void:
 	pass
 
@@ -141,7 +143,7 @@ func _physics_process(delta: float) -> void:
 	# controle e posicionamento da camera
 	if Input.is_action_just_pressed("mouse+"): cam.size -= 1 
 	elif Input.is_action_just_pressed("mouse-"): cam.size += 1
-	cam.size = clamp(cam.size, 5, 30)
+	cam.size = clamp(cam.size, 5, 50)
 	cam.position = position + Vector3(-100, 40, 100)
 
 
@@ -167,23 +169,34 @@ func _physics_process(delta: float) -> void:
 						if z.item_slot == arma_atual:
 							z.item_slot = null
 							break
+					var drop = itemdrop.instantiate()
+					drop.item = arma_atual.duplicate(true)
+					drop.position = position
+					get_parent().add_child(drop) # spawnar item dropado nesse nodo
 					arma_atual = mlivre
 					equipado = false
-					print(get_parent()) # spawnar item dropado nesse nodo
 
 
 
 	# guardar item
 	if Input.is_action_just_pressed("Q"):
-		if itenshotkey[hotkey].nome_item != "Mãos livres":
-			for i in itenshotkey:
-				if itenshotkey[hotkey] == i:
+		print(itenshotkey[hotkey], "TESTE Q")
+		if itenshotkey[hotkey] == null: # Se não tiver nada equipado na hotkey atual
+			arma_atual = mlivre
+			equipado = false
+			return
+		if itenshotkey[hotkey].nome_item != "Mãos livres": # Se a hotkey atual for algo diferente de mãos livres
+			for i in itenshotkey: # Itera sobre cada item da hotkey
+				if itenshotkey[hotkey] == i and equipado == true: # Se a iteração for igual a hotkey atual
 					arma_atual = mlivre
 					equipado = false
 					break
-				if arma_atual == mlivre:
+				else:
 					arma_atual = itenshotkey[hotkey]
 					equipado = true
+				
+
+					
 
 
 		# Abrir inventário
@@ -205,7 +218,7 @@ func _physics_process(delta: float) -> void:
 			$inventarioUI/invcontainer.show()
 
 	$inventarioUI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
-	$inventarioUI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual.nome_item)
+	$inventarioUI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual)
 
 
 	#if arma_atual != null:

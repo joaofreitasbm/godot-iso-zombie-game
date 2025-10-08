@@ -1,14 +1,17 @@
-[gd_resource type="Resource" script_class="armas" load_steps=4 format=3 uid="uid://cric5pgld8pdt"]
+[gd_resource type="Resource" script_class="armas" load_steps=5 format=3 uid="uid://cric5pgld8pdt"]
 
 [ext_resource type="AudioStream" uid="uid://m50ftixuovst" path="res://audio/tiro.mp3" id="1_hyhe1"]
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/class_armas.gd" id="2_3xaox"]
 [ext_resource type="Texture2D" uid="uid://2wuphdpa8jb7" path="res://pngs/fuzil.png" id="2_08v5d"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_3xaox"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("2_3xaox")
 nome_item = "Fuzil automatico"
 imagem = ExtResource("2_08v5d")
+mesh = SubResource("PrismMesh_3xaox")
 alcance = 50
 audio_impacto = ExtResource("1_hyhe1")
 velocidade_ataque = 0.2

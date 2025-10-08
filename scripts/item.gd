@@ -5,6 +5,9 @@ var area = false # controlado pelos sinais no final do código (entrou/saiu da �
 @onready var pers = $"../pers"
 
 func _process(_delta: float) -> void:
+	if item != null:
+		$MeshInstance3D.mesh = item.mesh
+		
 	if pers.interagir == true and area == true:
 		pers.inventario.push_front(item) # adiciona o item na primeira posição do inventario
 		for i in $"../pers/inventarioUI/invcontainer/Inventário".get_children():

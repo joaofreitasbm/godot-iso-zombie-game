@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://cc787tq3ba81c"]
+[gd_scene load_steps=42 format=3 uid="uid://cc787tq3ba81c"]
 
 [ext_resource type="PackedScene" uid="uid://cp1ec74mip4v1" path="res://tscn/street_lamp.tscn" id="2_ao1ln"]
+[ext_resource type="Script" uid="uid://b2p8ewidoyyhr" path="res://scripts/sol.gd" id="2_hegun"]
 [ext_resource type="Texture2D" uid="uid://dnb7w1f3qg1xc" path="res://textures/texture_10.png" id="2_mn4ff"]
 [ext_resource type="Script" uid="uid://d01r8jur6wwh4" path="res://scripts/gamemode.gd" id="3_8wxc5"]
 [ext_resource type="Texture2D" uid="uid://ytbm4432st6d" path="res://textures/texture_01.png" id="3_d2uin"]
@@ -23,7 +24,11 @@ ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 sky_material = SubResource("ProceduralSkyMaterial_0xm2m")
 
 [sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 2
 sky = SubResource("Sky_h2yge")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.5
+reflected_light_source = 1
 tonemap_mode = 2
 glow_enabled = true
 volumetric_fog_enabled = true
@@ -77,11 +82,14 @@ size = Vector3(30, 1, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_8d387"]
 size = Vector3(30, 1, 10)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_hegun"]
+
 [sub_resource type="Resource" id="Resource_k3nvp"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Pistola"
 imagem = ExtResource("11_uf0e4")
+mesh = SubResource("CylinderMesh_hegun")
 alcance = 50
 velocidade_ataque = 0.5
 impacto = 500.0
@@ -91,12 +99,71 @@ semiauto = true
 dano = 65
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
+[sub_resource type="PrismMesh" id="PrismMesh_mn6q8"]
+
 [sub_resource type="Resource" id="Resource_b7fts"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Fuzil automatico"
-dropavel = true
 imagem = ExtResource("14_tfptk")
+mesh = SubResource("PrismMesh_mn6q8")
+alcance = 50
+audio_impacto = ExtResource("13_mn6q8")
+velocidade_ataque = 0.2
+tipo = "Arma de fogo"
+qntmaxima = 30
+qntatual = 30
+qntreserva = 90
+tempocarregamento = 100.0
+dano = 20
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="PrismMesh" id="PrismMesh_tfptk"]
+
+[sub_resource type="Resource" id="Resource_fco5v"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
+nome_item = "Fuzil automatico"
+imagem = ExtResource("14_tfptk")
+mesh = SubResource("PrismMesh_tfptk")
+alcance = 50
+audio_impacto = ExtResource("13_mn6q8")
+velocidade_ataque = 0.2
+tipo = "Arma de fogo"
+qntmaxima = 30
+qntatual = 30
+qntreserva = 90
+tempocarregamento = 100.0
+dano = 20
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="PrismMesh" id="PrismMesh_18iqq"]
+
+[sub_resource type="Resource" id="Resource_6sltt"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
+nome_item = "Fuzil automatico"
+imagem = ExtResource("14_tfptk")
+mesh = SubResource("PrismMesh_18iqq")
+alcance = 50
+audio_impacto = ExtResource("13_mn6q8")
+velocidade_ataque = 0.2
+tipo = "Arma de fogo"
+qntmaxima = 30
+qntatual = 30
+qntreserva = 90
+tempocarregamento = 100.0
+dano = 20
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="PrismMesh" id="PrismMesh_sqsrg"]
+
+[sub_resource type="Resource" id="Resource_s3ifu"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
+nome_item = "Fuzil automatico"
+imagem = ExtResource("14_tfptk")
+mesh = SubResource("PrismMesh_sqsrg")
 alcance = 50
 audio_impacto = ExtResource("13_mn6q8")
 velocidade_ataque = 0.2
@@ -113,20 +180,25 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 [node name="pers" parent="." instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="coisas" type="Node3D" parent="."]
+[node name="sol" type="Node3D" parent="."]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
+script = ExtResource("2_hegun")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="coisas"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="sol"]
 environment = SubResource("Environment_1bvp3")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="coisas"]
-transform = Transform3D(-0.459482, -0.784574, -0.416316, 0.703836, -0.607535, 0.368125, -0.541748, -0.123871, 0.831364, -30.494, 11.916, -31.888)
-light_energy = 0.515
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="sol"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 118.03505, 0)
+light_energy = 0.5
 shadow_enabled = true
 directional_shadow_mode = 0
 
-[node name="debug info" type="Label" parent="coisas"]
+[node name="debug info" type="Label" parent="sol"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="relogio" type="Timer" parent="sol"]
+autostart = true
 
 [node name="cenário" type="Node3D" parent="."]
 
@@ -275,5 +347,19 @@ item = SubResource("Resource_k3nvp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.455368, 0.848896, 9.8380375)
 item = SubResource("Resource_b7fts")
 
+[node name="item3" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.347664, 0.848896, 14.904352)
+item = SubResource("Resource_fco5v")
+
+[node name="item4" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7477913, 0.848896, 9.8380375)
+item = SubResource("Resource_6sltt")
+
+[node name="item5" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4405708, 0.848896, 9.8380375)
+item = SubResource("Resource_s3ifu")
+
 [connection signal="body_entered" from="cenário/fora do mapa" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="spawn inimigo/Timer" to="spawn inimigo" method="_on_timer_timeout"]
+
+[editable path="pers"]

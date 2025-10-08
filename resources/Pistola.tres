@@ -1,13 +1,17 @@
-[gd_resource type="Resource" script_class="armas" load_steps=3 format=3 uid="uid://lsfxs6x0i7cj"]
+[gd_resource type="Resource" script_class="armas" load_steps=4 format=3 uid="uid://lsfxs6x0i7cj"]
 
 [ext_resource type="Texture2D" uid="uid://cwx6aytpdet2l" path="res://pngs/pist.png" id="1_gjfyh"]
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/class_armas.gd" id="2_pp7w1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gjfyh"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("2_pp7w1")
 nome_item = "Pistola"
+dropavel = true
 imagem = ExtResource("1_gjfyh")
+mesh = SubResource("BoxMesh_gjfyh")
 alcance = 50
 velocidade_ataque = 0.5
 impacto = 500.0
@@ -15,5 +19,4 @@ tipo = "Arma de fogo"
 tempocarregamento = 1.0
 semiauto = true
 dano = 65
-dropavel = true
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

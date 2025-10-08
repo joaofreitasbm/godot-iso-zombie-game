@@ -3,9 +3,9 @@ class_name armas
 
 #propriedades gerais
 @export var nome_item: String
-@export var dropavel: bool
 @export var stackavel: bool
 @export var imagem: Texture2D
+@export var mesh: Mesh
 @export var alcance: int
 @export var audio_impacto: AudioStreamMP3
 @export var velocidade_ataque: float
@@ -18,13 +18,13 @@ class_name armas
 	"Material") var tipo: String
 
 
-#propriedades armas corpo a corpo
-@export var durabilidade: int
 
 #propriedades armas de fogo
 @export var qntmaxima: int
 @export var qntatual: int
 @export var qntreserva: int
+@export var nome_munição: Resource
+@export var durabilidade: int
 @export var tempocarregamento: float
 @export var semiauto: bool
 @export var dano: int
@@ -80,10 +80,10 @@ func usar_equipado(alvo, pers):
 				print("sem munição")
 				return
 		else: 
-			return
+			qntatual -= 1
 
 	if tipo == "Arremessavel": #ARREMESSAVEL
-		pass
+		return
 	
 	if tipo == "Consumivel": #CONSUMIVEL
 		pers.vida += dano

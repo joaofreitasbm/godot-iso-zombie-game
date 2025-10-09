@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cc787tq3ba81c"]
+[gd_scene load_steps=52 format=3 uid="uid://cc787tq3ba81c"]
 
 [ext_resource type="PackedScene" uid="uid://cp1ec74mip4v1" path="res://tscn/street_lamp.tscn" id="2_ao1ln"]
 [ext_resource type="Script" uid="uid://b2p8ewidoyyhr" path="res://scripts/sol.gd" id="2_hegun"]
@@ -16,9 +16,9 @@
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/class_armas.gd" id="12_hegun"]
 [ext_resource type="AudioStream" uid="uid://m50ftixuovst" path="res://audio/tiro.mp3" id="13_mn6q8"]
 [ext_resource type="Texture2D" uid="uid://2wuphdpa8jb7" path="res://pngs/fuzil.png" id="14_tfptk"]
-[ext_resource type="Resource" uid="uid://e4n5u682ketj" path="res://resources/cura1.tres" id="16_b7fts"]
-[ext_resource type="Resource" uid="uid://lsfxs6x0i7cj" path="res://resources/Pistola.tres" id="16_tfptk"]
-[ext_resource type="Resource" uid="uid://cric5pgld8pdt" path="res://resources/Fuzil auto.tres" id="17_fco5v"]
+[ext_resource type="Texture2D" uid="uid://bl5t6nlxojray" path="res://pngs/comp fuzil 1.png" id="16_b7fts"]
+[ext_resource type="Texture2D" uid="uid://dnme0mrhuj72" path="res://pngs/comp fuzil 2.png" id="17_fco5v"]
+[ext_resource type="Texture2D" uid="uid://ce1wcw5pui7u1" path="res://pngs/comp fuzil 3.png" id="18_18iqq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -159,19 +159,68 @@ tempocarregamento = 100.0
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="PrismMesh" id="PrismMesh_sqsrg"]
+[sub_resource type="TorusMesh" id="TorusMesh_6sltt"]
+resource_local_to_scene = true
+
+[sub_resource type="Resource" id="Resource_sqsrg"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
+nome_item = "Componente fuzil 1/3"
+stackavel = true
+imagem = ExtResource("16_b7fts")
+mesh = SubResource("TorusMesh_6sltt")
+tipo = "Material"
+qntreserva = 1
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="TorusMesh" id="TorusMesh_duv0i"]
 
 [sub_resource type="Resource" id="Resource_s3ifu"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Componente fuzil 2/3"
+stackavel = true
+imagem = ExtResource("17_fco5v")
+mesh = SubResource("TorusMesh_duv0i")
+tipo = "Material"
+qntreserva = 1
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="TorusMesh" id="TorusMesh_xxyn0"]
+
+[sub_resource type="Resource" id="Resource_ydd80"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
+nome_item = "Componente fuzil 3/3"
+stackavel = true
+imagem = ExtResource("18_18iqq")
+mesh = SubResource("TorusMesh_xxyn0")
+tipo = "Material"
+qntreserva = 1
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="PrismMesh" id="PrismMesh_3xaox"]
+
+[sub_resource type="Resource" id="Resource_66cgr"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automatico"
+reciclavel = true
 imagem = ExtResource("14_tfptk")
-mesh = SubResource("PrismMesh_sqsrg")
+mesh = SubResource("PrismMesh_3xaox")
 alcance = 50
 audio_impacto = ExtResource("13_mn6q8")
 velocidade_ataque = 0.2
-receita_craft = Array[Resource]([ExtResource("16_tfptk"), ExtResource("16_tfptk"), ExtResource("16_tfptk")])
-material_reciclado = Array[Resource]([ExtResource("16_b7fts"), ExtResource("17_fco5v"), ExtResource("16_tfptk")])
+receita_craft = Dictionary[Resource, int]({
+SubResource("Resource_sqsrg"): 5,
+SubResource("Resource_s3ifu"): 5,
+SubResource("Resource_ydd80"): 5
+})
+material_reciclado = Dictionary[Resource, int]({
+SubResource("Resource_sqsrg"): 1,
+SubResource("Resource_s3ifu"): 1,
+SubResource("Resource_ydd80"): 1
+})
 tipo = "Arma de fogo"
 qntmaxima = 30
 qntatual = 30
@@ -363,7 +412,7 @@ item = SubResource("Resource_6sltt")
 
 [node name="item5" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4405708, 0.848896, 9.8380375)
-item = SubResource("Resource_s3ifu")
+item = SubResource("Resource_66cgr")
 
 [node name="caixa" parent="." instance=ExtResource("3_mn6q8")]
 transform = Transform3D(0.9668368, 0, -0.25539514, 0, 1, 0, 0.25539514, 0, 0.9668368, -3.2302017, 0.93045604, -1.2555072)

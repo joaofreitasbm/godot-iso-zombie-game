@@ -4,6 +4,7 @@ class_name armas
 #propriedades gerais
 @export var nome_item: String
 @export var stackavel: bool
+@export var reciclavel: bool
 @export var imagem: Texture2D
 @export var mesh: Mesh
 @export var alcance: int
@@ -11,8 +12,9 @@ class_name armas
 @export var audio_impacto: AudioStreamMP3
 @export var velocidade_ataque: float
 @export var impacto: float 
-@export var receita_craft: Array[Resource]
-@export var material_reciclado: Array[Resource]
+@export var receita_craft: Dictionary[Resource, int]
+# arma_atual.receita_craft.keys()[0], arma_atual.receita_craft.values()[0] pega a chave 0 e o valor 0
+@export var material_reciclado: Dictionary[Resource, int]
 
 @export_enum (
 	"Corpo a corpo", 
@@ -25,7 +27,7 @@ class_name armas
 @export var qntmaxima: int
 @export var qntatual: int
 @export var qntreserva: int
-@export var nome_munição: Resource
+@export var munição: Resource
 @export var durabilidade: int
 @export var tempocarregamento: float
 @export var semiauto: bool

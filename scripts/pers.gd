@@ -36,6 +36,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	opacidade()
+	if arma_atual.receita_craft != null:
+		for x in arma_atual.receita_craft: # Itera sobre cada resource
+			print(x) # Retorna cada resource
+			print(arma_atual.receita_craft[x]) # Retorna cada quantidade
+		
 
 
 	if not is_on_floor(): velocity += get_gravity() * delta

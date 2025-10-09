@@ -148,6 +148,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="invcontainer" type="TabContainer" parent="inventarioUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -155,10 +156,10 @@ anchor_right = 1.0
 offset_left = -427.0
 offset_bottom = 550.0
 grow_horizontal = 0
-current_tab = 1
+current_tab = 0
 
 [node name="Inventário [TAB]" type="VBoxContainer" parent="inventarioUI/invcontainer"]
-visible = false
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 1
 metadata/_tab_index = 0
@@ -251,6 +252,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Status [K]" type="VBoxContainer" parent="inventarioUI/invcontainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 1
 metadata/_tab_index = 1

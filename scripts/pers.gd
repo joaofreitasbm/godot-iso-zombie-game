@@ -11,7 +11,7 @@ var correndo = false
 
 var velgiro = .025
 @onready var velandar = 5
-@onready var vida = 100
+@export_range(0, 100) var vida := 100
 @onready var movtank = false
 
 var colmira
@@ -116,11 +116,12 @@ func _physics_process(delta: float) -> void:
 			arma_atual.usar_equipado(colmira, self)
 			print("atirou em: ", colmira)
 
+
 	if Input.is_action_just_released("atirar"):
 		if mirando: arma_atual.aux = true
 		else: return
 
-				
+
 	if Input.is_action_just_pressed("B"):
 		if movtank == true:
 			print("não movtank")
@@ -159,7 +160,7 @@ func _physics_process(delta: float) -> void:
 
 
 	#dropar item
-	if Input.is_action_just_pressed("G"): ## falta implementar o drop no cenario
+	if Input.is_action_just_pressed("G"): 
 		if arma_atual != mlivre:
 			for x in itenshotkey:
 				if x != null and arma_atual == x:
@@ -216,6 +217,17 @@ func _physics_process(delta: float) -> void:
 		if $inventarioUI/invcontainer.visible == false:
 			$inventarioUI/invcontainer.current_tab = 1
 			$inventarioUI/invcontainer.show()
+
+			# Abrir inventário (ABA 3)
+	if Input.is_action_just_pressed("L"):
+		if $inventarioUI/invcontainer.visible == true:
+			$inventarioUI/invcontainer.hide()
+			return
+		if $inventarioUI/invcontainer.visible == false:
+			$inventarioUI/invcontainer.current_tab = 2
+			$inventarioUI/invcontainer.show()
+
+
 
 	$inventarioUI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
 	$inventarioUI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual)

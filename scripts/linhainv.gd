@@ -2,7 +2,7 @@ extends PanelContainer
 
 @export var itemtabela: Resource
 @onready var pers = $"../../../.."
-var recicraft: Dictionary[Resource, int]
+var recicraft: Array[Resource]
 var skip: bool = false
 
 
@@ -47,12 +47,11 @@ func atualizarUI():
 				
 			else:
 				i.itemtabela = null
-			print(i.itemtabela, "slot: ", slot)
+		
 
 func _on_button_pressed() -> void: # apertou botão do MENU
 	print("botão apertado! item atual: ", itemtabela, self.name)
 	for x in pers.inventario:
-		print(x)
 		if x != null and x == itemtabela:
 			print("i: ", x, "item clickado: ", str(itemtabela))
 			$submenu.clear()
@@ -129,21 +128,23 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 
 
 	if aux == "Reciclar": ## EM ANDAMENTO
-		recicraft = {} # declarado como variavel global temporaria
+		print("reciclagem começou")
+		recicraft.clear() 
 		$recicraft/textorecicraft.text = ""
 		$recicraft/botaorecicraft.clear()
 		$recicraft.position = Vector2(global_position.x, global_position.y + 25)
 		var texto: = str("Materiais obtidos", "\n")
 		for x in itemtabela.material_reciclado:
-			print(x,"    ", x.nome_item,"    ", itemtabela.material_reciclado[x])
-			texto += (str("\n", x.nome_item, ", x",itemtabela.material_reciclado[x]))
-			recicraft[x] = itemtabela.material_reciclado[x] # adicionar valores adiciona sua respectiva chave
-			print(recicraft)
+			print(x,"    ", x.nome_item,"    ", x.qntreserva)
+			texto += (str("\n", x.nome_item, ", x",x.qntreserva))
+			recicraft.append(x)
+			print(recicraft, "      recicraft")
 		$recicraft/botaorecicraft.position = $recicraft/textorecicraft.position + Vector2(global_position.x, global_position.y + 175)
 		$recicraft/textorecicraft.text = texto
 		$recicraft/botaorecicraft.add_item("Clique aqui para reciclar")
 		$recicraft.show()
 		$recicraft/botaorecicraft.popup()
+		print("código rodou por completo")
 
 
 	if aux == "Descartar":
@@ -186,30 +187,44 @@ func hover_off() -> void: # Esconde informações dos itens ao tirar o mouse de 
 func _on_botaorecicraft_id_pressed(_id: int) -> void:
 	print("BOTÃO RECICRAFT APERTADO")
 
-	# Itera sobre cada recurso da receita de reciclagem
-	for recurso in recicraft.keys():
-		var quantidade = recicraft[recurso]
-		var adicionado = false
+	# Conta quantos slots vazios existem
+	var slots_vazios := 0
+	for item in pers.inventario:
+		if item == null:
+			slots_vazios += 1
 
-		# Verifica se já existe no inventário
-		for i in range(len(pers.inventario)):
-			var item_inv = pers.inventario[i]
+	# Conta quantos itens não stackáveis existem na lista recicraft
+	var itens_nao_stackaveis := 0
+	for item in recicraft:
+		if not item.stackavel:
+			itens_nao_stackaveis += 1
 
-			if item_inv != null and item_inv == recurso:
-				item_inv.qntreserva += quantidade
-				adicionado = true
-				print("Adicionado +%d ao item existente %s" % [quantidade, recurso.nome_item])
-				break
+	# Verifica se há espaço suficiente no inventário
+	if itens_nao_stackaveis > slots_vazios:
+		print("Inventário cheio! Não há espaço suficiente para reciclar.")
+		return # Cancela a reciclagem
 
-		# Se não foi encontrado, adiciona em um slot vazio
+	# Continua normalmente se houver espaço
+	for material in recicraft:
+		var adicionado := false
+
+		if material.stackavel:
+			for i in range(len(pers.inventario)):
+				var slot = pers.inventario[i]
+				if slot != null and slot.nome_item == material.nome_item:
+					slot.qntreserva += material.qntreserva
+					adicionado = true
+					break
+
 		if not adicionado:
 			for i in range(len(pers.inventario)):
 				if pers.inventario[i] == null:
-					var novo_item = recurso.duplicate(true)
-					novo_item.qntreserva = quantidade
-					pers.inventario[i] = novo_item
-					print("Item novo adicionado: %s x%d" % [novo_item.nome_item, quantidade])
+					pers.inventario[i] = material.duplicate(true)
+					adicionado = true
 					break
+
+		if not adicionado:
+			print("Inventário cheio! Não foi possível adicionar: ", material.nome_item)
 
 	# Remove o item original que foi reciclado
 	for i in range(len(pers.inventario)):
@@ -217,9 +232,11 @@ func _on_botaorecicraft_id_pressed(_id: int) -> void:
 			pers.inventario[i] = null
 			break
 
-	itemtabela = null
+	# Limpa e atualiza
 	recicraft.clear()
+	itemtabela = null
 	atualizarUI()
+
 
 	#print("BOTÃO RECICRAFT APERTADO")
 	#for x in range(len(pers.inventario)): # Retorna indice de cada interação no inventario

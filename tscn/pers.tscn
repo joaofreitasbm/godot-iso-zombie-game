@@ -279,6 +279,17 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "PENDENTE"
 
+[node name="Fabricação [L]" type="VBoxContainer" parent="inventarioUI/invcontainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 1
+metadata/_tab_index = 2
+
+[node name="espaçador" type="Label" parent="inventarioUI/invcontainer/Fabricação [L]"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "MENU DE CRAFT PENDENTE"
+
 [node name="invlabel" type="Label" parent="inventarioUI"]
 layout_mode = 0
 offset_left = 72.0

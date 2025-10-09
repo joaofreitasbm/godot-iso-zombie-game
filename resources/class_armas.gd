@@ -12,9 +12,9 @@ class_name armas
 @export var audio_impacto: AudioStreamMP3
 @export var velocidade_ataque: float
 @export var impacto: float 
-@export var receita_craft: Dictionary[Resource, int]
-# arma_atual.receita_craft.keys()[0], arma_atual.receita_craft.values()[0] pega a chave 0 e o valor 0
-@export var material_reciclado: Dictionary[Resource, int]
+@export var receita_craft: Array[Resource]
+
+@export var material_reciclado: Array[Resource]
 
 @export_enum (
 	"Corpo a corpo", 

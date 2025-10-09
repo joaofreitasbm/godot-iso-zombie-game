@@ -13,5 +13,5 @@ stackavel = true
 imagem = ExtResource("1_y5l67")
 mesh = SubResource("TorusMesh_duv0i")
 tipo = "Material"
-qntreserva = 1
+qntreserva = 2
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

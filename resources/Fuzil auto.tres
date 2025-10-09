@@ -19,16 +19,7 @@ mesh = SubResource("PrismMesh_3xaox")
 alcance = 50
 audio_impacto = ExtResource("1_hyhe1")
 velocidade_ataque = 0.2
-receita_craft = Dictionary[Resource, int]({
-ExtResource("3_owves"): 5,
-ExtResource("4_3dtvi"): 5,
-ExtResource("5_fsk5b"): 5
-})
-material_reciclado = Dictionary[Resource, int]({
-ExtResource("3_owves"): 1,
-ExtResource("4_3dtvi"): 1,
-ExtResource("5_fsk5b"): 1
-})
+material_reciclado = Array[Resource]([ExtResource("3_owves"), ExtResource("4_3dtvi"), ExtResource("5_fsk5b")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 qntatual = 30

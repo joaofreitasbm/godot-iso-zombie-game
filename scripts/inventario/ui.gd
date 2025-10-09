@@ -12,26 +12,32 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
+
 func atualizarinventarioUI():
 	for i in %"Inventário [TAB]".get_children():
 		if i is PanelContainer:
 			var slot = int(i.name) - 1
 			var item = pers.inventario[slot]
-			
+			print(pers.inventario[slot])
 			if item != null:
 				i.item = item
-				
 			else:
 				i.item = null
-				
-func atualizarhotkeyUI():
-	for i in %hotkeycontainer.get_children():
-		if i is Button:
-			var slot = int(i.name) - 1
-			var item = pers.inventario[slot]
-			
-			if item != null:
-				i.item = item
-				
-			else:
-				i.item = null
+			i.skip = false
+
+	
+
+func ordenarinventarioUI():
+	pers.inventario.sort()
+		
+#func atualizarhotkeyUI(): # AVALIAR NECESSIDADE DE EXISTIR ESSA FUNÇÃO
+	#for i in %hotkeycontainer.get_children():
+		#if i is Button:
+			#var slot = int(i.name) - 1
+			#var item = pers.inventario[slot]
+			#
+			#if item != null:
+				#i.item = item
+				#
+			#else:
+				#i.item = null

@@ -21,12 +21,14 @@ func _process(_delta: float) -> void:
 		return
 
 	# Adiciona o item no inventário lógico (o código só chega aqui se o if anterior for verdade pra ambas variaveis)
-	pers.inventario.push_front(item)
+	#pers.inventario.push_front(item)
 
 	# Busca o primeiro slot vazio
 	for slot in inventarioUI.get_children():
 		if slot is PanelContainer and slot.item == null:
 			slot.item = item
+			slot.skip = false
+			pers.inventario[int(slot.name) - 1] = item
 			break
 
 	# Remove o item do mundo

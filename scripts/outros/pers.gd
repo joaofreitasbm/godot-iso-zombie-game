@@ -20,6 +20,9 @@ var ultimoalvo
 
 @export var inventario: Array[Resource]
 @export var itenshotkey: Array[Resource]
+
+@onready var inventarioUI = $"UI/invcontainer/Inventário [TAB]"
+@onready var hotkeyUI = $UI/fundo/hotkeycontainer
 @export var hotkey: int = 0
 
 @onready var interagir = false
@@ -229,8 +232,8 @@ func _physics_process(delta: float) -> void:
 
 
 
-	#$inventarioUI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
-	#$inventarioUI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual)
+	$UI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
+	$UI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual)
 
 
 	#if arma_atual != null:

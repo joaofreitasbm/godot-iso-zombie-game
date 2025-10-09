@@ -13,32 +13,30 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	#if skip == true:
-		#return
-	if item != null and skip == false:
-		if item.tipo == "Arma de fogo":
-			$Button/qnt.text = str(item.qntatual, "/", item.qntreserva)
-		if item.tipo == "Arremessavel" or item.tipo == "Consumivel" or item.tipo == "Material":
-			$Button/qnt.text = str(item.qntreserva)
-		$Button/nome.text = str(item.nome_item)
-		$Button/tipo.text = str(item.tipo)
+	if !skip:
+		if item != null:
+			if item.tipo == "Arma de fogo":
+				$Button/qnt.text = str(item.qntatual, "/", item.qntreserva)
+			if item.tipo == "Arremessavel" or item.tipo == "Consumivel" or item.tipo == "Material":
+				$Button/qnt.text = str(item.qntreserva)
+			$Button/nome.text = str(item.nome_item)
+			$Button/tipo.text = str(item.tipo)
 
-		$Button/nome.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
-		$Button/qnt.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
-		$Button/tipo.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
-		
+			$Button/nome.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
+			$Button/qnt.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
+			$Button/tipo.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
+
+
+		if item == null:
+			$Button/nome.text = "Vazio"
+			$Button/qnt.text = "-"
+			$Button/tipo.text = "-"
+
+			$Button/nome.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
+			$Button/qnt.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
+			$Button/tipo.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
+
 		skip = true
-
-	if item == null:
-		$Button/nome.text = "Vazio"
-		$Button/qnt.text = "-"
-		$Button/tipo.text = "-"
-
-		$Button/nome.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
-		$Button/qnt.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
-		$Button/tipo.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
-		
-		skip = false
 
 
 func _on_button_pressed() -> void: # apertou botão do MENU
@@ -125,16 +123,15 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 		$recicraft.position = Vector2(global_position.x, global_position.y + 25)
 		var texto: = str("Materiais obtidos", "\n")
 		for x in item.material_reciclado:
-			print(x,"    ", x.nome_item,"    ", x.qntreserva)
 			texto += (str("\n", x.nome_item, ", x",x.qntreserva))
 			recicraft.push_front(x)
-			print(recicraft, "      recicraft")
 		$recicraft/botaorecicraft.position = $recicraft/textorecicraft.position + Vector2(global_position.x, global_position.y + 175)
 		$recicraft/textorecicraft.text = texto
 		$recicraft/botaorecicraft.add_item("Clique aqui para reciclar")
 		$recicraft.show()
 		$recicraft/botaorecicraft.popup()
-		print("código rodou por completo")
+		UI.atualizarinventarioUI()
+
 
 
 	if aux == "Descartar":
@@ -147,13 +144,13 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 				pers.itenshotkey[y] = null
 				break
 		for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
-			print(z, z.item, "AQUI")
 			if z.item == item:
 				z.item = null
 				break
 		if pers.arma_atual == item:
 			pers.arma_atual = pers.mlivre
 		item = null
+		pers.inventario.sort()
 
 
 func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por cima do inventario
@@ -236,3 +233,4 @@ func _on_botaorecicraft_id_pressed(_id: int) -> void:
 	recicraft.clear()
 	item = null
 	UI.atualizarinventarioUI()
+	

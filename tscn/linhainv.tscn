@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://rjdoowuh0wru"]
 
-[ext_resource type="Script" uid="uid://76d1b7lmmr3b" path="res://scripts/linhainv.gd" id="1_fhvvc"]
+[ext_resource type="Script" uid="uid://76d1b7lmmr3b" path="res://scripts/inventario/inventario.gd" id="1_fhvvc"]
 
-[node name="linhainv" type="PanelContainer"]
+[node name="inventario" type="PanelContainer"]
 layout_direction = 2
 anchors_preset = 8
 anchor_left = 0.5

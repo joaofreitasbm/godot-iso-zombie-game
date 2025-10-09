@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="armas" load_steps=8 format=3 uid="uid://cric5pgld8pdt"]
+
+[ext_resource type="AudioStream" uid="uid://m50ftixuovst" path="res://audio/tiro.mp3" id="1_hyhe1"]
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprint.gd" id="2_3xaox"]
+[ext_resource type="Texture2D" uid="uid://2wuphdpa8jb7" path="res://pngs/fuzil.png" id="2_08v5d"]
+[ext_resource type="Resource" uid="uid://ddhdjhjbw0mux" path="res://resources/Itens/Comp fuzil 1.tres" id="3_owves"]
+[ext_resource type="Resource" uid="uid://i1muxyub1yjq" path="res://resources/Itens/Comp fuzil 2.tres" id="4_3dtvi"]
+[ext_resource type="Resource" uid="uid://cfkj422hos78b" path="res://resources/Itens/Comp fuzil 3.tres" id="5_fsk5b"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_3xaox"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_3xaox")
+nome_item = "Fuzil automatico"
+reciclavel = true
+imagem = ExtResource("2_08v5d")
+mesh = SubResource("PrismMesh_3xaox")
+alcance = 50
+audio_impacto = ExtResource("1_hyhe1")
+velocidade_ataque = 0.2
+material_reciclado = Array[Resource]([ExtResource("3_owves"), ExtResource("4_3dtvi"), ExtResource("5_fsk5b")])
+tipo = "Arma de fogo"
+qntmaxima = 30
+qntatual = 30
+qntreserva = 90
+tempocarregamento = 100.0
+dano = 20
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="armas" load_steps=4 format=3 uid="uid://cfkj422hos78b"]
+
+[ext_resource type="Texture2D" uid="uid://ce1wcw5pui7u1" path="res://pngs/comp fuzil 3.png" id="1_1nnq4"]
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprint.gd" id="2_ylwq2"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_sqsrg"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_ylwq2")
+nome_item = "Componente fuzil 3/3"
+imagem = ExtResource("1_1nnq4")
+mesh = SubResource("TorusMesh_sqsrg")
+tipo = "Material"
+qntreserva = 1
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

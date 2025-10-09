@@ -1,0 +1,232 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2o3afnlnpfk0"]
+
+[ext_resource type="Script" uid="uid://crnjk1l18umy8" path="res://scripts/inventario/ui.gd" id="1_sn5al"]
+[ext_resource type="PackedScene" uid="uid://btm5vxdprjvvb" path="res://tscn/slot.tscn" id="1_t064t"]
+[ext_resource type="PackedScene" uid="uid://rjdoowuh0wru" path="res://tscn/linhainv.tscn" id="2_sn5al"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_sn5al")
+
+[node name="fundo" type="Panel" parent="."]
+custom_minimum_size = Vector2(27.445, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -346.0
+offset_top = -87.0
+offset_right = 346.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="hotkeycontainer" type="HBoxContainer" parent="fundo"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -69.0
+offset_right = 304.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="1" parent="fundo/hotkeycontainer" instance=ExtResource("1_t064t")]
+layout_mode = 2
+
+[node name="2" parent="fundo/hotkeycontainer" instance=ExtResource("1_t064t")]
+layout_mode = 2
+
+[node name="3" parent="fundo/hotkeycontainer" instance=ExtResource("1_t064t")]
+layout_mode = 2
+
+[node name="4" parent="fundo/hotkeycontainer" instance=ExtResource("1_t064t")]
+layout_mode = 2
+
+[node name="5" parent="fundo/hotkeycontainer" instance=ExtResource("1_t064t")]
+layout_mode = 2
+
+[node name="6" parent="fundo/hotkeycontainer" instance=ExtResource("1_t064t")]
+layout_mode = 2
+
+[node name="7" parent="fundo/hotkeycontainer" instance=ExtResource("1_t064t")]
+layout_mode = 2
+
+[node name="8" parent="fundo/hotkeycontainer" instance=ExtResource("1_t064t")]
+layout_mode = 2
+
+[node name="9" parent="fundo/hotkeycontainer" instance=ExtResource("1_t064t")]
+layout_mode = 2
+
+[node name="invcontainer" type="TabContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -427.0
+offset_bottom = 550.0
+grow_horizontal = 0
+current_tab = 1
+
+[node name="Inventário [TAB]" type="VBoxContainer" parent="invcontainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 1
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="invcontainer/Inventário [TAB]"]
+layout_mode = 2
+
+[node name="teste1" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
+custom_minimum_size = Vector2(77.415, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Nome do item:"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="teste2" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Quantidade:"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="teste3" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
+custom_minimum_size = Vector2(190, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Tipo do item:"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="1" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="2" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="3" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="4" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="5" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="6" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="7" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="8" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="9" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="10" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="11" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="12" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="13" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="14" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="15" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="16" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="17" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="18" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="19" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="20" parent="invcontainer/Inventário [TAB]" instance=ExtResource("2_sn5al")]
+layout_mode = 2
+
+[node name="Status [K]" type="VBoxContainer" parent="invcontainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+metadata/_tab_index = 1
+
+[node name="espaçador" type="Label" parent="invcontainer/Status [K]"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="barrasaude" type="ProgressBar" parent="invcontainer/Status [K]"]
+custom_minimum_size = Vector2(313.9, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+
+[node name="debuffs" type="Label" parent="invcontainer/Status [K]"]
+custom_minimum_size = Vector2(410, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Debuffs:"
+
+[node name="debuffs2" type="Label" parent="invcontainer/Status [K]"]
+custom_minimum_size = Vector2(410, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "PENDENTE"
+
+[node name="Fabricação [L]" type="VBoxContainer" parent="invcontainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 1
+metadata/_tab_index = 2
+
+[node name="espaçador" type="Label" parent="invcontainer/Fabricação [L]"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "MENU DE CRAFT PENDENTE"
+
+[node name="invlabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 605.0
+offset_right = 112.0
+offset_bottom = 628.0
+theme_override_font_sizes/font_size = 8
+
+[node name="hotkeys" type="Label" parent="."]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 570.0
+offset_right = 193.0
+offset_bottom = 593.0
+theme_override_font_sizes/font_size = 8

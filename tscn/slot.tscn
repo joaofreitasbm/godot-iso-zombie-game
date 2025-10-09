@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://btm5vxdprjvvb"]
 
-[ext_resource type="Script" uid="uid://cua8jf8gi1kod" path="res://scripts/slot.gd" id="1_4v0t7"]
+[ext_resource type="Script" uid="uid://cua8jf8gi1kod" path="res://scripts/inventario/hotkeys.gd" id="1_4v0t7"]
 
-[node name="slot" type="Button"]
+[node name="hotkey" type="Button"]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 8.0
 offset_bottom = 8.0

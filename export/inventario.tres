@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Inventario" load_steps=2 format=3 uid="uid://d0vo4fdyq0o0g"]
-
-[ext_resource type="Script" uid="uid://rmkhrbjpgoyu" path="res://resources/Inventario.gd" id="1_bke5i"]
-
-[resource]
-script = ExtResource("1_bke5i")
-inventario = [null, null, null, null, null]
-metadata/_custom_type_script = "uid://rmkhrbjpgoyu"

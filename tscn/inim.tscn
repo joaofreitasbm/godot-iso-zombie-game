@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c3rx86rbxoxc6"]
 
-[ext_resource type="Script" uid="uid://v44k846b8is0" path="res://scripts/inim.gd" id="1_3jeos"]
+[ext_resource type="Script" uid="uid://v44k846b8is0" path="res://scripts/outros/inim.gd" id="1_3jeos"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3jeos"]
 resource_local_to_scene = true

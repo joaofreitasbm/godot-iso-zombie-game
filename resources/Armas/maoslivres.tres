@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="armas" load_steps=2 format=3 uid="uid://cc2uju0aw85fh"]
 
-[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprint.gd" id="1_puqba"]
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_armasitens.gd" id="1_puqba"]
 
 [resource]
 script = ExtResource("1_puqba")

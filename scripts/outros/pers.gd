@@ -1,37 +1,44 @@
 extends CharacterBody3D
 
 # variaveis usadas pro sistema de mira e movimentação
-var mirando = false
-var correndo = false
+var mirando: bool = false
+var correndo: bool = false
 
-@onready var raio = $raycastmira
-@onready var circ = $cursor3d
-@onready var cam = $Camera3D
-@onready var opac = $Camera3D/raycastopacidade
-
-var velgiro = .025 # apagar movimentação de tanque
-@onready var velandar = 5
-@export_range(0, 100) var vida := 100
-@onready var movtank = false
+@onready var raio: RayCast3D = $raycastmira
+@onready var circ:MeshInstance3D = $cursor3d
+@onready var cam: Camera3D = $Camera3D
+@onready var opac: RayCast3D = $Camera3D/raycastopacidade
 
 var colmira
-var listaopac = []
+var listaopac: Array = []
 var ultimoalvo
 
+# Inventario/UI
 @export var inventario: Array[Resource]
 @export var itenshotkey: Array[Resource]
+@onready var hotkey: int = 0
+@onready var inventarioUI: VBoxContainer = $"UI/invcontainer/Inventário [TAB]"
+@onready var hotkeyUI: HBoxContainer = $UI/fundo/hotkeycontainer
+@onready var UI: Control = $UI
 
-@onready var inventarioUI = $"UI/invcontainer/Inventário [TAB]"
-@onready var hotkeyUI = $UI/fundo/hotkeycontainer
-@export var hotkey: int = 0
-
-@onready var interagir = false
-
-var mlivre = preload("res://resources/Armas/maoslivres.tres")
+var mlivre: Resource = preload("res://resources/Armas/maoslivres.tres")
 var arma_atual = mlivre
-var equipado = false
+var equipado: bool = false
 
-var itemdrop = preload("res://tscn/item.tscn")
+@onready var interagir: bool = false
+var itemdrop: Resource = preload("res://tscn/item.tscn")
+
+# Saúde/status
+@onready var velandar: float = 5.0
+var vida: int = 100
+var stamina: float = 100
+var fome: float = 100
+var sede: float = 100
+var fadiga: float = (fome + sede) / 2
+var sanidade: int = 100
+var debuffs: Array[Resource]
+var receitas: Array[Resource]
+
 
 func _ready() -> void:
 	pass
@@ -43,42 +50,18 @@ func _physics_process(delta: float) -> void:
 		for x in arma_atual.receita_craft: # Itera sobre cada resource
 			print(x) # Retorna cada resource
 			print(arma_atual.receita_craft[x]) # Retorna cada quantidade
-		
 
 
 	if not is_on_floor(): velocity += get_gravity() * delta
 
 
-
-	if movtank == true: # MOVIMENTAÇÃO DE TANK
-		var frente = -global_transform.basis.z # variavel pra salvar direção pra onde o personagem anda
-
-		# andar pra frente
-		if Input.is_action_pressed("W"): # mover pra func _input (avaliar necessidade)
-			position += frente * velandar * delta
-
-		# rotação do personagem
-		rotation.y -= Input.get_axis("A", "D") * velgiro ## criar como alterar a velocidade de girar
-
-		# andar pra trás ## dar um jeito de resolver o correr pra trás
-		if Input.is_action_pressed("S"): 
-			correndo = false
-			position += -frente * velandar * delta
-			if Input.is_action_just_pressed("correr"):
-				rotation.y += deg_to_rad(180)
-
-		if Input.is_action_just_released("W"):
-			correndo = false
-
-
-	if movtank == false: #MOVIMENTAÇÃO 3D LIVRE
-		var input_dir = Input.get_vector("A", "D", "W", "S")
-		var direction = (cam.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		if direction != Vector3.ZERO:
-			position += direction * velandar * delta
-			rotation.y = lerp_angle(rotation.y, atan2(-direction.x, -direction.z), delta * 10)
-		else:
-			correndo = false
+	var input_dir: Vector2 = Input.get_vector("A", "D", "W", "S")
+	var direction = (cam.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction != Vector3.ZERO:
+		position += direction * velandar * delta
+		rotation.y = lerp_angle(rotation.y, atan2(-direction.x, -direction.z), delta * 10)
+	else:
+		correndo = false
 
 
 	if Input.is_action_just_pressed("correr"): correndo = true
@@ -113,6 +96,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("atirar"):
 		if arma_atual.tipo == "Consumivel": #consumivel
 			arma_atual.usar_equipado(colmira, self)
+			return
 		if mirando and $timer.is_stopped(): 
 			$timer.wait_time = arma_atual.velocidade_ataque
 			$timer.start()
@@ -124,16 +108,6 @@ func _physics_process(delta: float) -> void:
 		if mirando: arma_atual.aux = true
 		else: return
 
-
-	if Input.is_action_just_pressed("B"):
-		if movtank == true:
-			print("não movtank")
-			movtank = false
-			return
-		if movtank == false:
-			print("sim movtank")
-			movtank = true
-			return
 
 	move_and_slide()
 
@@ -185,7 +159,6 @@ func _physics_process(delta: float) -> void:
 					equipado = false
 
 
-
 	# guardar item
 	if Input.is_action_just_pressed("Q"):
 		if itenshotkey[hotkey] == null: # Se não tiver nada equipado na hotkey atual
@@ -210,6 +183,7 @@ func _physics_process(delta: float) -> void:
 			return
 		if $UI/invcontainer.visible == false:
 			$UI/invcontainer.current_tab = 0
+			UI.atualizarinventarioUI()
 			$UI/invcontainer.show()
 	
 			# Abrir inventário (ABA 2)
@@ -219,6 +193,7 @@ func _physics_process(delta: float) -> void:
 			return
 		if $UI/invcontainer.visible == false:
 			$UI/invcontainer.current_tab = 1
+			UI.atualizarinventarioUI()
 			$UI/invcontainer.show()
 
 			# Abrir inventário (ABA 3)
@@ -228,6 +203,7 @@ func _physics_process(delta: float) -> void:
 			return
 		if $UI/invcontainer.visible == false:
 			$UI/invcontainer.current_tab = 2
+			UI.atualizarinventarioUI()
 			$UI/invcontainer.show()
 
 
@@ -235,12 +211,6 @@ func _physics_process(delta: float) -> void:
 	$UI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
 	$UI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual)
 
-
-	#if arma_atual != null:
-		#$Label.text = str(
-			#arma_atual.nome_item, "\n",
-			#arma_atual.municao_atual,"/",arma_atual.municao_reserva, "\n",
-			#)
 
 
 	if vida <= 0:

@@ -74,41 +74,48 @@ item_0/id = 0
 [node name="hover" type="PopupMenu" parent="."]
 theme_override_font_sizes/font_size = 12
 
-[node name="recicraft" type="PopupPanel" parent="."]
+[node name="reciclar" type="PopupPanel" parent="."]
 oversampling_override = 1.0
 position = Vector2i(980, 0)
-size = Vector2i(182, 39)
-
-[node name="botaorecicraft2" type="Button" parent="recicraft"]
-visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 178.0
-offset_bottom = 35.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Clique aqui pra TESTE"
-icon_alignment = 1
-text_direction = 3
-
-[node name="textorecicraft" type="Label" parent="recicraft"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 178.0
-offset_bottom = 35.0
-
-[node name="botaorecicraft" type="PopupMenu" parent="recicraft"]
-oversampling_override = 1.0
-position = Vector2i(0, 535)
+size = Vector2i(182, 120)
 visible = true
+
+[node name="botaorecicraft2" type="PopupMenu" parent="reciclar"]
+oversampling_override = 1.0
+position = Vector2i(0, 503)
+visible = true
+
+[node name="vbc" type="VBoxContainer" parent="reciclar"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 178.0
+offset_bottom = 116.0
+
+[node name="titulo" type="Label" parent="reciclar/vbc"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Materiais obtidos:"
+vertical_alignment = 1
+
+[node name="textoreciclar" type="Label" parent="reciclar/vbc"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+vertical_alignment = 1
+
+[node name="botaoreciclar" type="Button" parent="reciclar/vbc"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="erro" type="PopupMenu" parent="."]
+item_count = 1
+item_0/text = "Inventário cheio."
+item_0/id = 0
 
 [connection signal="mouse_entered" from="Button" to="." method="hover_on"]
 [connection signal="mouse_exited" from="Button" to="." method="hover_off"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="id_pressed" from="submenu" to="." method="_on_submenu_id_pressed"]
-[connection signal="id_pressed" from="recicraft/botaorecicraft" to="." method="_on_botaorecicraft_id_pressed"]
+[connection signal="id_pressed" from="reciclar/botaorecicraft2" to="." method="_on_botaorecicraft_id_pressed"]
+[connection signal="pressed" from="reciclar/vbc/botaoreciclar" to="." method="_on_botaoreciclar_pressed"]

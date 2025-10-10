@@ -1,11 +1,11 @@
 extends Area3D
 
 @export var item: Resource # item que está sendo adquirido
-var area = false # controlado pelos sinais no final do código (entrou/saiu da área)
+var area: bool = false # controlado pelos sinais no final do código (entrou/saiu da área)
 
-@onready var pers = get_tree().get_root().get_node("main/pers")
-@onready var inventarioUI = get_tree().get_root().get_node("main/pers/UI/invcontainer/Inventário [TAB]")
-@onready var UI = get_tree().get_root().get_node("main/pers/UI")
+@onready var pers: CharacterBody3D = get_tree().get_root().get_node("main/pers")
+@onready var inventarioUI: VBoxContainer = get_tree().get_root().get_node("main/pers/UI/invcontainer/Inventário [TAB]")
+@onready var UI: Control = get_tree().get_root().get_node("main/pers/UI")
 
 func _ready() -> void:
 	if item != null:

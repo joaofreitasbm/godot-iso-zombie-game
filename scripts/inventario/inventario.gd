@@ -1,10 +1,10 @@
 extends PanelContainer
 
 @export var item: Resource
-@onready var pers = $"../../../.."
-var recicraft: Array[Resource]
+@onready var pers: CharacterBody3D = $"../../../.."
+var reciclar: Array[Resource]
 var skip: bool = false
-@onready var UI = $"../../.."
+@onready var UI: Control = $"../../.."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,7 +35,6 @@ func _process(_delta: float) -> void:
 			$Button/nome.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
 			$Button/qnt.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
 			$Button/tipo.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
-
 		skip = true
 
 
@@ -49,8 +48,9 @@ func _on_button_pressed() -> void: # apertou botão do MENU
 				$submenu.add_item(str("Equipar arma no slot ", pers.hotkey + 1))
 			$submenu.add_item("Dropar")
 			$submenu.add_item("Descartar")
-			$submenu.add_item("Reciclar")
-			$submenu.position = Vector2(global_position.x, global_position.y + 25)
+			if item.reciclavel:
+				$submenu.add_item("Reciclar")
+			$submenu.position = get_global_mouse_position() - Vector2(65, 0)
 			$submenu.popup()
 
 
@@ -117,19 +117,21 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 
 	if aux == "Reciclar": ## EM ANDAMENTO
 		print("reciclagem começou")
-		recicraft.clear() 
-		$recicraft/textorecicraft.text = ""
-		$recicraft/botaorecicraft.clear()
-		$recicraft.position = Vector2(global_position.x, global_position.y + 25)
-		var texto: = str("Materiais obtidos", "\n")
+		reciclar.clear() 
+		$reciclar/vbc/textoreciclar.text = ""
+		$reciclar/vbc/botaoreciclar.text = ""
+		$reciclar.position = Vector2(global_position.x, global_position.y + 25)
+		var texto = ""
 		for x in item.material_reciclado:
 			texto += (str("\n", x.nome_item, ", x",x.qntreserva))
-			recicraft.push_front(x)
-		$recicraft/botaorecicraft.position = $recicraft/textorecicraft.position + Vector2(global_position.x, global_position.y + 175)
-		$recicraft/textorecicraft.text = texto
-		$recicraft/botaorecicraft.add_item("Clique aqui para reciclar")
-		$recicraft.show()
-		$recicraft/botaorecicraft.popup()
+			reciclar.push_front(x)
+		#$reciclar/botaoreciclar.position = $reciclar/textoreciclar.position + Vector2($reciclar/textoreciclar - 5, global_position.y + 150)
+		$reciclar/vbc/textoreciclar.text = texto
+		$reciclar/vbc/botaoreciclar.text = "Clique aqui para reciclar"
+		$reciclar.show()
+		#$reciclar/vbc/botaoreciclar.position = $reciclar/vbc/textoreciclar.size
+		$reciclar/vbc/botaoreciclar.show()
+		$reciclar.position = get_global_mouse_position() - Vector2(65, 0)
 		UI.atualizarinventarioUI()
 
 
@@ -150,7 +152,7 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 		if pers.arma_atual == item:
 			pers.arma_atual = pers.mlivre
 		item = null
-		pers.inventario.sort()
+		UI.atualizarinventarioUI()
 
 
 func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por cima do inventario
@@ -170,9 +172,9 @@ func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por c
 func hover_off() -> void: # Esconde informações dos itens ao tirar o mouse de cima do inventario
 	$hover.hide()
 
-
-func _on_botaorecicraft_id_pressed(_id: int) -> void:
-	print("BOTÃO RECICRAFT APERTADO")
+# lógica da reciclagem
+func _on_botaoreciclar_pressed() -> void: 
+	print("BOTÃO reciclar APERTADO")
 
 	# Pega o limite máximo de slots do inventário
 	var inv_max = UI.invmax
@@ -184,44 +186,47 @@ func _on_botaorecicraft_id_pressed(_id: int) -> void:
 			slots_vazios += 1
 
 	# Conta quantos itens reciclados não são stackáveis
-	var itens_nao_stackaveis := 0
-	for i in recicraft:
+	var itens_nao_stackaveis: int = 0
+	var itens_stackaveis: int = 0
+	for i in reciclar:
 		if not i.stackavel:
-			itens_nao_stackaveis += 1
+			itens_nao_stackaveis += i.qntreserva
+		if i.stackavel:
+			itens_stackaveis += 1
 
 	# Calcula se há espaço suficiente no inventário
-	var ocupados = pers.inventario.size() - slots_vazios
-	var total_previsto = ocupados + itens_nao_stackaveis
+	var ocupados = pers.inventario.size() - slots_vazios # 20slot - 8slot vazios = 12slot ocupados
+	var total_previsto = ocupados + itens_nao_stackaveis + itens_stackaveis
+	print("slots ocupados = ", ocupados, "\n",
+	"não stackaveis: ", itens_nao_stackaveis, "\n",
+	"stackaveis: ", itens_stackaveis, "\n",
+	"total de slots previstos pra operação: ", total_previsto)
 
 	if total_previsto > inv_max:
+		$erro.position = get_global_mouse_position() - Vector2(65, 0)
+		$erro.popup()
 		print("Inventário cheio! Não há espaço suficiente para reciclar.")
 		return
 
 	# Continua normalmente se houver espaço
-	for x in recicraft:
-		var adicionado := false
-
-		# Tenta empilhar caso o item seja stackável
+	for x in reciclar:
 		if x.stackavel:
-			for i in range(len(pers.inventario)):
-				var slot = pers.inventario[i]
-				if slot != null and slot.nome_item == x.nome_item:
-					slot.qntreserva += x.qntreserva
-					adicionado = true
+			for y in range(len(pers.inventario)):
+				if pers.inventario[y] == null:
+					pers.inventario[y] = x
 					break
-
-		# Se não empilhou, tenta colocar em um slot vazio
-		if not adicionado:
-			for i in range(len(pers.inventario)):
-				if pers.inventario[i] == null:
-					pers.inventario[i] = x.duplicate(true)
-					adicionado = true
-					break
-
-		# Caso não tenha conseguido adicionar de jeito nenhum
-		if not adicionado:
-			print("Inventário cheio! Não foi possível adicionar: ", x.nome_item)
-			break
+		if !x.stackavel:
+			var qntitensnaostack: int = 0
+			for y in range(len(pers.inventario)):
+				if pers.inventario[y] == null:
+					pers.inventario[y] = x.duplicate(true)
+					pers.inventario[y].qntreserva = 1
+					print("item adicionado! ", pers.inventario[y].nome_item, pers.inventario[y].qntreserva)
+					qntitensnaostack += 1
+					print(qntitensnaostack, " ", itens_nao_stackaveis)
+					if x.qntreserva == qntitensnaostack:
+						print("parou loop")
+						break
 
 	# Remove o item original que foi reciclado
 	for i in range(len(pers.inventario)):
@@ -230,7 +235,83 @@ func _on_botaorecicraft_id_pressed(_id: int) -> void:
 			break
 
 	# Limpa e atualiza a UI
-	recicraft.clear()
+	reciclar.clear()
+	$reciclar.hide()
 	item = null
 	UI.atualizarinventarioUI()
 	
+	
+	
+	
+	
+	#print("BOTÃO reciclar APERTADO")
+#
+	## Pega o limite máximo de slots do inventário
+	#var inv_max = UI.invmax
+#
+	## Conta quantos slots estão vazios
+	#var slots_vazios := 0
+	#for i in pers.inventario:
+		#if i == null:
+			#slots_vazios += 1
+#
+	## Conta quantos itens reciclados não são stackáveis
+	#var itens_nao_stackaveis: int = 0
+	#var itens_stackaveis: int = 0
+	#for i in reciclar:
+		#if not i.stackavel:
+			#itens_nao_stackaveis += i.qntreserva
+		#if i.stackavel:
+			#itens_stackaveis += 1
+#
+	## Calcula se há espaço suficiente no inventário
+	#var ocupados = pers.inventario.size() - slots_vazios # 20slot - 8slot vazios = 12slot ocupados
+	#var total_previsto = ocupados + itens_nao_stackaveis + itens_stackaveis
+	#print("slots ocupados = ", ocupados, "\n",
+	#"não stackaveis: ", itens_nao_stackaveis, "\n",
+	#"stackaveis: ", itens_stackaveis)
+#
+	#if total_previsto > inv_max:
+		#print("Inventário cheio! Não há espaço suficiente para reciclar.")
+		#return
+#
+	## Continua normalmente se houver espaço
+	#for x in reciclar:
+		#var adicionado := false
+#
+		## Tenta empilhar caso o item seja stackável
+		#if x.stackavel:
+			#for i in range(len(pers.inventario)):
+				#var slot = pers.inventario[i]
+				#if slot != null and slot.nome_item == x.nome_item:
+					#slot.qntreserva += x.qntreserva
+					#adicionado = true
+					#break
+		#if !x.stackavel:
+			#
+#
+		## Se não empilhou, tenta colocar em um slot vazio
+		#if not adicionado:
+			#for i in range(len(pers.inventario)):
+				#if pers.inventario[i] == null:
+					#pers.inventario[i] = x.duplicate(true)
+					#adicionado = true
+					#break
+#
+		## Caso não tenha conseguido adicionar de jeito nenhum
+		#if not adicionado:
+			#print("Inventário cheio! Não foi possível adicionar: ", x.nome_item)
+			#break
+	#
+#
+	## Remove o item original que foi reciclado
+	#for i in range(len(pers.inventario)):
+		#if pers.inventario[i] == item:
+			#pers.inventario[i] = null
+			#break
+#
+	## Limpa e atualiza a UI
+	#reciclar.clear()
+	#$reciclar.hide()
+	#item = null
+	#UI.atualizarinventarioUI()

@@ -1,7 +1,8 @@
 extends Control
 
-@onready var pers = get_tree().get_root().get_node("main/pers/")
-@onready var invmax = 20
+@onready var pers: CharacterBody3D = get_tree().get_root().get_node("main/pers/")
+@onready var invmax: int = 20
+@onready var persvida = pers.vida
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,8 +11,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
-
+	$"invcontainer/Status [K]/VBoxContainer/saude/barra".value = pers.vida
+	$"invcontainer/Status [K]/VBoxContainer/folego/barra".value = pers.stamina
+	$"invcontainer/Status [K]/VBoxContainer/fadiga/barra".value = pers.fadiga
+	$"invcontainer/Status [K]/VBoxContainer/fome/barra".value = pers.fome
+	$"invcontainer/Status [K]/VBoxContainer/sede/barra".value = pers.sede
+	$"invcontainer/Status [K]/VBoxContainer/sanidade/barra".value = pers.sanidade
 
 func atualizarinventarioUI():
 	for i in %"Inventário [TAB]".get_children():
@@ -25,7 +30,18 @@ func atualizarinventarioUI():
 				i.item = null
 			i.skip = false
 
-	
+
+func atualizarcraftUI():
+	for i in $"invcontainer/Fabricação [L]".get_children():
+		if i is PanelContainer:
+			var slot = int(i.name) - 1
+			var item = pers.inventario[slot]
+			print(pers.inventario[slot])
+			if item != null:
+				i.item = item
+			else:
+				i.item = null
+			i.skip = false
 
 func ordenarinventarioUI():
 	pers.inventario.sort()

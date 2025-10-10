@@ -1,8 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2o3afnlnpfk0"]
+[gd_scene load_steps=23 format=3 uid="uid://d2o3afnlnpfk0"]
 
 [ext_resource type="Script" uid="uid://crnjk1l18umy8" path="res://scripts/inventario/ui.gd" id="1_sn5al"]
-[ext_resource type="PackedScene" uid="uid://btm5vxdprjvvb" path="res://tscn/slot.tscn" id="1_t064t"]
-[ext_resource type="PackedScene" uid="uid://rjdoowuh0wru" path="res://tscn/linhainv.tscn" id="2_sn5al"]
+[ext_resource type="PackedScene" uid="uid://btm5vxdprjvvb" path="res://tscn/hotkey.tscn" id="1_t064t"]
+[ext_resource type="PackedScene" uid="uid://rjdoowuh0wru" path="res://tscn/inventario.tscn" id="2_sn5al"]
+[ext_resource type="PackedScene" uid="uid://dmi6giaab37f6" path="res://tscn/craft.tscn" id="4_k14ws"]
+
+[sub_resource type="Theme" id="Theme_sn5al"]
+resource_local_to_scene = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k14ws"]
+bg_color = Color(0.6, 0.6, 0.6, 0.39607844)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agrgj"]
+bg_color = Color(0.47058824, 0.023529412, 0.023529412, 1)
+
+[sub_resource type="Theme" id="Theme_k14ws"]
+resource_local_to_scene = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8x36r"]
+bg_color = Color(0.6, 0.6, 0.6, 0.39607844)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2rrn"]
+bg_color = Color(0.05882353, 0.29803923, 0.101960786, 1)
+
+[sub_resource type="Theme" id="Theme_ihnko"]
+resource_local_to_scene = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r27dv"]
+bg_color = Color(0.6, 0.6, 0.6, 0.39607844)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5ynl"]
+bg_color = Color(0.27450982, 0.3764706, 0.5019608, 1)
+
+[sub_resource type="Theme" id="Theme_q3gd2"]
+resource_local_to_scene = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6nl4"]
+bg_color = Color(0.6, 0.6, 0.6, 0.39607844)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6k6k"]
+bg_color = Color(0.7882353, 0.41568628, 0.09411765, 1)
+
+[sub_resource type="Theme" id="Theme_338lr"]
+resource_local_to_scene = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bxkj3"]
+bg_color = Color(0.6, 0.6, 0.6, 0.39607844)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mst7v"]
+bg_color = Color(0.101960786, 0.41568628, 0.7882353, 1)
+
+[sub_resource type="Theme" id="Theme_pxbsu"]
+resource_local_to_scene = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scogr"]
+bg_color = Color(0.6, 0.6, 0.6, 0.39607844)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66i46"]
+bg_color = Color(0.47058824, 0.02745098, 0.74509805, 1)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -73,7 +128,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="invcontainer" type="TabContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -81,11 +135,10 @@ anchor_right = 1.0
 offset_left = -427.0
 offset_bottom = 550.0
 grow_horizontal = 0
-current_tab = 1
+current_tab = 0
 
 [node name="Inventário [TAB]" type="VBoxContainer" parent="invcontainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 1
 metadata/_tab_index = 0
@@ -93,7 +146,7 @@ metadata/_tab_index = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="invcontainer/Inventário [TAB]"]
 layout_mode = 2
 
-[node name="teste1" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
+[node name="nome do item" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
 custom_minimum_size = Vector2(77.415, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
@@ -101,7 +154,7 @@ text = "Nome do item:"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="teste2" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
+[node name="quantidade" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
@@ -109,7 +162,7 @@ text = "Quantidade:"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="teste3" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
+[node name="tipo" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
 custom_minimum_size = Vector2(190, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
@@ -178,31 +231,212 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Status [K]" type="VBoxContainer" parent="invcontainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 1
 metadata/_tab_index = 1
 
-[node name="espaçador" type="Label" parent="invcontainer/Status [K]"]
-custom_minimum_size = Vector2(0, 40)
+[node name="condgerais" type="Label" parent="invcontainer/Status [K]"]
+custom_minimum_size = Vector2(400.72, 40)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "Condições gerais:"
+vertical_alignment = 2
 
-[node name="barrasaude" type="ProgressBar" parent="invcontainer/Status [K]"]
-custom_minimum_size = Vector2(313.9, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 1
-
-[node name="debuffs" type="Label" parent="invcontainer/Status [K]"]
+[node name="VBoxContainer" type="VBoxContainer" parent="invcontainer/Status [K]"]
 custom_minimum_size = Vector2(410, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Debuffs:"
+metadata/_edit_group_ = true
 
-[node name="debuffs2" type="Label" parent="invcontainer/Status [K]"]
-custom_minimum_size = Vector2(410, 0)
+[node name="saude" type="VBoxContainer" parent="invcontainer/Status [K]/VBoxContainer"]
+custom_minimum_size = Vector2(0, 18.855)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="titulos" type="HBoxContainer" parent="invcontainer/Status [K]/VBoxContainer/saude"]
+layout_mode = 2
+
+[node name="nome" type="Label" parent="invcontainer/Status [K]/VBoxContainer/saude/titulos"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Saúde"
+vertical_alignment = 2
+
+[node name="qnt" type="Label" parent="invcontainer/Status [K]/VBoxContainer/saude/titulos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "%"
+vertical_alignment = 2
+
+[node name="barra" type="ProgressBar" parent="invcontainer/Status [K]/VBoxContainer/saude"]
+custom_minimum_size = Vector2(400, 5)
+layout_mode = 2
+theme = SubResource("Theme_sn5al")
+theme_override_styles/background = SubResource("StyleBoxFlat_k14ws")
+theme_override_styles/fill = SubResource("StyleBoxFlat_agrgj")
+value = 100.0
+show_percentage = false
+
+[node name="folego" type="VBoxContainer" parent="invcontainer/Status [K]/VBoxContainer"]
+custom_minimum_size = Vector2(0, 18.855)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="titulos" type="HBoxContainer" parent="invcontainer/Status [K]/VBoxContainer/folego"]
+layout_mode = 2
+
+[node name="nome" type="Label" parent="invcontainer/Status [K]/VBoxContainer/folego/titulos"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Fôlego"
+vertical_alignment = 2
+
+[node name="qnt" type="Label" parent="invcontainer/Status [K]/VBoxContainer/folego/titulos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "%"
+vertical_alignment = 2
+
+[node name="barra" type="ProgressBar" parent="invcontainer/Status [K]/VBoxContainer/folego"]
+custom_minimum_size = Vector2(400, 5)
+layout_mode = 2
+theme = SubResource("Theme_k14ws")
+theme_override_styles/background = SubResource("StyleBoxFlat_8x36r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b2rrn")
+value = 100.0
+show_percentage = false
+
+[node name="fadiga" type="VBoxContainer" parent="invcontainer/Status [K]/VBoxContainer"]
+custom_minimum_size = Vector2(0, 18.855)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="titulos" type="HBoxContainer" parent="invcontainer/Status [K]/VBoxContainer/fadiga"]
+layout_mode = 2
+
+[node name="nome" type="Label" parent="invcontainer/Status [K]/VBoxContainer/fadiga/titulos"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Fadiga"
+vertical_alignment = 2
+
+[node name="qnt" type="Label" parent="invcontainer/Status [K]/VBoxContainer/fadiga/titulos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "%"
+vertical_alignment = 2
+
+[node name="barra" type="ProgressBar" parent="invcontainer/Status [K]/VBoxContainer/fadiga"]
+custom_minimum_size = Vector2(400, 5)
+layout_mode = 2
+theme = SubResource("Theme_ihnko")
+theme_override_styles/background = SubResource("StyleBoxFlat_r27dv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i5ynl")
+value = 100.0
+show_percentage = false
+
+[node name="fome" type="VBoxContainer" parent="invcontainer/Status [K]/VBoxContainer"]
+custom_minimum_size = Vector2(0, 18.855)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="titulos" type="HBoxContainer" parent="invcontainer/Status [K]/VBoxContainer/fome"]
+layout_mode = 2
+
+[node name="nome" type="Label" parent="invcontainer/Status [K]/VBoxContainer/fome/titulos"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Fome"
+vertical_alignment = 2
+
+[node name="qnt" type="Label" parent="invcontainer/Status [K]/VBoxContainer/fome/titulos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "%"
+vertical_alignment = 2
+
+[node name="barra" type="ProgressBar" parent="invcontainer/Status [K]/VBoxContainer/fome"]
+custom_minimum_size = Vector2(400, 5)
+layout_mode = 2
+theme = SubResource("Theme_q3gd2")
+theme_override_styles/background = SubResource("StyleBoxFlat_i6nl4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_r6k6k")
+value = 100.0
+show_percentage = false
+
+[node name="sede" type="VBoxContainer" parent="invcontainer/Status [K]/VBoxContainer"]
+custom_minimum_size = Vector2(0, 18.855)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="titulos" type="HBoxContainer" parent="invcontainer/Status [K]/VBoxContainer/sede"]
+layout_mode = 2
+
+[node name="nome" type="Label" parent="invcontainer/Status [K]/VBoxContainer/sede/titulos"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Sede"
+vertical_alignment = 2
+
+[node name="qnt" type="Label" parent="invcontainer/Status [K]/VBoxContainer/sede/titulos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "%"
+vertical_alignment = 2
+
+[node name="barra" type="ProgressBar" parent="invcontainer/Status [K]/VBoxContainer/sede"]
+custom_minimum_size = Vector2(400, 5)
+layout_mode = 2
+theme = SubResource("Theme_338lr")
+theme_override_styles/background = SubResource("StyleBoxFlat_bxkj3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mst7v")
+value = 100.0
+show_percentage = false
+
+[node name="sanidade" type="VBoxContainer" parent="invcontainer/Status [K]/VBoxContainer"]
+custom_minimum_size = Vector2(0, 18.855)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="titulos" type="HBoxContainer" parent="invcontainer/Status [K]/VBoxContainer/sanidade"]
+layout_mode = 2
+
+[node name="nome" type="Label" parent="invcontainer/Status [K]/VBoxContainer/sanidade/titulos"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Sanidade"
+vertical_alignment = 2
+
+[node name="qnt" type="Label" parent="invcontainer/Status [K]/VBoxContainer/sanidade/titulos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "%"
+vertical_alignment = 2
+
+[node name="barra" type="ProgressBar" parent="invcontainer/Status [K]/VBoxContainer/sanidade"]
+custom_minimum_size = Vector2(400, 5)
+layout_mode = 2
+theme = SubResource("Theme_pxbsu")
+theme_override_styles/background = SubResource("StyleBoxFlat_scogr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_66i46")
+value = 100.0
+show_percentage = false
+
+[node name="condgerais2" type="Label" parent="invcontainer/Status [K]/VBoxContainer"]
+custom_minimum_size = Vector2(400.72, 40)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "PENDENTE"
+theme_override_font_sizes/font_size = 10
+text = "IMPLEMENTAR DEBUFFS ABAIXO"
+vertical_alignment = 2
 
 [node name="Fabricação [L]" type="VBoxContainer" parent="invcontainer"]
 visible = false
@@ -210,7 +444,10 @@ layout_mode = 2
 theme_override_constants/separation = 1
 metadata/_tab_index = 2
 
-[node name="espaçador" type="Label" parent="invcontainer/Fabricação [L]"]
+[node name="1" parent="invcontainer/Fabricação [L]" instance=ExtResource("4_k14ws")]
+layout_mode = 2
+
+[node name="espacador" type="Label" parent="invcontainer/Fabricação [L]"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "MENU DE CRAFT PENDENTE"

@@ -1,10 +1,11 @@
 extends Button
 
 @export var item: Resource
-@onready var pers = $"../../../.."
+@onready var pers: CharacterBody3D = $"../../../.."
 
 @onready var slot = int(self.name) - 1
-var slotvazio = preload("res://pngs/vazio.png")
+var slotvazio: Resource = preload("res://pngs/vazio.png")
+
 func _ready() -> void:
 	$nome_slot.text = self.name
 

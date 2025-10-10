@@ -8,16 +8,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	var movimentação
-	if get_node("/root/main/pers").movtank == false:
-		movimentação = "3D free controls"
-	if get_node("/root/main/pers").movtank == true:
-		movimentação = "tank controls"
 		
 	$hp.text = str(
 		"Health: ", get_node("/root/main/pers").vida, "\n",
 		"Press E to change controls", "\n",
-		 movimentação, "\n", "\n",
 		"movement > WASD", "\n",
 		"Aim > RMB", "\n",
 		"Shoot > LMB", "\n", 

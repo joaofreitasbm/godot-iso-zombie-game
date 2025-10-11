@@ -135,10 +135,11 @@ anchor_right = 1.0
 offset_left = -427.0
 offset_bottom = 550.0
 grow_horizontal = 0
-current_tab = 0
+current_tab = 2
 
 [node name="Inventário [TAB]" type="VBoxContainer" parent="invcontainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 1
 metadata/_tab_index = 0
@@ -237,11 +238,18 @@ theme_override_constants/separation = 1
 metadata/_tab_index = 1
 
 [node name="condgerais" type="Label" parent="invcontainer/Status [K]"]
-custom_minimum_size = Vector2(400.72, 40)
+custom_minimum_size = Vector2(410, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 10
-text = "Condições gerais:"
+text = "Condições gerais: "
+vertical_alignment = 2
+
+[node name="separador" type="Label" parent="invcontainer/Status [K]"]
+custom_minimum_size = Vector2(400.175, 5.44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
 vertical_alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="invcontainer/Status [K]"]
@@ -439,7 +447,6 @@ text = "IMPLEMENTAR DEBUFFS ABAIXO"
 vertical_alignment = 2
 
 [node name="Fabricação [L]" type="VBoxContainer" parent="invcontainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 1
 metadata/_tab_index = 2

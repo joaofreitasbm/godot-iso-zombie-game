@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="craft" load_steps=4 format=3 uid="uid://ddhdjhjbw0mux"]
+[gd_resource type="Resource" script_class="armas" load_steps=4 format=3 uid="uid://ddhdjhjbw0mux"]
 
 [ext_resource type="Texture2D" uid="uid://bl5t6nlxojray" path="res://pngs/comp fuzil 1.png" id="1_21csj"]
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_armasitens.gd" id="2_c7rrr"]

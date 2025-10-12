@@ -1,7 +1,7 @@
 extends PanelContainer
 
-@export var item: itens
 @onready var pers: CharacterBody3D = $"../../../.."
+@export var item: itens
 var reciclar: Array[itens]
 var skip: bool = false
 @onready var UI: Control = $"../../.."
@@ -34,9 +34,11 @@ func _process(_delta: float) -> void:
 
 
 func _on_button_pressed() -> void: # apertou botão do MENU
-	print("botão apertado! item atual: ", item, self.name)
+	print("botão apertado! item atual: ", item.nome_item, "slot: ", self.name)
 	for x in pers.inventario:
+		print("Rodou for loop... X: ", x, "")
 		if x != null and x == item:
+			print(x)
 			print("i: ", x, "item clickado: ", str(item))
 			$submenu.clear()
 			if item.tipo == "Arma de fogo" or item.tipo == "Corpo a corpo":

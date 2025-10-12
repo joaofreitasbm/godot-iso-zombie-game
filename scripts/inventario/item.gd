@@ -50,7 +50,7 @@ func _process(_delta: float) -> void:
 				pers.inventario[y].quantidade += item.quantidade
 				break
 			if pers.inventario[y] == null:
-				pers.inventario[y] = item
+				pers.inventario[y] = item.duplicate(true)
 				break
 	if !item.stackavel: # SE O ITEM NÃO FOR STACKAVEL
 		var qntitensnaostack: int = 0
@@ -66,18 +66,8 @@ func _process(_delta: float) -> void:
 					break
 
 
-
 	# Remove o item do mundo
 	queue_free()
-	
-	##################################
-	
-
-
-
-
-
-
 
 
 func _on_body_entered(body: Node3D) -> void:

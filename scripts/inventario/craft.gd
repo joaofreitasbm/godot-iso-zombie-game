@@ -84,19 +84,15 @@ func botao_craft() -> void:
 	# 4️⃣ Adicionar o item craftado ao primeiro slot vazio
 	for slot in %"Inventário [TAB]".get_children():
 		if slot is PanelContainer and slot.item == null:
-			slot.item = item.item_craftado
+			slot.item = item.item_craftado.duplicate(true)
 			slot.skip = false
-			pers.inventario[int(slot.name) - 1] = item.item_craftado
+			pers.inventario[int(slot.name) - 1] = item.item_craftado.duplicate(true)
 			print("✅ Item craftado:", item.item_craftado.nome_item)
 			break
 
 	# 5️⃣ Atualizar UI
 	UI.atualizarinventarioUI()
 
-
-
-							
-						
 
 	#print("botão apertado! item atual: ", item, self.name)
 	#if item == null:

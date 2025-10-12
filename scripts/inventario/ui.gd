@@ -2,7 +2,6 @@ extends Control
 
 @onready var pers: CharacterBody3D = get_tree().get_root().get_node("main/pers/")
 @onready var invmax: int = 20
-@onready var persvida = pers.vida
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,7 +23,7 @@ func atualizarinventarioUI():
 			var slot = int(i.name) - 1
 			var item = pers.inventario[slot]
 			if item != null:
-				i.item = item
+				i.item = item.duplicate(true)
 			else:
 				i.item = null
 			i.skip = false
@@ -37,7 +36,7 @@ func atualizarcraftUI():
 			var item = pers.lista_de_receitas[slot]
 			print(pers.lista_de_receitas[slot])
 			if item != null:
-				i.item = item
+				i.item = item.duplicate(true)
 			else:
 				i.item = null
 			i.skip = false

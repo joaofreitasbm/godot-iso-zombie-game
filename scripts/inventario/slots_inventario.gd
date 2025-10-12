@@ -40,9 +40,9 @@ func _on_button_pressed() -> void: # apertou em algum item do MENU
 	for x in pers.inventario:
 		if x != null and x == item:
 			$submenu.clear()
-			if item.tipo == "Arma de fogo" or item.tipo == "Corpo a corpo":
-				$submenu.add_item(str("Equipar arma no slot ", pers.hotkey + 1))
-			$submenu.add_item("Dropar")
+			if item.tipo == "Arma de fogo" or item.tipo == "Corpo a corpo" or item.tipo == "Consumivel":
+				$submenu.add_item(str("Equipar no slot ", pers.hotkey + 1))
+			$submenu.add_item("Largar")
 			$submenu.add_item("Descartar")
 			if item.reciclavel:
 				$submenu.add_item("Reciclar")
@@ -53,7 +53,7 @@ func _on_button_pressed() -> void: # apertou em algum item do MENU
 func _on_submenu_id_pressed(id: int) -> void: # apertou em algum item do botão do SUBMENU
 	var aux = $submenu.get_item_text(id)
 	
-	if aux == str("Equipar arma no slot ", pers.hotkey + 1):
+	if aux == str("Equipar no slot ", pers.hotkey + 1):
 		for x in pers.inventario: # Itera sobre cada item do INVENTÁRIO
 			if x != null and x == item:
 
@@ -86,32 +86,48 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou em algum item do botão 
 						break
 
 
-	if aux == "Dropar":
-		for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
-			if pers.inventario[x] != null and pers.inventario[x] == item:
-				print(aux, ", item removido do inventário: ", item)
-				pers.inventario[x] = null
-				break
-		for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
-			if pers.itenshotkey[y] != null and pers.itenshotkey[y] == item:
-				print(aux, ", item removido da hotkey")
-				pers.itenshotkey[y] = null
-				break
-		for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
-			if z.item == item:
-				z.item = null
-				print(aux, ", item removido da UI da hotkey")
-				break
-		var drop = pers.itemdrop.instantiate()
-		drop.item = item.duplicate(true)
-		drop.position = pers.position
-		get_tree().get_root().get_node("main").add_child(drop) # spawnar item dropado nesse nodo
-		print("dropou arma pelo menu: arma > ", pers.arma_atual.nome_item)
-		pers.arma_atual = pers.mlivre # troca pra mãos livres
-		item = null
-		pers.equipado = false
-		print("função rodou completamente")
-		UI.atualizarinventarioUI()
+	if aux == "Largar":
+		
+		if !item.stackavel:
+			for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
+				if pers.inventario[x] != null and pers.inventario[x] == item:
+					print(aux, ", item removido do inventário: ", item)
+					pers.inventario[x] = null
+					break
+			for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
+				if pers.itenshotkey[y] != null and pers.itenshotkey[y] == item:
+					print(aux, ", item removido da hotkey")
+					pers.itenshotkey[y] = null
+					break
+			for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
+				if z.item == item:
+					z.item = null
+					print(aux, ", item removido da UI da hotkey")
+					break
+			var drop = pers.itemdrop.instantiate()
+			drop.item = item.duplicate(true)
+			drop.position = pers.position
+			get_tree().get_root().get_node("main").add_child(drop) # spawnar item dropado nesse nodo
+			print("dropou arma pelo menu: arma > ", pers.arma_atual.nome_item)
+			if pers.arma_atual == item:
+				pers.arma_atual = pers.mlivre
+			item = null
+			print("função rodou completamente")
+			UI.atualizarinventarioUI()
+			UI.atualizarhotkeyUI()
+			return
+		
+		if item.stackavel:
+			# Se selecionar função descartar de dentro do menu, abre submenus pra selecionar quantidade
+			$largar.position = get_global_mouse_position() - Vector2(65, 0)
+			$largar/vbc/textolargar.text = item.nome_item
+			$largar/vbc/botaolargar.hide()
+			$largar/vbc/botaolargar.show()
+			$largar/vbc/SpinBox.show()
+			$largar/vbc/SpinBox.min_value = 1
+			$largar/vbc/SpinBox.max_value = item.quantidade
+			$largar.show()
+			# AQUI ABRE O COMANDO DE APERTAR NO BOTÃO DE DESCARTAR. CÓDIGO MAIS ABAIXO
 
 
 	if aux == "Reciclar": ## EM ANDAMENTO
@@ -141,21 +157,24 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou em algum item do botão 
 				if pers.inventario[x] != null and pers.inventario[x] == item:
 					pers.inventario[x] = null
 					break
-				
+
 			for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
 				if pers.itenshotkey[y] != null and pers.itenshotkey[y] == item:
 					pers.itenshotkey[y] = null
 					break
+
 			for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
 				if z.item == item:
 					z.item = null
 					break
+
 			if pers.arma_atual == item:
 				pers.arma_atual = pers.mlivre
 			item = null
+			UI.atualizarhotkeyUI()
 			UI.atualizarinventarioUI()
 			return
-			
+
 		if item.stackavel:
 			# Se selecionar função descartar de dentro do menu, abre submenus pra selecionar quantidade
 			$descartar.position = get_global_mouse_position() - Vector2(65, 0)
@@ -266,20 +285,59 @@ func _on_botaodescartar_pressed() -> void:
 	for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
 		if pers.inventario[x] != null and pers.inventario[x] == item:
 			pers.inventario[x].quantidade -= qntdescartar
+			if pers.inventario[x].quantidade == 0:
+				pers.inventario[x] = null
 			$descartar.hide()
 			break
 
-	# Avalia se ainda restou algum item depois do descarte
-	
+	# AVALIAR NECESSIDADE DO FOR Y E FOR Z
 	for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
 		if pers.itenshotkey[y] != null and pers.itenshotkey[y] == item:
 			pers.itenshotkey[y] = null
 			break
+
 	for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
 		if z.item == item:
 			z.item = null
 			break
+			
 	if pers.arma_atual == item:
 		pers.arma_atual = pers.mlivre
 	item = null
+	UI.atualizarhotkeyUI()
 	UI.atualizarinventarioUI()
+
+
+func _on_botaolargar_pressed() -> void:
+	var qntlargar = int($largar/vbc/SpinBox.value)
+	var itemdrop: itens
+	
+	for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
+		if pers.inventario[x] != null and pers.inventario[x] == item:
+			pers.inventario[x].quantidade -= qntlargar
+			if pers.inventario[x].quantidade == 0:
+				pers.inventario[x] = null
+			$largar.hide()
+			break
+
+	for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
+		if pers.itenshotkey[y] != null and pers.itenshotkey[y].quantidade == 0:
+			pers.itenshotkey[y] = null
+			break
+	
+	var drop = pers.itemdrop.instantiate()
+	drop.item = item.duplicate(true)
+	drop.position = pers.position
+	drop.item.quantidade = qntlargar
+	get_tree().get_root().get_node("main").add_child(drop) # spawnar item dropado nesse nodo
+	print("dropou arma pelo menu: arma > ", pers.arma_atual.nome_item)
+	
+	if pers.arma_atual == item:
+		pers.arma_atual = pers.mlivre
+	item = null
+	UI.atualizarhotkeyUI()
+	UI.atualizarinventarioUI()
+	
+	
+	
+	pass # Replace with function body.

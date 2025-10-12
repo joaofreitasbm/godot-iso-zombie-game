@@ -21,12 +21,12 @@ func _process(_delta: float) -> void:
 			$quantidade.text = ""
 			return
 
-		if pers.inventario[int(self.name) - 1] != null:
-			item = pers.inventario[int(self.name) - 1]
+		if pers.itenshotkey[int(self.name) - 1] != null:
+			item = pers.itenshotkey[int(self.name) - 1]
 			icon = item.imagem
 			if item.tipo == "Arma de fogo": # arma de fogo
 				$quantidade.text = str(item.qntatual)
-			elif item.tipo == "Consumivel": # consumível
+			if item.tipo == "Consumivel": # consumível
 				$quantidade.text = str(item.quantidade)
 
 		skip = true

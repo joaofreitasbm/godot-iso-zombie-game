@@ -45,7 +45,7 @@ func _process(_delta: float) -> void:
 
 	if item.stackavel: # SE O ITEM FOR STACKAVEL
 		print("stackavel!")
-		item.quantidade = randi_range(10, 30) # quantidade aleatoria pra itens stackaveis
+		#item.quantidade = 5#randi_range(10, 30) # quantidade aleatoria pra itens stackaveis
 		print(item.quantidade, " quantidade adquirida")
 		for y in range(len(pers.inventario)):
 			if pers.inventario[y] != null and pers.inventario[y].nome_item == item.nome_item:
@@ -70,6 +70,7 @@ func _process(_delta: float) -> void:
 
 
 	# Remove o item do mundo
+	UI.atualizarhotkeyUI()
 	UI.atualizarinventarioUI()
 	queue_free()
 

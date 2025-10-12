@@ -23,6 +23,13 @@ func atualizarinventarioUI(): # VERSÃO ATUALIZADA
 	for i in %"Inventário [TAB]".get_children():
 		if i is PanelContainer:
 			i.skip = false
+	print("Inventário atualizado")
+
+func atualizarhotkeyUI(): 
+	for i in %hotkeycontainer.get_children():
+		if i is Button:
+			i.skip = false
+	print("hotkey atualizado")
 
 
 func atualizarcraftUI():

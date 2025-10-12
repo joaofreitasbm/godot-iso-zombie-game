@@ -134,6 +134,41 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Descartar selecionado"
 
+[node name="largar" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+position = Vector2i(265, 0)
+size = Vector2i(188, 141)
+visible = true
+
+[node name="vbc" type="VBoxContainer" parent="largar"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 184.0
+offset_bottom = 137.0
+
+[node name="titulo" type="Label" parent="largar/vbc"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Selecionar quantidade:"
+
+[node name="textolargar" type="Label" parent="largar/vbc"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+
+[node name="SpinBox" type="SpinBox" parent="largar/vbc"]
+layout_mode = 2
+theme = SubResource("Theme_cdvpw")
+theme_override_styles/field_and_buttons_separator = SubResource("StyleBoxLine_ldk0f")
+value = 1.0
+rounded = true
+custom_arrow_step = 1.0
+
+[node name="botaolargar" type="Button" parent="largar/vbc"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Largar selecionado"
+
 [node name="erro" type="PopupMenu" parent="."]
 oversampling_override = 1.0
 size = Vector2i(150, 100)
@@ -148,3 +183,4 @@ item_0/id = 0
 [connection signal="id_pressed" from="submenu" to="." method="_on_submenu_id_pressed"]
 [connection signal="pressed" from="reciclar/vbc/botaoreciclar" to="." method="_on_botaoreciclar_pressed"]
 [connection signal="pressed" from="descartar/vbc/botaodescartar" to="." method="_on_botaodescartar_pressed"]
+[connection signal="pressed" from="largar/vbc/botaolargar" to="." method="_on_botaolargar_pressed"]

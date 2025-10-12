@@ -10,9 +10,7 @@ var area: bool = false # controlado pelos sinais no final do código (entrou/sai
 func _ready() -> void:
 	if item != null:
 		$MeshInstance3D.mesh = item.mesh
-		item.duplicate(true)
-		if item.tipo == "Munição - fuzil":
-			item.quantidade = randi_range(10, 30)
+		
 		
 func _process(_delta: float) -> void:
 	#print("invmax: ", UI.invmax, "OCUPADOS: ", pers.inventario.size() - pers.inventario.count(null))
@@ -34,6 +32,9 @@ func _process(_delta: float) -> void:
 	# Calcula se há espaço suficiente no inventário
 	var ocupados = pers.inventario.size() - slots_vazios # 20slot - 8slot vazios = 12slot ocupados
 	
+
+	
+		
 	if ocupados >= UI.invmax:
 		$erro.position = $erro.get_global_mouse_position() - Vector2(65, 0)
 		$erro.popup()
@@ -44,6 +45,8 @@ func _process(_delta: float) -> void:
 
 	if item.stackavel: # SE O ITEM FOR STACKAVEL
 		print("stackavel!")
+		item.quantidade = randi_range(10, 30) # quantidade aleatoria pra itens stackaveis
+		print(item.quantidade, " quantidade adquirida")
 		for y in range(len(pers.inventario)):
 			if pers.inventario[y] != null and pers.inventario[y].nome_item == item.nome_item:
 				print("itens iguais! ", pers.inventario[y], " ", item)
@@ -67,6 +70,7 @@ func _process(_delta: float) -> void:
 
 
 	# Remove o item do mundo
+	UI.atualizarinventarioUI()
 	queue_free()
 
 

@@ -10,6 +10,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	## ADICIONAR SKIP
 	$"invcontainer/Status [K]/VBoxContainer/saude/barra".value = pers.vida
 	$"invcontainer/Status [K]/VBoxContainer/folego/barra".value = pers.stamina
 	$"invcontainer/Status [K]/VBoxContainer/fadiga/barra".value = pers.fadiga
@@ -23,7 +24,7 @@ func atualizarinventarioUI():
 			var slot = int(i.name) - 1
 			var item = pers.inventario[slot]
 			if item != null:
-				i.item = item.duplicate(true)
+				i.item = item
 			else:
 				i.item = null
 			i.skip = false

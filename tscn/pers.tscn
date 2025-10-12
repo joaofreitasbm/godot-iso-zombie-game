@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://begah3674cfa2"]
+[gd_scene load_steps=10 format=3 uid="uid://begah3674cfa2"]
 
 [ext_resource type="Script" uid="uid://dqnmbags1hg48" path="res://scripts/outros/pers.gd" id="1_0t7jd"]
 [ext_resource type="PackedScene" uid="uid://d2o3afnlnpfk0" path="res://tscn/ui.tscn" id="2_u1lqi"]
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_itens.gd" id="2_xd6ky"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upo20"]
 
@@ -26,8 +27,8 @@ axis_lock_angular_z = true
 floor_constant_speed = true
 floor_snap_length = 1.0
 script = ExtResource("1_0t7jd")
-inventario = Array[Resource]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
-itenshotkey = Array[Resource]([null, null, null, null, null, null, null, null, null])
+inventario = Array[ExtResource("2_xd6ky")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+itenshotkey = Array[ExtResource("2_xd6ky")]([null, null, null, null, null, null, null, null, null])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_5vw27")

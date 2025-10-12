@@ -1,7 +1,10 @@
 extends PanelContainer
 
 @onready var pers: CharacterBody3D = $"../../../.."
-@export var item: itens
+@export var item = (
+	pers.inventario[int(self.name) - 1] 
+	if pers and pers.inventario[int(self.name) - 1] != null 
+	else null)
 var reciclar: Array[itens]
 var skip: bool = false
 @onready var UI: Control = $"../../.."
@@ -34,7 +37,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_button_pressed() -> void: # apertou botão do MENU
-	print("botão apertado! item atual: ", item.nome_item, "slot: ", self.name)
+	#print("botão apertado! item atual: ", item.nome_item, "slot: ", self.name)
 	for x in pers.inventario:
 		print("Rodou for loop... X: ", x, "")
 		if x != null and x == item:
@@ -244,78 +247,3 @@ func _on_botaoreciclar_pressed() -> void:
 	item = null
 	UI.atualizarinventarioUI()
 	
-	
-	
-	
-	
-	#print("BOTÃO reciclar APERTADO")
-#
-	## Pega o limite máximo de slots do inventário
-	#var inv_max = UI.invmax
-#
-	## Conta quantos slots estão vazios
-	#var slots_vazios := 0
-	#for i in pers.inventario:
-		#if i == null:
-			#slots_vazios += 1
-#
-	## Conta quantos itens reciclados não são stackáveis
-	#var itens_nao_stackaveis: int = 0
-	#var itens_stackaveis: int = 0
-	#for i in reciclar:
-		#if not i.stackavel:
-			#itens_nao_stackaveis += i.qntreserva
-		#if i.stackavel:
-			#itens_stackaveis += 1
-#
-	## Calcula se há espaço suficiente no inventário
-	#var ocupados = pers.inventario.size() - slots_vazios # 20slot - 8slot vazios = 12slot ocupados
-	#var total_previsto = ocupados + itens_nao_stackaveis + itens_stackaveis
-	#print("slots ocupados = ", ocupados, "\n",
-	#"não stackaveis: ", itens_nao_stackaveis, "\n",
-	#"stackaveis: ", itens_stackaveis)
-#
-	#if total_previsto > inv_max:
-		#print("Inventário cheio! Não há espaço suficiente para reciclar.")
-		#return
-#
-	## Continua normalmente se houver espaço
-	#for x in reciclar:
-		#var adicionado := false
-#
-		## Tenta empilhar caso o item seja stackável
-		#if x.stackavel:
-			#for i in range(len(pers.inventario)):
-				#var slot = pers.inventario[i]
-				#if slot != null and slot.nome_item == x.nome_item:
-					#slot.qntreserva += x.qntreserva
-					#adicionado = true
-					#break
-		#if !x.stackavel:
-			#
-#
-		## Se não empilhou, tenta colocar em um slot vazio
-		#if not adicionado:
-			#for i in range(len(pers.inventario)):
-				#if pers.inventario[i] == null:
-					#pers.inventario[i] = x.duplicate(true)
-					#adicionado = true
-					#break
-#
-		## Caso não tenha conseguido adicionar de jeito nenhum
-		#if not adicionado:
-			#print("Inventário cheio! Não foi possível adicionar: ", x.nome_item)
-			#break
-	#
-#
-	## Remove o item original que foi reciclado
-	#for i in range(len(pers.inventario)):
-		#if pers.inventario[i] == item:
-			#pers.inventario[i] = null
-			#break
-#
-	## Limpa e atualiza a UI
-	#reciclar.clear()
-	#$reciclar.hide()
-	#item = null
-	#UI.atualizarinventarioUI()

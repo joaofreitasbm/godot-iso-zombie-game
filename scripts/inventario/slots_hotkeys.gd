@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 		icon = item.imagem
 
 	if item.tipo == "Arma de fogo": # arma de fogo
-		$quantidade.text = str(item.qntatual, "/", item.municao)
+		$quantidade.text = str(item.qntatual)
 	elif item.tipo == "Consumivel": # consumível
 		$quantidade.text = str(item.quantidade)
 	else:
@@ -38,8 +38,3 @@ func _on_pressed() -> void:
 	var index = get_index()
 	pers.hotkey = index
 	print("Selecionou slot ", index)
-	
-func limpar():
-	item = null
-	$quantidade.text = ""
-	icon = null

@@ -104,5 +104,6 @@ quantidade = 1
 mesh = SubResource("CylinderMesh_m7hxd")
 tipo = "Receita"
 material_necessario = Array[ExtResource("1_ovcbh")]([SubResource("Resource_852bm"), SubResource("Resource_po1oa"), SubResource("Resource_w13f7")])
+tipo_receita = "Armas"
 item_craftado = SubResource("Resource_nx65w")
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

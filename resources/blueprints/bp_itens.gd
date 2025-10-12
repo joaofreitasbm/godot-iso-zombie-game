@@ -44,6 +44,7 @@ class_name itens
 @export var bancada: bool
 @export_enum (
 	"Geral", 
+	"Armas",
 	"Marcenaria", 
 	"Alvenaria",
 	"Cozinha",

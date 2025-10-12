@@ -18,47 +18,18 @@ func _process(_delta: float) -> void:
 	$"invcontainer/Status [K]/VBoxContainer/sede/barra".value = pers.sede
 	$"invcontainer/Status [K]/VBoxContainer/sanidade/barra".value = pers.sanidade
 
-#func atualizarinventarioUI(): # VERSÃO ANTIGA FUNCIONANDO
-	#for i in %"Inventário [TAB]".get_children():
-		#if i is PanelContainer:
-			#var slot = int(i.name) - 1
-			#var item = pers.inventario[slot]
-			#if item != null:
-				#i.item = item
-			#else:
-				#i.item = null
-			#i.skip = false
 			
 func atualizarinventarioUI(): # VERSÃO ATUALIZADA
 	for i in %"Inventário [TAB]".get_children():
 		if i is PanelContainer:
-			print("slot: ", i, "item: ", i.item)
 			i.skip = false
 
 
 func atualizarcraftUI():
-	for i in $"invcontainer/Fabricação [L]".get_children():
+	for i in $"invcontainer/Fabricação [L]/teste".get_children():
 		if i is ItemList:
-			var slot = int(i.name) - 1
-			var item = pers.lista_de_receitas[slot]
-			print(pers.lista_de_receitas[slot])
-			if item != null:
-				i.item = item.duplicate(true)
-			else:
-				i.item = null
-			i.skip = false
+			i.get_parent().skip = false
 
 func ordenarinventarioUI():
 	pers.inventario.sort()
 		
-#func atualizarhotkeyUI(): # AVALIAR NECESSIDADE DE EXISTIR ESSA FUNÇÃO
-	#for i in %hotkeycontainer.get_children():
-		#if i is Button:
-			#var slot = int(i.name) - 1
-			#var item = pers.inventario[slot]
-			#
-			#if item != null:
-				#i.item = item
-				#
-			#else:
-				#i.item = null

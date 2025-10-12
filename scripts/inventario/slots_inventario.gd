@@ -36,13 +36,9 @@ func _process(_delta: float) -> void:
 		skip = true
 
 
-func _on_button_pressed() -> void: # apertou botão do MENU
-	#print("botão apertado! item atual: ", item.nome_item, "slot: ", self.name)
+func _on_button_pressed() -> void: # apertou em algum item do MENU
 	for x in pers.inventario:
-		print("Rodou for loop... X: ", x, "")
 		if x != null and x == item:
-			print(x)
-			print("i: ", x, "item clickado: ", str(item))
 			$submenu.clear()
 			if item.tipo == "Arma de fogo" or item.tipo == "Corpo a corpo":
 				$submenu.add_item(str("Equipar arma no slot ", pers.hotkey + 1))
@@ -54,7 +50,7 @@ func _on_button_pressed() -> void: # apertou botão do MENU
 			$submenu.popup()
 
 
-func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
+func _on_submenu_id_pressed(id: int) -> void: # apertou em algum item do botão do SUBMENU
 	var aux = $submenu.get_item_text(id)
 	
 	if aux == str("Equipar arma no slot ", pers.hotkey + 1):
@@ -245,6 +241,5 @@ func _on_botaoreciclar_pressed() -> void:
 	# Limpa e atualiza a UI
 	reciclar.clear()
 	$reciclar.hide()
-	item = null
 	UI.atualizarinventarioUI()
 	

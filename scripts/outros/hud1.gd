@@ -17,6 +17,6 @@ func _process(_delta: float) -> void:
 		"Shoot > LMB", "\n", 
 		"Run > shift", "\n", "\n",
 		"Movement speed: ", get_node("/root/main/pers").velandar, "\n", "\n",
-		"vsync on / FPS: ", Engine.get_frames_per_second()
+		"vsync off / FPS: ", Engine.get_frames_per_second()
 		
 	)

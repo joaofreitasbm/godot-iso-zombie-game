@@ -18,38 +18,58 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_behavior_recursive = 1
+theme_override_font_sizes/font_size = 10
 current_tab = 0
 script = ExtResource("1_apkvy")
 
-[node name="Craft geral" type="ItemList" parent="."]
+[node name="Geral" type="ItemList" parent="."]
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
+item_count = 1
 metadata/_tab_index = 0
 
-[node name="Craft armas" type="ItemList" parent="."]
+[node name="Armas" type="ItemList" parent="."]
 visible = false
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 metadata/_tab_index = 1
 
-[node name="Button" type="Button" parent="."]
-visible = false
-custom_minimum_size = Vector2(29.51, 0)
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="nome" type="Label" parent="Button"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="qnt" type="Label" parent="Button"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="submenu" type="PopupMenu" parent="."]
+[node name="erro" type="PopupMenu" parent="."]
+oversampling_override = 1.0
+size = Vector2i(150, 100)
+visible = true
 item_count = 1
-item_0/text = "Material não suficiente"
+item_0/text = "Inventário cheio."
 item_0/id = 0
 
-[connection signal="item_clicked" from="Craft geral" to="." method="_on_item_list_item_clicked"]
-[connection signal="pressed" from="Button" to="." method="botao_craft"]
+[node name="craftar" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+size = Vector2i(116, 120)
+visible = true
+
+[node name="vbc" type="VBoxContainer" parent="craftar"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 112.0
+offset_bottom = 116.0
+
+[node name="titulo" type="Label" parent="craftar/vbc"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Materiais necessários:"
+vertical_alignment = 1
+
+[node name="textocraftar" type="Label" parent="craftar/vbc"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+vertical_alignment = 1
+
+[node name="botaocraftar" type="Button" parent="craftar/vbc"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+
+[connection signal="item_clicked" from="Geral" to="." method="_on_item_list_item_clicked"]
+[connection signal="item_clicked" from="Armas" to="." method="_on_item_list_item_clicked"]
+[connection signal="pressed" from="craftar/vbc/botaocraftar" to="." method="_on_botaocraftar_pressed"]

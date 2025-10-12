@@ -262,6 +262,7 @@ quantidade = 1
 mesh = SubResource("CylinderMesh_m7hxd")
 tipo = "Receita"
 material_necessario = Array[ExtResource("12_hegun")]([SubResource("Resource_ydd80"), SubResource("Resource_66cgr"), SubResource("Resource_kn363")])
+tipo_receita = "Armas"
 item_craftado = SubResource("Resource_xxyn0")
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 

@@ -116,19 +116,18 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou em algum item do botão 
 
 	if aux == "Reciclar": ## EM ANDAMENTO
 		print("reciclagem começou")
+		
+		# Limpar e adicionar textos relacionados da UI
 		reciclar.clear() 
-		$reciclar/vbc/textoreciclar.text = ""
-		$reciclar/vbc/botaoreciclar.text = ""
 		$reciclar.position = Vector2(global_position.x, global_position.y + 25)
 		var texto = ""
 		for x in item.material_reciclado:
 			texto += (str("\n", x.nome_item, ", x",x.quantidade))
 			reciclar.push_front(x)
-		#$reciclar/botaoreciclar.position = $reciclar/textoreciclar.position + Vector2($reciclar/textoreciclar - 5, global_position.y + 150)
+		$reciclar/vbc/titulo.text = "Materiais obtidos:"
 		$reciclar/vbc/textoreciclar.text = texto
 		$reciclar/vbc/botaoreciclar.text = "Clique aqui para reciclar"
 		$reciclar.show()
-		#$reciclar/vbc/botaoreciclar.position = $reciclar/vbc/textoreciclar.size
 		$reciclar/vbc/botaoreciclar.show()
 		$reciclar.position = get_global_mouse_position() - Vector2(65, 0)
 		UI.atualizarinventarioUI()
@@ -136,23 +135,38 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou em algum item do botão 
 
 
 	if aux == "Descartar":
-		for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
-			if pers.inventario[x] != null and pers.inventario[x] == item:
-				pers.inventario[x] = null
-				break
-		for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
-			if pers.itenshotkey[y] != null and pers.itenshotkey[y] == item:
-				pers.itenshotkey[y] = null
-				break
-		for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
-			if z.item == item:
-				z.item = null
-				break
-		if pers.arma_atual == item:
-			pers.arma_atual = pers.mlivre
-		item = null
-		UI.atualizarinventarioUI()
-
+		
+		if !item.stackavel:
+			for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
+				if pers.inventario[x] != null and pers.inventario[x] == item:
+					pers.inventario[x] = null
+					break
+				
+			for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
+				if pers.itenshotkey[y] != null and pers.itenshotkey[y] == item:
+					pers.itenshotkey[y] = null
+					break
+			for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
+				if z.item == item:
+					z.item = null
+					break
+			if pers.arma_atual == item:
+				pers.arma_atual = pers.mlivre
+			item = null
+			UI.atualizarinventarioUI()
+			return
+			
+		if item.stackavel:
+			# Se selecionar função descartar de dentro do menu, abre submenus pra selecionar quantidade
+			$descartar.position = get_global_mouse_position() - Vector2(65, 0)
+			$descartar/vbc/textodescartar.text = item.nome_item
+			$descartar/vbc/botaodescartar.hide()
+			$descartar/vbc/botaodescartar.show()
+			$descartar/vbc/SpinBox.show()
+			$descartar/vbc/SpinBox.min_value = 1
+			$descartar/vbc/SpinBox.max_value = item.quantidade
+			$descartar.show()
+			# AQUI ABRE O COMANDO DE APERTAR NO BOTÃO DE DESCARTAR. CÓDIGO MAIS ABAIXO
 
 func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por cima do inventario
 	if item != null:
@@ -242,4 +256,30 @@ func _on_botaoreciclar_pressed() -> void:
 	reciclar.clear()
 	$reciclar.hide()
 	UI.atualizarinventarioUI()
+	print($reciclar/vbc/SpinBox.value)
+
+
+func _on_botaodescartar_pressed() -> void:
+	print("rodou")
+	var qntdescartar = int($descartar/vbc/SpinBox.value)
 	
+	for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
+		if pers.inventario[x] != null and pers.inventario[x] == item:
+			pers.inventario[x].quantidade -= qntdescartar
+			$descartar.hide()
+			break
+
+	# Avalia se ainda restou algum item depois do descarte
+	
+	for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
+		if pers.itenshotkey[y] != null and pers.itenshotkey[y] == item:
+			pers.itenshotkey[y] = null
+			break
+	for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
+		if z.item == item:
+			z.item = null
+			break
+	if pers.arma_atual == item:
+		pers.arma_atual = pers.mlivre
+	item = null
+	UI.atualizarinventarioUI()

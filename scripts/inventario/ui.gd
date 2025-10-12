@@ -26,7 +26,7 @@ func atualizarinventarioUI(): # VERSÃO ATUALIZADA
 
 
 func atualizarcraftUI():
-	for i in $"invcontainer/Fabricação [L]/teste".get_children():
+	for i in $"invcontainer/Fabricação [L]/tiposcraft".get_children():
 		if i is ItemList:
 			i.get_parent().skip = false
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6ctxvridmtw2" path="res://scripts/inventario/craft.gd" id="1_apkvy"]
 
-[node name="craft" type="TabContainer"]
+[node name="tiposcraft" type="TabContainer"]
 layout_direction = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -25,7 +25,6 @@ script = ExtResource("1_apkvy")
 [node name="Geral" type="ItemList" parent="."]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-item_count = 1
 metadata/_tab_index = 0
 
 [node name="Armas" type="ItemList" parent="."]

@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://rjdoowuh0wru"]
+[gd_scene load_steps=4 format=3 uid="uid://rjdoowuh0wru"]
 
 [ext_resource type="Script" uid="uid://76d1b7lmmr3b" path="res://scripts/inventario/slots_inventario.gd" id="1_fhvvc"]
+
+[sub_resource type="Theme" id="Theme_cdvpw"]
+default_font_size = 10
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ldk0f"]
 
 [node name="inventario" type="PanelContainer"]
 layout_direction = 2
@@ -67,14 +72,14 @@ theme_override_font_sizes/font_size = 12
 
 [node name="reciclar" type="PopupPanel" parent="."]
 oversampling_override = 1.0
-position = Vector2i(980, 0)
-size = Vector2i(182, 120)
+position = Vector2i(819, 0)
+size = Vector2i(188, 120)
 visible = true
 
 [node name="vbc" type="VBoxContainer" parent="reciclar"]
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 178.0
+offset_right = 184.0
 offset_bottom = 116.0
 
 [node name="titulo" type="Label" parent="reciclar/vbc"]
@@ -94,6 +99,41 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 
+[node name="descartar" type="PopupPanel" parent="."]
+oversampling_override = 1.0
+position = Vector2i(265, 0)
+size = Vector2i(188, 141)
+visible = true
+
+[node name="vbc" type="VBoxContainer" parent="descartar"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 184.0
+offset_bottom = 137.0
+
+[node name="titulo" type="Label" parent="descartar/vbc"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Selecionar quantidade:"
+
+[node name="textodescartar" type="Label" parent="descartar/vbc"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+
+[node name="SpinBox" type="SpinBox" parent="descartar/vbc"]
+layout_mode = 2
+theme = SubResource("Theme_cdvpw")
+theme_override_styles/field_and_buttons_separator = SubResource("StyleBoxLine_ldk0f")
+value = 1.0
+rounded = true
+custom_arrow_step = 1.0
+
+[node name="botaodescartar" type="Button" parent="descartar/vbc"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Descartar selecionado"
+
 [node name="erro" type="PopupMenu" parent="."]
 oversampling_override = 1.0
 size = Vector2i(150, 100)
@@ -107,3 +147,4 @@ item_0/id = 0
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="id_pressed" from="submenu" to="." method="_on_submenu_id_pressed"]
 [connection signal="pressed" from="reciclar/vbc/botaoreciclar" to="." method="_on_botaoreciclar_pressed"]
+[connection signal="pressed" from="descartar/vbc/botaodescartar" to="." method="_on_botaodescartar_pressed"]

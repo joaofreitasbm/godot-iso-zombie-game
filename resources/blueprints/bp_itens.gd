@@ -1,6 +1,7 @@
 extends Resource
 class_name itens
 
+@export_group("Propriedades gerais")
 #propriedades gerais
 @export var nome_item: String
 @export_multiline var desc_item: String
@@ -9,11 +10,8 @@ class_name itens
 @export var reciclavel: bool
 @export var imagem: Texture2D
 @export var mesh: Mesh
-@export var alcance: int
-@export var audio_impacto: AudioStreamMP3
-@export var velocidade_ataque: float
 @export var impacto: float 
-@export var receita_craft: Array[itens]
+#@export var receita_craft: Array[itens] # a receita só precisa existir no campo de craft, e não dentro do item
 @export var material_reciclado: Array[itens]
 @export_enum (
 	"Corpo a corpo", 
@@ -21,19 +19,41 @@ class_name itens
 	"Arremessavel",
 	"Consumivel",
 	"Material",
+	"Receita",
 	"Munição - fuzil") var tipo: String
 
-#propriedades armas de fogo
+@export_group("Propriedades de armas")
+#propriedades armas
 @export var qntmaxima: int
 @export var qntatual: int
-@export var municao: int # NÃO USAR. IMPLEMENTAR QUANTIDADE RESERVA COMO MUNIÇÃO
+@export var alcance: int
 @export_enum (
-	"Munição - fuzil") var tipo_municao: String
+	"Munição - fuzil",
+	"Munição - pistola") var tipo_municao: String
 @export var durabilidade: int
 @export var tempo_carregamento: float
 @export var semiauto: bool
+@export var audio_impacto: AudioStreamMP3
+@export var velocidade_ataque: float
 @export var dano: int
 @export var aux: bool = true # variavel auxiliar pra diferenciar disparos semi de auto
+
+@export_group("Propriedades de receitas")
+@export var material_necessario: Array[itens]
+@export var ferramenta_necessaria: Array[itens]
+@export var bancada: bool
+@export_enum (
+	"Geral", 
+	"Marcenaria", 
+	"Alvenaria",
+	"Cozinha",
+	"Primeiros socorros",
+	"Mecanica",
+	"Metalurgia") var tipo_receita: String
+@export var item_craftado: itens
+@export var craftavel: bool # fica positivo se tiver o material necessário pra craftar (avaliar necessidade)
+# adicionar variavel que acrescenta experiencia baseada na variavel tipo
+# se tipo == Marcenaria, adiciona x exp na habilidade marcenaria.
 
 
 func usar_equipado(alvo, pers, UI):
@@ -82,7 +102,7 @@ func usar_equipado(alvo, pers, UI):
 				part.emitting = true
 			return 
 
-		#if qntatual == 0:
+		if qntatual == 0:
 			## REPRODUZIR SOM DE DISPARO SEM MUNIÇÃO
 			print("sem munição")
 			return

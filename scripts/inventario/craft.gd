@@ -1,9 +1,8 @@
 extends PanelContainer
 
 # LÓGICA DA UI DO CRAFT
-@export var item: Resource
+@export var item: itens
 @onready var pers: CharacterBody3D = $"../../../.."
-var reciclar: Array[Resource]
 var skip: bool = false
 @onready var UI: Control = $"../../.."
 
@@ -19,7 +18,7 @@ func _process(_delta: float) -> void:
 		
 		if item != null:
 			$Button/nome.text = str(item.nome_item)
-			#$Button/qnt.text = str(item.qntreserva)
+			#$Button/qnt.text = str(item.quantidade)
 			$Button/nome.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
 			#$Button/qnt.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
 			print("mudou nome e cor do botão")
@@ -46,7 +45,7 @@ func botao_craft() -> void:
 		for y in pers.inventario:
 			if y == null:
 				continue
-			if x.nome_item == y.nome_item and y.qntreserva >= x.qntreserva:
+			if x.nome_item == y.nome_item and y.quantidade >= x.quantidade:
 				encontrou = true
 				break
 		if not encontrou:
@@ -77,8 +76,8 @@ func botao_craft() -> void:
 			if y == null:
 				continue
 			if x.nome_item == y.nome_item:
-				y.qntreserva -= x.qntreserva
-				if y.qntreserva <= 0:
+				y.quantidade -= x.quantidade
+				if y.quantidade <= 0:
 					pers.inventario[i] = null
 				break
 
@@ -112,9 +111,9 @@ func botao_craft() -> void:
 			#var y = pers.inventario[i]
 #
 			#if y != null and y.nome_item == x.nome_item:
-				#if y.qntreserva >= x.qntreserva:
-					#y.qntreserva -= x.qntreserva
-					#if y.qntreserva == 0:
+				#if y.quantidade >= x.quantidade:
+					#y.quantidade -= x.quantidade
+					#if y.quantidade == 0:
 						#pers.inventario[i] = null
 					#material_ok = true
 					#break

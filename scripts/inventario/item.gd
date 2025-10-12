@@ -19,6 +19,12 @@ func _process(_delta: float) -> void:
 	if !(pers.interagir and area): # se ambas variaveis forem negativas, não roda daqui pra baixo
 		return
 	
+	if item.tipo == "Receita":
+		pers.lista_de_receitas.append(item)
+		UI.atualizarcraftUI()
+		queue_free()
+		return
+	
 	# Conta quantos slots estão vazios
 	var slots_vazios := 0
 	for i in pers.inventario:

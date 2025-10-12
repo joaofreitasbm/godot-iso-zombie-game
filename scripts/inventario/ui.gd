@@ -23,7 +23,6 @@ func atualizarinventarioUI():
 		if i is PanelContainer:
 			var slot = int(i.name) - 1
 			var item = pers.inventario[slot]
-			print(pers.inventario[slot])
 			if item != null:
 				i.item = item
 			else:
@@ -35,8 +34,8 @@ func atualizarcraftUI():
 	for i in $"invcontainer/Fabricação [L]".get_children():
 		if i is PanelContainer:
 			var slot = int(i.name) - 1
-			var item = pers.inventario[slot]
-			print(pers.inventario[slot])
+			var item = pers.lista_de_receitas[slot]
+			print(pers.lista_de_receitas[slot])
 			if item != null:
 				i.item = item
 			else:

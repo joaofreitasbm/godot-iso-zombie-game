@@ -37,7 +37,7 @@ var sede: float = 100
 var fadiga: float = (fome + sede) / 2
 var sanidade: int = 100
 var debuffs: Array[Resource] ## AVALIAR NECESSIDADE DE FAZER UMA CLASSE DE DEBUFFS
-var lista_de_receitas: Array[receitas]
+var lista_de_receitas: Array[itens]
 
 
 func _ready() -> void:

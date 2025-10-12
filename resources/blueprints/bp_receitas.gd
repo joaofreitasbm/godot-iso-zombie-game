@@ -19,7 +19,7 @@ class_name receitas
 	"Mecanica",
 	"Metalurgia") var tipo: String
 @export var item_craftado: itens
-@export var craftavel: bool
+@export var craftavel: bool # fica positivo se tiver o material necessário pra craftar (avaliar necessidade)
 # adicionar variavel que acrescenta experiencia baseada na variavel tipo
 # se tipo == Marcenaria, adiciona x exp na habilidade marcenaria.
 

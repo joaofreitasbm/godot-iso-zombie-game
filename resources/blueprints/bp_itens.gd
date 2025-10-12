@@ -1,8 +1,10 @@
 extends Resource
-class_name armas
+class_name itens
 
 #propriedades gerais
 @export var nome_item: String
+@export_multiline var desc_item: String
+@export var quantidade: int
 @export var stackavel: bool
 @export var reciclavel: bool
 @export var imagem: Texture2D
@@ -11,21 +13,22 @@ class_name armas
 @export var audio_impacto: AudioStreamMP3
 @export var velocidade_ataque: float
 @export var impacto: float 
-@export var receita_craft: Array[Resource]
-@export var material_reciclado: Array[Resource]
-
+@export var receita_craft: Array[itens]
+@export var material_reciclado: Array[itens]
 @export_enum (
 	"Corpo a corpo", 
 	"Arma de fogo", 
 	"Arremessavel",
 	"Consumivel",
-	"Material") var tipo: String
+	"Material",
+	"Munição - fuzil") var tipo: String
 
 #propriedades armas de fogo
 @export var qntmaxima: int
 @export var qntatual: int
-@export var qntreserva: int
-@export var munição: Resource
+@export var municao: int # NÃO USAR. IMPLEMENTAR QUANTIDADE RESERVA COMO MUNIÇÃO
+@export_enum (
+	"Munição - fuzil") var tipo_municao: String
 @export var durabilidade: int
 @export var tempo_carregamento: float
 @export var semiauto: bool
@@ -33,9 +36,7 @@ class_name armas
 @export var aux: bool = true # variavel auxiliar pra diferenciar disparos semi de auto
 
 
-
-
-func usar_equipado(alvo, pers):
+func usar_equipado(alvo, pers, UI):
 	if tipo == "Corpo a corpo": #CORPO A CORPO
 		if alvo != null:
 			if aux == true and durabilidade >= 1:
@@ -55,7 +56,7 @@ func usar_equipado(alvo, pers):
 		var part = preload("res://tscn/particula_sangue.tscn").instantiate()
 		
 		if qntatual == 0:
-			recarregar()
+			recarregar(pers, UI)
 			return
 
 		if semiauto == true and aux == true and qntatual >= 1:
@@ -81,7 +82,8 @@ func usar_equipado(alvo, pers):
 				part.emitting = true
 			return 
 
-		if qntatual == 0 and qntreserva == 0:
+		#if qntatual == 0:
+			## REPRODUZIR SOM DE DISPARO SEM MUNIÇÃO
 			print("sem munição")
 			return
 	else: 
@@ -92,16 +94,38 @@ func usar_equipado(alvo, pers):
 	
 	if tipo == "Consumivel": #CONSUMIVEL
 		pers.vida += dano
-		qntreserva -= 1
+		#quantidade -= 1
+		
 
 
-func recarregar():
+
+func recarregar(pers, UI):
 	print("Recarregando...")
-	var x = qntmaxima - qntatual # x == qnt faltando no pente
-	if qntreserva > x:
-		qntreserva -= x
-		qntatual = qntmaxima
-		return
-	if qntreserva <= x:
-		qntatual += qntreserva
-		qntreserva = 0
+	var diferenca = qntmaxima - qntatual # x == qnt faltando no pente
+	
+	for x in range(len(pers.inventario)): # procurando a munição
+		if pers.inventario[x] == null:
+			continue
+			
+		# se o tipo da munição no inventario == munição necessaria pra arma atual
+		if pers.inventario[x].tipo == pers.arma_atual.tipo_municao: 
+
+			if pers.inventario[x].quantidade > diferenca: # se munição disponivel > o que falta no pente pra carregar:
+				print("vai encher o pente todo")
+				print("qnt munição disponivel: ", pers.inventario[x].quantidade)
+				print("diferença: ", diferenca)
+				print("qnt atual: ", qntatual)
+				pers.inventario[x].quantidade -= diferenca # tira a qnt que falta da munição disponivel
+				qntatual = qntmaxima # enche o pente
+				UI.atualizarinventarioUI()
+				return
+			if pers.inventario[x].quantidade <= diferenca: # se munição disponivel <= o que falta no pente pra carregar:
+				print("vai encher só o que dá")
+				print("qnt munição disponivel: ", pers.inventario[x].quantidade)
+				print("diferença: ", diferenca)
+				print("qnt atual: ", qntatual)
+				qntatual += pers.inventario[x].quantidade # soma o que tem disponivel à qnt atual
+				pers.inventario[x] = null # apaga item do inventario (não da UI)
+				UI.atualizarinventarioUI()
+				return
+	

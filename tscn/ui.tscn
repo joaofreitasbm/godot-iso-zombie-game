@@ -135,11 +135,12 @@ anchor_right = 1.0
 offset_left = -427.0
 offset_bottom = 550.0
 grow_horizontal = 0
-current_tab = 2
+focus_behavior_recursive = 1
+theme_override_font_sizes/font_size = 10
+current_tab = 0
 
 [node name="Inventário [TAB]" type="VBoxContainer" parent="invcontainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 1
 metadata/_tab_index = 0
@@ -155,16 +156,8 @@ text = "Nome do item:"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="quantidade" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
-custom_minimum_size = Vector2(150, 40)
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Quantidade:"
-horizontal_alignment = 2
-vertical_alignment = 2
-
 [node name="tipo" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
-custom_minimum_size = Vector2(190, 40)
+custom_minimum_size = Vector2(340, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Tipo do item:"
@@ -447,6 +440,7 @@ text = "IMPLEMENTAR DEBUFFS ABAIXO"
 vertical_alignment = 2
 
 [node name="Fabricação [L]" type="VBoxContainer" parent="invcontainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 1
 metadata/_tab_index = 2
@@ -468,6 +462,14 @@ offset_bottom = 628.0
 theme_override_font_sizes/font_size = 8
 
 [node name="hotkeys" type="Label" parent="."]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 570.0
+offset_right = 193.0
+offset_bottom = 593.0
+theme_override_font_sizes/font_size = 8
+
+[node name="info" type="Label" parent="."]
 layout_mode = 0
 offset_left = 153.0
 offset_top = 570.0

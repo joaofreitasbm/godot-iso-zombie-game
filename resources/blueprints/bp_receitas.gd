@@ -1,5 +1,5 @@
 extends Resource
-class_name craft
+class_name receitas
 
 # Receita de craft. Vai ser adicionado ao inventário, pra aparecer na aba
 # de fabricação.
@@ -7,8 +7,8 @@ class_name craft
 #propriedades gerais
 @export var nome_item: String
 @export_multiline var desc: String
-@export var material_necessario: Array[Resource]
-@export var ferramenta_necessaria: Array[Resource]
+@export var material_necessario: Array[itens]
+@export var ferramenta_necessaria: Array[itens]
 @export var bancada: bool
 @export_enum (
 	"Geral", 
@@ -18,7 +18,7 @@ class_name craft
 	"Primeiros socorros",
 	"Mecanica",
 	"Metalurgia") var tipo: String
-@export var item_craftado: Resource
+@export var item_craftado: itens
 @export var craftavel: bool
 # adicionar variavel que acrescenta experiencia baseada na variavel tipo
 # se tipo == Marcenaria, adiciona x exp na habilidade marcenaria.

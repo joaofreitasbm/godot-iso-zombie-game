@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="craft" load_steps=4 format=3 uid="uid://cfkj422hos78b"]
+[gd_resource type="Resource" script_class="armas" load_steps=4 format=3 uid="uid://bpiarlibbvwfl"]
 
-[ext_resource type="Texture2D" uid="uid://ce1wcw5pui7u1" path="res://pngs/comp fuzil 3.png" id="1_1nnq4"]
-[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_armasitens.gd" id="2_yr70b"]
+[ext_resource type="Texture2D" uid="uid://bl5t6nlxojray" path="res://pngs/comp fuzil 1.png" id="1_yr70b"]
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_itens.gd" id="2_12qy6"]
 
-[sub_resource type="TorusMesh" id="TorusMesh_sqsrg"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_b7h2h"]
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("2_yr70b")
-nome_item = "Componente fuzil 3/3"
-imagem = ExtResource("1_1nnq4")
-mesh = SubResource("TorusMesh_sqsrg")
+script = ExtResource("2_12qy6")
+nome_item = "Comp fuzil 3/3"
+quantidade = 1
+stackavel = true
+imagem = ExtResource("1_yr70b")
+mesh = SubResource("CylinderMesh_b7h2h")
 tipo = "Material"
-qntreserva = 5
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

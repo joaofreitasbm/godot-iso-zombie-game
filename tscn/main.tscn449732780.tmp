@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cc787tq3ba81c"]
+[gd_scene load_steps=37 format=3 uid="uid://cc787tq3ba81c"]
 
 [ext_resource type="Script" uid="uid://b2p8ewidoyyhr" path="res://scripts/outros/sol.gd" id="2_hegun"]
 [ext_resource type="Texture2D" uid="uid://dnb7w1f3qg1xc" path="res://textures/texture_10.png" id="2_mn4ff"]
@@ -13,8 +13,8 @@
 [ext_resource type="Script" uid="uid://dhoamrgqc0j36" path="res://scripts/outros/hud1.gd" id="8_q8ief"]
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_itens.gd" id="12_hegun"]
 [ext_resource type="Texture2D" uid="uid://b1pfy4qogbxjh" path="res://pngs/mfuzil.png" id="12_tfptk"]
+[ext_resource type="AudioStream" uid="uid://m50ftixuovst" path="res://audio/tiro.mp3" id="13_mn6q8"]
 [ext_resource type="Texture2D" uid="uid://2wuphdpa8jb7" path="res://pngs/fuzil.png" id="15_hegun"]
-[ext_resource type="Texture2D" uid="uid://bl5t6nlxojray" path="res://pngs/comp fuzil 1.png" id="15_mn6q8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -79,93 +79,23 @@ size = Vector3(30, 1, 10)
 size = Vector3(30, 1, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_50x8b"]
-size = Vector3(1, 0.5, 1)
+size = Vector3(1, 0.3, 1)
 
-[sub_resource type="Resource" id="Resource_tfptk"]
+[sub_resource type="Resource" id="Resource_mn6q8"]
+resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Munição fuzil"
-quantidade = 30
+desc_item = "Descrição munição fuzil"
 stackavel = true
 imagem = ExtResource("12_tfptk")
 mesh = SubResource("BoxMesh_50x8b")
+audio_impacto = ExtResource("13_mn6q8")
 tipo = "Munição - fuzil"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_b7h2h"]
-
-[sub_resource type="Resource" id="Resource_mna05"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 1/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7h2h")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_qmk4d"]
-
-[sub_resource type="Resource" id="Resource_iyuj2"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_qmk4d")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_5jmr1"]
-
-[sub_resource type="Resource" id="Resource_lftyx"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_5jmr1")
-tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="PrismMesh" id="PrismMesh_vng7p"]
 
-[sub_resource type="Resource" id="Resource_axlki"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 1/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7h2h")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_nkgwq"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_qmk4d")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_wsxpg"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_5jmr1")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_k3nvp"]
+[sub_resource type="Resource" id="Resource_tfptk"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
@@ -175,41 +105,21 @@ imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_vng7p")
 alcance = 50
 velocidade_ataque = 0.5
-receita_craft = Array[ExtResource("12_hegun")]([SubResource("Resource_axlki"), SubResource("Resource_nkgwq"), SubResource("Resource_wsxpg")])
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_mna05"), SubResource("Resource_iyuj2"), SubResource("Resource_lftyx")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 tipo_municao = "Munição - fuzil"
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_b7fts"]
+[sub_resource type="Resource" id="Resource_k3nvp"]
+resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Munição fuzil"
-quantidade = 30
+desc_item = "Descrição munição fuzil"
 stackavel = true
 imagem = ExtResource("12_tfptk")
 mesh = SubResource("BoxMesh_50x8b")
-tipo = "Munição - fuzil"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_fco5v"]
-script = ExtResource("12_hegun")
-nome_item = "Munição fuzil"
-quantidade = 30
-stackavel = true
-imagem = ExtResource("12_tfptk")
-mesh = SubResource("BoxMesh_50x8b")
-tipo = "Munição - fuzil"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_18iqq"]
-script = ExtResource("12_hegun")
-nome_item = "Munição fuzil"
-quantidade = 30
-stackavel = true
-imagem = ExtResource("12_tfptk")
-mesh = SubResource("BoxMesh_50x8b")
+audio_impacto = ExtResource("13_mn6q8")
 tipo = "Munição - fuzil"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
@@ -386,23 +296,15 @@ theme_override_font_sizes/font_size = 12
 
 [node name="mun" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.679089, 1, 1.8232307)
-item = SubResource("Resource_tfptk")
+item = SubResource("Resource_mn6q8")
 
 [node name="arma" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.696121, 1, 1.8232307)
-item = SubResource("Resource_k3nvp")
+item = SubResource("Resource_tfptk")
 
 [node name="item3" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 1.8232307)
-item = SubResource("Resource_b7fts")
-
-[node name="item4" parent="." instance=ExtResource("8_ap273")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 6.3238077)
-item = SubResource("Resource_fco5v")
-
-[node name="item5" parent="." instance=ExtResource("8_ap273")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.778038, 1, 6.3238077)
-item = SubResource("Resource_18iqq")
+item = SubResource("Resource_k3nvp")
 
 [connection signal="body_entered" from="cenário/fora do mapa" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="spawn inimigo/Timer" to="spawn inimigo" method="_on_timer_timeout"]

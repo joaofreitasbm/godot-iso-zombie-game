@@ -1,6 +1,6 @@
 extends Button
 
-@export var item: Resource
+@export var item: itens
 @onready var pers: CharacterBody3D = $"../../../.."
 
 @onready var slot = int(self.name) - 1
@@ -27,9 +27,9 @@ func _process(_delta: float) -> void:
 		icon = item.imagem
 
 	if item.tipo == "Arma de fogo": # arma de fogo
-		$quantidade.text = str(item.qntatual, "/", item.qntreserva)
+		$quantidade.text = str(item.qntatual, "/", item.municao)
 	elif item.tipo == "Consumivel": # consumível
-		$quantidade.text = str(item.qntreserva)
+		$quantidade.text = str(item.quantidade)
 	else:
 		$quantidade.text = ""
 

@@ -1,8 +1,8 @@
 extends PanelContainer
 
-@export var item: Resource
+@export var item: itens
 @onready var pers: CharacterBody3D = $"../../../.."
-var reciclar: Array[Resource]
+var reciclar: Array[itens]
 var skip: bool = false
 @onready var UI: Control = $"../../.."
 
@@ -15,25 +15,20 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if !skip:
 		if item != null:
-			if item.tipo == "Arma de fogo":
-				$Button/qnt.text = str(item.qntatual, "/", item.qntreserva)
-			if item.tipo == "Arremessavel" or item.tipo == "Consumivel" or item.tipo == "Material":
-				$Button/qnt.text = str(item.qntreserva)
 			$Button/nome.text = str(item.nome_item)
 			$Button/tipo.text = str(item.tipo)
+			if item.stackavel and item.quantidade > 1:
+				$Button/nome.text = str(item.nome_item, " x", item.quantidade)
 
 			$Button/nome.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
-			$Button/qnt.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
 			$Button/tipo.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
 
 
 		if item == null:
 			$Button/nome.text = "Vazio"
-			$Button/qnt.text = "-"
 			$Button/tipo.text = "-"
 
 			$Button/nome.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
-			$Button/qnt.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
 			$Button/tipo.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
 		skip = true
 
@@ -56,6 +51,7 @@ func _on_button_pressed() -> void: # apertou botão do MENU
 
 func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 	var aux = $submenu.get_item_text(id)
+	
 	if aux == str("Equipar arma no slot ", pers.hotkey + 1):
 		for x in pers.inventario: # Itera sobre cada item do INVENTÁRIO
 			if x != null and x == item:
@@ -87,6 +83,7 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 						z.item = x
 						print("Item ", x.nome_item, " equipado no slot ", pers.hotkey + 1)
 						break
+
 
 	if aux == "Dropar":
 		for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
@@ -123,7 +120,7 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 		$reciclar.position = Vector2(global_position.x, global_position.y + 25)
 		var texto = ""
 		for x in item.material_reciclado:
-			texto += (str("\n", x.nome_item, ", x",x.qntreserva))
+			texto += (str("\n", x.nome_item, ", x",x.quantidade))
 			reciclar.push_front(x)
 		#$reciclar/botaoreciclar.position = $reciclar/textoreciclar.position + Vector2($reciclar/textoreciclar - 5, global_position.y + 150)
 		$reciclar/vbc/textoreciclar.text = texto
@@ -160,6 +157,8 @@ func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por c
 		$hover.clear()
 		$hover.add_item(str("Dano: ", item.dano))
 		$hover.add_item(str("DPS: ", item.velocidade_ataque))
+		$hover.add_item(str("Stackavel: ", item.stackavel))
+		$hover.add_item(str("Quantidade: ", item.quantidade))
 		$hover.add_item(str("Modo de disparo: ", "Auto" if item.semiauto == false else "Semiauto"))
 		$hover.add_item(str("Durabilidade: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
 		$hover.add_item(str("Munição usada: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
@@ -190,9 +189,9 @@ func _on_botaoreciclar_pressed() -> void:
 	var itens_stackaveis: int = 0
 	for i in reciclar:
 		if not i.stackavel:
-			itens_nao_stackaveis += i.qntreserva
+			itens_nao_stackaveis += i.quantidade
 		if i.stackavel:
-			itens_stackaveis += 1
+			itens_stackaveis += i.quantidade
 
 	# Calcula se há espaço suficiente no inventário
 	var ocupados = pers.inventario.size() - slots_vazios # 20slot - 8slot vazios = 12slot ocupados
@@ -210,21 +209,24 @@ func _on_botaoreciclar_pressed() -> void:
 
 	# Continua normalmente se houver espaço
 	for x in reciclar:
-		if x.stackavel:
+		if x.stackavel: # SE O ITEM FOR STACKAVEL
 			for y in range(len(pers.inventario)):
 				if pers.inventario[y] == null:
 					pers.inventario[y] = x
 					break
-		if !x.stackavel:
+				if pers.inventario[y] == x:
+					pers.inventario[y].quantidade += x.quantidade
+					break
+		if !x.stackavel: # SE O ITEM NÃO FOR STACKAVEL
 			var qntitensnaostack: int = 0
 			for y in range(len(pers.inventario)):
 				if pers.inventario[y] == null:
 					pers.inventario[y] = x.duplicate(true)
-					pers.inventario[y].qntreserva = 1
-					print("item adicionado! ", pers.inventario[y].nome_item, pers.inventario[y].qntreserva)
+					pers.inventario[y].quantidade = 1
+					print("item adicionado! ", pers.inventario[y].nome_item, pers.inventario[y].quantidade)
 					qntitensnaostack += 1
 					print(qntitensnaostack, " ", itens_nao_stackaveis)
-					if x.qntreserva == qntitensnaostack:
+					if x.quantidade == qntitensnaostack:
 						print("parou loop")
 						break
 

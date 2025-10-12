@@ -14,14 +14,14 @@ var listaopac: Array = []
 var ultimoalvo
 
 # Inventario/UI
-@export var inventario: Array[Resource]
-@export var itenshotkey: Array[Resource]
+@export var inventario: Array[itens]
+@export var itenshotkey: Array[itens]
 @onready var hotkey: int = 0
 @onready var inventarioUI: VBoxContainer = $"UI/invcontainer/Inventário [TAB]"
 @onready var hotkeyUI: HBoxContainer = $UI/fundo/hotkeycontainer
 @onready var UI: Control = $UI
 
-var mlivre: Resource = preload("res://resources/Armas/maoslivres.tres")
+var mlivre: itens = preload("res://resources/armas/maos livres.tres")
 var arma_atual = mlivre
 var equipado: bool = false
 
@@ -36,8 +36,8 @@ var fome: float = 100
 var sede: float = 100
 var fadiga: float = (fome + sede) / 2
 var sanidade: int = 100
-var debuffs: Array[Resource]
-var receitas: Array[Resource]
+var debuffs: Array[Resource] ## AVALIAR NECESSIDADE DE FAZER UMA CLASSE DE DEBUFFS
+var lista_de_receitas: Array[receitas]
 
 
 func _ready() -> void:
@@ -46,10 +46,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	opacidade()
-	if arma_atual.receita_craft != null:
-		for x in arma_atual.receita_craft: # Itera sobre cada resource
-			print(x) # Retorna cada resource
-			print(arma_atual.receita_craft[x]) # Retorna cada quantidade
+	#if arma_atual.receita_craft != null:
+		#for x in arma_atual.receita_craft: # Itera sobre cada resource
+			#print(x) # Retorna cada resource
+			#print(arma_atual.receita_craft[x]) # Retorna cada quantidade
 
 
 	if not is_on_floor(): velocity += get_gravity() * delta
@@ -95,12 +95,12 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("atirar"):
 		if arma_atual.tipo == "Consumivel": #consumivel
-			arma_atual.usar_equipado(colmira, self)
+			arma_atual.usar_equipado(colmira, self, UI)
 			return
 		if mirando and $timer.is_stopped(): 
 			$timer.wait_time = arma_atual.velocidade_ataque
 			$timer.start()
-			arma_atual.usar_equipado(colmira, self)
+			arma_atual.usar_equipado(colmira, self, UI)
 			print("atirou em: ", colmira)
 
 
@@ -116,7 +116,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):
 		get_tree().quit()
 		
-	if Input.is_action_just_pressed("R"): itenshotkey[hotkey].recarregar()
+	if Input.is_action_just_pressed("R"): itenshotkey[hotkey].recarregar(self, UI)
 
 	if Input.is_action_just_pressed("E"): interagir = true; print(interagir)
 	if Input.is_action_just_released("E"): interagir = false; print(interagir)
@@ -211,7 +211,26 @@ func _physics_process(delta: float) -> void:
 	$UI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
 	$UI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual)
 
-
+	# se no inventario tiver a munição necessaria: true
+	# se nao tiver munição necessaria no inventario: false
+	
+	#for i in range(len(inventario)):
+		#print(inventario[i])
+		#if inventario[i] != null and inventario[i].municao != null and inventario[i].municao.tipo == inventario[i].tipo:
+			#$UI/info.text = str(
+				#"tem a munição no inventario. \n",
+				#"nome: ", arma_atual.municao.nome_item,"\n",
+				#"slot do inventario:", i)
+			#
+		#if inventario[i] == null:
+			#print("slot nulo: ", inventario[i])
+			#
+		#if arma_atual.municao != inventario[i]:
+			#$UI/info.text = str("nao tem a munição no inventario")
+			##print(" nao tem a municao no inventario ")
+			
+				
+	
 
 	if vida <= 0:
 		get_tree().reload_current_scene()

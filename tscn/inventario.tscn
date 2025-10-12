@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://rjdoowuh0wru"]
 
-[ext_resource type="Script" uid="uid://76d1b7lmmr3b" path="res://scripts/inventario/inventario.gd" id="1_fhvvc"]
+[ext_resource type="Script" uid="uid://76d1b7lmmr3b" path="res://scripts/inventario/slots_inventario.gd" id="1_fhvvc"]
 
 [node name="inventario" type="PanelContainer"]
 layout_direction = 2
@@ -35,18 +35,6 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
-vertical_alignment = 1
-
-[node name="qnt" type="Label" parent="Button"]
-layout_mode = 0
-offset_left = 201.0
-offset_right = 220.0
-offset_bottom = 23.0
-size_flags_horizontal = 4
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 12
-horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="tipo" type="Label" parent="Button"]

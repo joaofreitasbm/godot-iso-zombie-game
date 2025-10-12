@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="itens" load_steps=4 format=3 uid="uid://dm8rlkyn3ilpl"]
+
+[ext_resource type="Texture2D" uid="uid://b1pfy4qogbxjh" path="res://pngs/mfuzil.png" id="1_r0aea"]
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_itens.gd" id="2_c2eif"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_50x8b"]
+size = Vector3(1, 0.5, 1)
+
+[resource]
+script = ExtResource("2_c2eif")
+nome_item = "Munição fuzil"
+quantidade = 30
+stackavel = true
+imagem = ExtResource("1_r0aea")
+mesh = SubResource("BoxMesh_50x8b")
+tipo = "Munição - fuzil"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

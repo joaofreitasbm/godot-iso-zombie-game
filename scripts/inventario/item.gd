@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var item: Resource # item que está sendo adquirido
+@export var item: itens # item que está sendo adquirido
 var area: bool = false # controlado pelos sinais no final do código (entrou/saiu da área)
 
 @onready var pers: CharacterBody3D = get_tree().get_root().get_node("main/pers")
@@ -10,29 +10,67 @@ var area: bool = false # controlado pelos sinais no final do código (entrou/sai
 func _ready() -> void:
 	if item != null:
 		$MeshInstance3D.mesh = item.mesh
+		item.duplicate(true)
+		if item.tipo == "Munição - fuzil":
+			item.quantidade = randi_range(10, 30)
 		
 func _process(_delta: float) -> void:
 	#print("invmax: ", UI.invmax, "OCUPADOS: ", pers.inventario.size() - pers.inventario.count(null))
 	if !(pers.interagir and area): # se ambas variaveis forem negativas, não roda daqui pra baixo
 		return
 	
-	if UI.invmax <= (pers.inventario.size() - pers.inventario.count(null)): # não deixa função rodar se não tiver espaço no inventario
-		print("LOTOU")
+	# Conta quantos slots estão vazios
+	var slots_vazios := 0
+	for i in pers.inventario:
+		if i == null:
+			slots_vazios += 1
+
+	# Calcula se há espaço suficiente no inventário
+	var ocupados = pers.inventario.size() - slots_vazios # 20slot - 8slot vazios = 12slot ocupados
+	
+	if ocupados >= UI.invmax:
+		$erro.position = $erro.get_global_mouse_position() - Vector2(65, 0)
+		$erro.popup()
+		print("Inventário cheio! Não há espaço suficiente para reciclar.")
 		return
 
 	# Adiciona o item no inventário lógico (o código só chega aqui se o if anterior for verdade pra ambas variaveis)
-	#pers.inventario.push_front(item)
 
-	# Busca o primeiro slot vazio
-	for slot in inventarioUI.get_children():
-		if slot is PanelContainer and slot.item == null:
-			slot.item = item
-			slot.skip = false
-			pers.inventario[int(slot.name) - 1] = item
-			break
+	if item.stackavel: # SE O ITEM FOR STACKAVEL
+		print("stackavel!")
+		for y in range(len(pers.inventario)):
+			if pers.inventario[y] != null and pers.inventario[y].nome_item == item.nome_item:
+				print("itens iguais! ", pers.inventario[y], " ", item)
+				pers.inventario[y].quantidade += item.quantidade
+				break
+			if pers.inventario[y] == null:
+				pers.inventario[y] = item
+				break
+	if !item.stackavel: # SE O ITEM NÃO FOR STACKAVEL
+		var qntitensnaostack: int = 0
+		for y in range(len(pers.inventario)):
+			print(qntitensnaostack, " itens nao stack ")
+			if pers.inventario[y] == null:
+				pers.inventario[y] = item.duplicate(true)
+				pers.inventario[y].quantidade = 1
+				qntitensnaostack += 1
+				print("item adicionado! ", pers.inventario[y].nome_item, pers.inventario[y].quantidade)
+				if item.quantidade == qntitensnaostack:
+					print("parou loop")
+					break
+
+
 
 	# Remove o item do mundo
 	queue_free()
+	
+	##################################
+	
+
+
+
+
+
 
 
 

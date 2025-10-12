@@ -1,28 +1,97 @@
-[gd_resource type="Resource" script_class="craft" load_steps=8 format=3 uid="uid://cric5pgld8pdt"]
+[gd_resource type="Resource" script_class="itens" load_steps=14 format=3 uid="uid://b66nel6w6rjwn"]
 
-[ext_resource type="AudioStream" uid="uid://m50ftixuovst" path="res://audio/tiro.mp3" id="1_hyhe1"]
-[ext_resource type="Texture2D" uid="uid://2wuphdpa8jb7" path="res://pngs/fuzil.png" id="2_08v5d"]
-[ext_resource type="Resource" uid="uid://ddhdjhjbw0mux" path="res://resources/Itens/Comp fuzil 1.tres" id="3_owves"]
-[ext_resource type="Resource" uid="uid://i1muxyub1yjq" path="res://resources/Itens/Comp fuzil 2.tres" id="4_3dtvi"]
-[ext_resource type="Resource" uid="uid://cfkj422hos78b" path="res://resources/Itens/Comp fuzil 3.tres" id="5_fsk5b"]
-[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_armasitens.gd" id="6_8e3yt"]
+[ext_resource type="Texture2D" uid="uid://2wuphdpa8jb7" path="res://pngs/fuzil.png" id="1_kdfq7"]
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_itens.gd" id="2_q5ah6"]
+[ext_resource type="Texture2D" uid="uid://bl5t6nlxojray" path="res://pngs/comp fuzil 1.png" id="3_hvtqw"]
 
-[sub_resource type="PrismMesh" id="PrismMesh_3xaox"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_b7h2h"]
+
+[sub_resource type="Resource" id="Resource_mna05"]
+resource_local_to_scene = true
+script = ExtResource("2_q5ah6")
+nome_item = "Comp fuzil 1/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("3_hvtqw")
+mesh = SubResource("CylinderMesh_b7h2h")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qmk4d"]
+
+[sub_resource type="Resource" id="Resource_iyuj2"]
+resource_local_to_scene = true
+script = ExtResource("2_q5ah6")
+nome_item = "Comp fuzil 2/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("3_hvtqw")
+mesh = SubResource("CylinderMesh_qmk4d")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5jmr1"]
+
+[sub_resource type="Resource" id="Resource_lftyx"]
+resource_local_to_scene = true
+script = ExtResource("2_q5ah6")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("3_hvtqw")
+mesh = SubResource("CylinderMesh_5jmr1")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="PrismMesh" id="PrismMesh_vng7p"]
+
+[sub_resource type="Resource" id="Resource_axlki"]
+resource_local_to_scene = true
+script = ExtResource("2_q5ah6")
+nome_item = "Comp fuzil 1/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("3_hvtqw")
+mesh = SubResource("CylinderMesh_b7h2h")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_nkgwq"]
+resource_local_to_scene = true
+script = ExtResource("2_q5ah6")
+nome_item = "Comp fuzil 2/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("3_hvtqw")
+mesh = SubResource("CylinderMesh_qmk4d")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_wsxpg"]
+resource_local_to_scene = true
+script = ExtResource("2_q5ah6")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("3_hvtqw")
+mesh = SubResource("CylinderMesh_5jmr1")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("6_8e3yt")
-nome_item = "Fuzil automatico"
+script = ExtResource("2_q5ah6")
+nome_item = "Fuzil automático"
+quantidade = 1
 reciclavel = true
-imagem = ExtResource("2_08v5d")
-mesh = SubResource("PrismMesh_3xaox")
+imagem = ExtResource("1_kdfq7")
+mesh = SubResource("PrismMesh_vng7p")
 alcance = 50
-audio_impacto = ExtResource("1_hyhe1")
-velocidade_ataque = 0.2
-material_reciclado = Array[Resource]([ExtResource("3_owves"), ExtResource("4_3dtvi"), ExtResource("5_fsk5b")])
+velocidade_ataque = 0.5
+receita_craft = Array[ExtResource("2_q5ah6")]([SubResource("Resource_axlki"), SubResource("Resource_nkgwq"), SubResource("Resource_wsxpg")])
+material_reciclado = Array[ExtResource("2_q5ah6")]([SubResource("Resource_mna05"), SubResource("Resource_iyuj2"), SubResource("Resource_lftyx")])
 tipo = "Arma de fogo"
 qntmaxima = 30
-qntatual = 30
-qntreserva = 90
+tipo_municao = "Munição - fuzil"
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

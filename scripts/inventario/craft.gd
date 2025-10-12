@@ -1,7 +1,7 @@
 extends PanelContainer
 
-#@export var item: Resource
-@onready var item = preload("res://resources/receitas/rec fuzil.tres")
+# LÓGICA DA UI DO CRAFT
+@export var item: Resource
 @onready var pers: CharacterBody3D = $"../../../.."
 var reciclar: Array[Resource]
 var skip: bool = false

@@ -16,6 +16,7 @@ var ultimoalvo
 # Inventario/UI
 @export var inventario: Array[itens]
 @export var itenshotkey: Array[itens]
+var lista_de_receitas: Array[itens]
 @onready var hotkey: int = 0
 @onready var inventarioUI: VBoxContainer = $"UI/invcontainer/Inventário [TAB]"
 @onready var hotkeyUI: HBoxContainer = $UI/fundo/hotkeycontainer
@@ -37,7 +38,6 @@ var sede: float = 100
 var fadiga: float = (fome + sede) / 2
 var sanidade: int = 100
 var debuffs: Array[Resource] ## AVALIAR NECESSIDADE DE FAZER UMA CLASSE DE DEBUFFS
-var lista_de_receitas: Array[itens]
 
 
 func _ready() -> void:
@@ -45,6 +45,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	cam.position = position + Vector3(-20, 20, 20)
+	cam.look_at(position)
 	opacidade()
 	#if arma_atual.receita_craft != null:
 		#for x in arma_atual.receita_craft: # Itera sobre cada resource
@@ -126,7 +128,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("mouse+"): cam.size -= 1 
 	elif Input.is_action_just_pressed("mouse-"): cam.size += 1
 	cam.size = clamp(cam.size, 5, 50)
-	cam.position = position + Vector3(-100, 40, 100)
 
 
 	#spawnar inimigo (debug)

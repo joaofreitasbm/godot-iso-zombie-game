@@ -1,10 +1,8 @@
 extends PanelContainer
 
 @onready var pers: CharacterBody3D = $"../../../.."
-@export var item = (
-	pers.inventario[int(self.name) - 1] 
-	if pers and pers.inventario[int(self.name) - 1] != null 
-	else null)
+@onready var item: itens 
+
 var reciclar: Array[itens]
 var skip: bool = false
 @onready var UI: Control = $"../../.."
@@ -17,22 +15,24 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if !skip:
-		if item != null:
+		
+		# Atribui slot do inventario à variavel item
+		if pers.inventario[int(self.name) - 1] == null:
+			item = null
+			$Button/nome.text = "Vazio"
+			$Button/tipo.text = "-"
+			$Button/nome.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
+			$Button/tipo.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
+			
+		if pers.inventario[int(self.name) - 1] != null:
+			item = pers.inventario[int(self.name) - 1]
 			$Button/nome.text = str(item.nome_item)
 			$Button/tipo.text = str(item.tipo)
 			if item.stackavel and item.quantidade > 1:
 				$Button/nome.text = str(item.nome_item, " x", item.quantidade)
-
 			$Button/nome.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
 			$Button/tipo.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
-
-
-		if item == null:
-			$Button/nome.text = "Vazio"
-			$Button/tipo.text = "-"
-
-			$Button/nome.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
-			$Button/tipo.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
+			
 		skip = true
 
 
@@ -115,6 +115,7 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou botão do SUBMENU
 		item = null
 		pers.equipado = false
 		print("função rodou completamente")
+		UI.atualizarinventarioUI()
 
 
 	if aux == "Reciclar": ## EM ANDAMENTO

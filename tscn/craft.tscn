@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6ctxvridmtw2" path="res://scripts/inventario/craft.gd" id="1_apkvy"]
 
-[node name="craft" type="PanelContainer"]
+[node name="craft" type="TabContainer"]
 layout_direction = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -18,11 +18,23 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_behavior_recursive = 1
+current_tab = 0
 script = ExtResource("1_apkvy")
 
+[node name="Craft geral" type="ItemList" parent="."]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Craft armas" type="ItemList" parent="."]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
 [node name="Button" type="Button" parent="."]
+visible = false
 custom_minimum_size = Vector2(29.51, 0)
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="nome" type="Label" parent="Button"]
 layout_mode = 0
@@ -39,4 +51,5 @@ item_count = 1
 item_0/text = "Material não suficiente"
 item_0/id = 0
 
+[connection signal="item_clicked" from="Craft geral" to="." method="_on_item_list_item_clicked"]
 [connection signal="pressed" from="Button" to="." method="botao_craft"]

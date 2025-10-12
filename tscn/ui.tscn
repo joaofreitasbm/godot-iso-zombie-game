@@ -445,13 +445,18 @@ layout_mode = 2
 theme_override_constants/separation = 1
 metadata/_tab_index = 2
 
-[node name="1" parent="invcontainer/Fabricação [L]" instance=ExtResource("4_k14ws")]
+[node name="teste" parent="invcontainer/Fabricação [L]" instance=ExtResource("4_k14ws")]
 layout_mode = 2
 
 [node name="espacador" type="Label" parent="invcontainer/Fabricação [L]"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "MENU DE CRAFT PENDENTE"
+
+[node name="Ordenar (XXXX)" type="Button" parent="invcontainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
 
 [node name="invlabel" type="Label" parent="."]
 layout_mode = 0

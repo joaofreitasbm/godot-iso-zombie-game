@@ -4,13 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://d2o3afnlnpfk0" path="res://tscn/ui.tscn" id="2_u1lqi"]
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_itens.gd" id="2_xd6ky"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upo20"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_5vw27"]
-material = SubResource("StandardMaterial3D_upo20")
-
-[sub_resource type="BoxMesh" id="BoxMesh_272bh"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kek77"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1lqi"]
@@ -19,6 +12,13 @@ shading_mode = 0
 [sub_resource type="TorusMesh" id="TorusMesh_upo20"]
 material = SubResource("StandardMaterial3D_u1lqi")
 outer_radius = 0.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_272bh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upo20"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5vw27"]
+material = SubResource("StandardMaterial3D_upo20")
 
 [node name="pers" type="CharacterBody3D" groups=["Player"]]
 axis_lock_angular_x = true
@@ -29,13 +29,6 @@ floor_snap_length = 1.0
 script = ExtResource("1_0t7jd")
 inventario = Array[ExtResource("2_xd6ky")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 itenshotkey = Array[ExtResource("2_xd6ky")]([null, null, null, null, null, null, null, null, null])
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_5vw27")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.869, -0.5)
-mesh = SubResource("BoxMesh_272bh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_kek77")
@@ -54,15 +47,13 @@ target_position = Vector3(0, 0, 0)
 [node name="cursor3d" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 top_level = true
-visible = false
 transparency = 0.75
 cast_shadow = 0
 ignore_occlusion_culling = true
 mesh = SubResource("TorusMesh_upo20")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.70710695, 0.35355347, -0.61237264, 0, 0.86602557, 0.5000002, 0.70710695, -0.35355347, 0.61237264, -20, 20, 20)
-top_level = true
+transform = Transform3D(0.7071068, 0.40860704, -0.5770964, 0, 0.8161376, 0.5778576, 0.7071068, -0.40860704, 0.5770964, -20.243, 21.049, 20.243)
 projection = 1
 size = 30.0
 near = 0.1
@@ -78,3 +69,14 @@ one_shot = true
 
 [node name="UI" parent="." instance=ExtResource("2_u1lqi")]
 metadata/_edit_use_anchors_ = true
+
+[node name="visual" type="Node3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="visual"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.869, -0.5)
+mesh = SubResource("BoxMesh_272bh")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="visual"]
+mesh = SubResource("CapsuleMesh_5vw27")
+skeleton = NodePath("../..")

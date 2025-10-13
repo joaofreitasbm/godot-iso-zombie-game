@@ -45,15 +45,15 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	cam.position = position + Vector3(-20, 20, 20)
-	cam.look_at(position)
-	opacidade()
 	#if arma_atual.receita_craft != null:
 		#for x in arma_atual.receita_craft: # Itera sobre cada resource
 			#print(x) # Retorna cada resource
 			#print(arma_atual.receita_craft[x]) # Retorna cada quantidade
-
-
+	
+	#cam.position = position + Vector3(-20.243, 21.049, 20.243)
+	#cam.rotation = Vector3(-35.3, -45, 0)
+	#cam.look_at(position)
+	
 	if not is_on_floor(): velocity += get_gravity() * delta
 
 
@@ -61,13 +61,15 @@ func _physics_process(delta: float) -> void:
 	var direction = (cam.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction != Vector3.ZERO:
 		position += direction * velandar * delta
-		rotation.y = lerp_angle(rotation.y, atan2(-direction.x, -direction.z), delta * 10)
+		$visual.rotation.y = lerp_angle($visual.rotation.y, atan2(-direction.x, -direction.z), delta * 15)
+		if Input.is_action_just_pressed("correr"): correndo = true
+		move_and_slide()
 	else:
 		correndo = false
 
 
-	if Input.is_action_just_pressed("correr"): correndo = true
 
+	opacidade()
 
 	# controlar velocidade do movimento
 	if mirando: correndo = false; velandar = 3
@@ -111,7 +113,6 @@ func _physics_process(delta: float) -> void:
 		else: return
 
 
-	move_and_slide()
 
 
 	# fechar jogo
@@ -256,7 +257,7 @@ func alvo2d():
 
 func mirar():
 	circ.show()
-	look_at(alvo2d(), Vector3.UP)
+	$visual.look_at(alvo2d(), Vector3.UP)
 	raio.position = position
 	raio.target_position = ((alvo2d() - position).normalized() * arma_atual.alcance) #substituir ray_length pelo alcance da arma
 	circ.position = alvo2d()

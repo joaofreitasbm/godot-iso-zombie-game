@@ -6,19 +6,19 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kek77"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1lqi"]
-shading_mode = 0
-
-[sub_resource type="TorusMesh" id="TorusMesh_upo20"]
-material = SubResource("StandardMaterial3D_u1lqi")
-outer_radius = 0.6
-
 [sub_resource type="BoxMesh" id="BoxMesh_272bh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upo20"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5vw27"]
 material = SubResource("StandardMaterial3D_upo20")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1lqi"]
+shading_mode = 0
+
+[sub_resource type="TorusMesh" id="TorusMesh_upo20"]
+material = SubResource("StandardMaterial3D_u1lqi")
+outer_radius = 0.6
 
 [node name="pers" type="CharacterBody3D" groups=["Player"]]
 axis_lock_angular_x = true
@@ -40,20 +40,8 @@ offset_right = 349.0
 offset_bottom = 61.0
 theme_override_font_sizes/font_size = 12
 
-[node name="raycastmira" type="RayCast3D" parent="."]
-top_level = true
-target_position = Vector3(0, 0, 0)
-
-[node name="cursor3d" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-top_level = true
-transparency = 0.75
-cast_shadow = 0
-ignore_occlusion_culling = true
-mesh = SubResource("TorusMesh_upo20")
-
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.7071068, 0.40860704, -0.5770964, 0, 0.8161376, 0.5778576, 0.7071068, -0.40860704, 0.5770964, -20.243, 21.049, 20.243)
+transform = Transform3D(0.7071067, 0.40860704, -0.5770964, 0, 0.8161376, 0.5778576, 0.7071067, -0.40860704, 0.5770964, -20, 20, 20)
 projection = 1
 size = 30.0
 near = 0.1
@@ -63,9 +51,6 @@ far = 100.0
 transform = Transform3D(1, -1.49012e-08, -8.9407e-08, -2.98023e-08, 1, 2.98023e-08, -8.9407e-08, 1.49012e-08, 1, 1.52588e-05, -5.72205e-06, -1.52588e-05)
 top_level = true
 debug_shape_thickness = 5
-
-[node name="timer" type="Timer" parent="."]
-one_shot = true
 
 [node name="UI" parent="." instance=ExtResource("2_u1lqi")]
 metadata/_edit_use_anchors_ = true
@@ -79,4 +64,24 @@ skeleton = NodePath("../MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="visual"]
 mesh = SubResource("CapsuleMesh_5vw27")
+skeleton = NodePath("../..")
+
+[node name="timers" type="Node3D" parent="."]
+
+[node name="timer" type="Timer" parent="timers"]
+one_shot = true
+
+[node name="utilidades" type="Node3D" parent="."]
+
+[node name="raycastmira" type="RayCast3D" parent="utilidades"]
+top_level = true
+target_position = Vector3(0, 0, 0)
+
+[node name="cursor3d" type="MeshInstance3D" parent="utilidades"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+top_level = true
+transparency = 0.75
+cast_shadow = 0
+ignore_occlusion_culling = true
+mesh = SubResource("TorusMesh_upo20")
 skeleton = NodePath("../..")

@@ -4,8 +4,8 @@ extends CharacterBody3D
 var mirando: bool = false
 var correndo: bool = false
 
-@onready var raio: RayCast3D = $raycastmira
-@onready var circ:MeshInstance3D = $cursor3d
+@onready var raio: RayCast3D = $utilidades/raycastmira
+@onready var circ:MeshInstance3D = $utilidades/cursor3d
 @onready var cam: Camera3D = $Camera3D
 @onready var opac: RayCast3D = $Camera3D/raycastopacidade
 
@@ -45,6 +45,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	opacidade()
 	#if arma_atual.receita_craft != null:
 		#for x in arma_atual.receita_craft: # Itera sobre cada resource
 			#print(x) # Retorna cada resource
@@ -54,22 +55,22 @@ func _physics_process(delta: float) -> void:
 	#cam.rotation = Vector3(-35.3, -45, 0)
 	#cam.look_at(position)
 	
+
+	
 	if not is_on_floor(): velocity += get_gravity() * delta
-
-
 	var input_dir: Vector2 = Input.get_vector("A", "D", "W", "S")
-	var direction = (cam.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var sentidocamera = cam.global_transform.basis.get_euler().y
+	var direction = Vector3(input_dir.x, 0, input_dir.y)
+	direction = direction.rotated(Vector3.UP, sentidocamera).normalized()
 	if direction != Vector3.ZERO:
 		position += direction * velandar * delta
 		$visual.rotation.y = lerp_angle($visual.rotation.y, atan2(-direction.x, -direction.z), delta * 15)
 		if Input.is_action_just_pressed("correr"): correndo = true
-		move_and_slide()
+		print(direction.normalized())
 	else:
 		correndo = false
+	move_and_slide()
 
-
-
-	opacidade()
 
 	# controlar velocidade do movimento
 	if mirando: correndo = false; velandar = 3
@@ -91,8 +92,8 @@ func _physics_process(delta: float) -> void:
 			ultimoalvo.stencil = false
 
 
-	if not $timer.is_stopped():
-		$Label.text = str(round($timer.time_left))
+	if not $timers/timer.is_stopped():
+		$Label.text = str(round($timers/timer.time_left))
 	else:
 		$Label.text = "Pronto!"
 
@@ -102,8 +103,8 @@ func _physics_process(delta: float) -> void:
 			arma_atual.usar_equipado(colmira, self, UI)
 			return
 		if mirando and $timer.is_stopped(): 
-			$timer.wait_time = arma_atual.velocidade_ataque
-			$timer.start()
+			$timers/timer.wait_time = arma_atual.velocidade_ataque
+			$timers/timer.start()
 			arma_atual.usar_equipado(colmira, self, UI)
 			print("atirou em: ", colmira)
 
@@ -271,7 +272,7 @@ func mirar():
 
 
 func opacidade():
-	opac.position = cam.position
+	opac.position = cam.global_position
 	opac.target_position = opac.to_local(position)
 	opac.force_raycast_update()
 	var colopac = opac.get_collider()
@@ -295,7 +296,7 @@ func _input(event: InputEvent) -> void:
 			return
 
 		hotkey = index
-		$timer.stop()
+		$timers/timer.stop()
 		if itenshotkey[hotkey] == null:
 			equipado = false
 			arma_atual = mlivre  # mlivre = sem arma

@@ -1,6 +1,7 @@
 extends Node
 
-#@export var duracao_dia: float = 1000.0 # duração de um "dia" no jogo
+
+#@export var duracao_dia: float = 10000.0 # duração de um "dia" no jogo
 #
 #var hora: float = 0.0 
 #

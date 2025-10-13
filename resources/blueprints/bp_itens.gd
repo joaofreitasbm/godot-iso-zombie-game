@@ -127,7 +127,7 @@ func recarregar(pers, UI):
 	for x in range(len(pers.inventario)): # procurando a munição
 		if pers.inventario[x] == null:
 			continue
-			
+
 		# se o tipo da munição no inventario == munição necessaria pra arma atual
 		if pers.inventario[x].tipo == pers.arma_atual.tipo_municao: 
 
@@ -139,7 +139,9 @@ func recarregar(pers, UI):
 				pers.inventario[x].quantidade -= diferenca # tira a qnt que falta da munição disponivel
 				qntatual = qntmaxima # enche o pente
 				UI.atualizarinventarioUI()
+				UI.atualizarhotkeyUI()
 				return
+
 			if pers.inventario[x].quantidade <= diferenca: # se munição disponivel <= o que falta no pente pra carregar:
 				print("vai encher só o que dá")
 				print("qnt munição disponivel: ", pers.inventario[x].quantidade)
@@ -148,5 +150,7 @@ func recarregar(pers, UI):
 				qntatual += pers.inventario[x].quantidade # soma o que tem disponivel à qnt atual
 				pers.inventario[x] = null # apaga item do inventario (não da UI)
 				UI.atualizarinventarioUI()
+				UI.atualizarhotkeyUI()
 				return
+
 	

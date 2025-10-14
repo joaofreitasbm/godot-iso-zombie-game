@@ -25,11 +25,6 @@ func atualizarinventarioUI(): # VERSÃO ATUALIZADA
 			i.skip = false
 	print("Inventário atualizado")
 
-func atualizarhotkeyUI(): 
-	for i in %hotkeycontainer.get_children():
-		if i is Button:
-			i.skip = false
-	print("hotkey atualizado")
 
 
 func atualizarcraftUI():
@@ -37,6 +32,12 @@ func atualizarcraftUI():
 		if i is ItemList:
 			i.get_parent().skip = false
 
-func ordenarinventarioUI():
-	pers.inventario.sort()
+
+func atualizarslotsUI():
+	for i in $hud_slots.find_children("", "Button"):
+		#print(i)
+		i.skip = false
+
+
+
 		

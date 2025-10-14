@@ -17,13 +17,24 @@ var ultimoalvo
 @export var inventario: Array[itens]
 @export var itenshotkey: Array[itens]
 var lista_de_receitas: Array[itens]
+
+
+@export var slots: Dictionary[String, Resource] = {
+	"primaria": null,
+	"secundaria": null,
+	"hotkey1": null,
+	"hotkey2": null,
+	"hotkey3": null,
+}
+
+var arma_atual
+
 @onready var hotkey: int = 0
 @onready var inventarioUI: VBoxContainer = $"UI/invcontainer/Inventário [TAB]"
 @onready var hotkeyUI: HBoxContainer = $UI/fundo/hotkeycontainer
 @onready var UI: Control = $UI
 
-var mlivre: itens = preload("res://resources/armas/maos livres.tres")
-var arma_atual = mlivre
+#var mlivre: itens = preload("res://resources/armas/maos livres.tres")
 var equipado: bool = false
 
 @onready var interagir: bool = false
@@ -99,10 +110,7 @@ func _physics_process(delta: float) -> void:
 
 
 	if Input.is_action_pressed("atirar"):
-		if arma_atual.tipo == "Consumivel": #consumivel
-			arma_atual.usar_equipado(colmira, self, UI)
-			return
-		if mirando and $timer.is_stopped(): 
+		if mirando and $timers/timer.is_stopped(): 
 			$timers/timer.wait_time = arma_atual.velocidade_ataque
 			$timers/timer.start()
 			arma_atual.usar_equipado(colmira, self, UI)
@@ -141,7 +149,7 @@ func _physics_process(delta: float) -> void:
 
 	#dropar item
 	if Input.is_action_just_pressed("G"): 
-		if arma_atual != mlivre:
+		if arma_atual != null:
 			for x in itenshotkey:
 				if x != null and arma_atual == x:
 					inventario.erase(x) # apaga do inventario
@@ -158,25 +166,17 @@ func _physics_process(delta: float) -> void:
 					drop.item = arma_atual.duplicate(true)
 					drop.position = position
 					get_parent().add_child(drop) # spawnar item dropado nesse nodo
-					arma_atual = mlivre
+					arma_atual = null
 					equipado = false
 
 
-	# guardar item
+	# guardar item ## MUDAR PRA ALTERNAR ENTRE PRIMARIA E SECUNDARIA, E SE SEGURAR, GUARDAR ARMA
 	if Input.is_action_just_pressed("Q"):
-		if itenshotkey[hotkey] == null: # Se não tiver nada equipado na hotkey atual
-			arma_atual = mlivre
-			equipado = false
-			return
-		if itenshotkey[hotkey].nome_item != "Mãos livres": # Se a hotkey atual for algo diferente de mãos livres
-			for i in itenshotkey: # Itera sobre cada item da hotkey
-				if itenshotkey[hotkey] == i and equipado == true: # Se a iteração for igual a hotkey atual
-					arma_atual = mlivre
-					equipado = false
-					break
-				else:
-					arma_atual = itenshotkey[hotkey]
-					equipado = true
+		if slots["primaria"] != null and slots["secundaria"] != null:
+			var aux = slots["primaria"]
+			slots["primaria"] = slots["secundaria"]
+			slots["secundaria"] = aux
+			UI.atualizarslotsUI()
 
 
 		# Abrir inventário
@@ -299,7 +299,7 @@ func _input(event: InputEvent) -> void:
 		$timers/timer.stop()
 		if itenshotkey[hotkey] == null:
 			equipado = false
-			arma_atual = mlivre  # mlivre = sem arma
+			arma_atual = null  # mlivre = sem arma
 			print("Desequipou arma do slot ", hotkey)
 			return
 

@@ -90,6 +90,8 @@ func usar_equipado(alvo, pers, UI):
 				part.top_level = true
 				part.position = alvo.position
 				part.emitting = true
+				UI.atualizarequip_esq_infUI()
+				UI.atualizarinventarioUI()
 			return
 
 		if semiauto == false and aux == true and qntatual >= 1:
@@ -101,6 +103,8 @@ func usar_equipado(alvo, pers, UI):
 				part.top_level = true
 				part.position = alvo.position
 				part.emitting = true
+				UI.atualizarequip_esq_infUI()
+				UI.atualizarinventarioUI()
 			return 
 
 		if qntatual == 0:
@@ -109,7 +113,9 @@ func usar_equipado(alvo, pers, UI):
 			return
 	else: 
 		qntatual -= 1
-
+	
+	
+	
 	if tipo == "Arremessavel": #ARREMESSAVEL
 		pass
 	
@@ -139,7 +145,7 @@ func recarregar(pers, UI):
 				pers.inventario[x].quantidade -= diferenca # tira a qnt que falta da munição disponivel
 				qntatual = qntmaxima # enche o pente
 				UI.atualizarinventarioUI()
-				UI.atualizarhotkeyUI()
+				UI.atualizarequip_esq_infUI()
 				return
 
 			if pers.inventario[x].quantidade <= diferenca: # se munição disponivel <= o que falta no pente pra carregar:
@@ -150,7 +156,7 @@ func recarregar(pers, UI):
 				qntatual += pers.inventario[x].quantidade # soma o que tem disponivel à qnt atual
 				pers.inventario[x] = null # apaga item do inventario (não da UI)
 				UI.atualizarinventarioUI()
-				UI.atualizarhotkeyUI()
+				UI.atualizarequip_esq_infUI()
 				return
 
 	

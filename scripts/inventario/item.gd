@@ -31,10 +31,6 @@ func _process(_delta: float) -> void:
 
 	# Calcula se há espaço suficiente no inventário
 	var ocupados = pers.inventario.size() - slots_vazios # 20slot - 8slot vazios = 12slot ocupados
-	
-
-	
-		
 	if ocupados >= UI.invmax:
 		$erro.position = $erro.get_global_mouse_position() - Vector2(65, 0)
 		$erro.popup()
@@ -70,7 +66,7 @@ func _process(_delta: float) -> void:
 
 
 	# Remove o item do mundo
-	UI.atualizarhotkeyUI()
+	UI.atualizarslotsUI()
 	UI.atualizarinventarioUI()
 	queue_free()
 

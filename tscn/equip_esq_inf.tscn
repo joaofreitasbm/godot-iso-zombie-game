@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5ho1ri640hdk"]
+
+[ext_resource type="Script" uid="uid://dbcswrin2yk38" path="res://scripts/inventario/slots.gd" id="1_lu2u2"]
+
+[node name="arma_atual" type="Button"]
+offset_left = -193.0
+offset_top = 39.0
+offset_right = -73.0
+offset_bottom = 159.0
+script = ExtResource("1_lu2u2")
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0

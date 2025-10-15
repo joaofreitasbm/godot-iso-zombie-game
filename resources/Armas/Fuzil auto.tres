@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="itens" load_steps=14 format=3 uid="uid://b66nel6w6rjwn"]
+[gd_resource type="Resource" script_class="itens" load_steps=11 format=3 uid="uid://b66nel6w6rjwn"]
 
 [ext_resource type="Texture2D" uid="uid://2wuphdpa8jb7" path="res://pngs/fuzil.png" id="1_kdfq7"]
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_itens.gd" id="2_q5ah6"]
@@ -45,39 +45,6 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="PrismMesh" id="PrismMesh_vng7p"]
 
-[sub_resource type="Resource" id="Resource_axlki"]
-resource_local_to_scene = true
-script = ExtResource("2_q5ah6")
-nome_item = "Comp fuzil 1/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("3_hvtqw")
-mesh = SubResource("CylinderMesh_b7h2h")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_nkgwq"]
-resource_local_to_scene = true
-script = ExtResource("2_q5ah6")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("3_hvtqw")
-mesh = SubResource("CylinderMesh_qmk4d")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_wsxpg"]
-resource_local_to_scene = true
-script = ExtResource("2_q5ah6")
-nome_item = "Comp fuzil 3/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("3_hvtqw")
-mesh = SubResource("CylinderMesh_5jmr1")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
 [resource]
 resource_local_to_scene = true
 script = ExtResource("2_q5ah6")
@@ -86,12 +53,11 @@ quantidade = 1
 reciclavel = true
 imagem = ExtResource("1_kdfq7")
 mesh = SubResource("PrismMesh_vng7p")
-velocidade_ataque = 0.5
-receita_craft = Array[ExtResource("2_q5ah6")]([SubResource("Resource_axlki"), SubResource("Resource_nkgwq"), SubResource("Resource_wsxpg")])
 material_reciclado = Array[ExtResource("2_q5ah6")]([SubResource("Resource_mna05"), SubResource("Resource_iyuj2"), SubResource("Resource_lftyx")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
 tipo_municao = "Munição - fuzil"
+velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

@@ -98,41 +98,10 @@ func _on_submenu_id_pressed(id: int) -> void:
 
 
 	if aux == "Descartar":
-		
-		if !pers.inventario[indice].stackavel:
-			for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
-				if pers.inventario[x] != null and pers.inventario[x] == pers.inventario[indice]:
-					pers.inventario[x] = null
-					break
+		print("descartar inventario")
+		print(pers.inventario[indice].nome_item)
+		pers.descartar_item(pers.inventario[indice])
 
-			for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
-				if pers.itenshotkey[y] != null and pers.itenshotkey[y] == pers.inventario[indice]:
-					pers.itenshotkey[y] = null
-					break
-
-			for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
-				if z.item == pers.inventario[indice]:
-					z.item = null
-					break
-
-			if pers.arma_atual == pers.inventario[indice]:
-				pers.arma_atual = pers.mlivre
-			pers.inventario.erase(indice)
-			UI.atualizarslotsUI()
-			UI.atualizarinventarioUI()
-			return
-
-		if pers.inventario[indice].stackavel:
-			# Se selecionar função descartar de dentro do menu, abre submenus pra selecionar quantidade
-			$descartar.position = get_global_mouse_position() - Vector2(65, 0)
-			$descartar/vbc/textodescartar.text = pers.inventario[indice].nome_item
-			$descartar/vbc/botaodescartar.hide()
-			$descartar/vbc/botaodescartar.show()
-			$descartar/vbc/SpinBox.show()
-			$descartar/vbc/SpinBox.min_value = 1
-			$descartar/vbc/SpinBox.max_value = pers.inventario[indice].quantidade
-			$descartar.show()
-			# AQUI ABRE O COMANDO DE APERTAR NO BOTÃO DE DESCARTAR. CÓDIGO MAIS ABAIXO
 
 func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por cima do inventario
 	if indice < pers.inventario.size():
@@ -164,69 +133,3 @@ func _on_botaoreciclar_pressed() -> void:
 	reciclar.clear()
 	$reciclar.hide()
 	UI.atualizarinventarioUI()
-
-
-
-func _on_botaodescartar_pressed() -> void:
-	print("rodou")
-	var qntdescartar = int($descartar/vbc/SpinBox.value)
-	
-	for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
-		if pers.inventario[x] != null and pers.inventario[x] == pers.inventario[indice]:
-			pers.inventario[x].quantidade -= qntdescartar
-			if pers.inventario[x].quantidade == 0:
-				pers.inventario[x] = null
-			$descartar.hide()
-			break
-
-	# AVALIAR NECESSIDADE DO FOR Y E FOR Z
-	for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
-		if pers.itenshotkey[y] != null and pers.itenshotkey[y] == pers.inventario[indice]:
-			pers.itenshotkey[y] = null
-			break
-
-	for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
-		if z.pers.inventario[indice] == pers.inventario[indice]:
-			z.item = null
-			break
-			
-	if pers.arma_atual == pers.inventario[indice]:
-		pers.arma_atual = pers.mlivre
-	pers.inventario.erase(indice)
-	UI.atualizarslotsUI()
-	UI.atualizarinventarioUI()
-
-
-#func _on_botaolargar_pressed() -> void:
-	#var qntlargar = int($largar/vbc/SpinBox.value)
-	#var itemdrop: itens
-	#
-	#for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
-		#if pers.inventario[x] != null and pers.inventario[x] == pers.inventario[indice]:
-			#pers.inventario[x].quantidade -= qntlargar
-			#if pers.inventario[x].quantidade == 0:
-				#pers.inventario[x] = null
-			#$largar.hide()
-			#break
-#
-	#for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
-		#if pers.itenshotkey[y] != null and pers.itenshotkey[y].quantidade == 0:
-			#pers.itenshotkey[y] = null
-			#break
-	#
-	#var drop = pers.itemdrop.instantiate()
-	#drop.item = pers.inventario[indice].duplicate(true)
-	#drop.position = pers.position
-	#drop.item.quantidade = qntlargar
-	#get_tree().get_root().get_node("main").add_child(drop) # spawnar item dropado nesse nodo
-	#print("dropou arma pelo menu: arma > ", pers.arma_atual.nome_item)
-	#
-	#if pers.arma_atual == pers.inventario[indice]:
-		#pers.arma_atual = pers.mlivre
-	#pers.inventario.erase(indice)
-	#UI.atualizarslotsUI()
-	#UI.atualizarinventarioUI()
-	
-	
-	
-	pass # Replace with function body.

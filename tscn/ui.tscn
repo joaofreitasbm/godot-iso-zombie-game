@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d2o3afnlnpfk0"]
+[gd_scene load_steps=36 format=3 uid="uid://d2o3afnlnpfk0"]
 
 [ext_resource type="Script" uid="uid://crnjk1l18umy8" path="res://scripts/inventario/ui.gd" id="1_sn5al"]
 [ext_resource type="PackedScene" uid="uid://b5ho1ri640hdk" path="res://tscn/equip_esq_inf.tscn" id="2_agrgj"]
@@ -80,6 +80,11 @@ bg_color = Color(0.6, 0.6, 0.6, 0.39607844)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66i46"]
 bg_color = Color(0.47058824, 0.02745098, 0.74509805, 1)
+
+[sub_resource type="Theme" id="Theme_8x36r"]
+default_font_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pt8y"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -608,8 +613,8 @@ mouse_filter = 2
 
 [node name="submenu" type="PopupPanel" parent="contador"]
 oversampling_override = 1.0
-position = Vector2i(360, 350)
-size = Vector2i(170, 205)
+position = Vector2i(250, 350)
+size = Vector2i(175, 123)
 visible = true
 
 [node name="vbc" type="VBoxContainer" parent="contador/submenu"]
@@ -618,18 +623,11 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
-offset_top = -201.0
+offset_top = -119.0
 offset_right = -4.0
 offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
-alignment = 2
-
-[node name="titulo" type="Label" parent="contador/submenu/vbc"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Materiais obtidos:"
-vertical_alignment = 1
 
 [node name="texto" type="Label" parent="contador/submenu/vbc"]
 custom_minimum_size = Vector2(0, 60)
@@ -641,10 +639,13 @@ vertical_alignment = 1
 layout_mode = 2
 focus_mode = 2
 focus_behavior_recursive = 2
+theme = SubResource("Theme_8x36r")
+theme_override_styles/field_and_buttons_separator = SubResource("StyleBoxFlat_1pt8y")
 value = 1.0
 
 [node name="botao" type="Button" parent="contador/submenu/vbc"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 text = "teste"
 
 [connection signal="pressed" from="contador/submenu/vbc/botao" to="." method="_on_botao_contador_pressed"]

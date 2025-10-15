@@ -150,21 +150,9 @@ func _physics_process(delta: float) -> void:
 
 	#dropar arma atual
 	if Input.is_action_just_pressed("G"): 
-		
-		# Se a arma atual não for nulo
-		if arma_atual != null:
-			var drop = itemdrop.instantiate()
-			drop.item = arma_atual.duplicate(true)
-			drop.position = position
-			get_parent().add_child(drop) # spawnar item dropado nesse nodo
-			for x in slots:
-				if arma_atual == slots[x]:
-					inventario.erase(slots[x]) # apaga do inventario
-					slots[x] = null # remove da hotkey atual
-					arma_atual = null
-					equipado = false
-			UI.atualizarinventarioUI()
-			UI.atualizarslotsUI()
+		largar_item(arma_atual)
+		UI.atualizarinventarioUI()
+		UI.atualizarslotsUI()
 
 
 	# guardar item ## MUDAR PRA ALTERNAR ENTRE PRIMARIA E SECUNDARIA, E SE SEGURAR, GUARDAR ARMA
@@ -350,16 +338,40 @@ func largar_item(item: itens) -> bool:
 		return false #porque a função já tá aberta e ela vai tomar a frente a partir de lá
 		
 	# FUNÇÃO DE SPAWN ITEM
-	pers.inventario.erase(item)
+	_executar_largar(item, 1)
 	UI.atualizarinventarioUI()
 	return true
+
+
+func descartar_item(item: itens) -> bool:
+	# Checar se o item é null
+	if item == null:
+		return false
+	
+	# Checar se está equipado
+	if item == slots["primaria"]:
+		slots["primaria"] = null
+	elif item == slots["secundaria"]:
+		slots["secundaria"] = null
+	UI.atualizarslotsUI()
+	
+	# Checar se o item é stackavel
+	if item.stackavel and item.quantidade > 1:
+		UI._abrir_contador(item, "descartar")
+		return false #porque a função já tá aberta e ela vai tomar a frente a partir de lá
 		
-	# FIM DA FUNÇÃO
+	# Se não é stackável, ou é só 1 item, larga direto
+	_executar_descartar(item, 1)
+	return true
 
 
 func _on_resultado_contador(quantidade: int, acao: String, item: Variant) -> void:
 	print("Recebido do contador ->", quantidade, acao, item)
 	if acao == "largar":
+		_executar_largar(item, quantidade)
+		print("_on_ui_resultado_contador")
+	
+	if acao == "descartar":
 		_executar_largar(item, quantidade)
 		print("_on_ui_resultado_contador")
 
@@ -385,15 +397,27 @@ func _executar_largar(item: itens, qtd: int) -> void:
 	UI.atualizarinventarioUI()
 
 
+func _executar_descartar(item: itens, qtd: int) -> void:
+	print("_executar_descartar")
+	if qtd < 1 or item == null:
+		return
+	
+	# Diminui a quantidade no inventário
+	item.quantidade -= qtd
+	
+	# Se a quantidade original zerou, remove do inventário
+	if item.quantidade <= 0:
+		pers.inventario.erase(item)
+	
+	UI.atualizarinventarioUI()
+
+
 func _drop_item_no_mundo(item: itens) -> void:
 	print("drop item no mundo")
 	var drop = preload("res://tscn/item.tscn").instantiate()
-	drop.item = item.duplicate(true)
-	
-	var pos = pers.global_transform.origin + pers.global_transform.basis.z * -1.0
-	drop.global_transform.origin = pos
-	
-	get_tree().current_scene.add_child(drop)
+	drop.item = item # não precisa ser duplicado porque já foi
+	drop.position = position
+	get_parent().add_child(drop)
 
 
 

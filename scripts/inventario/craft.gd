@@ -63,8 +63,6 @@ func _on_botaocraftar_pressed() -> void:
 	for receita in craftar:
 		var encontrou := false
 		for item in pers.inventario:
-			if item == null:
-				continue
 			if item.nome_item == receita.nome_item and item.quantidade >= receita.quantidade:
 				encontrou = true
 				break
@@ -74,29 +72,22 @@ func _on_botaocraftar_pressed() -> void:
 
 	if not pode_craftar:
 		print("⚠️ Faltam materiais para craftar!")
-		$erro.clear()
-		$erro.add_item("Faltam materiais pra craftar!")
-		$erro.popup()
+		mostrar_erro("Faltam materiais pra craftar!")
 		return
 
 	# 2️⃣ Consumir os materiais necessários
 	for receita in craftar:
-		for i in range(len(pers.inventario)):
+		for i in range(pers.inventario.size()):
 			var inv_item = pers.inventario[i]
-			if inv_item == null:
-				continue
 			if inv_item.nome_item == receita.nome_item:
 				inv_item.quantidade -= receita.quantidade
 				if inv_item.quantidade <= 0:
-					pers.inventario[i] = null
+					pers.inventario.remove_at(i)
 				break
 
-	# 3️⃣ Adicionar o item craftado ao primeiro slot vazio
+	# 3️⃣ Encontrar a receita e preparar o item craftado
 	var item_craftado: Resource = null
-
-	# 🔍 Encontra o item que gerou a lista craftar
 	for receita in pers.lista_de_receitas:
-		# se o tipo da aba de craft for igual ao tipo da receita
 		if receita.tipo_receita == get_child(current_tab).name:
 			item_craftado = receita.item_craftado.duplicate(true)
 			break
@@ -105,15 +96,18 @@ func _on_botaocraftar_pressed() -> void:
 		print("❌ Nenhum item resultante encontrado pra essa receita!")
 		return
 
-	# 🧩 Coloca o item no primeiro slot vazio
-	for i in range(len(pers.inventario)):
-		if pers.inventario[i] == null:
-			pers.inventario[i] = item_craftado.duplicate(true)
-			print("✅ Item craftado:", item_craftado.nome_item, "adicionado no slot", i)
-			UI.atualizarinventarioUI()
-			$craftar.hide()
-			return
+	# 4️⃣ Verificar espaço no inventário
+	if pers.inventario.size() >= pers.inventario_max:
+		print("⚠️ Inventário cheio! Não é possível adicionar o item craftado.")
+		mostrar_erro("Inventário cheio! Não há espaço para o item craftado.")
+		return
 
-	# 4️⃣ Caso o inventário esteja cheio
-	print("⚠️ Inventário cheio! Não é possível adicionar o item craftado.")
+	# 5️⃣ Adicionar o item craftado
+	pers.inventario.append(item_craftado)
+	UI.atualizarinventarioUI()
+	$craftar.hide()
+
+func mostrar_erro(msg: String) -> void:
+	$erro.clear()
+	$erro.add_item(msg)
 	$erro.popup()

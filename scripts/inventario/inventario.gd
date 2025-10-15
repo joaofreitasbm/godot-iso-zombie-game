@@ -1,133 +1,80 @@
 extends PanelContainer
 
 @onready var pers: CharacterBody3D = $"../../../.."
-@onready var item: itens 
-
 var reciclar: Array[itens]
 var skip: bool = false
 @onready var UI: Control = $"../../.."
+var indice: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	indice = int(self.name) - 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if !skip:
+	if skip: return
+	if pers.inventario.is_empty() or indice >= pers.inventario.size():
+		$Button/nome.text = "Vazio"
+		$Button/tipo.text = "-"
+		$Button/nome.add_theme_color_override("font_color", Color(0.248, 0.248, 0.248, 1.0))
+		$Button/tipo.add_theme_color_override("font_color", Color(0.248, 0.248, 0.248, 1.0))
 		
-		# Atribui slot do inventario à variavel item
-		if pers.inventario[int(self.name) - 1] == null:
-			item = null
-			$Button/nome.text = "Vazio"
-			$Button/tipo.text = "-"
-			$Button/nome.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
-			$Button/tipo.add_theme_color_override("font_color",  Color(0.248, 0.248, 0.248, 1.0))
-			
-		if pers.inventario[int(self.name) - 1] != null:
-			item = pers.inventario[int(self.name) - 1]
-			$Button/nome.text = str(item.nome_item)
-			$Button/tipo.text = str(item.tipo)
-			if item.stackavel and item.quantidade > 1:
-				$Button/nome.text = str(item.nome_item, " x", item.quantidade)
-			$Button/nome.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
-			$Button/tipo.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0)) 
-			
-		skip = true
+	else: 
+		$Button/nome.text = str(pers.inventario[indice].nome_item)
+		$Button/tipo.text = str(pers.inventario[indice].tipo)
+		if pers.inventario[indice].stackavel and pers.inventario[indice].quantidade > 1:
+			$Button/nome.text = "%s x%d" % [pers.inventario[indice].nome_item, pers.inventario[indice].quantidade]
+		$Button/nome.add_theme_color_override("font_color", Color(1, 1, 1))
+		$Button/tipo.add_theme_color_override("font_color", Color(1, 1, 1))
+	
+	skip = true
 
 
 func _on_button_pressed() -> void: # apertou em algum item do MENU
-	for x in pers.inventario:
-		if x != null and x == item:
-			$submenu.clear()
-			if item.tipo == "Arma de fogo" or item.tipo == "Corpo a corpo":
-				
-				$submenu.add_item(str("Equipar como primaria"))
-				$submenu.add_item(str("Equipar como secundaria"))
-			$submenu.add_item("Largar")
-			$submenu.add_item("Descartar")
-			if item.reciclavel:
-				$submenu.add_item("Reciclar")
-			if item.tipo == "Consumivel":
-				$submenu.add_item("Equipar no atalho")
-			$submenu.position = get_global_mouse_position() - Vector2(65, 0)
-			$submenu.popup()
+	if indice < pers.inventario.size():
+		$submenu.clear()
+		if pers.inventario[indice].tipo == "Arma de fogo" or pers.inventario[indice].tipo == "Corpo a corpo":
+			$submenu.add_item(str("Equipar como primaria"))
+			$submenu.add_item(str("Equipar como secundaria"))
+		$submenu.add_item("Largar")
+		$submenu.add_item("Descartar")
+		if pers.inventario[indice].reciclavel:
+			$submenu.add_item("Reciclar")
+		if pers.inventario[indice].tipo == "Consumivel":
+			$submenu.add_item("Equipar no atalho")
+		$submenu.position = get_global_mouse_position() - Vector2(65, 0)
+		$submenu.popup()
 			
 
 
-func _on_submenu_id_pressed(id: int) -> void: # apertou em algum item do botão do SUBMENU
+func _on_submenu_id_pressed(id: int) -> void:
 	var aux = $submenu.get_item_text(id)
-	
-	if aux == str("Equipar como primaria"):
-		if pers.slots["primaria"] != null:
-			if pers.slots["primaria"] == item:
-				pers.slots["primaria"] = null
-				UI.atualizarslotsUI()
-				return
-			if pers.slots["primaria"] != item:
-				pers.slots["primaria"] = item
-				UI.atualizarslotsUI()
-				return
-		if pers.slots["primaria"] == null:
-			pers.slots["primaria"] = item
+
+	if aux == "Equipar como primaria":
+		if pers.slots["primaria"] != null and pers.slots["primaria"] == pers.inventario[indice]:
+			pers.slots["primaria"] = null
+		else:
+			pers.slots["primaria"] = pers.inventario[indice]
 			pers.arma_atual = pers.slots["primaria"]
 			pers.equipado = true
-			UI.atualizarslotsUI()
-			
-	
-	if aux == str("Equipar como secundaria"):
-		if pers.slots["secundaria"] == item:
+		UI.atualizarslotsUI()
+
+
+	if aux == "Equipar como secundaria":
+		if pers.slots["secundaria"] != null and pers.slots["secundaria"] == pers.inventario[indice]:
 			pers.slots["secundaria"] = null
-			UI.atualizarslotsUI()
-			return
-		if pers.slots["secundaria"] == null:
-			pers.slots["secundaria"] = item
+		else:
+			pers.slots["secundaria"] = pers.inventario[indice]
 			pers.arma_atual = pers.slots["secundaria"]
 			pers.equipado = true
-			UI.atualizarslotsUI()
+		UI.atualizarslotsUI()
+
 
 	if aux == "Largar":
-		
-		if !item.stackavel:
-			for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
-				if pers.inventario[x] != null and pers.inventario[x] == item:
-					print(aux, ", item removido do inventário: ", item)
-					pers.inventario[x] = null
-					break
-			for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
-				if pers.itenshotkey[y] != null and pers.itenshotkey[y] == item:
-					print(aux, ", item removido da hotkey")
-					pers.itenshotkey[y] = null
-					break
-			for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
-				if z.item == item:
-					z.item = null
-					print(aux, ", item removido da UI da hotkey")
-					break
-			var drop = pers.itemdrop.instantiate()
-			drop.item = item.duplicate(true)
-			drop.position = pers.position
-			get_tree().get_root().get_node("main").add_child(drop) # spawnar item dropado nesse nodo
-			print("dropou arma pelo menu: arma > ", pers.arma_atual.nome_item)
-			if pers.arma_atual == item:
-				pers.arma_atual = pers.mlivre
-			item = null
-			print("função rodou completamente")
-			UI.atualizarinventarioUI()
-			UI.atualizarslotsUI()
-			return
-		
-		if item.stackavel:
-			# Se selecionar função descartar de dentro do menu, abre submenus pra selecionar quantidade
-			$largar.position = get_global_mouse_position() - Vector2(65, 0)
-			$largar/vbc/textolargar.text = item.nome_item
-			$largar/vbc/botaolargar.hide()
-			$largar/vbc/botaolargar.show()
-			$largar/vbc/SpinBox.show()
-			$largar/vbc/SpinBox.min_value = 1
-			$largar/vbc/SpinBox.max_value = item.quantidade
-			$largar.show()
-			# AQUI ABRE O COMANDO DE APERTAR NO BOTÃO DE DESCARTAR. CÓDIGO MAIS ABAIXO
+		print("largar inventario")
+		print(pers.inventario[indice].nome_item)
+		pers.largar_item(pers.inventario[indice])
 
 
 	if aux == "Reciclar": ## EM ANDAMENTO
@@ -137,9 +84,9 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou em algum item do botão 
 		reciclar.clear() 
 		$reciclar.position = Vector2(global_position.x, global_position.y + 25)
 		var texto = ""
-		for x in item.material_reciclado:
+		for x in pers.inventario[indice].material_reciclado:
 			texto += (str("\n", x.nome_item, ", x",x.quantidade))
-			reciclar.push_front(x)
+			reciclar.append(x)
 		$reciclar/vbc/titulo.text = "Materiais obtidos:"
 		$reciclar/vbc/textoreciclar.text = texto
 		$reciclar/vbc/botaoreciclar.text = "Clique aqui para reciclar"
@@ -152,49 +99,49 @@ func _on_submenu_id_pressed(id: int) -> void: # apertou em algum item do botão 
 
 	if aux == "Descartar":
 		
-		if !item.stackavel:
+		if !pers.inventario[indice].stackavel:
 			for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
-				if pers.inventario[x] != null and pers.inventario[x] == item:
+				if pers.inventario[x] != null and pers.inventario[x] == pers.inventario[indice]:
 					pers.inventario[x] = null
 					break
 
 			for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
-				if pers.itenshotkey[y] != null and pers.itenshotkey[y] == item:
+				if pers.itenshotkey[y] != null and pers.itenshotkey[y] == pers.inventario[indice]:
 					pers.itenshotkey[y] = null
 					break
 
 			for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
-				if z.item == item:
+				if z.item == pers.inventario[indice]:
 					z.item = null
 					break
 
-			if pers.arma_atual == item:
+			if pers.arma_atual == pers.inventario[indice]:
 				pers.arma_atual = pers.mlivre
-			item = null
+			pers.inventario.erase(indice)
 			UI.atualizarslotsUI()
 			UI.atualizarinventarioUI()
 			return
 
-		if item.stackavel:
+		if pers.inventario[indice].stackavel:
 			# Se selecionar função descartar de dentro do menu, abre submenus pra selecionar quantidade
 			$descartar.position = get_global_mouse_position() - Vector2(65, 0)
-			$descartar/vbc/textodescartar.text = item.nome_item
+			$descartar/vbc/textodescartar.text = pers.inventario[indice].nome_item
 			$descartar/vbc/botaodescartar.hide()
 			$descartar/vbc/botaodescartar.show()
 			$descartar/vbc/SpinBox.show()
 			$descartar/vbc/SpinBox.min_value = 1
-			$descartar/vbc/SpinBox.max_value = item.quantidade
+			$descartar/vbc/SpinBox.max_value = pers.inventario[indice].quantidade
 			$descartar.show()
 			# AQUI ABRE O COMANDO DE APERTAR NO BOTÃO DE DESCARTAR. CÓDIGO MAIS ABAIXO
 
 func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por cima do inventario
-	if item != null:
+	if indice < pers.inventario.size():
 		$hover.clear()
-		$hover.add_item(str("Dano: ", item.dano))
-		$hover.add_item(str("DPS: ", item.velocidade_ataque))
-		$hover.add_item(str("Stackavel: ", item.stackavel))
-		$hover.add_item(str("Quantidade: ", item.quantidade))
-		$hover.add_item(str("Modo de disparo: ", "Auto" if item.semiauto == false else "Semiauto"))
+		$hover.add_item(str("Dano: ", pers.inventario[indice].dano))
+		$hover.add_item(str("DPS: ", pers.inventario[indice].velocidade_ataque))
+		$hover.add_item(str("Stackavel: ", pers.inventario[indice].stackavel))
+		$hover.add_item(str("Quantidade: ", pers.inventario[indice].quantidade))
+		$hover.add_item(str("Modo de disparo: ", "Auto" if pers.inventario[indice].semiauto == false else "Semiauto"))
 		$hover.add_item(str("Durabilidade: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
 		$hover.add_item(str("Munição usada: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
 		$hover.add_item(str("Peso: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
@@ -208,74 +155,16 @@ func hover_off() -> void: # Esconde informações dos itens ao tirar o mouse de 
 
 # lógica da reciclagem
 func _on_botaoreciclar_pressed() -> void: 
-	print("BOTÃO reciclar APERTADO")
-
-	# Pega o limite máximo de slots do inventário
-	var inv_max = UI.invmax
-
-	# Conta quantos slots estão vazios
-	var slots_vazios := 0
-	for i in pers.inventario:
-		if i == null:
-			slots_vazios += 1
-
-	# Conta quantos itens reciclados não são stackáveis
-	var itens_nao_stackaveis: int = 0
-	var itens_stackaveis: int = 0
-	for i in reciclar:
-		if not i.stackavel:
-			itens_nao_stackaveis += i.quantidade
-		if i.stackavel:
-			itens_stackaveis += i.quantidade
-
-	# Calcula se há espaço suficiente no inventário
-	var ocupados = pers.inventario.size() - slots_vazios # 20slot - 8slot vazios = 12slot ocupados
-	var total_previsto = ocupados + itens_nao_stackaveis + itens_stackaveis
-	print("slots ocupados = ", ocupados, "\n",
-	"não stackaveis: ", itens_nao_stackaveis, "\n",
-	"stackaveis: ", itens_stackaveis, "\n",
-	"total de slots previstos pra operação: ", total_previsto)
-
-	if total_previsto > inv_max:
-		$erro.position = get_global_mouse_position() - Vector2(65, 0)
-		$erro.popup()
-		print("Inventário cheio! Não há espaço suficiente para reciclar.")
-		return
-
-	# Continua normalmente se houver espaço
 	for x in reciclar:
-		if x.stackavel: # SE O ITEM FOR STACKAVEL
-			for y in range(len(pers.inventario)):
-				if pers.inventario[y] == null:
-					pers.inventario[y] = x
-					break
-				if pers.inventario[y] == x:
-					pers.inventario[y].quantidade += x.quantidade
-					break
-		if !x.stackavel: # SE O ITEM NÃO FOR STACKAVEL
-			var qntitensnaostack: int = 0
-			for y in range(len(pers.inventario)):
-				if pers.inventario[y] == null:
-					pers.inventario[y] = x.duplicate(true)
-					pers.inventario[y].quantidade = 1
-					print("item adicionado! ", pers.inventario[y].nome_item, pers.inventario[y].quantidade)
-					qntitensnaostack += 1
-					print(qntitensnaostack, " ", itens_nao_stackaveis)
-					if x.quantidade == qntitensnaostack:
-						print("parou loop")
-						break
+		pers.adicionar_item(x.duplicate(true))
 
-	# Remove o item original que foi reciclado
-	for i in range(len(pers.inventario)):
-		if pers.inventario[i] == item:
-			pers.inventario[i] = null
-			break
+	if indice < pers.inventario.size():
+		pers.inventario.remove_at(indice)
 
-	# Limpa e atualiza a UI
 	reciclar.clear()
 	$reciclar.hide()
 	UI.atualizarinventarioUI()
-	print($reciclar/vbc/SpinBox.value)
+
 
 
 func _on_botaodescartar_pressed() -> void:
@@ -283,7 +172,7 @@ func _on_botaodescartar_pressed() -> void:
 	var qntdescartar = int($descartar/vbc/SpinBox.value)
 	
 	for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
-		if pers.inventario[x] != null and pers.inventario[x] == item:
+		if pers.inventario[x] != null and pers.inventario[x] == pers.inventario[indice]:
 			pers.inventario[x].quantidade -= qntdescartar
 			if pers.inventario[x].quantidade == 0:
 				pers.inventario[x] = null
@@ -292,51 +181,51 @@ func _on_botaodescartar_pressed() -> void:
 
 	# AVALIAR NECESSIDADE DO FOR Y E FOR Z
 	for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
-		if pers.itenshotkey[y] != null and pers.itenshotkey[y] == item:
+		if pers.itenshotkey[y] != null and pers.itenshotkey[y] == pers.inventario[indice]:
 			pers.itenshotkey[y] = null
 			break
 
 	for z in %hotkeycontainer.get_children(): # Itera sobre cada item da UI HOTKEY
-		if z.item == item:
+		if z.pers.inventario[indice] == pers.inventario[indice]:
 			z.item = null
 			break
 			
-	if pers.arma_atual == item:
+	if pers.arma_atual == pers.inventario[indice]:
 		pers.arma_atual = pers.mlivre
-	item = null
+	pers.inventario.erase(indice)
 	UI.atualizarslotsUI()
 	UI.atualizarinventarioUI()
 
 
-func _on_botaolargar_pressed() -> void:
-	var qntlargar = int($largar/vbc/SpinBox.value)
-	var itemdrop: itens
-	
-	for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
-		if pers.inventario[x] != null and pers.inventario[x] == item:
-			pers.inventario[x].quantidade -= qntlargar
-			if pers.inventario[x].quantidade == 0:
-				pers.inventario[x] = null
-			$largar.hide()
-			break
-
-	for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
-		if pers.itenshotkey[y] != null and pers.itenshotkey[y].quantidade == 0:
-			pers.itenshotkey[y] = null
-			break
-	
-	var drop = pers.itemdrop.instantiate()
-	drop.item = item.duplicate(true)
-	drop.position = pers.position
-	drop.item.quantidade = qntlargar
-	get_tree().get_root().get_node("main").add_child(drop) # spawnar item dropado nesse nodo
-	print("dropou arma pelo menu: arma > ", pers.arma_atual.nome_item)
-	
-	if pers.arma_atual == item:
-		pers.arma_atual = pers.mlivre
-	item = null
-	UI.atualizarslotsUI()
-	UI.atualizarinventarioUI()
+#func _on_botaolargar_pressed() -> void:
+	#var qntlargar = int($largar/vbc/SpinBox.value)
+	#var itemdrop: itens
+	#
+	#for x in range(len(pers.inventario)): # Itera sobre cada item do INVENTÁRIO
+		#if pers.inventario[x] != null and pers.inventario[x] == pers.inventario[indice]:
+			#pers.inventario[x].quantidade -= qntlargar
+			#if pers.inventario[x].quantidade == 0:
+				#pers.inventario[x] = null
+			#$largar.hide()
+			#break
+#
+	#for y in range(len(pers.itenshotkey)): # Itera sobre cada item do HOTKEY
+		#if pers.itenshotkey[y] != null and pers.itenshotkey[y].quantidade == 0:
+			#pers.itenshotkey[y] = null
+			#break
+	#
+	#var drop = pers.itemdrop.instantiate()
+	#drop.item = pers.inventario[indice].duplicate(true)
+	#drop.position = pers.position
+	#drop.item.quantidade = qntlargar
+	#get_tree().get_root().get_node("main").add_child(drop) # spawnar item dropado nesse nodo
+	#print("dropou arma pelo menu: arma > ", pers.arma_atual.nome_item)
+	#
+	#if pers.arma_atual == pers.inventario[indice]:
+		#pers.arma_atual = pers.mlivre
+	#pers.inventario.erase(indice)
+	#UI.atualizarslotsUI()
+	#UI.atualizarinventarioUI()
 	
 	
 	

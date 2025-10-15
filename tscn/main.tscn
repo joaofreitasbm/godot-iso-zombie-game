@@ -528,5 +528,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.778038, 1, 6.3238077)
 item = SubResource("Resource_13evn")
 
 [connection signal="timeout" from="spawn inimigo/Timer" to="spawn inimigo" method="_on_timer_timeout"]
-
-[editable path="pers"]

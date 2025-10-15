@@ -16,8 +16,8 @@ func _process(delta: float) -> void:
 
 		for x in pers.slots:
 			if x == str(self.name) and pers.slots[x] == null:
-				#self.icon = slotvazio
 				$Label.text = ""
+				self.icon = slotvazio
 				return
 				
 			if x == str(self.name) and pers.slots[x] != null:

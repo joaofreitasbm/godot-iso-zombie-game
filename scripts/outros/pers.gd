@@ -15,10 +15,8 @@ var ultimoalvo
 
 # Inventario/UI
 @export var inventario: Array[itens]
-@export var itenshotkey: Array[itens]
+@onready var inventario_max: int = 20
 var lista_de_receitas: Array[itens]
-
-
 @export var slots: Dictionary[String, Resource] = {
 	"primaria": null,
 	"secundaria": null,
@@ -27,11 +25,12 @@ var lista_de_receitas: Array[itens]
 	"hotkey3": null,
 }
 
-var arma_atual
+@onready var arma_atual
 
+@onready var pers = self
 @onready var hotkey: int = 0
 @onready var inventarioUI: VBoxContainer = $"UI/invcontainer/Inventário [TAB]"
-@onready var hotkeyUI: HBoxContainer = $UI/fundo/hotkeycontainer
+@onready var slotsUI: VBoxContainer = $UI/hud_slots
 @onready var UI: Control = $UI
 
 #var mlivre: itens = preload("res://resources/armas/maos livres.tres")
@@ -51,8 +50,9 @@ var sanidade: int = 100
 var debuffs: Array[Resource] ## AVALIAR NECESSIDADE DE FAZER UMA CLASSE DE DEBUFFS
 
 
+
 func _ready() -> void:
-	pass
+	UI.connect("resultado_contador", Callable(self, "_on_resultado_contador"))
 
 
 func _physics_process(delta: float) -> void:
@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	#cam.look_at(position)
 	
 
-	
+	# lógica de movimentação:
 	if not is_on_floor(): velocity += get_gravity() * delta
 	var input_dir: Vector2 = Input.get_vector("A", "D", "W", "S")
 	var sentidocamera = cam.global_transform.basis.get_euler().y
@@ -122,13 +122,14 @@ func _physics_process(delta: float) -> void:
 		else: return
 
 
-
-
 	# fechar jogo
 	if Input.is_action_just_pressed("esc"):
 		get_tree().quit()
-		
-	if Input.is_action_just_pressed("R"): itenshotkey[hotkey].recarregar(self, UI)
+
+
+	if Input.is_action_just_pressed("R") and arma_atual != null:
+		arma_atual.recarregar(self, UI)
+
 
 	if Input.is_action_just_pressed("E"): interagir = true; print(interagir)
 	if Input.is_action_just_released("E"): interagir = false; print(interagir)
@@ -147,27 +148,23 @@ func _physics_process(delta: float) -> void:
 		get_tree().get_root().get_node("main").add_child(inim)
 
 
-	#dropar item
+	#dropar arma atual
 	if Input.is_action_just_pressed("G"): 
+		
+		# Se a arma atual não for nulo
 		if arma_atual != null:
-			for x in itenshotkey:
-				if x != null and arma_atual == x:
-					inventario.erase(x) # apaga do inventario
-					itenshotkey[hotkey] = null # remove da hotkey atual
-					for y in $"UI/invcontainer/Inventário [TAB]".get_children(): # retorna os PanelContainers 
-						if y is PanelContainer and y.item == arma_atual:
-							y.item = null
-							break
-					for z in $UI/fundo/hotkeycontainer.get_children():
-						if z.item == arma_atual:
-							z.item = null
-							break
-					var drop = itemdrop.instantiate()
-					drop.item = arma_atual.duplicate(true)
-					drop.position = position
-					get_parent().add_child(drop) # spawnar item dropado nesse nodo
+			var drop = itemdrop.instantiate()
+			drop.item = arma_atual.duplicate(true)
+			drop.position = position
+			get_parent().add_child(drop) # spawnar item dropado nesse nodo
+			for x in slots:
+				if arma_atual == slots[x]:
+					inventario.erase(slots[x]) # apaga do inventario
+					slots[x] = null # remove da hotkey atual
 					arma_atual = null
 					equipado = false
+			UI.atualizarinventarioUI()
+			UI.atualizarslotsUI()
 
 
 	# guardar item ## MUDAR PRA ALTERNAR ENTRE PRIMARIA E SECUNDARIA, E SE SEGURAR, GUARDAR ARMA
@@ -188,7 +185,8 @@ func _physics_process(delta: float) -> void:
 			$UI/invcontainer.current_tab = 0
 			UI.atualizarinventarioUI()
 			$UI/invcontainer.show()
-	
+
+
 			# Abrir inventário (ABA 2)
 	if Input.is_action_just_pressed("K"):
 		if $UI/invcontainer.visible == true:
@@ -211,8 +209,8 @@ func _physics_process(delta: float) -> void:
 
 
 
-	$UI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
-	$UI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual)
+	#$UI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
+	#$UI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual)
 
 	# se no inventario tiver a munição necessaria: true
 	# se nao tiver munição necessaria no inventario: false
@@ -257,10 +255,11 @@ func alvo2d():
 
 
 func mirar():
+	var alcance = 5 if arma_atual == null else arma_atual.alcance
 	circ.show()
 	$visual.look_at(alvo2d(), Vector3.UP)
 	raio.position = position
-	raio.target_position = ((alvo2d() - position).normalized() * arma_atual.alcance) #substituir ray_length pelo alcance da arma
+	raio.target_position = ((alvo2d() - position).normalized() * alcance) #substituir ray_length pelo alcance da arma
 	circ.position = alvo2d()
 	circ.position.y = alvo2d().y - 1
 	colmira = raio.get_collider()
@@ -289,22 +288,135 @@ func opacidade():
 		listaopac.clear()
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.as_text_key_label().is_valid_int() and event.pressed and not event.echo and event.keycode != 48:
-		var index := int(event.as_text_key_label()) - 1
-		if index < 0 or index >= len(itenshotkey):
-			return
+func adicionar_item(novo_item: itens) -> bool: # FUNCIONANDO EM TESTE
+	# Adiciona um item ao inventário, retornando true se conseguiu ou false se o inventário estiver cheio.
 
-		hotkey = index
-		$timers/timer.stop()
-		if itenshotkey[hotkey] == null:
-			equipado = false
-			arma_atual = null  # mlivre = sem arma
-			print("Desequipou arma do slot ", hotkey)
-			return
+	# 🔹 Verifica se é uma receita
+	if novo_item.tipo == "Receita":
+		lista_de_receitas.append(novo_item)
+		UI.atualizarcraftUI()
+		print("Receita adicionada: ", novo_item.nome_item)
+		return true
+
+	# 🔹 Verifica se há espaço
+	var slots_ocupados := inventario.size()
+	if slots_ocupados >= inventario_max:
+		print("Inventário cheio, não foi possível adicionar ", novo_item.nome_item)
+		return false
+
+	# 🔹 Se for stackável, tenta empilhar em um existente
+	if novo_item.stackavel:
+		for inv_item in inventario:
+			if inv_item.nome_item == novo_item.nome_item:
+				inv_item.quantidade += novo_item.quantidade
+				print("Empilhou ", novo_item.nome_item, " nova quantidade: ", inv_item.quantidade)
+				return true
+
+		# se não encontrou nenhum igual, adiciona como novo stack
+		inventario.append(novo_item.duplicate(true))
+		print("Novo stack criado: ", novo_item.nome_item)
+		return true
+
+	# 🔹 Se não for stackável, adiciona cada unidade separadamente
+	for i in range(novo_item.quantidade):
+		if inventario.size() < inventario_max:
+			var copia := novo_item.duplicate(true)
+			copia.quantidade = 1
+			inventario.append(copia)
+			print("Item não stackável adicionado: ", copia.nome_item)
+		else:
+			print("Inventário cheio durante adição de não stackáveis.")
+			return false
+
+	return true
 
 
-		if itenshotkey[hotkey] != null:
-			equipado = true
-			arma_atual = itenshotkey[hotkey]
-			print("Equipou arma: ", arma_atual.nome_item, " no slot ", hotkey)
+
+func largar_item(item: itens) -> bool:
+	# Checar se o item é null
+	if item == null:
+		return false
+	
+	# Checar se está equipado
+	if item == slots["primaria"]:
+		slots["primaria"] = null
+	elif item == slots["secundaria"]:
+		slots["secundaria"] = null
+	UI.atualizarslotsUI()
+	
+	# Checar se o item é stackavel
+	if item.stackavel and item.quantidade > 1:
+		UI._abrir_contador(item, "largar")
+		return false #porque a função já tá aberta e ela vai tomar a frente a partir de lá
+		
+	# FUNÇÃO DE SPAWN ITEM
+	pers.inventario.erase(item)
+	UI.atualizarinventarioUI()
+	return true
+		
+	# FIM DA FUNÇÃO
+
+
+func _on_resultado_contador(quantidade: int, acao: String, item: Variant) -> void:
+	print("Recebido do contador ->", quantidade, acao, item)
+	if acao == "largar":
+		_executar_largar(item, quantidade)
+		print("_on_ui_resultado_contador")
+
+
+func _executar_largar(item: itens, qtd: int) -> void:
+	print("_executar_largar")
+	if qtd < 1 or item == null:
+		return
+	
+	# Diminui a quantidade no inventário
+	item.quantidade -= qtd
+	
+	# Duplica o item e define a nova quantidade
+	var novo_item = item.duplicate(true)
+	novo_item.quantidade = qtd
+	
+	_drop_item_no_mundo(novo_item)
+	
+	# Se a quantidade original zerou, remove do inventário
+	if item.quantidade <= 0:
+		pers.inventario.erase(item)
+	
+	UI.atualizarinventarioUI()
+
+
+func _drop_item_no_mundo(item: itens) -> void:
+	print("drop item no mundo")
+	var drop = preload("res://tscn/item.tscn").instantiate()
+	drop.item = item.duplicate(true)
+	
+	var pos = pers.global_transform.origin + pers.global_transform.basis.z * -1.0
+	drop.global_transform.origin = pos
+	
+	get_tree().current_scene.add_child(drop)
+
+
+
+
+
+
+
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventKey and event.as_text_key_label().is_valid_int() and event.pressed and not event.echo and event.keycode != 48:
+		#var index := int(event.as_text_key_label()) - 1
+		#if index < 0 or index >= len(itenshotkey):
+			#return
+#
+		#hotkey = index
+		#$timers/timer.stop()
+		#if itenshotkey[hotkey] == null:
+			#equipado = false
+			#arma_atual = null  # mlivre = sem arma
+			#print("Desequipou arma do slot ", hotkey)
+			#return
+
+
+		#if itenshotkey[hotkey] != null:
+			#equipado = true
+			#arma_atual = itenshotkey[hotkey]
+			#print("Equipou arma: ", arma_atual.nome_item, " no slot ", hotkey)

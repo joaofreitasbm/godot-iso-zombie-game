@@ -11,14 +11,14 @@ func _process(_delta: float) -> void:
 	
 	pass
 	
-	#$hp.text = str(
-		#"Health: ", get_node("/root/main/pers").vida, "\n",
-		#"Press E to change controls", "\n",
-		#"movement > WASD", "\n",
-		#"Aim > RMB", "\n",
-		#"Shoot > LMB", "\n", 
-		#"Run > shift", "\n", "\n",
-		#"Movement speed: ", get_node("/root/main/pers").velandar, "\n", "\n",
-		#"vsync off / FPS: ", Engine.get_frames_per_second()
-		#
-	#)
+	$hp.text = str(
+		"Health: ", get_node("/root/main/pers").vida, "\n",
+		"Press E to change controls", "\n",
+		"movement > WASD", "\n",
+		"Aim > RMB", "\n",
+		"Shoot > LMB", "\n", 
+		"Run > shift", "\n", "\n",
+		"Movement speed: ", get_node("/root/main/pers").velandar, "\n", "\n",
+		"vsync off / FPS: ", Engine.get_frames_per_second()
+		
+	)

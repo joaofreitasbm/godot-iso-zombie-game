@@ -145,7 +145,7 @@ func recarregar(pers, UI):
 				pers.inventario[x].quantidade -= diferenca # tira a qnt que falta da munição disponivel
 				qntatual = qntmaxima # enche o pente
 				UI.atualizarinventarioUI()
-				UI.atualizarequip_esq_infUI()
+				UI.atualizarslotsUI()
 				return
 
 			if pers.inventario[x].quantidade <= diferenca: # se munição disponivel <= o que falta no pente pra carregar:
@@ -154,9 +154,9 @@ func recarregar(pers, UI):
 				print("diferença: ", diferenca)
 				print("qnt atual: ", qntatual)
 				qntatual += pers.inventario[x].quantidade # soma o que tem disponivel à qnt atual
-				pers.inventario[x] = null # apaga item do inventario (não da UI)
+				pers.inventario.erase(pers.inventario[x]) # apaga item do inventario (não da UI)
 				UI.atualizarinventarioUI()
-				UI.atualizarequip_esq_infUI()
+				UI.atualizarslotsUI()
 				return
 
 	

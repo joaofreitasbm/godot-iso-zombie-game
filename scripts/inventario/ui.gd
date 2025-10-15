@@ -1,7 +1,19 @@
 extends Control
 
+# Referências
+@onready var submenu: PopupPanel = $contador/submenu
+@onready var texto: Label = $contador/submenu/vbc/texto
+@onready var spinbox: SpinBox = $contador/submenu/vbc/SpinBox
+@onready var botao: Button = $contador/submenu/vbc/botao
+
+
 @onready var pers: CharacterBody3D = get_tree().get_root().get_node("main/pers/")
-@onready var invmax: int = 20
+
+signal resultado_contador(quantidade: int, acao: String, item)
+
+# Variáveis auxiliares
+var acao_atual: String = ""
+var item_selecionado: itens = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,4 +52,32 @@ func atualizarslotsUI():
 
 
 
-		
+	
+func _abrir_contador(item: itens, acao: String):
+	print("contador aberto")
+	#variaveis auxiliares que foram declaradas no começo do código sendo usadas
+	acao_atual = acao
+	item_selecionado = item
+	
+	submenu.position = get_global_mouse_position() - Vector2(65, 0)
+	texto.text = "Quantos '" + item.nome_item + "' deseja " + acao + "?"
+	botao.hide()
+	botao.show()
+	spinbox.show()
+	spinbox.min_value = 1
+	spinbox.max_value = item.quantidade
+	spinbox.value = 1
+	botao.text = str("Clique aqui para ", acao)
+	submenu.show()
+	
+
+
+func _on_botao_contador_pressed() -> void:
+	print("botão pressionado")
+	var qtd = int(spinbox.value)
+	submenu.hide()
+	emit_signal("resultado_contador", qtd, acao_atual, item_selecionado)
+
+
+func _on_bucete_pressed() -> void:
+	print("bucete")

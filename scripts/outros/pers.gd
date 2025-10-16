@@ -23,6 +23,8 @@ var lista_de_receitas: Array[itens]
 	"hotkey1": null,
 	"hotkey2": null,
 	"hotkey3": null,
+	"hotkey4": null,
+	"hotkey5": null,
 }
 
 @onready var arma_atual
@@ -48,7 +50,6 @@ var sede: float = 100
 var fadiga: float = (fome + sede) / 2
 var sanidade: int = 100
 var debuffs: Array[Resource] ## AVALIAR NECESSIDADE DE FAZER UMA CLASSE DE DEBUFFS
-
 
 
 func _ready() -> void:
@@ -196,34 +197,10 @@ func _physics_process(delta: float) -> void:
 			$UI/invcontainer.show()
 
 
-
-	#$UI/hotkeys.text = str("slot atual: ", hotkey + 1, "\n", "hotkey: ", itenshotkey, itenshotkey[hotkey],"equipado: ", equipado)
-	#$UI/invlabel.text = str("inventario: ", inventario, "\n", "arma atual: ", arma_atual)
-
-	# se no inventario tiver a munição necessaria: true
-	# se nao tiver munição necessaria no inventario: false
-	
-	#for i in range(len(inventario)):
-		#print(inventario[i])
-		#if inventario[i] != null and inventario[i].municao != null and inventario[i].municao.tipo == inventario[i].tipo:
-			#$UI/info.text = str(
-				#"tem a munição no inventario. \n",
-				#"nome: ", arma_atual.municao.nome_item,"\n",
-				#"slot do inventario:", i)
-			#
-		#if inventario[i] == null:
-			#print("slot nulo: ", inventario[i])
-			#
-		#if arma_atual.municao != inventario[i]:
-			#$UI/info.text = str("nao tem a munição no inventario")
-			##print(" nao tem a municao no inventario ")
-			
-				
-	
-
 	if vida <= 0:
 		get_tree().reload_current_scene()
-
+		
+	$Label2.text = str(hotkey)
 
 func alvo2d(): 
 	mirando = true
@@ -423,24 +400,15 @@ func _drop_item_no_mundo(item: itens) -> void:
 
 
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.as_text_key_label().is_valid_int() and event.pressed and not event.echo and event.keycode != 48:
+		hotkey = int(event.as_text_key_label())
+		# ADICIONAR À FUNÇÃO QUE CONTROLA OS ITENS DA HOTKEY PRA ZERAR ESSA VARIAVEL QUANDO O ITEM FOR USADO
+		return
 
-
-#func _input(event: InputEvent) -> void:
-	#if event is InputEventKey and event.as_text_key_label().is_valid_int() and event.pressed and not event.echo and event.keycode != 48:
-		#var index := int(event.as_text_key_label()) - 1
-		#if index < 0 or index >= len(itenshotkey):
-			#return
-#
-		#hotkey = index
-		#$timers/timer.stop()
-		#if itenshotkey[hotkey] == null:
-			#equipado = false
-			#arma_atual = null  # mlivre = sem arma
-			#print("Desequipou arma do slot ", hotkey)
-			#return
-
-
-		#if itenshotkey[hotkey] != null:
-			#equipado = true
-			#arma_atual = itenshotkey[hotkey]
-			#print("Equipou arma: ", arma_atual.nome_item, " no slot ", hotkey)
+func usarhotkey(hotkey: int) -> void:
+	if hotkey:
+		slots[str("hotkey",hotkey)].usar_equipado()
+	hotkey = 0
+	pass
+   

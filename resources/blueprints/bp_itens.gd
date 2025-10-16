@@ -120,8 +120,9 @@ func usar_equipado(alvo, pers, UI):
 		pass
 	
 	if tipo == "Consumivel": #CONSUMIVEL
-		pers.vida += dano
-		#quantidade -= 1
+		if quantidade >= 1:
+			pers.vida += dano
+			quantidade -= 1
 		
 
 

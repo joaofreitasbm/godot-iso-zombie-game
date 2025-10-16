@@ -475,6 +475,7 @@ transform = Transform3D(2.035, 0, 0, 0, 2.035, 0, 0, 0, 2.035, -4.13157, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.998201, 0.93045604, -2.6995072)
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

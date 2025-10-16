@@ -51,7 +51,7 @@ func _on_button_pressed() -> void: # apertou em algum item do MENU
 func _on_submenu_id_pressed(id: int) -> void:
 	var aux = $submenu.get_item_text(id)
 
-	if aux == "Equipar como primaria":
+	if aux == "Equipar como primaria": # FUNCIONANDO
 		if pers.slots["primaria"] != null and pers.slots["primaria"] == pers.inventario[indice]:
 			pers.slots["primaria"] = null
 		else:
@@ -61,7 +61,7 @@ func _on_submenu_id_pressed(id: int) -> void:
 		UI.atualizarslotsUI()
 
 
-	if aux == "Equipar como secundaria":
+	if aux == "Equipar como secundaria": # FUNCIONANDO
 		if pers.slots["secundaria"] != null and pers.slots["secundaria"] == pers.inventario[indice]:
 			pers.slots["secundaria"] = null
 		else:
@@ -71,13 +71,13 @@ func _on_submenu_id_pressed(id: int) -> void:
 		UI.atualizarslotsUI()
 
 
-	if aux == "Largar":
+	if aux == "Largar": # REFATORADO
 		print("largar inventario")
 		print(pers.inventario[indice].nome_item)
 		pers.largar_item(pers.inventario[indice])
 
 
-	if aux == "Reciclar": ## EM ANDAMENTO
+	if aux == "Reciclar": # REFATORAR PRA PADRONIZAR O CÓDIGO
 		print("reciclagem começou")
 		
 		# Limpar e adicionar textos relacionados da UI
@@ -96,11 +96,25 @@ func _on_submenu_id_pressed(id: int) -> void:
 		UI.atualizarinventarioUI()
 
 
-
-	if aux == "Descartar":
+	if aux == "Descartar": # REFATORADO
 		print("descartar inventario")
 		print(pers.inventario[indice].nome_item)
 		pers.descartar_item(pers.inventario[indice])
+
+
+	if aux == "Equipar no atalho": # REFATORADO
+		# FALTA IMPLEMENTAR
+		# SE NÃO TIVER ATALHOS DISPONIVEIS, NÃO EXIBE
+		# SE TIVER SÓ UM ATALHO DISPONIVEL, ADICIONA O ITEM A ELE
+		# SE TIVER MAIS ATALHOS DISPONIVEIS, CONTA QUANTOS TEM
+		# PRA CADA ATALHO DISPONIVEL, DÁ UMA OPÇÃO
+		# EXEMPLO ("Equipar no slot 1", "Equipar no slot 2", etc)
+		
+		# TAMBÉM FAZER COM QUE, SE O ATALHO ESTIVER OCUPADO,
+		# AO CLICAR COM O BOTÃO DIREITO, DESEQUIPA
+		# VER SE, AO FICAR COM QNT ZERO, O INVENTARIO JÁ LIMPA O ITEM
+		# SE NÃO O FIZER, IMPLEMENTAR TAMBÉM
+		pass
 
 
 func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por cima do inventario

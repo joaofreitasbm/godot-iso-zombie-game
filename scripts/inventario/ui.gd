@@ -23,9 +23,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	## ADICIONAR SKIP
+	$barras/cont_vida/barra_vida.value = pers.vida
+	$barras/cont_folego/barra_vida.value = pers.stamina
+	$barras/cont_folego/barra_vida.max_value = (pers.fome + pers.sede) / 2
+	
 	$"invcontainer/Status [K]/VBoxContainer/saude/barra".value = pers.vida
 	$"invcontainer/Status [K]/VBoxContainer/folego/barra".value = pers.stamina
-	$"invcontainer/Status [K]/VBoxContainer/fadiga/barra".value = pers.fadiga
+	$"invcontainer/Status [K]/VBoxContainer/fadiga/barra".value = (pers.fome + pers.sede) / 2
 	$"invcontainer/Status [K]/VBoxContainer/fome/barra".value = pers.fome
 	$"invcontainer/Status [K]/VBoxContainer/sede/barra".value = pers.sede
 	$"invcontainer/Status [K]/VBoxContainer/sanidade/barra".value = pers.sanidade

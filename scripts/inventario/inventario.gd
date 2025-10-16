@@ -52,22 +52,35 @@ func _on_submenu_id_pressed(id: int) -> void:
 	var aux = $submenu.get_item_text(id)
 
 	if aux == "Equipar como primaria": # FUNCIONANDO
-		if pers.slots["primaria"] != null and pers.slots["primaria"] == pers.inventario[indice]:
+
+		# Se já está equipada como primária, desequipa
+		if pers.slots["primaria"] == pers.inventario[indice]:
 			pers.slots["primaria"] = null
+
 		else:
+			# Se já está equipada como secundária, remove de lá
+			if pers.slots["secundaria"] == pers.inventario[indice]:
+				pers.slots["secundaria"] = null
+
+			# Agora equipa como primária normalmente
 			pers.slots["primaria"] = pers.inventario[indice]
-			pers.arma_atual = pers.slots["primaria"]
+			pers.arma_atual = pers.inventario[indice]
 			pers.equipado = true
 		UI.atualizarslotsUI()
 
 
 	if aux == "Equipar como secundaria": # FUNCIONANDO
-		if pers.slots["secundaria"] != null and pers.slots["secundaria"] == pers.inventario[indice]:
+		# Se já está equipada como primária, desequipa
+		if pers.slots["secundaria"] == pers.inventario[indice]:
 			pers.slots["secundaria"] = null
+
 		else:
+			# Se já está equipada como secundária, remove de lá
+			if pers.slots["primaria"] == pers.inventario[indice]:
+				pers.slots["primaria"] = null
+
+			# Agora equipa como primária normalmente
 			pers.slots["secundaria"] = pers.inventario[indice]
-			pers.arma_atual = pers.slots["secundaria"]
-			pers.equipado = true
 		UI.atualizarslotsUI()
 
 

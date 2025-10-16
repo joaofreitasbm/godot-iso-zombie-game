@@ -27,7 +27,7 @@ var lista_de_receitas: Array[itens]
 	"hotkey5": null,
 }
 
-@onready var arma_atual
+@onready var arma_atual = null
 
 @onready var pers = self
 @onready var hotkey: int = 0
@@ -51,6 +51,8 @@ var fadiga: float = (fome + sede) / 2
 var sanidade: int = 100
 var debuffs: Array[Resource] ## AVALIAR NECESSIDADE DE FAZER UMA CLASSE DE DEBUFFS
 
+var segurando_q: bool
+var tempo_q: float
 
 func _ready() -> void:
 	UI.connect("resultado_contador", Callable(self, "_on_resultado_contador"))
@@ -58,6 +60,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	opacidade()
+	
 	#if arma_atual.receita_craft != null:
 		#for x in arma_atual.receita_craft: # Itera sobre cada resource
 			#print(x) # Retorna cada resource
@@ -157,12 +160,56 @@ func _physics_process(delta: float) -> void:
 
 
 	# guardar item ## MUDAR PRA ALTERNAR ENTRE PRIMARIA E SECUNDARIA, E SE SEGURAR, GUARDAR ARMA
+	#if Input.is_action_pressed("Q"):
+		#tempo_q += delta
+		#if tempo_q >= 1.0 and arma_atual != null:
+			#tempo_q = 0
+			#print("segurou q")
+			#arma_atual = null
+		#
+	#if Input.is_action_just_released("Q"):
+		#tempo_q = 0
+		#print("soltou q")
+		#if slots["primaria"] != null and slots["secundaria"] != null:
+			#var aux = slots["primaria"]
+			#slots["primaria"] = slots["secundaria"]
+			#slots["secundaria"] = aux
+			#UI.atualizarslotsUI()
+
+
+
+	# Começou a segurar
 	if Input.is_action_just_pressed("Q"):
-		if slots["primaria"] != null and slots["secundaria"] != null:
-			var aux = slots["primaria"]
-			slots["primaria"] = slots["secundaria"]
-			slots["secundaria"] = aux
+		segurando_q = true
+		tempo_q = 0.0
+
+	# Está segurando — acumula o tempo
+	if segurando_q and Input.is_action_pressed("Q"):
+		tempo_q += delta
+		if tempo_q >= 1.0 and arma_atual != null:
+			print("segurou")
+			arma_atual = null
 			UI.atualizarslotsUI()
+			segurando_q = false  # evita repetir
+
+	# Soltou antes de 1 segundo
+	if Input.is_action_just_released("Q") and segurando_q:
+		if tempo_q < 1.0:
+			if slots["primaria"] != null and slots["secundaria"] != null:
+				var aux = slots["primaria"]
+				slots["primaria"] = slots["secundaria"]
+				slots["secundaria"] = aux
+				arma_atual = slots["primaria"]
+				UI.atualizarslotsUI()
+				return
+		if arma_atual == null:
+			arma_atual = slots["primaria"]
+			UI.atualizarslotsUI()
+		segurando_q = false
+		tempo_q = 0.0
+
+
+
 
 
 		# Abrir inventário
@@ -200,7 +247,11 @@ func _physics_process(delta: float) -> void:
 	if vida <= 0:
 		get_tree().reload_current_scene()
 		
-	$Label2.text = str(hotkey)
+	$Label2.text = str(
+		slots["primaria"], "\n",
+		slots["secundaria"], "\n", "\n",
+		arma_atual
+	)
 
 func alvo2d(): 
 	mirando = true

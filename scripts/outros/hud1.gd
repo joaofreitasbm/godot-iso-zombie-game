@@ -12,7 +12,7 @@ func _process(_delta: float) -> void:
 	pass
 	
 	$hp.text = str(
-		"Health: ", get_node("/root/main/pers").vida, "\n",
+		"Health: ", get_node("/root/main/pers").saude, "\n",
 		"Press E to change controls", "\n",
 		"movement > WASD", "\n",
 		"Aim > RMB", "\n",

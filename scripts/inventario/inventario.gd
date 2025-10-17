@@ -43,8 +43,8 @@ func _on_button_pressed() -> void: # apertou em algum item do MENU
 			$submenu.add_item("Reciclar")
 		if pers.inventario[indice].tipo == "Consumivel":
 			$submenu.add_item("Equipar no atalho")
-		$submenu.position = get_global_mouse_position() - Vector2(65, 0)
 		$submenu.popup()
+		$submenu.position = get_global_mouse_position() - Vector2(($submenu.size.x / 2), 0)
 			
 
 

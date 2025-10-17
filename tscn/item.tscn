@@ -16,7 +16,11 @@ shape = SubResource("CylinderShape3D_pw8kr")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_hlyq3")
 
-[node name="erro" type="PopupMenu" parent="."]
+[node name="PopupPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="erro" type="PopupMenu" parent="PopupPanel"]
 item_count = 1
 item_0/text = "Inventário cheio!"
 item_0/id = 0

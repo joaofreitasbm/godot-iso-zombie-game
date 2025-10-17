@@ -11,7 +11,7 @@ extends Node3D
 @onready var inimrestantes = 0
 
 
-var inimpreload = preload("res://tscn/inim.tscn")
+#var inimpreload = preload("res://tscn/inim.tscn")
 var onda = 0
 
 func _ready() -> void:
@@ -35,11 +35,11 @@ func iniciar_nova_onda() -> void:
 	var quantidade = onda * randi_range(1, 3) # 1x, 2x ou 3x o número da onda
 	for i in quantidade:
 		var spawnaleatorio = listaspawn.pick_random()
-		var inimigo = inimpreload.instantiate()
-		inimigo.position = spawnaleatorio
-		get_tree().get_root().get_node("main").add_child(inimigo)
-		if inimigo.has_signal("morreu"):
-			inimigo.morreu.connect(_on_inimigo_morreu)
+		#var inimigo = inimpreload.instantiate()
+		#inimigo.position = spawnaleatorio
+		#get_tree().get_root().get_node("main").add_child(inimigo)
+		#if inimigo.has_signal("morreu"):
+			#inimigo.morreu.connect(_on_inimigo_morreu)
 	inimrestantes = quantidade
 	print("Onda %d iniciada com %d inimigos" % [onda, quantidade])
 

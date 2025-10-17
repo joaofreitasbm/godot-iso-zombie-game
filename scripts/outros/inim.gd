@@ -8,6 +8,8 @@ var body
 @onready var pers = get_node("/root/main/pers")
 @onready var gamemode = get_node("/root/main/spawn inimigo")
 
+var direcao: Vector3
+var timer_seguir: float
 
 func _physics_process(delta: float) -> void:
 	#$Label.text = str($Timer.time_left, $Timer.is_stopped(), area)
@@ -30,7 +32,13 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 	# direção até o jogador
-	var direcao = (pers.position - position).normalized()
+	#timer_seguir += delta
+	#if timer_seguir >= 1:
+		#direcao = (pers.position - position).normalized()
+		#timer_seguir = 0
+		#print("direção atualizado")
+		
+	direcao = (pers.position - position).normalized()
 	
 	# aplica velocidade linear constante
 	velocity.x = direcao.x * velocidade

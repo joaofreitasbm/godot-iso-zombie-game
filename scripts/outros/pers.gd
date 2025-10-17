@@ -5,7 +5,7 @@ var mirando: bool = false
 var correndo: bool = false
 
 @onready var raio: RayCast3D = $utilidades/raycastmira
-@onready var circ:MeshInstance3D = $utilidades/cursor3d
+@onready var circ: MeshInstance3D = $utilidades/cursor3d
 @onready var cam: Camera3D = $Camera3D
 @onready var opac: RayCast3D = $Camera3D/raycastopacidade
 
@@ -13,10 +13,25 @@ var colmira
 var listaopac: Array = []
 var ultimoalvo
 
-# Inventario/UI
+# Inventario/equipamento/UI
 @export var inventario: Array[itens]
 @onready var inventario_max: int = 20
+@onready var slots_max: int
 var lista_de_receitas: Array[itens]
+@export var equip: Dictionary[String, Resource] = {
+	# Equipamento primario
+	"cabeca": null,
+	"superior": null,
+	"inferior": null,
+	"cintura": null,
+	"pes": null,
+	"costas": null,
+
+	# Equipamento secundario
+	"face": null,
+	"colete": null,
+	"pulso": null,
+}
 @export var slots: Dictionary[String, Resource] = {
 	"primaria": null,
 	"secundaria": null,
@@ -43,8 +58,8 @@ var itemdrop: Resource = preload("res://tscn/item.tscn")
 
 # Saúde/status
 @onready var velandar: float = 5.0
-var vida: int = 100
-var stamina: float = 100
+var saude: int = 100
+var folego: float = 100
 var fome: float = 100
 var sede: float = 100
 var fadiga: float = (fome + sede) / 2
@@ -53,6 +68,8 @@ var debuffs: Array[Resource] ## AVALIAR NECESSIDADE DE FAZER UMA CLASSE DE DEBUF
 
 var segurando_q: bool
 var tempo_q: float
+
+@onready var inimigo = preload("res://tscn/inimigo/inim.tscn")
 
 func _ready() -> void:
 	UI.connect("resultado_contador", Callable(self, "_on_resultado_contador"))
@@ -147,7 +164,7 @@ func _physics_process(delta: float) -> void:
 
 	#spawnar inimigo (debug)
 	if Input.is_action_just_pressed("F"):
-		var inim = preload("res://tscn/inim.tscn").instantiate()
+		var inim = inimigo.instantiate()
 		inim.position = position + Vector3(10, 0, 0)
 		get_tree().get_root().get_node("main").add_child(inim)
 
@@ -212,7 +229,7 @@ func _physics_process(delta: float) -> void:
 
 
 
-		# Abrir inventário
+	# Abrir inventário
 	if Input.is_action_just_pressed("TAB"):
 		if $UI/invcontainer.visible == true:
 			$UI/invcontainer.hide()
@@ -222,9 +239,8 @@ func _physics_process(delta: float) -> void:
 			UI.atualizarinventarioUI()
 			$UI/invcontainer.show()
 
-
-			# Abrir inventário (ABA 2)
-	if Input.is_action_just_pressed("K"):
+	# Abrir inventário (ABA 2)
+	if Input.is_action_just_pressed("J"):
 		if $UI/invcontainer.visible == true:
 			$UI/invcontainer.hide()
 			return
@@ -233,8 +249,8 @@ func _physics_process(delta: float) -> void:
 			UI.atualizarinventarioUI()
 			$UI/invcontainer.show()
 
-			# Abrir inventário (ABA 3)
-	if Input.is_action_just_pressed("L"):
+	# Abrir inventário (ABA 3)
+	if Input.is_action_just_pressed("K"):
 		if $UI/invcontainer.visible == true:
 			$UI/invcontainer.hide()
 			return
@@ -243,8 +259,19 @@ func _physics_process(delta: float) -> void:
 			UI.atualizarinventarioUI()
 			$UI/invcontainer.show()
 
+	# Abrir inventário (ABA 4)
+	if Input.is_action_just_pressed("L"):
+		if $UI/invcontainer.visible == true:
+			$UI/invcontainer.hide()
+			return
+		if $UI/invcontainer.visible == false:
+			$UI/invcontainer.current_tab = 3
+			UI.atualizarinventarioUI()
+			$UI/invcontainer.show()
 
-	if vida <= 0:
+
+
+	if saude <= 0:
 		get_tree().reload_current_scene()
 		
 	$Label2.text = str(

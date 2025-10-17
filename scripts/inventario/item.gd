@@ -21,8 +21,8 @@ func _process(_delta: float) -> void:
 		UI.atualizarinventarioUI()
 		queue_free()
 	else:
-		$erro.position = $erro.get_global_mouse_position() - Vector2(65, 0)
-		$erro.popup()
+		$PopupPanel.position = $PopupPanel.get_global_mouse_position() - Vector2(65, 0)
+		$PopupPanel/erro.popup()
 
 
 

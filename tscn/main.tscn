@@ -82,7 +82,7 @@ size = Vector3(30, 1, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_50x8b"]
 size = Vector3(1, 0.5, 1)
 
-[sub_resource type="Resource" id="Resource_s3ifu"]
+[sub_resource type="Resource" id="Resource_fco5v"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Munição fuzil"
@@ -95,7 +95,7 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_b7h2h"]
 
-[sub_resource type="Resource" id="Resource_xxyn0"]
+[sub_resource type="Resource" id="Resource_18iqq"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -108,7 +108,7 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_qmk4d"]
 
-[sub_resource type="Resource" id="Resource_66cgr"]
+[sub_resource type="Resource" id="Resource_6sltt"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 2/3"
@@ -121,7 +121,7 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_5jmr1"]
 
-[sub_resource type="Resource" id="Resource_kn363"]
+[sub_resource type="Resource" id="Resource_sqsrg"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 3/3"
@@ -134,7 +134,7 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="PrismMesh" id="PrismMesh_vng7p"]
 
-[sub_resource type="Resource" id="Resource_v2qau"]
+[sub_resource type="Resource" id="Resource_s3ifu"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
@@ -142,7 +142,7 @@ quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_vng7p")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_xxyn0"), SubResource("Resource_66cgr"), SubResource("Resource_kn363")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_18iqq"), SubResource("Resource_6sltt"), SubResource("Resource_sqsrg")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -153,7 +153,7 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_s3ifu"]
 
-[sub_resource type="Resource" id="Resource_qaw6y"]
+[sub_resource type="Resource" id="Resource_xxyn0"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -166,7 +166,7 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xxyn0"]
 
-[sub_resource type="Resource" id="Resource_0k61o"]
+[sub_resource type="Resource" id="Resource_66cgr"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 2/3"
@@ -179,7 +179,7 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ydd80"]
 
-[sub_resource type="Resource" id="Resource_stnar"]
+[sub_resource type="Resource" id="Resource_kn363"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 3/3"
@@ -192,7 +192,7 @@ metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="PrismMesh" id="PrismMesh_66cgr"]
 
-[sub_resource type="Resource" id="Resource_wcl0m"]
+[sub_resource type="Resource" id="Resource_v2qau"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
@@ -200,7 +200,7 @@ quantidade = 1
 reciclavel = true
 imagem = ExtResource("16_k3nvp")
 mesh = SubResource("PrismMesh_66cgr")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_qaw6y"), SubResource("Resource_0k61o"), SubResource("Resource_stnar")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_xxyn0"), SubResource("Resource_66cgr"), SubResource("Resource_kn363")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -209,7 +209,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_qjce3"]
+[sub_resource type="Resource" id="Resource_qaw6y"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Munição fuzil"
@@ -220,7 +220,7 @@ mesh = SubResource("BoxMesh_50x8b")
 tipo = "Munição - fuzil"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_eqmtf"]
+[sub_resource type="Resource" id="Resource_0k61o"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Munição fuzil"
@@ -242,6 +242,56 @@ imagem = ExtResource("16_tfptk")
 mesh = SubResource("SphereMesh_2sjoj")
 tipo = "Consumivel"
 dano = 10
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_stnar"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 1/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7h2h")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_wcl0m"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 2/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_qmk4d")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_qjce3"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_5jmr1")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_eqmtf"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
+nome_item = "Fuzil automático"
+quantidade = 1
+reciclavel = true
+imagem = ExtResource("15_hegun")
+mesh = SubResource("PrismMesh_vng7p")
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_stnar"), SubResource("Resource_wcl0m"), SubResource("Resource_qjce3")])
+tipo = "Arma de fogo"
+qntmaxima = 30
+alcance = 50
+tipo_municao = "Munição - fuzil"
+velocidade_ataque = 0.5
+dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_ehxgi"]
@@ -277,68 +327,18 @@ mesh = SubResource("CylinderMesh_5jmr1")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_wtxsa"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Fuzil automático"
-quantidade = 1
-reciclavel = true
-imagem = ExtResource("15_hegun")
-mesh = SubResource("PrismMesh_vng7p")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_ehxgi"), SubResource("Resource_13evn"), SubResource("Resource_314kn")])
-tipo = "Arma de fogo"
-qntmaxima = 30
-alcance = 50
-tipo_municao = "Munição - fuzil"
-velocidade_ataque = 0.5
-dano = 20
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_118j0"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 1/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7h2h")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_qtvrf"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_qmk4d")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_a5dkx"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_5jmr1")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_m7hxd"]
 
-[sub_resource type="Resource" id="Resource_moqmh"]
+[sub_resource type="Resource" id="Resource_wtxsa"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Fabricar fuzil"
 quantidade = 1
 mesh = SubResource("CylinderMesh_m7hxd")
 tipo = "Receita"
-material_necessario = Array[ExtResource("12_hegun")]([SubResource("Resource_118j0"), SubResource("Resource_qtvrf"), SubResource("Resource_a5dkx")])
+material_necessario = Array[ExtResource("12_hegun")]([SubResource("Resource_ehxgi"), SubResource("Resource_13evn"), SubResource("Resource_314kn")])
 tipo_receita = "Armas"
-item_craftado = SubResource("Resource_wtxsa")
+item_craftado = SubResource("Resource_eqmtf")
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [node name="main" type="Node3D"]
@@ -501,23 +501,23 @@ theme_override_font_sizes/font_size = 12
 
 [node name="mun" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.679089, 1, 1.8232307)
-item = SubResource("Resource_s3ifu")
+item = SubResource("Resource_fco5v")
 
 [node name="arma" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.42424, 1, 13.299311)
-item = SubResource("Resource_v2qau")
+item = SubResource("Resource_s3ifu")
 
 [node name="arma2" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7029133, 1, 11.576611)
-item = SubResource("Resource_wcl0m")
+item = SubResource("Resource_v2qau")
 
 [node name="item3" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 1.8232307)
-item = SubResource("Resource_qjce3")
+item = SubResource("Resource_qaw6y")
 
 [node name="item4" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 6.3238077)
-item = SubResource("Resource_eqmtf")
+item = SubResource("Resource_0k61o")
 
 [node name="item6" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 11.664994)
@@ -529,6 +529,1702 @@ item = ExtResource("17_k3nvp")
 
 [node name="item5" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.778038, 1, 6.3238077)
-item = SubResource("Resource_moqmh")
+item = SubResource("Resource_wtxsa")
+
+[node name="mun2" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.276737, 1, 7.172426)
+item = SubResource("Resource_fco5v")
+
+[node name="arma3" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1734076, 1, 18.648506)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma4" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.300561, 1, 16.925806)
+item = SubResource("Resource_v2qau")
+
+[node name="item8" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.941044, 1, 7.172426)
+item = SubResource("Resource_qaw6y")
+
+[node name="item9" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.941044, 1, 11.673003)
+item = SubResource("Resource_0k61o")
+
+[node name="item10" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.941044, 1, 17.01419)
+item = SubResource("Resource_ydd80")
+
+[node name="item11" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.941044, 1, 21.345005)
+item = ExtResource("17_k3nvp")
+
+[node name="item12" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.375687, 1, 11.673003)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun3" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.0146, 1, 9.707159)
+item = SubResource("Resource_fco5v")
+
+[node name="arma5" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9112701, 1, 21.183239)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma6" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.038424, 1, 19.460539)
+item = SubResource("Resource_v2qau")
+
+[node name="item13" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.678905, 1, 9.707159)
+item = SubResource("Resource_qaw6y")
+
+[node name="item14" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.678905, 1, 14.207736)
+item = SubResource("Resource_0k61o")
+
+[node name="item15" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.678905, 1, 19.548923)
+item = SubResource("Resource_ydd80")
+
+[node name="item16" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.678905, 1, 23.879738)
+item = ExtResource("17_k3nvp")
+
+[node name="item17" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.113548, 1, 14.207736)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun4" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5583057, 1, 3.555767)
+item = SubResource("Resource_fco5v")
+
+[node name="arma7" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.545023, 1, 15.031847)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma8" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.41787, 1, 13.309147)
+item = SubResource("Resource_v2qau")
+
+[node name="item18" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.777386, 1, 3.555767)
+item = SubResource("Resource_qaw6y")
+
+[node name="item19" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.777386, 1, 8.056344)
+item = SubResource("Resource_0k61o")
+
+[node name="item20" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.777386, 1, 13.397531)
+item = SubResource("Resource_ydd80")
+
+[node name="item21" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.777386, 1, 17.728348)
+item = ExtResource("17_k3nvp")
+
+[node name="item22" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3427448, 1, 8.056344)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun5" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.155954, 1, 8.904963)
+item = SubResource("Resource_fco5v")
+
+[node name="arma9" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.947374, 1, 20.381042)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma10" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.820222, 1, 18.658342)
+item = SubResource("Resource_v2qau")
+
+[node name="item23" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.820261, 1, 8.904963)
+item = SubResource("Resource_qaw6y")
+
+[node name="item24" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.820261, 1, 13.4055395)
+item = SubResource("Resource_0k61o")
+
+[node name="item25" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.820261, 1, 18.746727)
+item = SubResource("Resource_ydd80")
+
+[node name="item26" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.820261, 1, 23.077541)
+item = ExtResource("17_k3nvp")
+
+[node name="item27" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.254904, 1, 13.4055395)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun6" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.893816, 1, 11.439695)
+item = SubResource("Resource_fco5v")
+
+[node name="arma11" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.209513, 1, 22.915775)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma12" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.082359, 1, 21.193075)
+item = SubResource("Resource_v2qau")
+
+[node name="item28" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4418774, 1, 11.439695)
+item = SubResource("Resource_qaw6y")
+
+[node name="item29" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4418774, 1, 15.940273)
+item = SubResource("Resource_0k61o")
+
+[node name="item30" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4418774, 1, 21.28146)
+item = SubResource("Resource_ydd80")
+
+[node name="item31" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4418774, 1, 25.612274)
+item = ExtResource("17_k3nvp")
+
+[node name="item32" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9927654, 1, 15.940273)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun7" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.679089, 1, 17.914597)
+item = SubResource("Resource_fco5v")
+
+[node name="arma13" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.42424, 1, 29.390676)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma14" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7029133, 1, 27.667976)
+item = SubResource("Resource_v2qau")
+
+[node name="item33" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 17.914597)
+item = SubResource("Resource_qaw6y")
+
+[node name="item34" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 22.415173)
+item = SubResource("Resource_0k61o")
+
+[node name="item35" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 27.75636)
+item = SubResource("Resource_ydd80")
+
+[node name="item36" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 32.087177)
+item = ExtResource("17_k3nvp")
+
+[node name="item37" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.778038, 1, 22.415173)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun8" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.276737, 1, 23.263792)
+item = SubResource("Resource_fco5v")
+
+[node name="arma15" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1734076, 1, 34.739872)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma16" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.300561, 1, 33.017174)
+item = SubResource("Resource_v2qau")
+
+[node name="item38" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.941044, 1, 23.263792)
+item = SubResource("Resource_qaw6y")
+
+[node name="item39" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.941044, 1, 27.76437)
+item = SubResource("Resource_0k61o")
+
+[node name="item40" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.941044, 1, 33.105556)
+item = SubResource("Resource_ydd80")
+
+[node name="item41" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.941044, 1, 37.43637)
+item = ExtResource("17_k3nvp")
+
+[node name="item42" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.375687, 1, 27.76437)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun9" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.0146, 1, 25.798525)
+item = SubResource("Resource_fco5v")
+
+[node name="arma17" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9112701, 1, 37.274605)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma18" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.038424, 1, 35.551903)
+item = SubResource("Resource_v2qau")
+
+[node name="item43" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.678905, 1, 25.798525)
+item = SubResource("Resource_qaw6y")
+
+[node name="item44" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.678905, 1, 30.299103)
+item = SubResource("Resource_0k61o")
+
+[node name="item45" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.678905, 1, 35.64029)
+item = SubResource("Resource_ydd80")
+
+[node name="item46" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.678905, 1, 39.971104)
+item = ExtResource("17_k3nvp")
+
+[node name="item47" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.113548, 1, 30.299103)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun10" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5583057, 1, 19.647133)
+item = SubResource("Resource_fco5v")
+
+[node name="arma19" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.545023, 1, 31.123213)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma20" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.41787, 1, 29.400513)
+item = SubResource("Resource_v2qau")
+
+[node name="item48" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.777386, 1, 19.647133)
+item = SubResource("Resource_qaw6y")
+
+[node name="item49" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.777386, 1, 24.147709)
+item = SubResource("Resource_0k61o")
+
+[node name="item50" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.777386, 1, 29.488895)
+item = SubResource("Resource_ydd80")
+
+[node name="item51" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.777386, 1, 33.819714)
+item = ExtResource("17_k3nvp")
+
+[node name="item52" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3427448, 1, 24.147709)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun11" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.155954, 1, 24.996328)
+item = SubResource("Resource_fco5v")
+
+[node name="arma21" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.947374, 1, 36.47241)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma22" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.820222, 1, 34.74971)
+item = SubResource("Resource_v2qau")
+
+[node name="item53" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.820261, 1, 24.996328)
+item = SubResource("Resource_qaw6y")
+
+[node name="item54" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.820261, 1, 29.496906)
+item = SubResource("Resource_0k61o")
+
+[node name="item55" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.820261, 1, 34.838093)
+item = SubResource("Resource_ydd80")
+
+[node name="item56" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.820261, 1, 39.168907)
+item = ExtResource("17_k3nvp")
+
+[node name="item57" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.254904, 1, 29.496906)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun12" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.893816, 1, 27.531061)
+item = SubResource("Resource_fco5v")
+
+[node name="arma23" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.209513, 1, 39.00714)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma24" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.082359, 1, 37.28444)
+item = SubResource("Resource_v2qau")
+
+[node name="item58" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4418774, 1, 27.531061)
+item = SubResource("Resource_qaw6y")
+
+[node name="item59" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4418774, 1, 32.03164)
+item = SubResource("Resource_0k61o")
+
+[node name="item60" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4418774, 1, 37.372826)
+item = SubResource("Resource_ydd80")
+
+[node name="item61" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4418774, 1, 41.70364)
+item = ExtResource("17_k3nvp")
+
+[node name="item62" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9927654, 1, 32.03164)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun13" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.52889, 1, 30.09018)
+item = SubResource("Resource_fco5v")
+
+[node name="arma25" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.425562, 1, 41.56626)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma26" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.552716, 1, 39.84356)
+item = SubResource("Resource_v2qau")
+
+[node name="item63" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1932, 1, 30.09018)
+item = SubResource("Resource_qaw6y")
+
+[node name="item64" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1932, 1, 34.590755)
+item = SubResource("Resource_0k61o")
+
+[node name="item65" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1932, 1, 39.931942)
+item = SubResource("Resource_ydd80")
+
+[node name="item66" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1932, 1, 44.26276)
+item = ExtResource("17_k3nvp")
+
+[node name="item67" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.627838, 1, 34.590755)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun14" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.126537, 1, 35.439377)
+item = SubResource("Resource_fco5v")
+
+[node name="arma27" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.02321, 1, 46.915455)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma28" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.150364, 1, 45.192757)
+item = SubResource("Resource_v2qau")
+
+[node name="item68" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.790844, 1, 35.439377)
+item = SubResource("Resource_qaw6y")
+
+[node name="item69" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.790844, 1, 39.939953)
+item = SubResource("Resource_0k61o")
+
+[node name="item70" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.790844, 1, 45.28114)
+item = SubResource("Resource_ydd80")
+
+[node name="item71" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.790844, 1, 49.611954)
+item = ExtResource("17_k3nvp")
+
+[node name="item72" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.225487, 1, 39.939953)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun15" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.8644, 1, 37.974106)
+item = SubResource("Resource_fco5v")
+
+[node name="arma29" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.761072, 1, 49.450188)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma30" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.888226, 1, 47.727486)
+item = SubResource("Resource_v2qau")
+
+[node name="item73" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.528706, 1, 37.974106)
+item = SubResource("Resource_qaw6y")
+
+[node name="item74" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.528706, 1, 42.474686)
+item = SubResource("Resource_0k61o")
+
+[node name="item75" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.528706, 1, 47.815872)
+item = SubResource("Resource_ydd80")
+
+[node name="item76" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.528706, 1, 52.146687)
+item = ExtResource("17_k3nvp")
+
+[node name="item77" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.96335, 1, 42.474686)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun16" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.408108, 1, 31.822716)
+item = SubResource("Resource_fco5v")
+
+[node name="arma31" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.69522, 1, 43.298798)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma32" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.568068, 1, 41.576096)
+item = SubResource("Resource_v2qau")
+
+[node name="item78" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9275837, 1, 31.822716)
+item = SubResource("Resource_qaw6y")
+
+[node name="item79" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9275837, 1, 36.32329)
+item = SubResource("Resource_0k61o")
+
+[node name="item80" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9275837, 1, 41.66448)
+item = SubResource("Resource_ydd80")
+
+[node name="item81" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9275837, 1, 45.995296)
+item = ExtResource("17_k3nvp")
+
+[node name="item82" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.507057, 1, 36.32329)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun17" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.005756, 1, 37.171913)
+item = SubResource("Resource_fco5v")
+
+[node name="arma33" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.097572, 1, 48.64799)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma34" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97042, 1, 46.925293)
+item = SubResource("Resource_v2qau")
+
+[node name="item83" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.670063, 1, 37.171913)
+item = SubResource("Resource_qaw6y")
+
+[node name="item84" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.670063, 1, 41.67249)
+item = SubResource("Resource_0k61o")
+
+[node name="item85" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.670063, 1, 47.013676)
+item = SubResource("Resource_ydd80")
+
+[node name="item86" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.670063, 1, 51.34449)
+item = ExtResource("17_k3nvp")
+
+[node name="item87" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.104707, 1, 41.67249)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun18" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.743618, 1, 39.706642)
+item = SubResource("Resource_fco5v")
+
+[node name="arma35" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.359711, 1, 51.182724)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma36" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2325573, 1, 49.460022)
+item = SubResource("Resource_v2qau")
+
+[node name="item88" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4079247, 1, 39.706642)
+item = SubResource("Resource_qaw6y")
+
+[node name="item89" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4079247, 1, 44.207222)
+item = SubResource("Resource_0k61o")
+
+[node name="item90" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4079247, 1, 49.54841)
+item = SubResource("Resource_ydd80")
+
+[node name="item91" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4079247, 1, 53.879223)
+item = ExtResource("17_k3nvp")
+
+[node name="item92" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.842568, 1, 44.207222)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun19" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.440834, 1, 1.8232307)
+item = SubResource("Resource_fco5v")
+
+[node name="arma37" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.337507, 1, 13.299311)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma38" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.46466, 1, 11.576611)
+item = SubResource("Resource_v2qau")
+
+[node name="item93" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.105145, 1, 1.8232307)
+item = SubResource("Resource_qaw6y")
+
+[node name="item94" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.105145, 1, 6.3238077)
+item = SubResource("Resource_0k61o")
+
+[node name="item95" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.105145, 1, 11.664994)
+item = SubResource("Resource_ydd80")
+
+[node name="item96" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.105145, 1, 15.9958105)
+item = ExtResource("17_k3nvp")
+
+[node name="item97" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.539787, 1, 6.3238077)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun20" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.038483, 1, 7.172426)
+item = SubResource("Resource_fco5v")
+
+[node name="arma39" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.935154, 1, 18.648506)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma40" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.06231, 1, 16.925806)
+item = SubResource("Resource_v2qau")
+
+[node name="item98" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.70279, 1, 7.172426)
+item = SubResource("Resource_qaw6y")
+
+[node name="item99" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.70279, 1, 11.673003)
+item = SubResource("Resource_0k61o")
+
+[node name="item100" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.70279, 1, 17.01419)
+item = SubResource("Resource_ydd80")
+
+[node name="item101" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.70279, 1, 21.345005)
+item = ExtResource("17_k3nvp")
+
+[node name="item102" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.137436, 1, 11.673003)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun21" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.776344, 1, 9.707159)
+item = SubResource("Resource_fco5v")
+
+[node name="arma41" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.673018, 1, 21.183239)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma42" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.80017, 1, 19.460539)
+item = SubResource("Resource_v2qau")
+
+[node name="item103" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.44065, 1, 9.707159)
+item = SubResource("Resource_qaw6y")
+
+[node name="item104" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.44065, 1, 14.207736)
+item = SubResource("Resource_0k61o")
+
+[node name="item105" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.44065, 1, 19.548923)
+item = SubResource("Resource_ydd80")
+
+[node name="item106" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.44065, 1, 23.879738)
+item = ExtResource("17_k3nvp")
+
+[node name="item107" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.875298, 1, 14.207736)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun22" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.320053, 1, 3.555767)
+item = SubResource("Resource_fco5v")
+
+[node name="arma43" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.783276, 1, 15.031847)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma44" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6561222, 1, 13.309147)
+item = SubResource("Resource_v2qau")
+
+[node name="item108" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9843616, 1, 3.555767)
+item = SubResource("Resource_qaw6y")
+
+[node name="item109" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9843616, 1, 8.056344)
+item = SubResource("Resource_0k61o")
+
+[node name="item110" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9843616, 1, 13.397531)
+item = SubResource("Resource_ydd80")
+
+[node name="item111" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9843616, 1, 17.728348)
+item = ExtResource("17_k3nvp")
+
+[node name="item112" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.419003, 1, 8.056344)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun23" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.917702, 1, 8.904963)
+item = SubResource("Resource_fco5v")
+
+[node name="arma45" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.185627, 1, 20.381042)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma46" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9415255, 1, 18.658342)
+item = SubResource("Resource_v2qau")
+
+[node name="item113" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.582008, 1, 8.904963)
+item = SubResource("Resource_qaw6y")
+
+[node name="item114" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.582008, 1, 13.4055395)
+item = SubResource("Resource_0k61o")
+
+[node name="item115" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.582008, 1, 18.746727)
+item = SubResource("Resource_ydd80")
+
+[node name="item116" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.582008, 1, 23.077541)
+item = ExtResource("17_k3nvp")
+
+[node name="item117" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.016651, 1, 13.4055395)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun24" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.655563, 1, 11.439695)
+item = SubResource("Resource_fco5v")
+
+[node name="arma47" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4477654, 1, 22.915775)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma48" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.679388, 1, 21.193075)
+item = SubResource("Resource_v2qau")
+
+[node name="item118" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.31987, 1, 11.439695)
+item = SubResource("Resource_qaw6y")
+
+[node name="item119" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.31987, 1, 15.940273)
+item = SubResource("Resource_0k61o")
+
+[node name="item120" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.31987, 1, 21.28146)
+item = SubResource("Resource_ydd80")
+
+[node name="item121" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.31987, 1, 25.612274)
+item = ExtResource("17_k3nvp")
+
+[node name="item122" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.754513, 1, 15.940273)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun25" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.440834, 1, 17.914597)
+item = SubResource("Resource_fco5v")
+
+[node name="arma49" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.337507, 1, 29.390676)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma50" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.46466, 1, 27.667976)
+item = SubResource("Resource_v2qau")
+
+[node name="item123" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.105145, 1, 17.914597)
+item = SubResource("Resource_qaw6y")
+
+[node name="item124" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.105145, 1, 22.415173)
+item = SubResource("Resource_0k61o")
+
+[node name="item125" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.105145, 1, 27.75636)
+item = SubResource("Resource_ydd80")
+
+[node name="item126" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.105145, 1, 32.087177)
+item = ExtResource("17_k3nvp")
+
+[node name="item127" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.539787, 1, 22.415173)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun26" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.038483, 1, 23.263792)
+item = SubResource("Resource_fco5v")
+
+[node name="arma51" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.935154, 1, 34.739872)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma52" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.06231, 1, 33.017174)
+item = SubResource("Resource_v2qau")
+
+[node name="item128" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.70279, 1, 23.263792)
+item = SubResource("Resource_qaw6y")
+
+[node name="item129" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.70279, 1, 27.76437)
+item = SubResource("Resource_0k61o")
+
+[node name="item130" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.70279, 1, 33.105556)
+item = SubResource("Resource_ydd80")
+
+[node name="item131" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.70279, 1, 37.43637)
+item = ExtResource("17_k3nvp")
+
+[node name="item132" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.137436, 1, 27.76437)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun27" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.776344, 1, 25.798525)
+item = SubResource("Resource_fco5v")
+
+[node name="arma53" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.673018, 1, 37.274605)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma54" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.80017, 1, 35.551903)
+item = SubResource("Resource_v2qau")
+
+[node name="item133" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.44065, 1, 25.798525)
+item = SubResource("Resource_qaw6y")
+
+[node name="item134" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.44065, 1, 30.299103)
+item = SubResource("Resource_0k61o")
+
+[node name="item135" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.44065, 1, 35.64029)
+item = SubResource("Resource_ydd80")
+
+[node name="item136" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.44065, 1, 39.971104)
+item = ExtResource("17_k3nvp")
+
+[node name="item137" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.875298, 1, 30.299103)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun28" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.320053, 1, 19.647133)
+item = SubResource("Resource_fco5v")
+
+[node name="arma55" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.783276, 1, 31.123213)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma56" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6561222, 1, 29.400513)
+item = SubResource("Resource_v2qau")
+
+[node name="item138" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9843616, 1, 19.647133)
+item = SubResource("Resource_qaw6y")
+
+[node name="item139" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9843616, 1, 24.147709)
+item = SubResource("Resource_0k61o")
+
+[node name="item140" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9843616, 1, 29.488895)
+item = SubResource("Resource_ydd80")
+
+[node name="item141" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9843616, 1, 33.819714)
+item = ExtResource("17_k3nvp")
+
+[node name="item142" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.419003, 1, 24.147709)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun29" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.917702, 1, 24.996328)
+item = SubResource("Resource_fco5v")
+
+[node name="arma57" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.185627, 1, 36.47241)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma58" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9415255, 1, 34.74971)
+item = SubResource("Resource_v2qau")
+
+[node name="item143" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.582008, 1, 24.996328)
+item = SubResource("Resource_qaw6y")
+
+[node name="item144" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.582008, 1, 29.496906)
+item = SubResource("Resource_0k61o")
+
+[node name="item145" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.582008, 1, 34.838093)
+item = SubResource("Resource_ydd80")
+
+[node name="item146" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.582008, 1, 39.168907)
+item = ExtResource("17_k3nvp")
+
+[node name="item147" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.016651, 1, 29.496906)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun30" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.655563, 1, 27.531061)
+item = SubResource("Resource_fco5v")
+
+[node name="arma59" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4477654, 1, 39.00714)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma60" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.679388, 1, 37.28444)
+item = SubResource("Resource_v2qau")
+
+[node name="item148" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.31987, 1, 27.531061)
+item = SubResource("Resource_qaw6y")
+
+[node name="item149" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.31987, 1, 32.03164)
+item = SubResource("Resource_0k61o")
+
+[node name="item150" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.31987, 1, 37.372826)
+item = SubResource("Resource_ydd80")
+
+[node name="item151" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.31987, 1, 41.70364)
+item = ExtResource("17_k3nvp")
+
+[node name="item152" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.754513, 1, 32.03164)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun31" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.290634, 1, 30.09018)
+item = SubResource("Resource_fco5v")
+
+[node name="arma61" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.18731, 1, 41.56626)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma62" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.314465, 1, 39.84356)
+item = SubResource("Resource_v2qau")
+
+[node name="item153" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.95495, 1, 30.09018)
+item = SubResource("Resource_qaw6y")
+
+[node name="item154" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.95495, 1, 34.590755)
+item = SubResource("Resource_0k61o")
+
+[node name="item155" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.95495, 1, 39.931942)
+item = SubResource("Resource_ydd80")
+
+[node name="item156" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.95495, 1, 44.26276)
+item = ExtResource("17_k3nvp")
+
+[node name="item157" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.389587, 1, 34.590755)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun32" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.888283, 1, 35.439377)
+item = SubResource("Resource_fco5v")
+
+[node name="arma63" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.784958, 1, 46.915455)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma64" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.91211, 1, 45.192757)
+item = SubResource("Resource_v2qau")
+
+[node name="item158" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.55259, 1, 35.439377)
+item = SubResource("Resource_qaw6y")
+
+[node name="item159" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.55259, 1, 39.939953)
+item = SubResource("Resource_0k61o")
+
+[node name="item160" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.55259, 1, 45.28114)
+item = SubResource("Resource_ydd80")
+
+[node name="item161" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.55259, 1, 49.611954)
+item = ExtResource("17_k3nvp")
+
+[node name="item162" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.987236, 1, 39.939953)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun33" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.626144, 1, 37.974106)
+item = SubResource("Resource_fco5v")
+
+[node name="arma65" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.52282, 1, 49.450188)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma66" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.64997, 1, 47.727486)
+item = SubResource("Resource_v2qau")
+
+[node name="item163" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.29045, 1, 37.974106)
+item = SubResource("Resource_qaw6y")
+
+[node name="item164" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.29045, 1, 42.474686)
+item = SubResource("Resource_0k61o")
+
+[node name="item165" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.29045, 1, 47.815872)
+item = SubResource("Resource_ydd80")
+
+[node name="item166" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.29045, 1, 52.146687)
+item = ExtResource("17_k3nvp")
+
+[node name="item167" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.725098, 1, 42.474686)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun34" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.169855, 1, 31.822716)
+item = SubResource("Resource_fco5v")
+
+[node name="arma67" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9334736, 1, 43.298798)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma68" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.19368, 1, 41.576096)
+item = SubResource("Resource_v2qau")
+
+[node name="item168" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.834164, 1, 31.822716)
+item = SubResource("Resource_qaw6y")
+
+[node name="item169" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.834164, 1, 36.32329)
+item = SubResource("Resource_0k61o")
+
+[node name="item170" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.834164, 1, 41.66448)
+item = SubResource("Resource_ydd80")
+
+[node name="item171" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.834164, 1, 45.995296)
+item = ExtResource("17_k3nvp")
+
+[node name="item172" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.268805, 1, 36.32329)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun35" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7675, 1, 37.171913)
+item = SubResource("Resource_fco5v")
+
+[node name="arma69" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.664175, 1, 48.64799)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma70" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.791327, 1, 46.925293)
+item = SubResource("Resource_v2qau")
+
+[node name="item173" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.43181, 1, 37.171913)
+item = SubResource("Resource_qaw6y")
+
+[node name="item174" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.43181, 1, 41.67249)
+item = SubResource("Resource_0k61o")
+
+[node name="item175" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.43181, 1, 47.013676)
+item = SubResource("Resource_ydd80")
+
+[node name="item176" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.43181, 1, 51.34449)
+item = ExtResource("17_k3nvp")
+
+[node name="item177" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.866455, 1, 41.67249)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun36" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.505363, 1, 39.706642)
+item = SubResource("Resource_fco5v")
+
+[node name="arma71" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4020367, 1, 51.182724)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma72" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.52919, 1, 49.460022)
+item = SubResource("Resource_v2qau")
+
+[node name="item178" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.169672, 1, 39.706642)
+item = SubResource("Resource_qaw6y")
+
+[node name="item179" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.169672, 1, 44.207222)
+item = SubResource("Resource_0k61o")
+
+[node name="item180" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.169672, 1, 49.54841)
+item = SubResource("Resource_ydd80")
+
+[node name="item181" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.169672, 1, 53.879223)
+item = ExtResource("17_k3nvp")
+
+[node name="item182" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.604317, 1, 44.207222)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun37" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2725677, 1, 1.8232307)
+item = SubResource("Resource_fco5v")
+
+[node name="arma73" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.375893, 1, 13.299311)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma74" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.248741, 1, 11.576611)
+item = SubResource("Resource_v2qau")
+
+[node name="item183" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.608257, 1, 1.8232307)
+item = SubResource("Resource_qaw6y")
+
+[node name="item184" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.608257, 1, 6.3238077)
+item = SubResource("Resource_0k61o")
+
+[node name="item185" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.608257, 1, 11.664994)
+item = SubResource("Resource_ydd80")
+
+[node name="item186" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.608257, 1, 15.9958105)
+item = ExtResource("17_k3nvp")
+
+[node name="item187" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1736145, 1, 6.3238077)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun38" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.325081, 1, 7.172426)
+item = SubResource("Resource_fco5v")
+
+[node name="arma75" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.778248, 1, 18.648506)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma76" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.651093, 1, 16.925806)
+item = SubResource("Resource_v2qau")
+
+[node name="item188" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0106125, 1, 7.172426)
+item = SubResource("Resource_qaw6y")
+
+[node name="item189" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0106125, 1, 11.673003)
+item = SubResource("Resource_0k61o")
+
+[node name="item190" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0106125, 1, 17.01419)
+item = SubResource("Resource_ydd80")
+
+[node name="item191" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0106125, 1, 21.345005)
+item = ExtResource("17_k3nvp")
+
+[node name="item192" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.424034, 1, 11.673003)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun39" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0629425, 1, 9.707159)
+item = SubResource("Resource_fco5v")
+
+[node name="arma77" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.040384, 1, 21.183239)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma78" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.913231, 1, 19.460539)
+item = SubResource("Resource_v2qau")
+
+[node name="item193" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.272751, 1, 9.707159)
+item = SubResource("Resource_qaw6y")
+
+[node name="item194" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.272751, 1, 14.207736)
+item = SubResource("Resource_0k61o")
+
+[node name="item195" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.272751, 1, 19.548923)
+item = SubResource("Resource_ydd80")
+
+[node name="item196" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.272751, 1, 23.879738)
+item = ExtResource("17_k3nvp")
+
+[node name="item197" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1618958, 1, 14.207736)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun40" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.393349, 1, 3.555767)
+item = SubResource("Resource_fco5v")
+
+[node name="arma79" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.496677, 1, 15.031847)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma80" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.369522, 1, 13.309147)
+item = SubResource("Resource_v2qau")
+
+[node name="item198" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.729042, 1, 3.555767)
+item = SubResource("Resource_qaw6y")
+
+[node name="item199" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.729042, 1, 8.056344)
+item = SubResource("Resource_0k61o")
+
+[node name="item200" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.729042, 1, 13.397531)
+item = SubResource("Resource_ydd80")
+
+[node name="item201" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.729042, 1, 17.728348)
+item = ExtResource("17_k3nvp")
+
+[node name="item202" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2944, 1, 8.056344)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun41" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7957, 1, 8.904963)
+item = SubResource("Resource_fco5v")
+
+[node name="arma81" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.89903, 1, 20.381042)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma82" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.771877, 1, 18.658342)
+item = SubResource("Resource_v2qau")
+
+[node name="item203" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.131393, 1, 8.904963)
+item = SubResource("Resource_qaw6y")
+
+[node name="item204" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.131393, 1, 13.4055395)
+item = SubResource("Resource_0k61o")
+
+[node name="item205" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.131393, 1, 18.746727)
+item = SubResource("Resource_ydd80")
+
+[node name="item206" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.131393, 1, 23.077541)
+item = ExtResource("17_k3nvp")
+
+[node name="item207" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.69675, 1, 13.4055395)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun42" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.057838, 1, 11.439695)
+item = SubResource("Resource_fco5v")
+
+[node name="arma83" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.161167, 1, 22.915775)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma84" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.03401, 1, 21.193075)
+item = SubResource("Resource_v2qau")
+
+[node name="item208" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.393532, 1, 11.439695)
+item = SubResource("Resource_qaw6y")
+
+[node name="item209" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.393532, 1, 15.940273)
+item = SubResource("Resource_0k61o")
+
+[node name="item210" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.393532, 1, 21.28146)
+item = SubResource("Resource_ydd80")
+
+[node name="item211" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.393532, 1, 25.612274)
+item = ExtResource("17_k3nvp")
+
+[node name="item212" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.958889, 1, 15.940273)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun43" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2725677, 1, 17.914597)
+item = SubResource("Resource_fco5v")
+
+[node name="arma85" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.375893, 1, 29.390676)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma86" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.248741, 1, 27.667976)
+item = SubResource("Resource_v2qau")
+
+[node name="item213" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.608257, 1, 17.914597)
+item = SubResource("Resource_qaw6y")
+
+[node name="item214" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.608257, 1, 22.415173)
+item = SubResource("Resource_0k61o")
+
+[node name="item215" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.608257, 1, 27.75636)
+item = SubResource("Resource_ydd80")
+
+[node name="item216" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.608257, 1, 32.087177)
+item = ExtResource("17_k3nvp")
+
+[node name="item217" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1736145, 1, 22.415173)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun44" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.325081, 1, 23.263792)
+item = SubResource("Resource_fco5v")
+
+[node name="arma87" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.778248, 1, 34.739872)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma88" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.651093, 1, 33.017174)
+item = SubResource("Resource_v2qau")
+
+[node name="item218" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0106125, 1, 23.263792)
+item = SubResource("Resource_qaw6y")
+
+[node name="item219" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0106125, 1, 27.76437)
+item = SubResource("Resource_0k61o")
+
+[node name="item220" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0106125, 1, 33.105556)
+item = SubResource("Resource_ydd80")
+
+[node name="item221" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0106125, 1, 37.43637)
+item = ExtResource("17_k3nvp")
+
+[node name="item222" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.424034, 1, 27.76437)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun45" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0629425, 1, 25.798525)
+item = SubResource("Resource_fco5v")
+
+[node name="arma89" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.040384, 1, 37.274605)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma90" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.913231, 1, 35.551903)
+item = SubResource("Resource_v2qau")
+
+[node name="item223" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.272751, 1, 25.798525)
+item = SubResource("Resource_qaw6y")
+
+[node name="item224" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.272751, 1, 30.299103)
+item = SubResource("Resource_0k61o")
+
+[node name="item225" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.272751, 1, 35.64029)
+item = SubResource("Resource_ydd80")
+
+[node name="item226" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.272751, 1, 39.971104)
+item = ExtResource("17_k3nvp")
+
+[node name="item227" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1618958, 1, 30.299103)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun46" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.393349, 1, 19.647133)
+item = SubResource("Resource_fco5v")
+
+[node name="arma91" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.496677, 1, 31.123213)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma92" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.369522, 1, 29.400513)
+item = SubResource("Resource_v2qau")
+
+[node name="item228" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.729042, 1, 19.647133)
+item = SubResource("Resource_qaw6y")
+
+[node name="item229" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.729042, 1, 24.147709)
+item = SubResource("Resource_0k61o")
+
+[node name="item230" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.729042, 1, 29.488895)
+item = SubResource("Resource_ydd80")
+
+[node name="item231" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.729042, 1, 33.819714)
+item = ExtResource("17_k3nvp")
+
+[node name="item232" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2944, 1, 24.147709)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun47" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7957, 1, 24.996328)
+item = SubResource("Resource_fco5v")
+
+[node name="arma93" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.89903, 1, 36.47241)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma94" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.771877, 1, 34.74971)
+item = SubResource("Resource_v2qau")
+
+[node name="item233" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.131393, 1, 24.996328)
+item = SubResource("Resource_qaw6y")
+
+[node name="item234" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.131393, 1, 29.496906)
+item = SubResource("Resource_0k61o")
+
+[node name="item235" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.131393, 1, 34.838093)
+item = SubResource("Resource_ydd80")
+
+[node name="item236" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.131393, 1, 39.168907)
+item = ExtResource("17_k3nvp")
+
+[node name="item237" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.69675, 1, 29.496906)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun48" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.057838, 1, 27.531061)
+item = SubResource("Resource_fco5v")
+
+[node name="arma95" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.161167, 1, 39.00714)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma96" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.03401, 1, 37.28444)
+item = SubResource("Resource_v2qau")
+
+[node name="item238" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.393532, 1, 27.531061)
+item = SubResource("Resource_qaw6y")
+
+[node name="item239" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.393532, 1, 32.03164)
+item = SubResource("Resource_0k61o")
+
+[node name="item240" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.393532, 1, 37.372826)
+item = SubResource("Resource_ydd80")
+
+[node name="item241" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.393532, 1, 41.70364)
+item = ExtResource("17_k3nvp")
+
+[node name="item242" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.958889, 1, 32.03164)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun49" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5772324, 1, 30.09018)
+item = SubResource("Resource_fco5v")
+
+[node name="arma97" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.526093, 1, 41.56626)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma98" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.398937, 1, 39.84356)
+item = SubResource("Resource_v2qau")
+
+[node name="item243" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7584534, 1, 30.09018)
+item = SubResource("Resource_qaw6y")
+
+[node name="item244" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7584534, 1, 34.590755)
+item = SubResource("Resource_0k61o")
+
+[node name="item245" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7584534, 1, 39.931942)
+item = SubResource("Resource_ydd80")
+
+[node name="item246" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7584534, 1, 44.26276)
+item = ExtResource("17_k3nvp")
+
+[node name="item247" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6761856, 1, 34.590755)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun50" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.174881, 1, 35.439377)
+item = SubResource("Resource_fco5v")
+
+[node name="arma99" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.928444, 1, 46.915455)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma100" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8012924, 1, 45.192757)
+item = SubResource("Resource_v2qau")
+
+[node name="item248" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8391876, 1, 35.439377)
+item = SubResource("Resource_qaw6y")
+
+[node name="item249" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8391876, 1, 39.939953)
+item = SubResource("Resource_0k61o")
+
+[node name="item250" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8391876, 1, 45.28114)
+item = SubResource("Resource_ydd80")
+
+[node name="item251" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8391876, 1, 49.611954)
+item = ExtResource("17_k3nvp")
+
+[node name="item252" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.273834, 1, 39.939953)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun51" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.912743, 1, 37.974106)
+item = SubResource("Resource_fco5v")
+
+[node name="arma101" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.190582, 1, 49.450188)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma102" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.063431, 1, 47.727486)
+item = SubResource("Resource_v2qau")
+
+[node name="item253" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5770493, 1, 37.974106)
+item = SubResource("Resource_qaw6y")
+
+[node name="item254" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5770493, 1, 42.474686)
+item = SubResource("Resource_0k61o")
+
+[node name="item255" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5770493, 1, 47.815872)
+item = SubResource("Resource_ydd80")
+
+[node name="item256" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5770493, 1, 52.146687)
+item = ExtResource("17_k3nvp")
+
+[node name="item257" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.011696, 1, 42.474686)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun52" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.543547, 1, 31.822716)
+item = SubResource("Resource_fco5v")
+
+[node name="arma103" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.646873, 1, 43.298798)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma104" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.519722, 1, 41.576096)
+item = SubResource("Resource_v2qau")
+
+[node name="item258" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.879238, 1, 31.822716)
+item = SubResource("Resource_qaw6y")
+
+[node name="item259" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.879238, 1, 36.32329)
+item = SubResource("Resource_0k61o")
+
+[node name="item260" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.879238, 1, 41.66448)
+item = SubResource("Resource_ydd80")
+
+[node name="item261" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.879238, 1, 45.995296)
+item = ExtResource("17_k3nvp")
+
+[node name="item262" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.444597, 1, 36.32329)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun53" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9459, 1, 37.171913)
+item = SubResource("Resource_fco5v")
+
+[node name="arma105" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.049225, 1, 48.64799)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma106" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.922073, 1, 46.925293)
+item = SubResource("Resource_v2qau")
+
+[node name="item263" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.281591, 1, 37.171913)
+item = SubResource("Resource_qaw6y")
+
+[node name="item264" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.281591, 1, 41.67249)
+item = SubResource("Resource_0k61o")
+
+[node name="item265" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.281591, 1, 47.013676)
+item = SubResource("Resource_ydd80")
+
+[node name="item266" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.281591, 1, 51.34449)
+item = ExtResource("17_k3nvp")
+
+[node name="item267" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.846947, 1, 41.67249)
+item = SubResource("Resource_wtxsa")
+
+[node name="mun54" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.208038, 1, 39.706642)
+item = SubResource("Resource_fco5v")
+
+[node name="arma107" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.311363, 1, 51.182724)
+item = SubResource("Resource_s3ifu")
+
+[node name="arma108" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.18421, 1, 49.460022)
+item = SubResource("Resource_v2qau")
+
+[node name="item268" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.54373, 1, 39.706642)
+item = SubResource("Resource_qaw6y")
+
+[node name="item269" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.54373, 1, 44.207222)
+item = SubResource("Resource_0k61o")
+
+[node name="item270" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.54373, 1, 49.54841)
+item = SubResource("Resource_ydd80")
+
+[node name="item271" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.54373, 1, 53.879223)
+item = ExtResource("17_k3nvp")
+
+[node name="item272" parent="." instance=ExtResource("8_ap273")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.109085, 1, 44.207222)
+item = SubResource("Resource_wtxsa")
 
 [connection signal="timeout" from="spawn inimigo/Timer" to="spawn inimigo" method="_on_timer_timeout"]

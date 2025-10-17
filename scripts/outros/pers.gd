@@ -18,21 +18,8 @@ var ultimoalvo
 @onready var inventario_max: int = 20
 @onready var slots_max: int
 var lista_de_receitas: Array[itens]
-@export var equip: Dictionary[String, Resource] = {
-	# Equipamento primario
-	"cabeca": null,
-	"superior": null,
-	"inferior": null,
-	"cintura": null,
-	"pes": null,
-	"costas": null,
-
-	# Equipamento secundario
-	"face": null,
-	"colete": null,
-	"pulso": null,
-}
 @export var slots: Dictionary[String, Resource] = {
+	# armas e utilidades
 	"primaria": null,
 	"secundaria": null,
 	"hotkey1": null,
@@ -40,15 +27,27 @@ var lista_de_receitas: Array[itens]
 	"hotkey3": null,
 	"hotkey4": null,
 	"hotkey5": null,
+	
+	# Equipamento primario
+	"cabeca": null,
+	"superior": null,
+	"inferior": null,
+	"cintura": null,
+	"pes": null,
+
+	# Equipamento secundario
+	"face": null,
+	"maos": null,
+	"colete": null,
+	"costas": null,
 }
 
-@onready var arma_atual = null
-
+# Variaveis relacionadas ao inventario
 @onready var pers = self
+@onready var arma_atual = null
 @onready var hotkey: int = 0
-@onready var inventarioUI: VBoxContainer = $"UI/invcontainer/Inventário [TAB]"
-@onready var slotsUI: VBoxContainer = $UI/hud_slots
 @onready var UI: Control = $UI
+@onready var menu: TabContainer = $UI/invcontainer
 
 #var mlivre: itens = preload("res://resources/armas/maos livres.tres")
 var equipado: bool = false
@@ -66,11 +65,13 @@ var fadiga: float = (fome + sede) / 2
 var sanidade: int = 100
 var debuffs: Array[Resource] ## AVALIAR NECESSIDADE DE FAZER UMA CLASSE DE DEBUFFS
 
+# Auxiliar da tecla Q
 var segurando_q: bool
 var tempo_q: float
 
 @onready var inimigo = preload("res://tscn/inimigo/inim.tscn")
 
+var inimigos = 0
 func _ready() -> void:
 	UI.connect("resultado_contador", Callable(self, "_on_resultado_contador"))
 
@@ -152,7 +153,7 @@ func _physics_process(delta: float) -> void:
 		arma_atual.recarregar(self, UI)
 
 
-	if Input.is_action_just_pressed("E"): interagir = true; print(interagir)
+	if Input.is_action_just_pressed("E"): interagir = true; print(interagir); UI.atualizarequipUI()
 	if Input.is_action_just_released("E"): interagir = false; print(interagir)
 
 
@@ -163,8 +164,9 @@ func _physics_process(delta: float) -> void:
 
 
 	#spawnar inimigo (debug)
-	if Input.is_action_just_pressed("F"):
+	if Input.is_action_pressed("F"):
 		var inim = inimigo.instantiate()
+		inimigos += 1
 		inim.position = position + Vector3(10, 0, 0)
 		get_tree().get_root().get_node("main").add_child(inim)
 
@@ -175,26 +177,7 @@ func _physics_process(delta: float) -> void:
 		UI.atualizarinventarioUI()
 		UI.atualizarslotsUI()
 
-
-	# guardar item ## MUDAR PRA ALTERNAR ENTRE PRIMARIA E SECUNDARIA, E SE SEGURAR, GUARDAR ARMA
-	#if Input.is_action_pressed("Q"):
-		#tempo_q += delta
-		#if tempo_q >= 1.0 and arma_atual != null:
-			#tempo_q = 0
-			#print("segurou q")
-			#arma_atual = null
-		#
-	#if Input.is_action_just_released("Q"):
-		#tempo_q = 0
-		#print("soltou q")
-		#if slots["primaria"] != null and slots["secundaria"] != null:
-			#var aux = slots["primaria"]
-			#slots["primaria"] = slots["secundaria"]
-			#slots["secundaria"] = aux
-			#UI.atualizarslotsUI()
-
-
-
+	# LÓGICA DA TECLA Q
 	# Começou a segurar
 	if Input.is_action_just_pressed("Q"):
 		segurando_q = true
@@ -212,6 +195,10 @@ func _physics_process(delta: float) -> void:
 	# Soltou antes de 1 segundo
 	if Input.is_action_just_released("Q") and segurando_q:
 		if tempo_q < 1.0:
+			if arma_atual == null and slots["primaria"] != null:
+				arma_atual = slots["primaria"]
+				UI.atualizarslotsUI()
+				return
 			if slots["primaria"] != null and slots["secundaria"] != null:
 				var aux = slots["primaria"]
 				slots["primaria"] = slots["secundaria"]
@@ -226,58 +213,14 @@ func _physics_process(delta: float) -> void:
 		tempo_q = 0.0
 
 
-
-
-
-	# Abrir inventário
-	if Input.is_action_just_pressed("TAB"):
-		if $UI/invcontainer.visible == true:
-			$UI/invcontainer.hide()
-			return
-		if $UI/invcontainer.visible == false:
-			$UI/invcontainer.current_tab = 0
-			UI.atualizarinventarioUI()
-			$UI/invcontainer.show()
-
-	# Abrir inventário (ABA 2)
-	if Input.is_action_just_pressed("J"):
-		if $UI/invcontainer.visible == true:
-			$UI/invcontainer.hide()
-			return
-		if $UI/invcontainer.visible == false:
-			$UI/invcontainer.current_tab = 1
-			UI.atualizarinventarioUI()
-			$UI/invcontainer.show()
-
-	# Abrir inventário (ABA 3)
-	if Input.is_action_just_pressed("K"):
-		if $UI/invcontainer.visible == true:
-			$UI/invcontainer.hide()
-			return
-		if $UI/invcontainer.visible == false:
-			$UI/invcontainer.current_tab = 2
-			UI.atualizarinventarioUI()
-			$UI/invcontainer.show()
-
-	# Abrir inventário (ABA 4)
-	if Input.is_action_just_pressed("L"):
-		if $UI/invcontainer.visible == true:
-			$UI/invcontainer.hide()
-			return
-		if $UI/invcontainer.visible == false:
-			$UI/invcontainer.current_tab = 3
-			UI.atualizarinventarioUI()
-			$UI/invcontainer.show()
-
-
-
 	if saude <= 0:
 		get_tree().reload_current_scene()
 		
 	$Label2.text = str(
 		slots["primaria"], "\n",
 		slots["secundaria"], "\n", "\n",
-		arma_atual
+		arma_atual, "\n", "\n",
+		"inimigos: ", inimigos
 	)
 
 func alvo2d(): 
@@ -475,15 +418,53 @@ func _drop_item_no_mundo(item: itens) -> void:
 	get_parent().add_child(drop)
 
 
-
-
-
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.as_text_key_label().is_valid_int() and event.pressed and not event.echo and event.keycode != 48:
 		hotkey = int(event.as_text_key_label())
 		# ADICIONAR À FUNÇÃO QUE CONTROLA OS ITENS DA HOTKEY PRA ZERAR ESSA VARIAVEL QUANDO O ITEM FOR USADO
 		return
+	
+	# Abrir inventário
+	if Input.is_action_just_pressed("TAB"):
+		if menu.visible == true:
+			menu.hide()
+			return
+		if menu.visible == false:
+			menu.current_tab = 0
+			UI.atualizarinventarioUI()
+			menu.show()
 
+	# Abrir inventário (ABA 2)
+	if Input.is_action_just_pressed("J"):
+		if menu.visible == true:
+			menu.hide()
+			return
+		if menu.visible == false:
+			menu.current_tab = 1
+			UI.atualizarinventarioUI()
+			menu.show()
+
+	# Abrir inventário (ABA 3)
+	if Input.is_action_just_pressed("K"):
+		if menu.visible == true:
+			menu.hide()
+			return
+		if menu.visible == false:
+			menu.current_tab = 2
+			UI.atualizarinventarioUI()
+			menu.show()
+
+	# Abrir inventário (ABA 4)
+	if Input.is_action_just_pressed("L"):
+		if menu.visible == true:
+			menu.hide()
+			return
+		if menu.visible == false:
+			menu.current_tab = 3
+			UI.atualizarinventarioUI()
+			menu.show()
+	
+	
 func usarhotkey(hotkey: int) -> void:
 	if hotkey:
 		slots[str("hotkey",hotkey)].usar_equipado()

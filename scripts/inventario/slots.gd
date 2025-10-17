@@ -7,38 +7,21 @@ var slotvazio: Resource = preload("res://pngs/vazio.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if self.name == "primaria":
-		$nome_hotkey.text = ""
-		$imagem.size = Vector2(60, 60)
-		return
-	if self.name == "secundaria":
-		$nome_hotkey.text = "Q"
-		$imagem.size = Vector2(50, 50)
-		return
-	if self.name == "hotkey1":
-		$nome_hotkey.text = "1"
-		$imagem.size = Vector2(50, 50)
-		return
-	if self.name == "hotkey2":
-		$nome_hotkey.text = "2"
-		$imagem.size = Vector2(50, 50)
-		return
-	if self.name == "hotkey3":
-		$nome_hotkey.text = "3"
-		$imagem.size = Vector2(50, 50)
-		return
-	if self.name == "hotkey4":
-		$nome_hotkey.text = "4"
-		$imagem.size = Vector2(50, 50)
-		return
-	if self.name == "hotkey5":
-		$nome_hotkey.text = "5"
-		$imagem.size = Vector2(50, 50)
-		return
-	if self.name == "hotkey6":
-		$nome_hotkey.text = "6"
-		$imagem.size = Vector2(50, 50)
-		return
+	var hotkeys = {
+		"primaria": {"texto": "", "tamanho": Vector2(60, 60)},
+		"secundaria": {"texto": "Q", "tamanho": Vector2(50, 50)},
+		"hotkey1": {"texto": "1", "tamanho": Vector2(50, 50)},
+		"hotkey2": {"texto": "2", "tamanho": Vector2(50, 50)},
+		"hotkey3": {"texto": "3", "tamanho": Vector2(50, 50)},
+		"hotkey4": {"texto": "4", "tamanho": Vector2(50, 50)},
+		"hotkey5": {"texto": "5", "tamanho": Vector2(50, 50)},
+		"hotkey6": {"texto": "6", "tamanho": Vector2(50, 50)},
+	}
+
+	if hotkeys.has(name):
+		var config = hotkeys[name]
+		$nome_hotkey.text = config.texto
+		$imagem.size = config.tamanho
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -52,10 +35,10 @@ func _process(delta: float) -> void:
 			if x == str(self.name) and pers.slots[x] == null:
 				$Label.text = ""
 				$imagem.texture = slotvazio
-				return
+				
 				
 			if x == str(self.name) and pers.slots[x] != null:
 				$imagem.texture = pers.slots[x].imagem
 				if pers.slots[x].tipo == "Arma de fogo":
 					$Label.text = str(pers.slots[x].qntatual)
-		skip = true
+	skip = true

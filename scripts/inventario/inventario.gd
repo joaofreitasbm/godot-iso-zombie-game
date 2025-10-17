@@ -1,9 +1,9 @@
 extends PanelContainer
 
 @onready var pers: CharacterBody3D = $"../../../.."
+@onready var UI: Control = $"../../.."
 var reciclar: Array[itens]
 var skip: bool = false
-@onready var UI: Control = $"../../.."
 var indice: int
 
 # Called when the node enters the scene tree for the first time.

@@ -1,12 +1,12 @@
-[gd_scene load_steps=43 format=3 uid="uid://d2o3afnlnpfk0"]
+[gd_scene load_steps=37 format=3 uid="uid://d2o3afnlnpfk0"]
 
 [ext_resource type="Script" uid="uid://crnjk1l18umy8" path="res://scripts/inventario/ui.gd" id="1_sn5al"]
-[ext_resource type="PackedScene" uid="uid://b5ho1ri640hdk" path="res://tscn/equip_esq_inf.tscn" id="2_agrgj"]
+[ext_resource type="PackedScene" uid="uid://b5ho1ri640hdk" path="res://tscn/slots_hud.tscn" id="2_agrgj"]
 [ext_resource type="PackedScene" uid="uid://rjdoowuh0wru" path="res://tscn/inventario.tscn" id="2_sn5al"]
 [ext_resource type="Texture2D" uid="uid://ckym4mu8egu1l" path="res://pngs/hud/vida.png" id="4_ihnko"]
 [ext_resource type="PackedScene" uid="uid://dmi6giaab37f6" path="res://tscn/craft.tscn" id="4_k14ws"]
 [ext_resource type="Texture2D" uid="uid://cufakpkjlco10" path="res://pngs/hud/correr.png" id="5_r27dv"]
-[ext_resource type="Texture2D" uid="uid://bl5t6nlxojray" path="res://pngs/comp fuzil 1.png" id="6_b2rrn"]
+[ext_resource type="PackedScene" uid="uid://cwt1jsb44ciec" path="res://tscn/slots_equip.tscn" id="7_ihnko"]
 
 [sub_resource type="Theme" id="Theme_sn5al"]
 resource_local_to_scene = true
@@ -36,19 +36,6 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hjuk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37vk4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mi3o5"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5p4s"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjvf0"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxo4d"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fvbl"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2tcl"]
 
 [sub_resource type="Theme" id="Theme_k14ws"]
 resource_local_to_scene = true
@@ -288,7 +275,6 @@ theme_override_font_sizes/font_size = 10
 current_tab = 1
 
 [node name="Inventário [TAB]" type="VBoxContainer" parent="invcontainer"]
-unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 1
@@ -396,31 +382,11 @@ theme_override_font_sizes/font_size = 12
 text = "Armas:"
 vertical_alignment = 2
 
-[node name="equip_prim" type="VBoxContainer" parent="invcontainer/Equipamento [J]/lado_esq"]
+[node name="primaria" parent="invcontainer/Equipamento [J]/lado_esq" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_esq/equip_prim"]
-custom_minimum_size = Vector2(35, 35)
+[node name="secundaria" parent="invcontainer/Equipamento [J]/lado_esq" instance=ExtResource("7_ihnko")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-text = "Primária"
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
-
-[node name="equip_prim2" type="VBoxContainer" parent="invcontainer/Equipamento [J]/lado_esq"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_esq/equip_prim2"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-text = "Secundária"
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
 
 [node name="lado_dir" type="VBoxContainer" parent="invcontainer/Equipamento [J]"]
 layout_mode = 2
@@ -433,122 +399,32 @@ theme_override_font_sizes/font_size = 12
 text = "Corpo:"
 vertical_alignment = 2
 
-[node name="equip_prim" type="VBoxContainer" parent="invcontainer/Equipamento [J]/lado_dir"]
+[node name="cabeca" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-text = "Cabeça:"
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
-
-[node name="equip_prim9" type="VBoxContainer" parent="invcontainer/Equipamento [J]/lado_dir"]
+[node name="superior" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim9"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-text = "Superior:"
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
-
-[node name="equip_prim2" type="VBoxContainer" parent="invcontainer/Equipamento [J]/lado_dir"]
+[node name="inferior" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim2"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-text = "Inferior:"
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
-
-[node name="equip_prim3" type="VBoxContainer" parent="invcontainer/Equipamento [J]/lado_dir"]
+[node name="cintura" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim3"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-text = "Cintura:"
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
-
-[node name="equip_prim4" type="VBoxContainer" parent="invcontainer/Equipamento [J]/lado_dir"]
+[node name="pes" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim4"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-text = "Pés:"
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
-
-[node name="equip_prim5" type="VBoxContainer" parent="invcontainer/Equipamento [J]/lado_dir"]
+[node name="face" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim5"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-text = "Costas:"
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
-
-[node name="equip_prim6" type="VBoxContainer" parent="invcontainer/Equipamento [J]/lado_dir"]
+[node name="maos" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim6"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-text = "Face:"
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
-
-[node name="equip_prim7" type="VBoxContainer" parent="invcontainer/Equipamento [J]/lado_dir"]
+[node name="colete" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim7"]
-custom_minimum_size = Vector2(35, 35)
+[node name="costas" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-text = "Colete:"
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
-
-[node name="equip_prim8" type="VBoxContainer" parent="invcontainer/Equipamento [J]/lado_dir"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim8"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-text = "Pulso:"
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
 
 [node name="titulo corpo2" type="Label" parent="invcontainer/Equipamento [J]/lado_dir"]
 custom_minimum_size = Vector2(0, 30)
@@ -557,73 +433,23 @@ theme_override_font_sizes/font_size = 12
 text = "Atalhos:"
 vertical_alignment = 2
 
-[node name="equip_prim10" type="HBoxContainer" parent="invcontainer/Equipamento [J]/lado_dir"]
+[node name="atalhos" type="HBoxContainer" parent="invcontainer/Equipamento [J]/lado_dir"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim10"]
-custom_minimum_size = Vector2(35, 35)
+[node name="hotkey1" parent="invcontainer/Equipamento [J]/lado_dir/atalhos" instance=ExtResource("7_ihnko")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_v5p4s")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jjvf0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yxo4d")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_1fvbl")
-theme_override_styles/focus = SubResource("StyleBoxFlat_l2tcl")
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
 
-[node name="Button2" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim10"]
-custom_minimum_size = Vector2(35, 35)
+[node name="hotkey2" parent="invcontainer/Equipamento [J]/lado_dir/atalhos" instance=ExtResource("7_ihnko")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_v5p4s")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jjvf0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yxo4d")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_1fvbl")
-theme_override_styles/focus = SubResource("StyleBoxFlat_l2tcl")
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
 
-[node name="Button3" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim10"]
-custom_minimum_size = Vector2(35, 35)
+[node name="hotkey3" parent="invcontainer/Equipamento [J]/lado_dir/atalhos" instance=ExtResource("7_ihnko")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_v5p4s")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jjvf0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yxo4d")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_1fvbl")
-theme_override_styles/focus = SubResource("StyleBoxFlat_l2tcl")
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
 
-[node name="Button4" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim10"]
-custom_minimum_size = Vector2(35, 35)
+[node name="hotkey4" parent="invcontainer/Equipamento [J]/lado_dir/atalhos" instance=ExtResource("7_ihnko")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_v5p4s")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jjvf0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yxo4d")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_1fvbl")
-theme_override_styles/focus = SubResource("StyleBoxFlat_l2tcl")
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
 
-[node name="Button5" type="Button" parent="invcontainer/Equipamento [J]/lado_dir/equip_prim10"]
-custom_minimum_size = Vector2(35, 35)
+[node name="hotkey5" parent="invcontainer/Equipamento [J]/lado_dir/atalhos" instance=ExtResource("7_ihnko")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_v5p4s")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jjvf0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yxo4d")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_1fvbl")
-theme_override_styles/focus = SubResource("StyleBoxFlat_l2tcl")
-icon = ExtResource("6_b2rrn")
-alignment = 0
-expand_icon = true
 
 [node name="Status [K]" type="VBoxContainer" parent="invcontainer"]
 visible = false
@@ -891,9 +717,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
-offset_top = 4.0
-offset_right = 171.0
-offset_bottom = 119.0
+offset_top = -119.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 

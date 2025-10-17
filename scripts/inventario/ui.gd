@@ -1,5 +1,12 @@
 extends Control
 
+# Referências UI:
+@onready var inventarioUI: VBoxContainer = $"invcontainer/Inventário [TAB]"
+@onready var equipUI: HBoxContainer = $"invcontainer/Equipamento [J]"
+@onready var statusUI: VBoxContainer = $"invcontainer/Status [K]"
+@onready var craftUI: VBoxContainer = $"invcontainer/Fabricação [L]"
+@onready var slotsUI: VBoxContainer = $hud_slots
+
 # Referências contador:
 @onready var submenu: PopupPanel = $contador/submenu
 @onready var texto: Label = $contador/submenu/vbc/texto
@@ -45,27 +52,29 @@ func _process(_delta: float) -> void:
 
 			
 func atualizarinventarioUI(): # VERSÃO ATUALIZADA
-	for i in %"Inventário [TAB]".get_children():
+	for i in inventarioUI.get_children():
 		if i is PanelContainer:
 			i.skip = false
 	print("Inventário atualizado")
 
 
+func atualizarequipUI():
+	for i in equipUI.find_children("", "Label", true, false):
+		if pers.slots.has(i.name):
+			print(i.name)
+
 
 func atualizarcraftUI():
-	for i in $"invcontainer/Fabricação [L]/tiposcraft".get_children():
+	for i in craftUI.get_children():
 		if i is ItemList:
 			i.get_parent().skip = false
 
 
 func atualizarslotsUI():
-	for i in $hud_slots.find_children("", "Button"):
-		#print(i)
+	for i in slotsUI.find_children("", "Button"):
 		i.skip = false
 
 
-
-	
 func _abrir_contador(item: itens, acao: String):
 	print("contador aberto")
 	#variaveis auxiliares que foram declaradas no começo do código sendo usadas
@@ -90,7 +99,3 @@ func _on_botao_contador_pressed() -> void:
 	var qtd = int(spinbox.value)
 	submenu.hide()
 	emit_signal("resultado_contador", qtd, acao_atual, item_selecionado)
-
-
-func _on_bucete_pressed() -> void:
-	print("bucete")

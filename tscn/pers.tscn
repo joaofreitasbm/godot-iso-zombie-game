@@ -20,6 +20,7 @@ material = SubResource("StandardMaterial3D_u1lqi")
 outer_radius = 0.6
 
 [node name="pers" type="CharacterBody3D" groups=["Player"]]
+collision_mask = 6
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true

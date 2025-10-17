@@ -90,7 +90,7 @@ func usar_equipado(alvo, pers, UI):
 				part.top_level = true
 				part.position = alvo.position
 				part.emitting = true
-				UI.atualizarequip_esq_infUI()
+				UI.atualizarslotsUI()
 				UI.atualizarinventarioUI()
 			return
 
@@ -103,7 +103,7 @@ func usar_equipado(alvo, pers, UI):
 				part.top_level = true
 				part.position = alvo.position
 				part.emitting = true
-				UI.atualizarequip_esq_infUI()
+				UI.atualizarslotsUI()
 				UI.atualizarinventarioUI()
 			return 
 

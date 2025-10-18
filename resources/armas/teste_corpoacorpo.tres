@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="itens" load_steps=4 format=3 uid="uid://cigxij7davram"]
+
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_itens.gd" id="1_7w22c"]
+[ext_resource type="Texture2D" uid="uid://iuqsdtvuin5f" path="res://pngs/hud/Q.png" id="2_ic17e"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_wfyr4"]
+
+[resource]
+script = ExtResource("1_7w22c")
+nome_item = "teste corpo a corpo"
+quantidade = 1
+imagem = ExtResource("2_ic17e")
+mesh = SubResource("TorusMesh_wfyr4")
+impacto = 5.0
+tipo = "Corpo a corpo"
+alcance = 1
+semiauto = true
+velocidade_ataque = 1.0
+dano = 10
+durabilidade = 100
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

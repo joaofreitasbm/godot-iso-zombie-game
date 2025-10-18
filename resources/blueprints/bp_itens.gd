@@ -65,11 +65,14 @@ class_name itens
 func usar_equipado(alvo, pers, UI):
 	if tipo == "Corpo a corpo": #CORPO A CORPO
 		if alvo != null:
-			if aux == true and durabilidade >= 1:
+			if aux == true: # and durabilidade >= 1:
 				print("bateu com corpo a corpo, durabilidade atual: ", durabilidade)
 				aux = false
 				if alvo.is_in_group("Inimigo"):
-					alvo.vida -= dano
+					print("bateu?")
+					alvo.stun = true
+					alvo.velocity += (alvo.global_position - pers.global_position) * impacto
+					alvo.saude -= dano
 					var part = preload("res://tscn/particula_sangue.tscn").instantiate()
 					part.top_level = true
 					part.position = alvo.position
@@ -90,7 +93,7 @@ func usar_equipado(alvo, pers, UI):
 			print("atirou semi, munição atual: ", qntatual)
 			aux = false
 			if alvo != null and alvo.is_in_group("Inimigo"):
-				alvo.vida -= dano
+				alvo.saude -= dano
 				alvo.add_child(part)
 				part.top_level = true
 				part.position = alvo.position
@@ -103,7 +106,7 @@ func usar_equipado(alvo, pers, UI):
 			qntatual -= 1
 			print("atirou auto, ", qntatual)
 			if alvo != null and alvo.is_in_group("Inimigo"):
-				alvo.vida -= dano
+				alvo.saude -= dano
 				alvo.add_child(part)
 				part.top_level = true
 				part.position = alvo.position
@@ -126,7 +129,7 @@ func usar_equipado(alvo, pers, UI):
 	
 	if tipo == "Consumivel": #CONSUMIVEL
 		if quantidade >= 1:
-			pers.vida += dano
+			pers.saude += dano
 			quantidade -= 1
 		
 

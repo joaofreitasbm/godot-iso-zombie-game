@@ -76,6 +76,9 @@ func _ready() -> void:
 	UI.connect("resultado_contador", Callable(self, "_on_resultado_contador"))
 	UI.connect("resultado_reciclar", Callable(self, "_on_resultado_reciclar"))
 
+func _process(_delta: float) -> void:
+	pass
+
 
 func _physics_process(delta: float) -> void:
 	opacidade()
@@ -133,7 +136,7 @@ func _physics_process(delta: float) -> void:
 
 
 	if Input.is_action_pressed("atirar"):
-		if mirando and $timers/timer.is_stopped(): 
+		if mirando and $timers/timer.is_stopped() and arma_atual != null: 
 			$timers/timer.wait_time = arma_atual.velocidade_ataque
 			$timers/timer.start()
 			arma_atual.usar_equipado(colmira, self, UI)
@@ -141,7 +144,7 @@ func _physics_process(delta: float) -> void:
 
 
 	if Input.is_action_just_released("atirar"):
-		if mirando: arma_atual.aux = true
+		if mirando and arma_atual != null: arma_atual.aux = true
 		else: return
 
 
@@ -165,7 +168,7 @@ func _physics_process(delta: float) -> void:
 
 
 	#spawnar inimigo (debug)
-	if Input.is_action_pressed("F"):
+	if Input.is_action_just_pressed("F"):
 		var inim = inimigo.instantiate()
 		inimigos += 1
 		inim.position = position + Vector3(10, 0, 0)

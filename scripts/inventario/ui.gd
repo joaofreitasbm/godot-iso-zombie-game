@@ -26,10 +26,14 @@ extends Control
 @onready var sanidade_status: ProgressBar = $"invcontainer/Status [K]/VBoxContainer/sanidade/barra"
 
 signal resultado_contador(quantidade: int, acao: String, item)
+signal resultado_reciclar(itens_obtidos: Array[itens], item_consumido: itens)
 
-# Variáveis auxiliares
+# Variáveis auxiliares largar/descartar/recicraft
 var acao_atual: String = ""
 var item_selecionado: itens = null
+var reciclar: Array[itens]
+var item_reciclado: itens
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -65,9 +69,8 @@ func atualizarequipUI():
 
 
 func atualizarcraftUI():
-	for i in craftUI.get_children():
-		if i is ItemList:
-			i.get_parent().skip = false
+	for i in craftUI.find_children("", "TabContainer", false, false):
+		i.skip = false
 
 
 func atualizarslotsUI():
@@ -93,9 +96,68 @@ func _abrir_contador(item: itens, acao: String):
 	submenu.show()
 	
 
+func _abrir_recicraft(texto_recicraft: String, resultado: Array[itens], item: itens):
+	$recicraft/submenu.position = Vector2(global_position.x, global_position.y + 25)
+	$recicraft/submenu/vbc/titulo.text = "Materiais obtidos:"
+	$recicraft/submenu/vbc/texto.text = texto_recicraft
+	$recicraft/submenu/vbc/botao.text = "Clique aqui para reciclar"
+	$recicraft/submenu.show()
+	$recicraft/submenu/vbc/botao.show()
+	$recicraft/submenu.position = get_global_mouse_position() - Vector2(65, 0)
+	reciclar = resultado
+	item_reciclado = item
+	
+	atualizarinventarioUI()
+	
+
 
 func _on_botao_contador_pressed() -> void:
 	print("botão pressionado")
 	var qtd = int(spinbox.value)
 	submenu.hide()
 	emit_signal("resultado_contador", qtd, acao_atual, item_selecionado)
+
+
+func _on_botao_recicraft_pressed() -> void:
+	# pegar quantidade de itens stackaveis e não stackaveis:
+	var stack: int = 0
+	var nao_stack: int = 0
+	
+	#separar itens stackaveis de nao stackaveis
+	var itens_stack: Array[itens]
+	var itens_nao_stack: Array[itens]
+	
+	# total de itens e slots livres do inventario
+	var quantidade: int = stack + nao_stack
+	var slots_livres = pers.inventario_max - len(pers.inventario)
+	
+	for x in reciclar:
+		if x.stackavel:
+			stack += 1
+			itens_stack.append(x.duplicate(true))
+		if !x.stackavel:
+			nao_stack += x.quantidade
+			itens_nao_stack.append(x)
+
+	prints("stack", stack)
+	prints("nao_stack", nao_stack)
+	
+	if quantidade <= slots_livres:
+		print("tem espaço")
+		
+		# tratar itens não stackaveis
+		var itens_nao_stack_tratados: Array[itens]
+		for y in itens_nao_stack:
+			for z in range(y.quantidade):
+				print(z)
+				var novo_item = y.duplicate(true)
+				novo_item.quantidade = 1
+				itens_nao_stack_tratados.append(novo_item)
+		
+		var itens_recebidos: Array[itens] = []
+		itens_recebidos.append_array(itens_stack + itens_nao_stack_tratados)
+		$recicraft/submenu.hide()
+		emit_signal("resultado_reciclar", itens_recebidos, item_reciclado)
+		
+	
+	

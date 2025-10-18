@@ -22,6 +22,7 @@ class_name itens
 	"Receita",
 	"Munição - fuzil") var tipo: String
 
+
 @export_group("Propriedades de armas")
 #propriedades armas
 @export var qntmaxima: int
@@ -30,7 +31,6 @@ class_name itens
 @export_enum (
 	"Munição - fuzil",
 	"Munição - pistola") var tipo_municao: String
-@export var durabilidade: int
 @export var tempo_carregamento: float
 @export var semiauto: bool
 @export var audio_impacto: AudioStreamMP3
@@ -52,9 +52,14 @@ class_name itens
 	"Mecanica",
 	"Metalurgia") var tipo_receita: String
 @export var item_craftado: itens
-@export var craftavel: bool # fica positivo se tiver o material necessário pra craftar (avaliar necessidade)
 # adicionar variavel que acrescenta experiencia baseada na variavel tipo
 # se tipo == Marcenaria, adiciona x exp na habilidade marcenaria.
+
+@export_group("Propriedades de equipamentos")
+@export var slot_equipavel: String
+@export var durabilidade: int
+@export var itens_guardados: Array[itens]
+@export var peso: int
 
 
 func usar_equipado(alvo, pers, UI):

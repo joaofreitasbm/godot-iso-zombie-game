@@ -742,4 +742,46 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "teste"
 
+[node name="recicraft" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="submenu" type="PopupPanel" parent="recicraft"]
+oversampling_override = 1.0
+position = Vector2i(250, 350)
+size = Vector2i(175, 161)
+visible = true
+
+[node name="vbc" type="VBoxContainer" parent="recicraft/submenu"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -157.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="titulo" type="Label" parent="recicraft/submenu/vbc"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+vertical_alignment = 1
+
+[node name="texto" type="Label" parent="recicraft/submenu/vbc"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+vertical_alignment = 1
+
+[node name="botao" type="Button" parent="recicraft/submenu/vbc"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "teste"
+
 [connection signal="pressed" from="contador/submenu/vbc/botao" to="." method="_on_botao_contador_pressed"]
+[connection signal="pressed" from="recicraft/submenu/vbc/botao" to="." method="_on_botao_recicraft_pressed"]

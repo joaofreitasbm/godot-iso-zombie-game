@@ -1,7 +1,7 @@
 extends Button
 
 @onready var pers: CharacterBody3D = get_tree().get_root().get_node("main/pers")
-@onready var UI: Control = $"../.."
+@onready var UI: Control = get_tree().get_root().get_node("main/pers/UI")
 var skip: bool = false
 var slotvazio: Resource = preload("res://pngs/vazio.png")
 

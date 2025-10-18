@@ -1,9 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://begah3674cfa2"]
+[gd_scene load_steps=15 format=3 uid="uid://begah3674cfa2"]
 
 [ext_resource type="Script" uid="uid://dqnmbags1hg48" path="res://scripts/outros/pers.gd" id="1_0t7jd"]
 [ext_resource type="PackedScene" uid="uid://d2o3afnlnpfk0" path="res://tscn/ui.tscn" id="2_u1lqi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kek77"]
+
+[sub_resource type="Theme" id="Theme_u1lqi"]
+resource_local_to_scene = true
+
+[sub_resource type="Theme" id="Theme_xd6ky"]
+resource_local_to_scene = true
+
+[sub_resource type="Theme" id="Theme_kmbe3"]
+resource_local_to_scene = true
+
+[sub_resource type="Theme" id="Theme_i5g15"]
+resource_local_to_scene = true
+
+[sub_resource type="Theme" id="Theme_y57ib"]
+resource_local_to_scene = true
+
+[sub_resource type="Theme" id="Theme_dc5tq"]
+resource_local_to_scene = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_272bh"]
 
@@ -54,12 +72,36 @@ near = 0.1
 far = 100.0
 
 [node name="raycastopacidade" type="RayCast3D" parent="Camera3D"]
-transform = Transform3D(1, -1.49012e-08, -8.9407e-08, -2.98023e-08, 1, 2.98023e-08, -8.9407e-08, 1.49012e-08, 1, 1.52588e-05, -5.72205e-06, -1.52588e-05)
+transform = Transform3D(0.70710677, 0.4086071, -0.5770964, 0, 0.81613773, 0.5778576, 0.70710677, -0.4086071, 0.5770964, -20, 20, 20)
 top_level = true
 debug_shape_thickness = 5
 
 [node name="UI" parent="." instance=ExtResource("2_u1lqi")]
 metadata/_edit_use_anchors_ = true
+
+[node name="barra" parent="UI/barras/cont_saude" index="1"]
+theme = SubResource("Theme_u1lqi")
+
+[node name="barra" parent="UI/barras/cont_folego" index="1"]
+theme = SubResource("Theme_u1lqi")
+
+[node name="barra" parent="UI/invcontainer/Status [K]/VBoxContainer/saude" index="1"]
+theme = SubResource("Theme_u1lqi")
+
+[node name="barra" parent="UI/invcontainer/Status [K]/VBoxContainer/folego" index="1"]
+theme = SubResource("Theme_xd6ky")
+
+[node name="barra" parent="UI/invcontainer/Status [K]/VBoxContainer/fadiga" index="1"]
+theme = SubResource("Theme_kmbe3")
+
+[node name="barra" parent="UI/invcontainer/Status [K]/VBoxContainer/fome" index="1"]
+theme = SubResource("Theme_i5g15")
+
+[node name="barra" parent="UI/invcontainer/Status [K]/VBoxContainer/sede" index="1"]
+theme = SubResource("Theme_y57ib")
+
+[node name="barra" parent="UI/invcontainer/Status [K]/VBoxContainer/sanidade" index="1"]
+theme = SubResource("Theme_dc5tq")
 
 [node name="visual" type="Node3D" parent="."]
 
@@ -91,3 +133,5 @@ cast_shadow = 0
 ignore_occlusion_culling = true
 mesh = SubResource("TorusMesh_upo20")
 skeleton = NodePath("../..")
+
+[editable path="UI"]

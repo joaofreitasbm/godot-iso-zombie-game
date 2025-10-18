@@ -74,6 +74,7 @@ var tempo_q: float
 var inimigos = 0
 func _ready() -> void:
 	UI.connect("resultado_contador", Callable(self, "_on_resultado_contador"))
+	UI.connect("resultado_reciclar", Callable(self, "_on_resultado_reciclar"))
 
 
 func _physics_process(delta: float) -> void:
@@ -234,7 +235,7 @@ func alvo2d():
 	var ray_query = PhysicsRayQueryParameters3D.new()
 	ray_query.from = from
 	ray_query.to = to
-	ray_query.collision_mask = 2 
+	ray_query.collision_mask = 4
 	var raycast_results = space.intersect_ray(ray_query)
 	raycast_results["position"].y += 1
 	return raycast_results["position"]
@@ -417,6 +418,22 @@ func _drop_item_no_mundo(item: itens) -> void:
 	drop.position = position
 	get_parent().add_child(drop)
 
+func reciclar_item(item: itens) -> void:
+	if item == null:
+		return
+	
+	var texto = ""
+	for i in item.material_reciclado:
+		texto += (str("\n", i.nome_item, ", x",i.quantidade))
+		
+	UI._abrir_recicraft(texto, item.material_reciclado, item)
+	return 
+
+func _on_resultado_reciclar(itens_obtidos: Array[itens], item_consumido: itens) -> void:
+	inventario.append_array(itens_obtidos)
+	if inventario.has(item_consumido):
+		inventario.erase(item_consumido)
+	UI.atualizarinventarioUI()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.as_text_key_label().is_valid_int() and event.pressed and not event.echo and event.keycode != 48:
@@ -465,7 +482,7 @@ func _input(event: InputEvent) -> void:
 			menu.show()
 	
 	
-func usarhotkey(hotkey: int) -> void:
+func usarhotkey(hotkey: int) -> void: ## PENDENTE
 	if hotkey:
 		slots[str("hotkey",hotkey)].usar_equipado()
 	hotkey = 0

@@ -1,10 +1,10 @@
 extends TabContainer
 
 # LÓGICA DA UI DO CRAFT
-@onready var pers: CharacterBody3D = $"../../../.."
+@onready var pers: CharacterBody3D = get_tree().get_root().get_node("main/pers")
 @onready var receitas: Array[itens]
 var skip: bool = false
-@onready var UI: Control = $"../../.."
+@onready var UI: Control = get_tree().get_root().get_node("main/pers/UI")
 var craftar: Array[itens]
 
 
@@ -22,10 +22,13 @@ func _process(_delta: float) -> void:
 		for x in pers.lista_de_receitas: # Itera sobre cada item da receita
 			for y in self.get_children(): # Itera sobre cada item do menu do craft
 				if y is ItemList and y.name == x.tipo_receita:
+					print("entrou no primeiro if")
 					if x.nome_item == y.name:
 						return
 					y.add_item(x.nome_item)
+					print("funcionou kjaskjaskj")
 					break
+		prints("rodar skip")
 		skip = true
 
 

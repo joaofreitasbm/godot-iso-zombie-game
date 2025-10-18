@@ -1,7 +1,7 @@
 extends PanelContainer
 
-@onready var pers: CharacterBody3D = $"../../../.."
-@onready var UI: Control = $"../../.."
+@onready var pers: CharacterBody3D = get_tree().get_root().get_node("main/pers")
+@onready var UI: Control = get_tree().get_root().get_node("main/pers/UI")
 var reciclar: Array[itens]
 var skip: bool = false
 var indice: int
@@ -86,27 +86,13 @@ func _on_submenu_id_pressed(id: int) -> void:
 
 	if aux == "Largar": # REFATORADO
 		print("largar inventario")
-		print(pers.inventario[indice].nome_item)
+
 		pers.largar_item(pers.inventario[indice])
 
 
 	if aux == "Reciclar": # REFATORAR PRA PADRONIZAR O CÓDIGO
-		print("reciclagem começou")
+		pers.reciclar_item(pers.inventario[indice])
 		
-		# Limpar e adicionar textos relacionados da UI
-		reciclar.clear() 
-		$reciclar.position = Vector2(global_position.x, global_position.y + 25)
-		var texto = ""
-		for x in pers.inventario[indice].material_reciclado:
-			texto += (str("\n", x.nome_item, ", x",x.quantidade))
-			reciclar.append(x)
-		$reciclar/vbc/titulo.text = "Materiais obtidos:"
-		$reciclar/vbc/textoreciclar.text = texto
-		$reciclar/vbc/botaoreciclar.text = "Clique aqui para reciclar"
-		$reciclar.show()
-		$reciclar/vbc/botaoreciclar.show()
-		$reciclar.position = get_global_mouse_position() - Vector2(65, 0)
-		UI.atualizarinventarioUI()
 
 
 	if aux == "Descartar": # REFATORADO
@@ -148,15 +134,3 @@ func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por c
 
 func hover_off() -> void: # Esconde informações dos itens ao tirar o mouse de cima do inventario
 	$hover.hide()
-
-# lógica da reciclagem
-func _on_botaoreciclar_pressed() -> void: 
-	for x in reciclar:
-		pers.adicionar_item(x.duplicate(true))
-
-	if indice < pers.inventario.size():
-		pers.inventario.remove_at(indice)
-
-	reciclar.clear()
-	$reciclar.hide()
-	UI.atualizarinventarioUI()

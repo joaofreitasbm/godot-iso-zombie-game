@@ -19,7 +19,7 @@ var ultimoalvo
 @onready var slots_max: int
 var lista_de_receitas: Array[itens]
 @export var slots: Dictionary[String, Resource] = {
-	# armas e utilidades
+	# armas, utilidades e consumiveis
 	"primaria": null,
 	"secundaria": null,
 	"hotkey1": null,
@@ -28,17 +28,15 @@ var lista_de_receitas: Array[itens]
 	"hotkey4": null,
 	"hotkey5": null,
 	
-	# Equipamento primario
-	"cabeca": null,
+	# Equipamento
+	"cabeça": null,
 	"superior": null,
 	"inferior": null,
 	"cintura": null,
-	"pes": null,
-
-	# Equipamento secundario
+	"botas": null,
 	"face": null,
-	"maos": null,
-	"costas": null,
+	"luvas": null,
+	"mochila": null,
 }
 
 # Variaveis relacionadas ao inventario
@@ -154,7 +152,7 @@ func _physics_process(delta: float) -> void:
 		arma_atual.recarregar(self, UI)
 
 
-	if Input.is_action_just_pressed("E"): interagir = true; UI.atualizarequipUI()
+	if Input.is_action_just_pressed("E"): interagir = true;
 	if Input.is_action_just_released("E"): interagir = false
 
 

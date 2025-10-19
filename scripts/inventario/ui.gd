@@ -59,13 +59,12 @@ func atualizarinventarioUI(): # VERSÃO ATUALIZADA
 	for i in inventarioUI.get_children():
 		if i is PanelContainer:
 			i.skip = false
-	print("Inventário atualizado")
 
 
 func atualizarequipUI():
-	for i in equipUI.find_children("", "Label", true, false):
+	for i in equipUI.find_children("", "HBoxContainer", true, false):
 		if pers.slots.has(i.name):
-			print(i.name)
+			i.skip = false
 
 
 func atualizarcraftUI():
@@ -79,7 +78,7 @@ func atualizarslotsUI():
 
 
 func _abrir_contador(item: itens, acao: String):
-	print("contador aberto")
+
 	#variaveis auxiliares que foram declaradas no começo do código sendo usadas
 	acao_atual = acao
 	item_selecionado = item
@@ -111,7 +110,6 @@ func _abrir_recicraft(texto_recicraft: String, resultado: Array[itens], item: it
 
 
 func _on_botao_contador_pressed() -> void:
-	print("botão pressionado")
 	var qtd = int(spinbox.value)
 	submenu.hide()
 	emit_signal("resultado_contador", qtd, acao_atual, item_selecionado)
@@ -137,18 +135,13 @@ func _on_botao_recicraft_pressed() -> void:
 		if !x.stackavel:
 			nao_stack += x.quantidade
 			itens_nao_stack.append(x)
-
-	prints("stack", stack)
-	prints("nao_stack", nao_stack)
 	
 	if quantidade <= slots_livres:
-		print("tem espaço")
 		
 		# tratar itens não stackaveis
 		var itens_nao_stack_tratados: Array[itens]
 		for y in itens_nao_stack:
 			for z in range(y.quantidade):
-				print(z)
 				var novo_item = y.duplicate(true)
 				novo_item.quantidade = 1
 				itens_nao_stack_tratados.append(novo_item)

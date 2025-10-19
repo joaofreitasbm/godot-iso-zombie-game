@@ -35,17 +35,33 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
+text = "Nome do item teste"
 vertical_alignment = 1
 
 [node name="tipo" type="Label" parent="Button"]
 layout_mode = 0
-offset_left = 240.0
-offset_right = 417.7854
+offset_left = 110.0
+offset_right = 287.78564
 offset_bottom = 23.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
+text = "Tipo teste"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_direction = 2
+
+[node name="subtipo" type="Label" parent="Button"]
+layout_mode = 0
+offset_left = 240.0
+offset_right = 426.07996
+offset_bottom = 23.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Subtipo teste"
 horizontal_alignment = 2
 vertical_alignment = 1
 text_direction = 2
@@ -59,6 +75,8 @@ theme_override_font_sizes/font_separator_size = 0
 item_count = 1
 item_0/text = "Equipar"
 item_0/id = 0
+
+[node name="equipmenu" type="PopupMenu" parent="."]
 
 [node name="hover" type="ItemList" parent="."]
 visible = false

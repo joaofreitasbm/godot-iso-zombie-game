@@ -24,7 +24,7 @@ func _ready() -> void:
 		$imagem.size = config.tamanho
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !skip:
 		if pers.arma_atual != null and pers.arma_atual == pers.slots[str(self.name)] and pers.arma_atual == pers.slots["primaria"]:
 			$ColorRect.show()
@@ -39,6 +39,6 @@ func _process(delta: float) -> void:
 				
 			if x == str(self.name) and pers.slots[x] != null:
 				$imagem.texture = pers.slots[x].imagem
-				if pers.slots[x].tipo == "Arma de fogo":
+				if pers.slots[x].tipo == "Armas":
 					$Label.text = str(pers.slots[x].qntatual)
 	skip = true

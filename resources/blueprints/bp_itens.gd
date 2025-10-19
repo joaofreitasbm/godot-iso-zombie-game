@@ -4,23 +4,49 @@ class_name itens
 @export_group("Propriedades gerais")
 #propriedades gerais
 @export var nome_item: String
-@export_multiline var desc_item: String
+@export var posicao: Vector3
+#@export_multiline var desc_item: String
 @export var quantidade: int
 @export var stackavel: bool
 @export var reciclavel: bool
 @export var imagem: Texture2D
 @export var mesh: Mesh
 @export var impacto: float 
-#@export var receita_craft: Array[itens] # a receita só precisa existir no campo de craft, e não dentro do item
 @export var material_reciclado: Array[itens]
 @export_enum (
-	"Corpo a corpo", 
-	"Arma de fogo", 
+	"Armas",
+	"Equipamentos",
+	"Utilidades",
+	"Consumiveis",
+	"Craft") var tipo: String
+
+@export_enum (
+	#"Armas",
+	"Arma de fogo",
+	"Corpo a corpo",
 	"Arremessavel",
-	"Consumivel",
-	"Material",
-	"Receita",
-	"Munição - fuzil") var tipo: String
+	
+	#"Equipamentos",
+	"Cabeça",
+	"Superior",
+	"Inferior",
+	"Cintura",
+	"Luvas",
+	"Botas",
+	"Face",
+	"Mochila",
+	
+	#"Utilidades",
+	"Lanterna",
+	
+	#"Consumiveis",
+	"Cura",
+	"Comida",
+	"Bebida",
+	
+	#"Craft"		| MATERIAL DE PROCESSAMENTO NÃO VAI SER USADO AGORA
+	"Material", #   | VAI SERVIR DE INGREDIENTE PRA CRIAR ITEM DE CRAFT
+	"Receita") var subtipo: String
 
 
 @export_group("Propriedades de armas")
@@ -56,25 +82,8 @@ class_name itens
 # se tipo == Marcenaria, adiciona x exp na habilidade marcenaria.
 
 @export_group("Propriedades de equipamentos")
-@export_enum (
-	# Hotkeys
-	"hotkey1",
-	"hotkey2",
-	"hotkey3",
-	"hotkey4",
-	"hotkey5",
-	
-	# Equipamento primario
-	"cabeca",
-	"superior",
-	"inferior",
-	"cintura",
-	"pes",
-
-	# Equipamento secundario
-	"face",
-	"maos",
-	"costas") var slot_equipavel: String
+@export var saude_max: int
+@export var slots_inventario: int
 @export var durabilidade: int
 @export var itens_guardados: Array[itens]
 @export var peso: int

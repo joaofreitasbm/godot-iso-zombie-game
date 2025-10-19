@@ -17,26 +17,31 @@ func _process(_delta: float) -> void:
 	if pers.inventario.is_empty() or indice >= pers.inventario.size():
 		$Button/nome.text = "Vazio"
 		$Button/tipo.text = "-"
+		$Button/subtipo.text = "-"
 		$Button/nome.add_theme_color_override("font_color", Color(0.248, 0.248, 0.248, 1.0))
 		$Button/tipo.add_theme_color_override("font_color", Color(0.248, 0.248, 0.248, 1.0))
+		$Button/subtipo.add_theme_color_override("font_color", Color(0.248, 0.248, 0.248, 1.0))
 		
 	else: 
 		$Button/nome.text = str(pers.inventario[indice].nome_item)
 		$Button/tipo.text = str(pers.inventario[indice].tipo)
+		$Button/subtipo.text = str(pers.inventario[indice].subtipo)
 		if pers.inventario[indice].stackavel and pers.inventario[indice].quantidade > 1:
 			$Button/nome.text = "%s x%d" % [pers.inventario[indice].nome_item, pers.inventario[indice].quantidade]
 		$Button/nome.add_theme_color_override("font_color", Color(1, 1, 1))
 		$Button/tipo.add_theme_color_override("font_color", Color(1, 1, 1))
-	
+		$Button/subtipo.add_theme_color_override("font_color", Color(1, 1, 1))
 	skip = true
 
 
 func _on_button_pressed() -> void: # apertou em algum item do MENU
 	if indice < pers.inventario.size():
 		$submenu.clear()
-		if pers.inventario[indice].tipo == "Arma de fogo" or pers.inventario[indice].tipo == "Corpo a corpo":
-			$submenu.add_item(str("Equipar como primaria"))
-			$submenu.add_item(str("Equipar como secundaria"))
+		if pers.inventario[indice].tipo == "Armas":
+			$submenu.add_item(str("Equipar como primária"))
+			$submenu.add_item(str("Equipar como secundária"))
+		if pers.inventario[indice].tipo == "Equipamentos":
+			$submenu.add_item(str("Equipar no slot ", (pers.inventario[indice].subtipo.to_lower())))
 		$submenu.add_item("Largar")
 		$submenu.add_item("Descartar")
 		if pers.inventario[indice].reciclavel:
@@ -51,7 +56,7 @@ func _on_button_pressed() -> void: # apertou em algum item do MENU
 func _on_submenu_id_pressed(id: int) -> void:
 	var aux = $submenu.get_item_text(id)
 
-	if aux == "Equipar como primaria": # FUNCIONANDO
+	if aux == "Equipar como primária": # FUNCIONANDO
 
 		# Se já está equipada como primária, desequipa
 		if pers.slots["primaria"] == pers.inventario[indice]:
@@ -69,7 +74,7 @@ func _on_submenu_id_pressed(id: int) -> void:
 		UI.atualizarslotsUI()
 
 
-	if aux == "Equipar como secundaria": # FUNCIONANDO
+	if aux == "Equipar como secundária": # FUNCIONANDO
 		# Se já está equipada como primária, desequipa
 		if pers.slots["secundaria"] == pers.inventario[indice]:
 			pers.slots["secundaria"] = null
@@ -84,13 +89,19 @@ func _on_submenu_id_pressed(id: int) -> void:
 		UI.atualizarslotsUI()
 
 
-	if aux == "Largar": # REFATORADO
-		print("largar inventario")
+	# equipamentos como superior, inferior, botas, etc
+	if aux == str("Equipar no slot ", (pers.inventario[indice].subtipo.to_lower())):
+		pers.slots[pers.inventario[indice].subtipo.to_lower()] = pers.inventario[indice]
+		UI.atualizarequipUI()
+		prints("subtipo:", pers.inventario[indice].subtipo)
+		prints("slots:", pers.slots)
 
+
+	if aux == "Largar": # REFATORADO
 		pers.largar_item(pers.inventario[indice])
 
 
-	if aux == "Reciclar": # REFATORAR PRA PADRONIZAR O CÓDIGO
+	if aux == "Reciclar": # REFATORADO
 		pers.reciclar_item(pers.inventario[indice])
 		
 
@@ -101,7 +112,7 @@ func _on_submenu_id_pressed(id: int) -> void:
 		pers.descartar_item(pers.inventario[indice])
 
 
-	if aux == "Equipar no atalho": # REFATORADO
+	if aux == "Equipar no atalho": # 
 		# FALTA IMPLEMENTAR
 		# SE NÃO TIVER ATALHOS DISPONIVEIS, NÃO EXIBE
 		# SE TIVER SÓ UM ATALHO DISPONIVEL, ADICIONA O ITEM A ELE
@@ -132,8 +143,6 @@ func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por c
 		$hover.add_item(str("Reciclavel: ", "Sim" if pers.inventario[indice].reciclavel == false else "Não"))
 		$hover.show()
 		$hover.global_position = global_position + Vector2(-310, 0)
-		prints("pos", $hover.global_position)
-		prints("Parent pos:", global_position)
 
 
 func hover_off() -> void: # Esconde informações dos itens ao tirar o mouse de cima do inventario

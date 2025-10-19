@@ -1,4 +1,4 @@
-[gd_scene load_steps=187 format=3 uid="uid://cc787tq3ba81c"]
+[gd_scene load_steps=179 format=3 uid="uid://cc787tq3ba81c"]
 
 [ext_resource type="Script" uid="uid://b2p8ewidoyyhr" path="res://scripts/outros/sol.gd" id="2_hegun"]
 [ext_resource type="Texture2D" uid="uid://dnb7w1f3qg1xc" path="res://textures/texture_10.png" id="2_mn4ff"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://2wuphdpa8jb7" path="res://pngs/fuzil.png" id="15_hegun"]
 [ext_resource type="Texture2D" uid="uid://bl5t6nlxojray" path="res://pngs/comp fuzil 1.png" id="15_mn6q8"]
 [ext_resource type="Texture2D" uid="uid://iuqsdtvuin5f" path="res://pngs/hud/Q.png" id="15_tfptk"]
-[ext_resource type="Texture2D" uid="uid://cwx6aytpdet2l" path="res://pngs/pist.png" id="16_k3nvp"]
+[ext_resource type="Resource" uid="uid://cqpd7h4d4le4q" path="res://resources/equipamentos/capacete teste.tres" id="16_tfptk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -191,7 +191,8 @@ quantidade = 1
 imagem = ExtResource("15_tfptk")
 mesh = SubResource("TorusMesh_wfyr4")
 impacto = 2.0
-tipo = "Corpo a corpo"
+tipo = "Armas"
+subtipo = "Corpo a corpo"
 alcance = 5
 semiauto = true
 velocidade_ataque = 1.0
@@ -399,7 +400,8 @@ reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
 material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_qaw6y"), SubResource("Resource_0k61o"), SubResource("Resource_stnar")])
-tipo = "Arma de fogo"
+tipo = "Equipamentos"
+subtipo = "Luvas"
 qntmaxima = 30
 alcance = 50
 tipo_municao = "Munição - fuzil"
@@ -1757,64 +1759,6 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_s3ifu"]
-
-[sub_resource type="Resource" id="Resource_7ko68"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 1/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_s3ifu")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_xxyn0"]
-
-[sub_resource type="Resource" id="Resource_ugegf"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_xxyn0")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_ydd80"]
-
-[sub_resource type="Resource" id="Resource_hwt2n"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_ydd80")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="PrismMesh" id="PrismMesh_66cgr"]
-
-[sub_resource type="Resource" id="Resource_2a07b"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Fuzil automático"
-quantidade = 1
-reciclavel = true
-imagem = ExtResource("16_k3nvp")
-mesh = SubResource("PrismMesh_66cgr")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_7ko68"), SubResource("Resource_ugegf"), SubResource("Resource_hwt2n")])
-tipo = "Arma de fogo"
-qntmaxima = 30
-alcance = 50
-tipo_municao = "Munição - fuzil"
-velocidade_ataque = 0.5
-dano = 20
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
 [sub_resource type="BoxMesh" id="BoxMesh_50x8b"]
 size = Vector3(1, 0.5, 1)
 
@@ -2144,7 +2088,7 @@ item = SubResource("Resource_7v253")
 
 [node name="arma2" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7029133, 1, 11.576611)
-item = SubResource("Resource_2a07b")
+item = ExtResource("16_tfptk")
 
 [node name="item3" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 1.8232307)

@@ -19,6 +19,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if !skip:
 		for i in pers.slots:
+			print(i)
 			if i == str(self.name) and pers.slots[i] == null:
 				item.text = "Vazio"
 				item.add_theme_color_override("font_color", Color(0.248, 0.248, 0.248, 1.0))

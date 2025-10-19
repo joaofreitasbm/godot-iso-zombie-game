@@ -266,9 +266,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -427.0
-offset_right = 5.0
-offset_bottom = 481.0
+offset_left = -432.0
+offset_bottom = 582.0
 grow_horizontal = 0
 focus_behavior_recursive = 1
 theme_override_font_sizes/font_size = 10
@@ -292,10 +291,18 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="tipo" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
-custom_minimum_size = Vector2(340, 40)
+custom_minimum_size = Vector2(205, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
-text = "Tipo do item:"
+text = "Tipo:"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="subtipo" type="Label" parent="invcontainer/Inventário [TAB]/HBoxContainer"]
+custom_minimum_size = Vector2(138, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Subtipo:"
 horizontal_alignment = 2
 vertical_alignment = 2
 
@@ -399,7 +406,7 @@ theme_override_font_sizes/font_size = 12
 text = "Corpo:"
 vertical_alignment = 2
 
-[node name="cabeca" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
+[node name="cabeça" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
 [node name="superior" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
@@ -411,16 +418,16 @@ layout_mode = 2
 [node name="cintura" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="pes" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
+[node name="botas" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
 [node name="face" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="maos" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
+[node name="luvas" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
-[node name="costas" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
+[node name="mochila" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
 [node name="titulo corpo2" type="Label" parent="invcontainer/Equipamento [J]/lado_dir"]
@@ -782,5 +789,3 @@ text = "teste"
 
 [connection signal="pressed" from="contador/submenu/vbc/botao" to="." method="_on_botao_contador_pressed"]
 [connection signal="pressed" from="recicraft/submenu/vbc/botao" to="." method="_on_botao_recicraft_pressed"]
-
-[editable path="invcontainer/Inventário [TAB]/1"]

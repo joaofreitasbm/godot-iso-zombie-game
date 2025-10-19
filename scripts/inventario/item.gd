@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 		return
 
 	if pers.adicionar_item(item.duplicate(true)):
-		UI.atualizarslotsUI()
+		UI.atualizarhudUI()
 		UI.atualizarinventarioUI()
 		queue_free()
 	else:

@@ -71,7 +71,8 @@ func _on_submenu_id_pressed(id: int) -> void:
 			pers.slots["primaria"] = pers.inventario[indice]
 			pers.arma_atual = pers.inventario[indice]
 			pers.equipado = true
-		UI.atualizarslotsUI()
+		UI.atualizarequipUI()
+		UI.atualizarhudUI()
 
 
 	if aux == "Equipar como secundária": # FUNCIONANDO
@@ -86,7 +87,8 @@ func _on_submenu_id_pressed(id: int) -> void:
 
 			# Agora equipa como primária normalmente
 			pers.slots["secundaria"] = pers.inventario[indice]
-		UI.atualizarslotsUI()
+		UI.atualizarequipUI()
+		UI.atualizarhudUI()
 
 
 	# equipamentos como superior, inferior, botas, etc

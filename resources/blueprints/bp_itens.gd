@@ -90,7 +90,7 @@ class_name itens
 
 
 func usar_equipado(alvo, pers, UI):
-	if tipo == "Corpo a corpo": #CORPO A CORPO
+	if subtipo == "Corpo a corpo": #CORPO A CORPO
 		if alvo != null:
 			if aux == true: # and durabilidade >= 1:
 				print("bateu com corpo a corpo, durabilidade atual: ", durabilidade)

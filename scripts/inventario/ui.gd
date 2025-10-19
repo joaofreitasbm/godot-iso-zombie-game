@@ -72,7 +72,7 @@ func atualizarcraftUI():
 		i.skip = false
 
 
-func atualizarslotsUI():
+func atualizarhudUI():
 	for i in slotsUI.find_children("", "Button"):
 		i.skip = false
 

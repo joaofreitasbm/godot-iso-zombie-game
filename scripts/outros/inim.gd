@@ -45,12 +45,12 @@ func _physics_process(delta: float) -> void:
 		prints("vel", velocity)
 		
 	if stun:
-		#velocity -= Vector3.ZERO
+		var random = randf_range(0.3, 2.0)
 		timer_stun += delta
 		prints("vel stunado:", velocity)
 		if velocity.x > 1 or velocity.z > 1:
 			print("DERRUBAR INIMIGO")
-		if timer_stun >= 1:
+		if timer_stun >= random:
 			timer_stun = 0
 			stun = false
 

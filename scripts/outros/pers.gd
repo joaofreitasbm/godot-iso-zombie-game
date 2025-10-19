@@ -174,7 +174,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("G"): 
 		largar_item(arma_atual)
 		UI.atualizarinventarioUI()
-		UI.atualizarslotsUI()
+		UI.atualizarhudUI()
 
 	# LÓGICA DA TECLA Q
 	# Começou a segurar
@@ -187,7 +187,7 @@ func _physics_process(delta: float) -> void:
 		tempo_q += delta
 		if tempo_q >= 1.0 and arma_atual != null:
 			arma_atual = null
-			UI.atualizarslotsUI()
+			UI.atualizarhudUI()
 			segurando_q = false  # evita repetir
 
 	# Soltou antes de 1 segundo
@@ -195,18 +195,18 @@ func _physics_process(delta: float) -> void:
 		if tempo_q < 1.0:
 			if arma_atual == null and slots["primaria"] != null:
 				arma_atual = slots["primaria"]
-				UI.atualizarslotsUI()
+				UI.atualizarhudUI()
 				return
 			if slots["primaria"] != null and slots["secundaria"] != null:
 				var aux = slots["primaria"]
 				slots["primaria"] = slots["secundaria"]
 				slots["secundaria"] = aux
 				arma_atual = slots["primaria"]
-				UI.atualizarslotsUI()
+				UI.atualizarhudUI()
 				return
 		if arma_atual == null:
 			arma_atual = slots["primaria"]
-			UI.atualizarslotsUI()
+			UI.atualizarhudUI()
 		segurando_q = false
 		tempo_q = 0.0
 
@@ -325,7 +325,7 @@ func largar_item(item: itens) -> bool:
 		slots["primaria"] = null
 	elif item == slots["secundaria"]:
 		slots["secundaria"] = null
-	UI.atualizarslotsUI()
+	UI.atualizarhudUI()
 	
 	# Checar se o item é stackavel
 	if item.stackavel and item.quantidade > 1:
@@ -348,7 +348,7 @@ func descartar_item(item: itens) -> bool:
 		slots["primaria"] = null
 	elif item == slots["secundaria"]:
 		slots["secundaria"] = null
-	UI.atualizarslotsUI()
+	UI.atualizarhudUI()
 	
 	# Checar se o item é stackavel
 	if item.stackavel and item.quantidade > 1:

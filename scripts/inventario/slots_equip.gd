@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-@onready var UI: Control = self.get_parent()
+@onready var UI: Control = get_tree().get_root().get_node("main/pers/UI")
 @onready var pers: CharacterBody3D = get_tree().get_root().get_node("main/pers")
 @onready var titulo: Label = $VBoxContainer/titulo
 @onready var item: Label = $VBoxContainer/item
@@ -37,6 +37,11 @@ func _process(delta: float) -> void:
 	skip = true
 
 
+# desequipar item do slot
 func _on_button_pressed() -> void:
-	#desequipar e UI.atualizarequipUI()
+	for i in pers.slots:
+		if i == str(self.name) and pers.slots[i] != null:
+			pers.slots[i] = null
+			UI.atualizarequipUI()
+			UI.atualizarhudUI()
 	pass # Replace with function body.

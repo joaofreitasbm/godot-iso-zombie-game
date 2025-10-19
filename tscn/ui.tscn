@@ -717,9 +717,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
-offset_top = -119.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_top = 4.0
+offset_right = 171.0
+offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -760,9 +760,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
-offset_top = -157.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_top = 4.0
+offset_right = 171.0
+offset_bottom = 157.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -785,3 +785,5 @@ text = "teste"
 
 [connection signal="pressed" from="contador/submenu/vbc/botao" to="." method="_on_botao_contador_pressed"]
 [connection signal="pressed" from="recicraft/submenu/vbc/botao" to="." method="_on_botao_recicraft_pressed"]
+
+[editable path="invcontainer/Inventário [TAB]/1"]

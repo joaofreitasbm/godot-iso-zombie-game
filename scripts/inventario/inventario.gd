@@ -128,8 +128,10 @@ func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por c
 		$hover.add_item(str("Munição usada: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
 		$hover.add_item(str("Peso: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
 		$hover.add_item(str("Reciclagem: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
-		$hover.position = Vector2(global_position.x - 315, global_position.y)
-		$hover.popup()
+		$hover.show()
+		$hover.global_position = global_position + Vector2(-310, 0)
+		prints("pos", $hover.global_position)
+		prints("Parent pos:", global_position)
 
 
 func hover_off() -> void: # Esconde informações dos itens ao tirar o mouse de cima do inventario

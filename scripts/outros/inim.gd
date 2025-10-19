@@ -67,3 +67,32 @@ func _physics_process(delta: float) -> void:
 		for i in self.get_children():
 			if i is MeshInstance3D:
 				i.mesh.material.stencil_mode = 0
+	
+
+
+func atualizar_ia():
+	
+	
+	aplicar_soft_collider()
+
+
+func aplicar_soft_collider():
+	for outro in inimigos:
+		if outro == self:
+			continue
+		var offset = global_position - outro.global_position
+		var dist2 = offset.length_squared()
+		if dist2 < raio_repulsao * raio_repulsao and dist2 > 0.01:
+			var dist = sqrt(dist2)
+			var push = (1.0 - dist / raio_repulsao) * forca_repulsao
+			global_position += offset.normalized() * push * 0.1 # suave, proporcional
+
+
+func _atacar_pers(body: Node3D) -> void:
+	if body.is_in_group("Player"):
+		area = true
+		pers.saude += randi_range(-10, -40)
+
+
+func _parar_de_atacar(_body: Node3D) -> void:
+	area = false

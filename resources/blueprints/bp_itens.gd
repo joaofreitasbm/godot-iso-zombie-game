@@ -56,7 +56,25 @@ class_name itens
 # se tipo == Marcenaria, adiciona x exp na habilidade marcenaria.
 
 @export_group("Propriedades de equipamentos")
-@export var slot_equipavel: String
+@export_enum (
+	# Hotkeys
+	"hotkey1",
+	"hotkey2",
+	"hotkey3",
+	"hotkey4",
+	"hotkey5",
+	
+	# Equipamento primario
+	"cabeca",
+	"superior",
+	"inferior",
+	"cintura",
+	"pes",
+
+	# Equipamento secundario
+	"face",
+	"maos",
+	"costas") var slot_equipavel: String
 @export var durabilidade: int
 @export var itens_guardados: Array[itens]
 @export var peso: int
@@ -133,7 +151,9 @@ func usar_equipado(alvo, pers, UI):
 			quantidade -= 1
 		
 
-
+func equipar(pers, UI):
+	
+	pass
 
 func recarregar(pers, UI):
 	print("Recarregando...")

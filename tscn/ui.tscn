@@ -393,7 +393,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 
 [node name="titulo corpo" type="Label" parent="invcontainer/Equipamento [J]/lado_dir"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 69.935)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Corpo:"
@@ -418,9 +418,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="maos" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
-layout_mode = 2
-
-[node name="colete" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
 layout_mode = 2
 
 [node name="costas" parent="invcontainer/Equipamento [J]/lado_dir" instance=ExtResource("7_ihnko")]
@@ -717,9 +714,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
-offset_top = 4.0
-offset_right = 171.0
-offset_bottom = 119.0
+offset_top = -119.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -760,9 +757,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
-offset_top = 4.0
-offset_right = 171.0
-offset_bottom = 157.0
+offset_top = -157.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 

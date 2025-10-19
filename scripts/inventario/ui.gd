@@ -54,7 +54,7 @@ func _process(_delta: float) -> void:
 	sede_status.value = pers.sede
 	sanidade_status.value = pers.sanidade
 
-			
+
 func atualizarinventarioUI(): # VERSÃO ATUALIZADA
 	for i in inventarioUI.get_children():
 		if i is PanelContainer:
@@ -94,7 +94,7 @@ func _abrir_contador(item: itens, acao: String):
 	spinbox.value = 1
 	botao.text = str("Clique aqui para ", acao)
 	submenu.show()
-	
+
 
 func _abrir_recicraft(texto_recicraft: String, resultado: Array[itens], item: itens):
 	$recicraft/submenu.position = Vector2(global_position.x, global_position.y + 25)
@@ -108,7 +108,6 @@ func _abrir_recicraft(texto_recicraft: String, resultado: Array[itens], item: it
 	item_reciclado = item
 	
 	atualizarinventarioUI()
-	
 
 
 func _on_botao_contador_pressed() -> void:

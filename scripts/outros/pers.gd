@@ -38,7 +38,6 @@ var lista_de_receitas: Array[itens]
 	# Equipamento secundario
 	"face": null,
 	"maos": null,
-	"colete": null,
 	"costas": null,
 }
 

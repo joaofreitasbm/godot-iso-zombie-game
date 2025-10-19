@@ -114,6 +114,7 @@ func _on_submenu_id_pressed(id: int) -> void:
 		# VER SE, AO FICAR COM QNT ZERO, O INVENTARIO JÁ LIMPA O ITEM
 		# SE NÃO O FIZER, IMPLEMENTAR TAMBÉM
 		pass
+		
 
 
 func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por cima do inventario
@@ -123,11 +124,12 @@ func hover_on() -> void: # Exibe informações dos itens ao passar o mouse por c
 		$hover.add_item(str("DPS: ", pers.inventario[indice].velocidade_ataque))
 		$hover.add_item(str("Stackavel: ", pers.inventario[indice].stackavel))
 		$hover.add_item(str("Quantidade: ", pers.inventario[indice].quantidade))
-		$hover.add_item(str("Modo de disparo: ", "Auto" if pers.inventario[indice].semiauto == false else "Semiauto"))
-		$hover.add_item(str("Durabilidade: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
+		if pers.inventario[indice].tipo == "Arma de fogo":
+			$hover.add_item(str("Modo de disparo: ", "Auto" if pers.inventario[indice].semiauto == false else "Semiauto"))
+		$hover.add_item(str("Durabilidade: ", pers.inventario[indice].durabilidade))
 		$hover.add_item(str("Munição usada: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
-		$hover.add_item(str("Peso: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
-		$hover.add_item(str("Reciclagem: ", "(AGUARDANDO IMPLEMENTAÇÃO)"))
+		$hover.add_item(str("Peso: ", pers.inventario[indice].peso))
+		$hover.add_item(str("Reciclavel: ", "Sim" if pers.inventario[indice].reciclavel == false else "Não"))
 		$hover.show()
 		$hover.global_position = global_position + Vector2(-310, 0)
 		prints("pos", $hover.global_position)

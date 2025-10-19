@@ -36,9 +36,15 @@ func _process(_delta: float) -> void:
 				$Label.text = ""
 				$imagem.texture = slotvazio
 				
-				
 			if x == str(self.name) and pers.slots[x] != null:
 				$imagem.texture = pers.slots[x].imagem
 				if pers.slots[x].tipo == "Armas":
 					$Label.text = str(pers.slots[x].qntatual)
+			
+		for i in pers.hotkey_max:
+			if self.name == str("hotkey", (i + 1)) or self.name in ["primaria", "secundaria"]:
+				self.show()
+			else:
+				self.hide()
+			
 	skip = true

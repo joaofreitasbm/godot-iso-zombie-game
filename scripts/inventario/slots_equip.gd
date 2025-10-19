@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 			if "hotkey" in i and str(self.name) == i:
 				item.text = ""
 				titulo.text = ""
-				
 	skip = true
 
 

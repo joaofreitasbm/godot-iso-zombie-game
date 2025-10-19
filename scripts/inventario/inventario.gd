@@ -41,7 +41,12 @@ func _on_button_pressed() -> void: # apertou em algum item do MENU
 			$submenu.add_item(str("Equipar como primária"))
 			$submenu.add_item(str("Equipar como secundária"))
 		if pers.inventario[indice].tipo == "Equipamentos":
-			$submenu.add_item(str("Equipar no slot ", (pers.inventario[indice].subtipo.to_lower())))
+			$submenu.add_item(str("Equipar no slot: ", (pers.inventario[indice].subtipo)))
+		if pers.inventario[indice].tipo in ["Utilidades", "Consumiveis"]:
+			for i in pers.hotkey_max:
+				$submenu.add_item(str("Equipar na hotkey", i + 1)) 
+				$submenu.set_item_metadata($submenu.item_count - 1, i + 1)
+				# adiciona i como metadata ao ultimo item inserido na lista (-1 == ultimo)
 		$submenu.add_item("Largar")
 		$submenu.add_item("Descartar")
 		if pers.inventario[indice].reciclavel:
@@ -54,8 +59,9 @@ func _on_button_pressed() -> void: # apertou em algum item do MENU
 
 
 func _on_submenu_id_pressed(id: int) -> void:
-	var aux = $submenu.get_item_text(id)
-
+	var aux = $submenu.get_item_text(id) 				# pega texto do item clicado
+	var hotkey_index = $submenu.get_item_metadata(id)   # pega metadata do item clicado
+	
 	if aux == "Equipar como primária": # FUNCIONANDO
 
 		# Se já está equipada como primária, desequipa
@@ -91,8 +97,14 @@ func _on_submenu_id_pressed(id: int) -> void:
 		UI.atualizarhudUI()
 
 
+	if aux.begins_with("Equipar na hotkey"):
+		print("Vai equipar na hotkey:", hotkey_index)
+		pers.slots["hotkey" + str(hotkey_index)] = pers.inventario[indice]
+		UI.atualizarequipUI()
+		UI.atualizarhudUI()
+
 	# equipamentos como superior, inferior, botas, etc
-	if aux == str("Equipar no slot ", (pers.inventario[indice].subtipo.to_lower())):
+	if aux == str("Equipar no slot: ", (pers.inventario[indice].subtipo)): # FUNCIONANDO
 		pers.slots[pers.inventario[indice].subtipo.to_lower()] = pers.inventario[indice]
 		UI.atualizarequipUI()
 		prints("subtipo:", pers.inventario[indice].subtipo)
@@ -105,7 +117,6 @@ func _on_submenu_id_pressed(id: int) -> void:
 
 	if aux == "Reciclar": # REFATORADO
 		pers.reciclar_item(pers.inventario[indice])
-		
 
 
 	if aux == "Descartar": # REFATORADO

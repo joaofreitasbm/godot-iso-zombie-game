@@ -16,7 +16,7 @@ var ultimoalvo
 # Inventario/equipamento/UI
 @export var inventario: Array[itens]
 @onready var inventario_max: int = 20
-@onready var slots_max: int
+@onready var hotkey_max: int = 1
 var lista_de_receitas: Array[itens]
 @export var slots: Dictionary[String, Resource] = {
 	# armas, utilidades e consumiveis

@@ -71,7 +71,7 @@ func usar_equipado(alvo, pers, UI):
 				if alvo.is_in_group("Inimigo"):
 					print("bateu?")
 					alvo.stun = true
-					alvo.velocity += (alvo.global_position - pers.global_position) * impacto
+					alvo.velocity += (alvo.global_position - pers.global_position).normalized() * impacto
 					alvo.saude -= dano
 					var part = preload("res://tscn/particula_sangue.tscn").instantiate()
 					part.top_level = true

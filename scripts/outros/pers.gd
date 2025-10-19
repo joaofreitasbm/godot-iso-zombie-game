@@ -103,7 +103,6 @@ func _physics_process(delta: float) -> void:
 		position += direction * velandar * delta
 		$visual.rotation.y = lerp_angle($visual.rotation.y, atan2(-direction.x, -direction.z), delta * 15)
 		if Input.is_action_just_pressed("correr"): correndo = true
-		print(direction.normalized())
 	else:
 		correndo = false
 	move_and_slide()
@@ -140,7 +139,6 @@ func _physics_process(delta: float) -> void:
 			$timers/timer.wait_time = arma_atual.velocidade_ataque
 			$timers/timer.start()
 			arma_atual.usar_equipado(colmira, self, UI)
-			print("atirou em: ", colmira)
 
 
 	if Input.is_action_just_released("atirar"):
@@ -157,8 +155,8 @@ func _physics_process(delta: float) -> void:
 		arma_atual.recarregar(self, UI)
 
 
-	if Input.is_action_just_pressed("E"): interagir = true; print(interagir); UI.atualizarequipUI()
-	if Input.is_action_just_released("E"): interagir = false; print(interagir)
+	if Input.is_action_just_pressed("E"): interagir = true; UI.atualizarequipUI()
+	if Input.is_action_just_released("E"): interagir = false
 
 
 	# controle e posicionamento da camera
@@ -191,7 +189,6 @@ func _physics_process(delta: float) -> void:
 	if segurando_q and Input.is_action_pressed("Q"):
 		tempo_q += delta
 		if tempo_q >= 1.0 and arma_atual != null:
-			print("segurou")
 			arma_atual = null
 			UI.atualizarslotsUI()
 			segurando_q = false  # evita repetir
@@ -270,7 +267,6 @@ func opacidade():
 			if i is MeshInstance3D and !listaopac.has(i):
 				listaopac.append(i)
 				i.transparency = listaopac.size() * 0.75
-				print(listaopac)
 				break
 	if colopac.is_in_group("Player"):
 		for i in listaopac:

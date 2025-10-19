@@ -29,18 +29,32 @@ func _exit_tree() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	if not is_on_floor(): velocity += get_gravity() * delta
+	
 	print(stun)
 	if not stun:
-		var dir = (pers.position - position).normalized() * 2
-		velocity.x = dir.x
-		velocity.z = dir.z
+		var velmax = 3
+		var dir = (pers.position - position).normalized() * velmax
+		prints("dir", dir)
+		velocity.x += dir.x * delta * velmax
+		velocity.z += dir.z * delta * velmax
+		if velocity.length() > velmax:
+			velocity = velocity.normalized() * velmax
+		#velocity = velocity.normalized()
+		prints("vel", velocity)
 		
 	if stun:
+		#velocity -= Vector3.ZERO
 		timer_stun += delta
-		if timer_stun >= 0.5:
+		prints("vel stunado:", velocity)
+		if velocity.x > 1 or velocity.z > 1:
+			print("DERRUBAR INIMIGO")
+		if timer_stun >= 1:
 			timer_stun = 0
 			stun = false
-	
+
+	look_at(pers.position)
 	move_and_slide()
 	
 	if stencil == true:

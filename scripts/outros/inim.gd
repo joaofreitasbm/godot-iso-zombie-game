@@ -2,9 +2,10 @@ extends CharacterBody3D
 
 @export var velocidade := 2.0 ## ADICIONAR RANDINT
 @export var saude := 999
-@export var raio_repulsao := 3.0
-@export var forca_repulsao := 5.0
-@export var update_rate := 0.2 # tempo entre updates de IA
+@export var raio_repulsao := 2.0
+@export var forca_repulsao := 2.0
+@export var update_logica := 0.1 # tempo entre updates de IA
+@export var timer_logica: float = 0
 
 @onready var stun: bool = false
 var timer_stun: float
@@ -16,7 +17,7 @@ var area := false
 var direcao := Vector3.ZERO
 var velocity_y := 0.0
 var timer_update := 0.0
-
+var pos_alvo: Vector3
 # Referência cacheada (não chame get_tree().get_nodes_in_group() sempre)
 static var inimigos := []
 
@@ -27,22 +28,28 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	inimigos.erase(self)
 
+func _process(delta: float) -> void:
+	ativar_stencil()
+
 
 func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor(): velocity += get_gravity() * delta
 	
-	print(stun)
+	#timer_logica += delta
+	#if timer_logica >= update_logica:
+		#atualizar_ia()
+		#timer_logica = 0
+	
 	if not stun:
 		var velmax = 3
-		var dir = (pers.position - position).normalized() * velmax
-		prints("dir", dir)
+		var dir = Vector3(pers.position.x - position.x, 0, pers.position.z - position.z).normalized() * velmax
 		velocity.x += dir.x * delta * velmax
 		velocity.z += dir.z * delta * velmax
 		if velocity.length() > velmax:
 			velocity = velocity.normalized() * velmax
-		#velocity = velocity.normalized()
-		prints("vel", velocity)
+			if not is_on_floor():
+				velocity.y -= 9.8
 		
 	if stun:
 		var random = randf_range(0.3, 2.0)
@@ -54,9 +61,13 @@ func _physics_process(delta: float) -> void:
 			timer_stun = 0
 			stun = false
 
-	look_at(pers.position)
 	move_and_slide()
+	pos_alvo = pers.position
+	pos_alvo.y = self.position.y
+	look_at(pos_alvo)
 	
+
+func ativar_stencil():
 	if stencil == true:
 		for i in self.get_children():
 			if i is MeshInstance3D:
@@ -72,7 +83,7 @@ func _physics_process(delta: float) -> void:
 
 func atualizar_ia():
 	
-	
+	#adicionar mais coisas aqui??
 	aplicar_soft_collider()
 
 
@@ -83,9 +94,13 @@ func aplicar_soft_collider():
 		var offset = global_position - outro.global_position
 		var dist2 = offset.length_squared()
 		if dist2 < raio_repulsao * raio_repulsao and dist2 > 0.01:
-			var dist = sqrt(dist2)
-			var push = (1.0 - dist / raio_repulsao) * forca_repulsao
-			global_position += offset.normalized() * push * 0.1 # suave, proporcional
+			velocity = velocity.lerp(velocity + offset.normalized(), 1) # suave, proporcional
+			
+			
+			#velocity = velocity.lerp(velocity + offset.normalized(), 0.1) # suave, proporcional
+			#global_position += offset.normalized() * (raio_repulsao - dist2) * 0.1
+			
+			#velocity = velocity.lerp(velocity + offset.normalized(), 0.1)
 
 
 func _atacar_pers(body: Node3D) -> void:

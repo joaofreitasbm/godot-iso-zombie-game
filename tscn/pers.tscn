@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://begah3674cfa2"]
+[gd_scene load_steps=16 format=3 uid="uid://begah3674cfa2"]
 
 [ext_resource type="Script" uid="uid://dqnmbags1hg48" path="res://scripts/outros/pers.gd" id="1_0t7jd"]
 [ext_resource type="PackedScene" uid="uid://d2o3afnlnpfk0" path="res://tscn/ui.tscn" id="2_u1lqi"]
+[ext_resource type="ArrayMesh" uid="uid://byprytsspewtj" path="res://meshes/FinalBaseMesh.obj" id="3_xd6ky"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kek77"]
 
@@ -105,12 +106,19 @@ theme = SubResource("Theme_dc5tq")
 
 [node name="visual" type="Node3D" parent="."]
 
+[node name="teste" type="MeshInstance3D" parent="visual"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, -1, 0)
+mesh = ExtResource("3_xd6ky")
+skeleton = NodePath("../..")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="visual"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.869, -0.5)
+visible = false
 mesh = SubResource("BoxMesh_272bh")
 skeleton = NodePath("../MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="visual"]
+visible = false
 mesh = SubResource("CapsuleMesh_5vw27")
 skeleton = NodePath("../..")
 

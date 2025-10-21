@@ -43,16 +43,17 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	## ADICIONAR SKIP
-	saudeUI.value = pers.saude
-	folegoUI.value = pers.folego
-	folegoUI.max_value = (pers.fome + pers.sede) / 2
-	
-	saude_status.value = pers.saude
-	folego_status.value = pers.folego
-	fadiga_status.value = (pers.fome + pers.sede) / 2
-	fome_status.value = pers.fome
-	sede_status.value = pers.sede
-	sanidade_status.value = pers.sanidade
+	pass
+	#saudeUI.value = pers.saude
+	#folegoUI.value = pers.folego
+	#folegoUI.max_value = (pers.fome + pers.sede) / 2
+	#
+	#saude_status.value = pers.saude
+	#folego_status.value = pers.folego
+	#fadiga_status.value = (pers.fome + pers.sede) / 2
+	#fome_status.value = pers.fome
+	#sede_status.value = pers.sede
+	#sanidade_status.value = pers.sanidade
 
 
 func atualizarinventarioUI(): # VERSÃO ATUALIZADA

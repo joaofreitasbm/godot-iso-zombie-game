@@ -46,7 +46,7 @@ func _exit_tree() -> void:
 func _process(delta: float) -> void:
 	if saude <= 0:
 		queue_free()
-	ativar_stencil()
+	#ativar_stencil() < desativado por enquanto, não apagar
 
 
 
@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	
 	#if not is_on_floor(): velocity = get_gravity()
 
-	
+	$visual/persteste/AnimationPlayer.play("Armature|mixamo_com|Layer0")
 	
 	
 	
@@ -75,7 +75,7 @@ func _physics_process(delta: float) -> void:
 	
 	timer_logica += delta
 	if timer_logica >= update_logica and !stun:
-		atualizar_ia()
+		#atualizar_ia() < desativado por enquanto, nao apagar
 		#movimentar_navimesh(pers.global_position)
 		#look_at(pos_alvo.lerp(pos_alvo, 0.1))
 		timer_logica = 0
@@ -91,7 +91,7 @@ func _physics_process(delta: float) -> void:
 			timer_stun = 0
 			stun = false
 			
-			
+	if not is_on_floor(): velocity.y += -9.8
 	move_and_slide()
 	
 	

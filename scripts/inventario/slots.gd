@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 				
 			if x == str(self.name) and pers.slots[x] != null:
 				$imagem.texture = pers.slots[x].imagem
-				if pers.slots[x].tipo == "Armas":
+				if pers.slots[x].subtipo == "Arma de fogo":
 					$Label.text = str(pers.slots[x].qntatual)
 			
 		for i in range(pers.hotkey_max):

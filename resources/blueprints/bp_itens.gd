@@ -43,9 +43,11 @@ class_name itens
 	"Cura",
 	"Comida",
 	"Bebida",
+	"Munição - fuzil",
+	"Munição - pistola",
 	
 	#"Craft"		| MATERIAL DE PROCESSAMENTO NÃO VAI SER USADO AGORA
-	"Material", #   | VAI SERVIR DE INGREDIENTE PRA CRIAR ITEM DE CRAFT
+	"Material", # < | VAI SERVIR DE INGREDIENTE PRA CRIAR ITEM DE CRAFT
 	"Receita") var subtipo: String
 
 
@@ -58,6 +60,7 @@ class_name itens
 	"Munição - fuzil",
 	"Munição - pistola") var tipo_municao: String
 @export var tempo_carregamento: float
+@export var carregando: bool = false
 @export var semiauto: bool
 @export var audio_impacto: AudioStreamMP3
 @export var velocidade_ataque: float
@@ -90,6 +93,10 @@ class_name itens
 @export var peso: int
 
 
+
+
+
+
 func usar_equipado(alvo, pers, UI):
 	if subtipo == "Corpo a corpo": #CORPO A CORPO
 		if alvo != null:
@@ -109,7 +116,7 @@ func usar_equipado(alvo, pers, UI):
 					if nome_item != "Mãos livres":
 						durabilidade -= 1
 
-	if tipo == "Arma de fogo": #ARMA DE FOGO
+	if subtipo == "Arma de fogo": #ARMA DE FOGO
 		var part = preload("res://tscn/particula_sangue.tscn").instantiate()
 		
 		if qntatual == 0:
@@ -120,18 +127,20 @@ func usar_equipado(alvo, pers, UI):
 			qntatual -= 1
 			print("atirou semi, munição atual: ", qntatual)
 			aux = false
+			UI.atualizarhudUI()
+			UI.atualizarinventarioUI()
 			if alvo != null and alvo.is_in_group("Inimigo"):
 				alvo.saude -= dano
 				alvo.add_child(part)
 				part.top_level = true
 				part.position = alvo.position
 				part.emitting = true
-				UI.atualizarslotsUI()
-				UI.atualizarinventarioUI()
 			return
 
 		if semiauto == false and aux == true and qntatual >= 1:
 			qntatual -= 1
+			UI.atualizarhudUI()
+			UI.atualizarinventarioUI()
 			print("atirou auto, ", qntatual)
 			if alvo != null and alvo.is_in_group("Inimigo"):
 				alvo.saude -= dano
@@ -139,8 +148,6 @@ func usar_equipado(alvo, pers, UI):
 				part.top_level = true
 				part.position = alvo.position
 				part.emitting = true
-				UI.atualizarslotsUI()
-				UI.atualizarinventarioUI()
 			return 
 
 		if qntatual == 0:
@@ -152,18 +159,14 @@ func usar_equipado(alvo, pers, UI):
 	
 	
 	
-	if tipo == "Arremessavel": #ARREMESSAVEL
+	if subtipo == "Arremessavel": #ARREMESSAVEL
 		pass
 	
-	if tipo == "Consumivel": #CONSUMIVEL
+	if subtipo == "Consumivel": #CONSUMIVEL
 		if quantidade >= 1:
 			pers.saude += dano
 			quantidade -= 1
 		
-
-func equipar(pers, UI):
-	
-	pass
 
 func recarregar(pers, UI):
 	print("Recarregando...")
@@ -174,7 +177,7 @@ func recarregar(pers, UI):
 			continue
 
 		# se o tipo da munição no inventario == munição necessaria pra arma atual
-		if pers.inventario[x].tipo == pers.arma_atual.tipo_municao: 
+		if pers.inventario[x].subtipo == pers.arma_atual.tipo_municao: 
 
 			if pers.inventario[x].quantidade > diferenca: # se munição disponivel > o que falta no pente pra carregar:
 				print("vai encher o pente todo")
@@ -184,7 +187,7 @@ func recarregar(pers, UI):
 				pers.inventario[x].quantidade -= diferenca # tira a qnt que falta da munição disponivel
 				qntatual = qntmaxima # enche o pente
 				UI.atualizarinventarioUI()
-				UI.atualizarslotsUI()
+				UI.atualizarhudUI()
 				return
 
 			if pers.inventario[x].quantidade <= diferenca: # se munição disponivel <= o que falta no pente pra carregar:
@@ -195,7 +198,7 @@ func recarregar(pers, UI):
 				qntatual += pers.inventario[x].quantidade # soma o que tem disponivel à qnt atual
 				pers.inventario.erase(pers.inventario[x]) # apaga item do inventario (não da UI)
 				UI.atualizarinventarioUI()
-				UI.atualizarslotsUI()
+				UI.atualizarhudUI()
 				return
 
 	

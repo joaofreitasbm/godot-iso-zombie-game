@@ -1,4 +1,4 @@
-[gd_scene load_steps=179 format=3 uid="uid://cc787tq3ba81c"]
+[gd_scene load_steps=184 format=3 uid="uid://cc787tq3ba81c"]
 
 [ext_resource type="Script" uid="uid://b2p8ewidoyyhr" path="res://scripts/outros/sol.gd" id="2_hegun"]
 [ext_resource type="Texture2D" uid="uid://dnb7w1f3qg1xc" path="res://textures/texture_10.png" id="2_mn4ff"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://2wuphdpa8jb7" path="res://pngs/fuzil.png" id="15_hegun"]
 [ext_resource type="Texture2D" uid="uid://bl5t6nlxojray" path="res://pngs/comp fuzil 1.png" id="15_mn6q8"]
 [ext_resource type="Texture2D" uid="uid://iuqsdtvuin5f" path="res://pngs/hud/Q.png" id="15_tfptk"]
-[ext_resource type="Resource" uid="uid://bhqsh7e1r5p6j" path="res://resources/equipamentos/mochila.tres" id="16_b7fts"]
 [ext_resource type="Resource" uid="uid://cqpd7h4d4le4q" path="res://resources/equipamentos/capacete teste.tres" id="16_tfptk"]
 [ext_resource type="ArrayMesh" uid="uid://byprytsspewtj" path="res://meshes/FinalBaseMesh.obj" id="18_k3nvp"]
 
@@ -315,57 +314,81 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
+[sub_resource type="BoxMesh" id="BoxMesh_50x8b"]
+size = Vector3(1, 0.5, 1)
+
 [sub_resource type="Resource" id="Resource_66cgr"]
+script = ExtResource("12_hegun")
+nome_item = "Munição fuzil"
+quantidade = 90
+stackavel = true
+imagem = ExtResource("12_tfptk")
+mesh = SubResource("BoxMesh_50x8b")
+tipo = "Consumiveis"
+subtipo = "Munição - fuzil"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0k61o"]
+
+[sub_resource type="Resource" id="Resource_kn363"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_tfptk")
+mesh = SubResource("CylinderMesh_0k61o")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_kn363"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_wcl0m"]
+
+[sub_resource type="Resource" id="Resource_v2qau"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
+mesh = SubResource("CylinderMesh_wcl0m")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_v2qau"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_eqmtf"]
+
+[sub_resource type="Resource" id="Resource_qaw6y"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 3/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_eqmtf")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_qaw6y"]
+[sub_resource type="PrismMesh" id="PrismMesh_13evn"]
+
+[sub_resource type="Resource" id="Resource_0k61o"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
-mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_66cgr"), SubResource("Resource_kn363"), SubResource("Resource_v2qau")])
-tipo = "Arma de fogo"
+mesh = SubResource("PrismMesh_13evn")
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_kn363"), SubResource("Resource_v2qau"), SubResource("Resource_qaw6y")])
+tipo = "Armas"
+subtipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
 tipo_municao = "Munição - fuzil"
+tempo_carregamento = 2.0
 velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_0k61o"]
+[sub_resource type="Resource" id="Resource_stnar"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -373,40 +396,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_stnar"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_wcl0m"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_qjce3"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_eqmtf"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_0k61o"), SubResource("Resource_stnar"), SubResource("Resource_wcl0m")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_stnar"), SubResource("Resource_wcl0m"), SubResource("Resource_qjce3")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -415,7 +438,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_eqmtf"]
+[sub_resource type="Resource" id="Resource_ehxgi"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -423,40 +446,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_ehxgi"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_13evn"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_314kn"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_wtxsa"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_eqmtf"), SubResource("Resource_ehxgi"), SubResource("Resource_13evn")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_ehxgi"), SubResource("Resource_13evn"), SubResource("Resource_314kn")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -465,7 +488,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_wtxsa"]
+[sub_resource type="Resource" id="Resource_118j0"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -473,40 +496,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_118j0"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_qtvrf"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_a5dkx"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_moqmh"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_wtxsa"), SubResource("Resource_118j0"), SubResource("Resource_qtvrf")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_118j0"), SubResource("Resource_qtvrf"), SubResource("Resource_a5dkx")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -515,7 +538,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_moqmh"]
+[sub_resource type="Resource" id="Resource_mgumk"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -523,40 +546,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_mgumk"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_r576r"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_a3hew"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_e73h1"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_moqmh"), SubResource("Resource_mgumk"), SubResource("Resource_r576r")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_mgumk"), SubResource("Resource_r576r"), SubResource("Resource_a3hew")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -565,7 +588,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_e73h1"]
+[sub_resource type="Resource" id="Resource_qbg8o"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -573,40 +596,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_qbg8o"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_te1kn"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_ew4nk"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_yemva"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_e73h1"), SubResource("Resource_qbg8o"), SubResource("Resource_te1kn")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_qbg8o"), SubResource("Resource_te1kn"), SubResource("Resource_ew4nk")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -615,7 +638,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_yemva"]
+[sub_resource type="Resource" id="Resource_l5rpr"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -623,40 +646,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_l5rpr"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_1baoe"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_nwq5v"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_cvfsn"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_yemva"), SubResource("Resource_l5rpr"), SubResource("Resource_1baoe")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_l5rpr"), SubResource("Resource_1baoe"), SubResource("Resource_nwq5v")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -665,7 +688,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_cvfsn"]
+[sub_resource type="Resource" id="Resource_y6ba8"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -673,40 +696,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_y6ba8"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_juwbs"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_sst3m"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_8sc2n"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_cvfsn"), SubResource("Resource_y6ba8"), SubResource("Resource_juwbs")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_y6ba8"), SubResource("Resource_juwbs"), SubResource("Resource_sst3m")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -715,7 +738,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_8sc2n"]
+[sub_resource type="Resource" id="Resource_kha63"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -723,40 +746,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_kha63"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_oxhct"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_trrng"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_1pmqs"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_8sc2n"), SubResource("Resource_kha63"), SubResource("Resource_oxhct")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_kha63"), SubResource("Resource_oxhct"), SubResource("Resource_trrng")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -765,7 +788,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_1pmqs"]
+[sub_resource type="Resource" id="Resource_jrvps"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -773,40 +796,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_jrvps"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_miu01"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_7je30"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_q2t2d"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_1pmqs"), SubResource("Resource_jrvps"), SubResource("Resource_miu01")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_jrvps"), SubResource("Resource_miu01"), SubResource("Resource_7je30")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -815,7 +838,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_q2t2d"]
+[sub_resource type="Resource" id="Resource_6k5hl"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -823,40 +846,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_6k5hl"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_8ly2w"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_lwnpk"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_ktbof"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_q2t2d"), SubResource("Resource_6k5hl"), SubResource("Resource_8ly2w")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_6k5hl"), SubResource("Resource_8ly2w"), SubResource("Resource_lwnpk")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -865,7 +888,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_ktbof"]
+[sub_resource type="Resource" id="Resource_6nxtb"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -873,40 +896,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_6nxtb"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_aucxw"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_0rydk"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_t4jfy"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_ktbof"), SubResource("Resource_6nxtb"), SubResource("Resource_aucxw")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_6nxtb"), SubResource("Resource_aucxw"), SubResource("Resource_0rydk")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -915,7 +938,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_t4jfy"]
+[sub_resource type="Resource" id="Resource_earyp"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -923,40 +946,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_earyp"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_g3xec"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_kmhm0"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_q2dya"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_t4jfy"), SubResource("Resource_earyp"), SubResource("Resource_g3xec")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_earyp"), SubResource("Resource_g3xec"), SubResource("Resource_kmhm0")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -965,7 +988,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_q2dya"]
+[sub_resource type="Resource" id="Resource_d0nnx"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -973,40 +996,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_d0nnx"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_pvtx0"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_ofxae"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_s21oc"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_q2dya"), SubResource("Resource_d0nnx"), SubResource("Resource_pvtx0")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_d0nnx"), SubResource("Resource_pvtx0"), SubResource("Resource_ofxae")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1015,7 +1038,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_s21oc"]
+[sub_resource type="Resource" id="Resource_wythp"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1023,40 +1046,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_wythp"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_ljd5e"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_sub6v"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_8kfmt"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_s21oc"), SubResource("Resource_wythp"), SubResource("Resource_ljd5e")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_wythp"), SubResource("Resource_ljd5e"), SubResource("Resource_sub6v")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1065,7 +1088,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_8kfmt"]
+[sub_resource type="Resource" id="Resource_ya33n"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1073,40 +1096,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_ya33n"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_8k8h4"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_7d330"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_g48tv"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_8kfmt"), SubResource("Resource_ya33n"), SubResource("Resource_8k8h4")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_ya33n"), SubResource("Resource_8k8h4"), SubResource("Resource_7d330")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1115,7 +1138,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_g48tv"]
+[sub_resource type="Resource" id="Resource_3w5hb"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1123,40 +1146,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_3w5hb"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_83ehe"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_2d8bt"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_khsq8"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_g48tv"), SubResource("Resource_3w5hb"), SubResource("Resource_83ehe")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_3w5hb"), SubResource("Resource_83ehe"), SubResource("Resource_2d8bt")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1165,7 +1188,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_khsq8"]
+[sub_resource type="Resource" id="Resource_m20dl"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1173,40 +1196,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_m20dl"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_k4wfw"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_7e12n"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_7fvut"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_khsq8"), SubResource("Resource_m20dl"), SubResource("Resource_k4wfw")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_m20dl"), SubResource("Resource_k4wfw"), SubResource("Resource_7e12n")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1215,7 +1238,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_7fvut"]
+[sub_resource type="Resource" id="Resource_b1dt6"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1223,40 +1246,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_b1dt6"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_axhm4"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_grnm5"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_30oqc"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_7fvut"), SubResource("Resource_b1dt6"), SubResource("Resource_axhm4")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_b1dt6"), SubResource("Resource_axhm4"), SubResource("Resource_grnm5")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1265,7 +1288,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_30oqc"]
+[sub_resource type="Resource" id="Resource_ha5ji"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1273,40 +1296,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_ha5ji"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_ex7s0"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_tkkr5"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_jehse"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_30oqc"), SubResource("Resource_ha5ji"), SubResource("Resource_ex7s0")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_ha5ji"), SubResource("Resource_ex7s0"), SubResource("Resource_tkkr5")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1315,7 +1338,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_jehse"]
+[sub_resource type="Resource" id="Resource_j5lrr"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1323,40 +1346,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_j5lrr"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_yj8b5"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_xkhnl"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_emvvg"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_jehse"), SubResource("Resource_j5lrr"), SubResource("Resource_yj8b5")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_j5lrr"), SubResource("Resource_yj8b5"), SubResource("Resource_xkhnl")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1365,7 +1388,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_emvvg"]
+[sub_resource type="Resource" id="Resource_2645m"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1373,40 +1396,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_2645m"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_h8kl2"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_e4hx6"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_hnld6"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_emvvg"), SubResource("Resource_2645m"), SubResource("Resource_h8kl2")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_2645m"), SubResource("Resource_h8kl2"), SubResource("Resource_e4hx6")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1415,7 +1438,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_hnld6"]
+[sub_resource type="Resource" id="Resource_fvos2"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1423,40 +1446,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_fvos2"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_vlpit"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_ldwsb"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_uckrd"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_hnld6"), SubResource("Resource_fvos2"), SubResource("Resource_vlpit")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_fvos2"), SubResource("Resource_vlpit"), SubResource("Resource_ldwsb")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1465,7 +1488,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_uckrd"]
+[sub_resource type="Resource" id="Resource_c6cpt"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1473,40 +1496,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_c6cpt"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_to4q4"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_dat8i"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_0avpx"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_uckrd"), SubResource("Resource_c6cpt"), SubResource("Resource_to4q4")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_c6cpt"), SubResource("Resource_to4q4"), SubResource("Resource_dat8i")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1515,7 +1538,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_0avpx"]
+[sub_resource type="Resource" id="Resource_5k21o"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1523,40 +1546,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_5k21o"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_anpg4"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_emag2"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_lyl7h"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_0avpx"), SubResource("Resource_5k21o"), SubResource("Resource_anpg4")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_5k21o"), SubResource("Resource_anpg4"), SubResource("Resource_emag2")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1565,7 +1588,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_lyl7h"]
+[sub_resource type="Resource" id="Resource_4ya85"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1573,40 +1596,40 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_4ya85"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_obsx0"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
+nome_item = "Comp fuzil 2/3"
 quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
+mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_ugpph"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 3/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_b7fts")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_rxkpx"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
 quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_lyl7h"), SubResource("Resource_4ya85"), SubResource("Resource_obsx0")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_4ya85"), SubResource("Resource_obsx0"), SubResource("Resource_ugpph")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1615,7 +1638,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_rxkpx"]
+[sub_resource type="Resource" id="Resource_a2bd2"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1623,23 +1646,23 @@ quantidade = 3
 stackavel = true
 imagem = ExtResource("15_mn6q8")
 mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_a2bd2"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_3k3vg"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
+nome_item = "Comp fuzil 2/3"
+quantidade = 3
+stackavel = true
+imagem = ExtResource("15_mn6q8")
+mesh = SubResource("CylinderMesh_k3nvp")
+tipo = "Material"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_towew"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 3/3"
 quantidade = 3
 stackavel = true
@@ -1648,7 +1671,7 @@ mesh = SubResource("CylinderMesh_b7fts")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_towew"]
+[sub_resource type="Resource" id="Resource_lqp37"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
@@ -1656,7 +1679,7 @@ quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_rxkpx"), SubResource("Resource_a2bd2"), SubResource("Resource_3k3vg")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_a2bd2"), SubResource("Resource_3k3vg"), SubResource("Resource_towew")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1665,7 +1688,7 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_lqp37"]
+[sub_resource type="Resource" id="Resource_cfsdg"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 1/3"
@@ -1676,7 +1699,7 @@ mesh = SubResource("CylinderMesh_tfptk")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_cfsdg"]
+[sub_resource type="Resource" id="Resource_52csr"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 2/3"
@@ -1687,7 +1710,7 @@ mesh = SubResource("CylinderMesh_k3nvp")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_52csr"]
+[sub_resource type="Resource" id="Resource_ll4ie"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Comp fuzil 3/3"
@@ -1698,7 +1721,7 @@ mesh = SubResource("CylinderMesh_b7fts")
 tipo = "Material"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_ll4ie"]
+[sub_resource type="Resource" id="Resource_o7kph"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Fuzil automático"
@@ -1706,7 +1729,7 @@ quantidade = 1
 reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_lqp37"), SubResource("Resource_cfsdg"), SubResource("Resource_52csr")])
+material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_cfsdg"), SubResource("Resource_52csr"), SubResource("Resource_ll4ie")])
 tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
@@ -1715,19 +1738,8 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="BoxMesh" id="BoxMesh_50x8b"]
+[sub_resource type="BoxMesh" id="BoxMesh_kn363"]
 size = Vector3(1, 0.5, 1)
-
-[sub_resource type="Resource" id="Resource_o7kph"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Munição fuzil"
-quantidade = 30
-stackavel = true
-imagem = ExtResource("12_tfptk")
-mesh = SubResource("BoxMesh_50x8b")
-tipo = "Munição - fuzil"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_f5hwa"]
 resource_local_to_scene = true
@@ -1736,7 +1748,18 @@ nome_item = "Munição fuzil"
 quantidade = 30
 stackavel = true
 imagem = ExtResource("12_tfptk")
-mesh = SubResource("BoxMesh_50x8b")
+mesh = SubResource("BoxMesh_kn363")
+tipo = "Munição - fuzil"
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="Resource" id="Resource_7v253"]
+resource_local_to_scene = true
+script = ExtResource("12_hegun")
+nome_item = "Munição fuzil"
+quantidade = 30
+stackavel = true
+imagem = ExtResource("12_tfptk")
+mesh = SubResource("BoxMesh_kn363")
 tipo = "Munição - fuzil"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
@@ -1934,119 +1957,119 @@ item = SubResource("Resource_ydd80")
 
 [node name="arma5" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1381025, 1, 19.532574)
-item = SubResource("Resource_qaw6y")
+item = SubResource("Resource_66cgr")
 
 [node name="arma6" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.42424, 1, 9.841352)
-item = ExtResource("16_b7fts")
+item = SubResource("Resource_0k61o")
 
 [node name="arma7" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.733139, 1, 9.841352)
-item = SubResource("Resource_qjce3")
+item = SubResource("Resource_eqmtf")
 
 [node name="arma8" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.733139, 1, 16.074615)
-item = SubResource("Resource_314kn")
+item = SubResource("Resource_wtxsa")
 
 [node name="arma9" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1381025, 1, 16.074615)
-item = SubResource("Resource_a5dkx")
+item = SubResource("Resource_moqmh")
 
 [node name="arma10" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.390522, 1, 13.299311)
-item = SubResource("Resource_a3hew")
+item = SubResource("Resource_e73h1")
 
 [node name="arma11" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.699421, 1, 13.299311)
-item = SubResource("Resource_ew4nk")
+item = SubResource("Resource_yemva")
 
 [node name="arma12" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.699421, 1, 19.532574)
-item = SubResource("Resource_nwq5v")
+item = SubResource("Resource_cvfsn")
 
 [node name="arma13" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.104384, 1, 19.532574)
-item = SubResource("Resource_sst3m")
+item = SubResource("Resource_8sc2n")
 
 [node name="arma14" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.390522, 1, 9.841352)
-item = SubResource("Resource_trrng")
+item = SubResource("Resource_1pmqs")
 
 [node name="arma15" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.699421, 1, 9.841352)
-item = SubResource("Resource_7je30")
+item = SubResource("Resource_q2t2d")
 
 [node name="arma16" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.699421, 1, 16.074615)
-item = SubResource("Resource_lwnpk")
+item = SubResource("Resource_ktbof")
 
 [node name="arma17" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.104384, 1, 16.074615)
-item = SubResource("Resource_0rydk")
+item = SubResource("Resource_t4jfy")
 
 [node name="arma18" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.534977, 1, 13.299311)
-item = SubResource("Resource_kmhm0")
+item = SubResource("Resource_q2dya")
 
 [node name="arma19" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.843876, 1, 13.299311)
-item = SubResource("Resource_ofxae")
+item = SubResource("Resource_s21oc")
 
 [node name="arma20" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.843876, 1, 19.532574)
-item = SubResource("Resource_sub6v")
+item = SubResource("Resource_8kfmt")
 
 [node name="arma21" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.24884, 1, 19.532574)
-item = SubResource("Resource_7d330")
+item = SubResource("Resource_g48tv")
 
 [node name="arma22" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.534977, 1, 9.841352)
-item = SubResource("Resource_2d8bt")
+item = SubResource("Resource_khsq8")
 
 [node name="arma23" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.843876, 1, 9.841352)
-item = SubResource("Resource_7e12n")
+item = SubResource("Resource_7fvut")
 
 [node name="arma24" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.843876, 1, 16.074615)
-item = SubResource("Resource_grnm5")
+item = SubResource("Resource_30oqc")
 
 [node name="arma25" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.24884, 1, 16.074615)
-item = SubResource("Resource_tkkr5")
+item = SubResource("Resource_jehse")
 
 [node name="arma26" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.501259, 1, 13.299311)
-item = SubResource("Resource_xkhnl")
+item = SubResource("Resource_emvvg")
 
 [node name="arma27" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.810158, 1, 13.299311)
-item = SubResource("Resource_e4hx6")
+item = SubResource("Resource_hnld6")
 
 [node name="arma28" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.810158, 1, 19.532574)
-item = SubResource("Resource_ldwsb")
+item = SubResource("Resource_uckrd")
 
 [node name="arma29" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.215122, 1, 19.532574)
-item = SubResource("Resource_dat8i")
+item = SubResource("Resource_0avpx")
 
 [node name="arma30" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.501259, 1, 9.841352)
-item = SubResource("Resource_emag2")
+item = SubResource("Resource_lyl7h")
 
 [node name="arma31" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.810158, 1, 9.841352)
-item = SubResource("Resource_ugpph")
+item = SubResource("Resource_rxkpx")
 
 [node name="arma32" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.810158, 1, 16.074615)
-item = SubResource("Resource_towew")
+item = SubResource("Resource_lqp37")
 
 [node name="arma33" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.215122, 1, 16.074615)
-item = SubResource("Resource_ll4ie")
+item = SubResource("Resource_o7kph")
 
 [node name="arma2" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7029133, 1, 11.576611)
@@ -2054,11 +2077,11 @@ item = ExtResource("16_tfptk")
 
 [node name="item3" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 1.8232307)
-item = SubResource("Resource_o7kph")
+item = SubResource("Resource_f5hwa")
 
 [node name="item4" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 6.3238077)
-item = SubResource("Resource_f5hwa")
+item = SubResource("Resource_7v253")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.958625, 0.9147961, 3.9173946)

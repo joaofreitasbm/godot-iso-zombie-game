@@ -2,7 +2,9 @@ extends CharacterBody3D
 
 # variaveis usadas pro sistema de mira e movimentação
 var mirando: bool = false
+var andando: bool = false
 var correndo: bool = false
+var capoeira: bool = false
 
 @onready var raio: RayCast3D = $utilidades/raycastmira
 @onready var circ: MeshInstance3D = $utilidades/cursor3d
@@ -53,7 +55,7 @@ var equipado: bool = false
 var itemdrop: Resource = preload("res://tscn/item.tscn")
 
 # Saúde/status
-@onready var velandar: float = 5.0
+@onready var velandar: float = 2.0
 var saude: int = 100
 var folego: float = 100
 var fome: float = 100
@@ -65,6 +67,20 @@ var debuffs: Array[Resource] ## AVALIAR NECESSIDADE DE FAZER UMA CLASSE DE DEBUF
 # Auxiliar da tecla Q
 var segurando_q: bool
 var tempo_q: float
+
+# animações
+@onready var anim_player = $visual/persteste/AnimationPlayer
+enum anim_states {
+	IDLE,
+	ANDANDO,
+	CORRENDO,
+	CAPOEIRA,
+	TPOSE
+}
+
+var state_anterior = anim_states.IDLE
+var anim_state_atual = anim_states.IDLE
+var trocando_anim: bool = false
 
 @onready var inimigo = preload("res://tscn/inimigo/inim.tscn")
 
@@ -80,15 +96,7 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	opacidade()
 	
-	#if arma_atual.receita_craft != null:
-		#for x in arma_atual.receita_craft: # Itera sobre cada resource
-			#print(x) # Retorna cada resource
-			#print(arma_atual.receita_craft[x]) # Retorna cada quantidade
-	
-	#cam.position = position + Vector3(-20.243, 21.049, 20.243)
-	#cam.rotation = Vector3(-35.3, -45, 0)
-	#cam.look_at(position)
-	
+	print(velandar)
 
 	# lógica de movimentação:
 	if not is_on_floor(): velocity += get_gravity() * delta
@@ -97,18 +105,22 @@ func _physics_process(delta: float) -> void:
 	var direction = Vector3(input_dir.x, 0, input_dir.y)
 	direction = direction.rotated(Vector3.UP, sentidocamera).normalized()
 	if direction != Vector3.ZERO:
+		andando = true
 		position += direction * velandar * delta
 		$visual.rotation.y = lerp_angle($visual.rotation.y, atan2(-direction.x, -direction.z), delta * 15)
 		if Input.is_action_just_pressed("correr"): correndo = true
 	else:
 		correndo = false
+		andando = false
+
+		
 	move_and_slide()
 
 
 	# controlar velocidade do movimento
-	if mirando: correndo = false; velandar = 3
-	if correndo: mirando = false; velandar = 20 #7.5
-	if not mirando and not correndo: velandar = 5
+	if mirando: correndo = false; velandar = 3; 
+	if correndo: mirando = false; velandar = 6; 
+	if not mirando and not correndo: velandar = 2; 
 
 
 	if Input.is_action_pressed("mirar"):
@@ -125,22 +137,25 @@ func _physics_process(delta: float) -> void:
 			ultimoalvo.stencil = false
 
 
-	if not $timers/timer.is_stopped():
-		$Label.text = str(round($timers/timer.time_left))
+	if not $timers/disparo.is_stopped():
+		$Label.text = str(round($timers/disparo.time_left))
 	else:
 		$Label.text = "Pronto!"
 
 
 	if Input.is_action_pressed("atirar"):
-		if mirando and $timers/timer.is_stopped() and arma_atual != null: 
-			$timers/timer.wait_time = arma_atual.velocidade_ataque
-			$timers/timer.start()
-			arma_atual.usar_equipado(colmira, self, UI)
+		if mirando and $timers/disparo.is_stopped() and arma_atual != null:
+			if arma_atual.qntatual >= 1: 
+				$timers/disparo.wait_time = arma_atual.velocidade_ataque
+				$timers/disparo.start()
+				arma_atual.usar_equipado(colmira, self, UI)
+			else:
+				iniciar_recarga(arma_atual)
 			
 	if Input.is_action_pressed("espaço"):
-		if mirando and $timers/timer.is_stopped() and colmira != null: 
-			$timers/timer.wait_time = 1.5 # < tempo de cooldown em segundos
-			$timers/timer.start()
+		if mirando and $timers/disparo.is_stopped() and colmira != null: 
+			$timers/disparo.wait_time = 1.5 # < tempo de cooldown em segundos
+			$timers/disparo.start()
 			var dist = global_position.distance_to(colmira.global_position)
 			print(dist)
 			if colmira.is_in_group("Inimigo") and dist <= 2:
@@ -161,9 +176,11 @@ func _physics_process(delta: float) -> void:
 		get_tree().quit()
 
 
-	if Input.is_action_just_pressed("R") and arma_atual != null:
-		arma_atual.recarregar(self, UI)
-
+		
+	if Input.is_action_just_pressed("R") and arma_atual != null and arma_atual.subtipo == "Arma de fogo":
+		iniciar_recarga(arma_atual)
+		#arma_atual.recarregar(self, UI, delta)
+		
 
 	if Input.is_action_just_pressed("E"): interagir = true;
 	if Input.is_action_just_released("E"): interagir = false
@@ -173,6 +190,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("mouse+"): cam.size -= 1 
 	elif Input.is_action_just_pressed("mouse-"): cam.size += 1
 	cam.size = clamp(cam.size, 5, 50)
+
+
+
+	if Input.is_action_just_pressed("M"):
+		if capoeira == true: capoeira = false; return
+		if capoeira == false: capoeira = true; return
 
 
 	#spawnar inimigo (debug)
@@ -234,6 +257,34 @@ func _physics_process(delta: float) -> void:
 		"inimigos: ", inimigos
 	)
 
+
+func mudar_anim_state(novo_state):
+	if trocando_anim == true:
+		return
+		
+	if anim_state_atual == novo_state:
+		return
+	
+	state_anterior = anim_state_atual
+	anim_state_atual = novo_state
+	_reproduzir_anim()
+
+func _reproduzir_anim():
+	if trocando_anim:
+		match anim_state_atual:
+			anim_states.IDLE:
+				anim_player.play("idle")
+			anim_states.ANDANDO:
+				anim_player.play("andando")
+			anim_states.CORRENDO:
+				anim_player.play("correndo")
+			anim_states.TPOSE:
+				anim_player.play("t pose")
+			anim_states.CAPOEIRA:
+				anim_player.play("capoeira")
+	
+	trocando_anim = false
+	
 func alvo2d(): 
 	mirando = true
 	velandar = 3
@@ -426,6 +477,7 @@ func _drop_item_no_mundo(item: itens) -> void:
 	drop.position = position
 	get_parent().add_child(drop)
 
+
 func reciclar_item(item: itens) -> void:
 	if item == null:
 		return
@@ -437,11 +489,13 @@ func reciclar_item(item: itens) -> void:
 	UI._abrir_recicraft(texto, item.material_reciclado, item)
 	return 
 
+
 func _on_resultado_reciclar(itens_obtidos: Array[itens], item_consumido: itens) -> void:
 	inventario.append_array(itens_obtidos)
 	if inventario.has(item_consumido):
 		inventario.erase(item_consumido)
 	UI.atualizarinventarioUI()
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.as_text_key_label().is_valid_int() and event.pressed and not event.echo and event.keycode != 48:
@@ -490,11 +544,20 @@ func _input(event: InputEvent) -> void:
 			menu.current_tab = 3
 			UI.atualizarinventarioUI()
 			menu.show()
-	
-	
-func usarhotkey(hotkey: int) -> void: ## PENDENTE
-	if hotkey:
-		slots[str("hotkey",hotkey)].usar_equipado()
-	hotkey = 0
-	pass
+
+
+func iniciar_recarga(arma):
+	$timers/recarga.wait_time = arma.tempo_carregamento
+	$timers/recarga.start()
+
+
+func _on_recarga_timeout() -> void:
+	arma_atual.recarregar(self, UI)
+
+
+#func usarhotkey(hotkey: int) -> void: ## PENDENTE
+	#if hotkey:
+		#slots[str("hotkey",hotkey)].usar_equipado()
+	#hotkey = 0
+	#pass
    

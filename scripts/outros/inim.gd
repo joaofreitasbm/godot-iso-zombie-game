@@ -1,25 +1,40 @@
 extends CharacterBody3D
 
 @export var velocidade := 2.0 ## ADICIONAR RANDINT
-@export var saude := 999
-@export var raio_repulsao := 2.0
+@export var saude := 100
+@export var raio_repulsao := 3.0
 @export var forca_repulsao := 2.0
 @export var update_logica := 0.1 # tempo entre updates de IA
 @export var timer_logica: float = 0
+var idle_skip: bool = false
+
+# logica IA
+@onready var raycast: RayCast3D = $raycast
+var timer_raycast: float = 0.0
+var ultima_pos: Vector3
+@onready var navi_agent: NavigationAgent3D = $NavigationAgent3D
+
 
 @onready var stun: bool = false
 var timer_stun: float
 @onready var stencil: bool = false
 @onready var pers := get_node("/root/main/pers")
 @onready var gamemode := get_node("/root/main/spawn inimigo")
-
+var idle: bool = true
 var area := false
-var direcao := Vector3.ZERO
+#var direcao := Vector3.ZERO
 var velocity_y := 0.0
 var timer_update := 0.0
 var pos_alvo: Vector3
 # Referência cacheada (não chame get_tree().get_nodes_in_group() sempre)
 static var inimigos := []
+
+enum estados {
+	OCIOSO,
+	SEGUINDO
+}
+
+var estado_atual = estados.OCIOSO
 
 func _ready() -> void:
 	inimigos.append(self)
@@ -29,29 +44,44 @@ func _exit_tree() -> void:
 	inimigos.erase(self)
 
 func _process(delta: float) -> void:
+	if saude <= 0:
+		queue_free()
 	ativar_stencil()
+
 
 
 func _physics_process(delta: float) -> void:
 	
-	if not is_on_floor(): velocity += get_gravity() * delta
+	#if not is_on_floor(): velocity = get_gravity()
+
 	
-	#timer_logica += delta
-	#if timer_logica >= update_logica:
-		#atualizar_ia()
-		#timer_logica = 0
 	
-	if not stun:
-		var velmax = 3
-		var dir = Vector3(pers.position.x - position.x, 0, pers.position.z - position.z).normalized() * velmax
-		velocity.x += dir.x * delta * velmax
-		velocity.z += dir.z * delta * velmax
-		if velocity.length() > velmax:
-			velocity = velocity.normalized() * velmax
-			if not is_on_floor():
-				velocity.y -= 9.8
-		
+	
+	
+	#if not stun:
+		#var dir = Vector3(pers.position.x - position.x, 0, pers.position.z - position.z).normalized() * velocidade
+		#velocity.x += dir.x * delta * velocidade
+		#velocity.z += dir.z * delta * velocidade
+		#var rotacao_alvo := atan2(-dir.x, -dir.z)
+		#rotation.y = lerp_angle(rotation.y, rotacao_alvo, 0.1)
+		#if velocity.length() > velocidade:
+			#velocity = velocity.normalized() * velocidade
+			#if not is_on_floor():
+				#velocity.y -= 9.8
+		#if velocity.length_squared() > 0.001:
+			#var move_dir = velocity.normalized()
+			#move_dir.y = 0
+			
+	
+	timer_logica += delta
+	if timer_logica >= update_logica and !stun:
+		atualizar_ia()
+		#movimentar_navimesh(pers.global_position)
+		#look_at(pos_alvo.lerp(pos_alvo, 0.1))
+		timer_logica = 0
+#
 	if stun:
+		velocity -= Vector3.ZERO
 		var random = randf_range(0.3, 2.0)
 		timer_stun += delta
 		prints("vel stunado:", velocity)
@@ -60,12 +90,16 @@ func _physics_process(delta: float) -> void:
 		if timer_stun >= random:
 			timer_stun = 0
 			stun = false
-
+			
+			
 	move_and_slide()
-	pos_alvo = pers.position
-	pos_alvo.y = self.position.y
-	look_at(pos_alvo)
 	
+	
+	
+			
+	#pos_alvo = pers.position
+	#pos_alvo.y = self.position.y
+
 
 func ativar_stencil():
 	if stencil == true:
@@ -83,31 +117,77 @@ func ativar_stencil():
 
 func atualizar_ia():
 	
-	#adicionar mais coisas aqui??
-	aplicar_soft_collider()
+	if area: atacar(pers)
+	#movimentar_navimesh(pers.global_position)
+	logica_raycast()
 
 
-func aplicar_soft_collider():
-	for outro in inimigos:
-		if outro == self:
-			continue
-		var offset = global_position - outro.global_position
-		var dist2 = offset.length_squared()
-		if dist2 < raio_repulsao * raio_repulsao and dist2 > 0.01:
-			velocity = velocity.lerp(velocity + offset.normalized(), 1) # suave, proporcional
-			
-			
-			#velocity = velocity.lerp(velocity + offset.normalized(), 0.1) # suave, proporcional
-			#global_position += offset.normalized() * (raio_repulsao - dist2) * 0.1
-			
-			#velocity = velocity.lerp(velocity + offset.normalized(), 0.1)
 
 
 func _atacar_pers(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		area = true
-		pers.saude += randi_range(-10, -40)
 
 
 func _parar_de_atacar(_body: Node3D) -> void:
 	area = false
+
+
+func atacar(alvo):
+	if $Timer.is_stopped():
+		alvo.saude -= randi_range(-10, -30)
+		$Timer.wait_time = randf_range(1.5, 4.0)
+		$Timer.start()
+		print("atacando...")
+
+func logica_raycast():
+	if !stun:
+		var colisor = raycast.get_collider()
+		print(ultima_pos)
+		if global_position.distance_to(pers.global_position) < 30:
+			raycast.show()
+			raycast.position = position
+			raycast.target_position = raycast.to_local(pers.global_position)
+			if colisor != null and colisor.is_in_group("Player"):
+				ultima_pos = colisor.global_position
+				movimentar_navimesh(pers.global_position)
+
+			else:
+				movimentar_navimesh(ultima_pos)
+				raycast.hide()
+
+
+		
+	
+
+func movimentar_navimesh(alvo: Vector3) -> void:
+	
+	# Atualiza o destino apenas se mudou significativamente
+	if navi_agent.target_position.distance_to(alvo) > 0.5:
+		navi_agent.target_position = alvo
+
+	# Se o caminho ainda está sendo calculado, não faz nada neste frame
+	if navi_agent.is_navigation_finished():
+		velocity = Vector3.ZERO
+		return
+
+	var destino = navi_agent.get_next_path_position()
+	var direcao = (destino - global_position)
+	direcao.y = 0
+	if direcao.length() > 0.1:
+		direcao = direcao.normalized()
+		velocity = direcao * velocidade
+		look_at(global_position + direcao)
+
+func inim_idle():
+	var random_pos = Vector3.ZERO
+	random_pos.x = randf_range(-5.0, 5.0)
+	random_pos.z = randf_range(-5.0, 5.0) 
+	navi_agent.target_position = random_pos
+	prints("random_pos", random_pos)
+	
+	var destino = (navi_agent.get_next_path_position()).normalized()
+	prints("destino", destino)
+	velocity = destino * velocidade
+	
+		

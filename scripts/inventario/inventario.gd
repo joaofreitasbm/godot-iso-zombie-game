@@ -31,6 +31,16 @@ func _process(_delta: float) -> void:
 		$Button/nome.add_theme_color_override("font_color", Color(1, 1, 1))
 		$Button/tipo.add_theme_color_override("font_color", Color(1, 1, 1))
 		$Button/subtipo.add_theme_color_override("font_color", Color(1, 1, 1))
+		
+	
+	for i in range(pers.inventario_max):
+		if self.name == str(i + 1):
+			self.show()
+			break
+		else:
+			self.hide()
+		
+		
 	skip = true
 
 

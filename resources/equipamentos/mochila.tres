@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="itens" load_steps=4 format=3 uid="uid://bhqsh7e1r5p6j"]
+
+[ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_itens.gd" id="1_535vt"]
+[ext_resource type="Texture2D" uid="uid://bgyybom8vnira" path="res://meshes/caixa_TEXTURA CAIXA.png" id="2_28qc5"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vlf5e"]
+
+[resource]
+script = ExtResource("1_535vt")
+nome_item = "Mochila teste"
+quantidade = 1
+imagem = ExtResource("2_28qc5")
+mesh = SubResource("CylinderMesh_vlf5e")
+tipo = "Equipamentos"
+subtipo = "Mochila"
+slots_mochila = 5
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"

@@ -41,9 +41,10 @@ func _process(_delta: float) -> void:
 				if pers.slots[x].tipo == "Armas":
 					$Label.text = str(pers.slots[x].qntatual)
 			
-		for i in pers.hotkey_max:
+		for i in range(pers.hotkey_max):
 			if self.name == str("hotkey", (i + 1)) or self.name in ["primaria", "secundaria"]:
 				self.show()
+				break
 			else:
 				self.hide()
 			

@@ -15,8 +15,8 @@ var ultimoalvo
 
 # Inventario/equipamento/UI
 @export var inventario: Array[itens]
-@onready var inventario_max: int = 20
-@onready var hotkey_max: int = 1
+@onready var inventario_max: int = 10 + slots["mochila"].slots_mochila if slots["mochila"] != null else 10
+@onready var hotkey_max: int = 0 + slots["mochila"].slots_hotkey if slots["mochila"] != null else 0
 var lista_de_receitas: Array[itens]
 @export var slots: Dictionary[String, Resource] = {
 	# armas, utilidades e consumiveis
@@ -136,6 +136,19 @@ func _physics_process(delta: float) -> void:
 			$timers/timer.wait_time = arma_atual.velocidade_ataque
 			$timers/timer.start()
 			arma_atual.usar_equipado(colmira, self, UI)
+			
+	if Input.is_action_pressed("espaço"):
+		if mirando and $timers/timer.is_stopped() and colmira != null: 
+			$timers/timer.wait_time = 1.5 # < tempo de cooldown em segundos
+			$timers/timer.start()
+			var dist = global_position.distance_to(colmira.global_position)
+			print(dist)
+			if colmira.is_in_group("Inimigo") and dist <= 2:
+				colmira.stun = true
+				colmira.velocity += (colmira.global_position - global_position).normalized() * 3
+			else:
+				return
+	
 
 
 	if Input.is_action_just_released("atirar"):
@@ -314,7 +327,6 @@ func adicionar_item(novo_item: itens) -> bool: # FUNCIONANDO EM TESTE
 	return true
 
 
-
 func largar_item(item: itens) -> bool:
 	# Checar se o item é null
 	if item == null:
@@ -439,7 +451,9 @@ func _input(event: InputEvent) -> void:
 	
 	# Abrir inventário
 	if Input.is_action_just_pressed("TAB"):
+		print(inventario_max)
 		if menu.visible == true:
+
 			menu.hide()
 			return
 		if menu.visible == false:

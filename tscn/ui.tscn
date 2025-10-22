@@ -176,6 +176,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="hotkey1" parent="hud_slots" instance=ExtResource("2_agrgj")]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -188,6 +189,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="hotkey2" parent="hud_slots" instance=ExtResource("2_agrgj")]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -200,6 +202,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="hotkey3" parent="hud_slots" instance=ExtResource("2_agrgj")]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -212,6 +215,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="hotkey4" parent="hud_slots" instance=ExtResource("2_agrgj")]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -224,6 +228,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="hotkey5" parent="hud_slots" instance=ExtResource("2_agrgj")]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -271,11 +276,11 @@ offset_bottom = 582.0
 grow_horizontal = 0
 focus_behavior_recursive = 1
 theme_override_font_sizes/font_size = 10
-current_tab = 1
+current_tab = 0
 
 [node name="Inventário [TAB]" type="VBoxContainer" parent="invcontainer"]
-visible = false
 layout_mode = 2
+size_flags_stretch_ratio = 10.55
 theme_override_constants/separation = 1
 metadata/_tab_index = 0
 
@@ -367,6 +372,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Equipamento [J]" type="HBoxContainer" parent="invcontainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 1
 alignment = 1

@@ -10,7 +10,8 @@ albedo_color = Color(0.360784, 0.360784, 0.360784, 1)
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_3jeos")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p1ba3"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ggg6s"]
+radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5vgj"]
 resource_local_to_scene = true
@@ -23,7 +24,7 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3jeos"]
 height = 0.5
-radius = 1.5
+radius = 1.0
 
 [node name="inim" type="CharacterBody3D" groups=["Inimigo"]]
 collision_layer = 2
@@ -34,7 +35,7 @@ script = ExtResource("1_3jeos")
 mesh = SubResource("CapsuleMesh_s5vgj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_p1ba3")
+shape = SubResource("CapsuleShape3D_ggg6s")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.795, -0.568)
@@ -57,6 +58,13 @@ grow_horizontal = 0
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="raycast" type="RayCast3D" parent="."]
+top_level = true
+collision_mask = 5
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
 
 [connection signal="body_entered" from="detectar" to="." method="_atacar_pers"]
 [connection signal="body_exited" from="detectar" to="." method="_parar_de_atacar"]

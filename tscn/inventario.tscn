@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://76d1b7lmmr3b" path="res://scripts/inventario/inventario.gd" id="1_fhvvc"]
 
 [node name="inventario" type="PanelContainer"]
+visible = false
 layout_direction = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -16,7 +17,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 0
 focus_behavior_recursive = 1
 script = ExtResource("1_fhvvc")
 

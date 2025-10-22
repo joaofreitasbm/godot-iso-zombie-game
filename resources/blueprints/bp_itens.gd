@@ -83,7 +83,7 @@ class_name itens
 
 @export_group("Propriedades de equipamentos")
 @export var saude_max: int
-@export var slots_inventario: int
+@export var slots_mochila: int
 @export var slots_hotkey: int
 @export var durabilidade: int
 @export var itens_guardados: Array[itens]

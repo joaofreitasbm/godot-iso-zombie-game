@@ -1,4 +1,4 @@
-[gd_scene load_steps=181 format=3 uid="uid://cc787tq3ba81c"]
+[gd_scene load_steps=179 format=3 uid="uid://cc787tq3ba81c"]
 
 [ext_resource type="Script" uid="uid://b2p8ewidoyyhr" path="res://scripts/outros/sol.gd" id="2_hegun"]
 [ext_resource type="Texture2D" uid="uid://dnb7w1f3qg1xc" path="res://textures/texture_10.png" id="2_mn4ff"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://2wuphdpa8jb7" path="res://pngs/fuzil.png" id="15_hegun"]
 [ext_resource type="Texture2D" uid="uid://bl5t6nlxojray" path="res://pngs/comp fuzil 1.png" id="15_mn6q8"]
 [ext_resource type="Texture2D" uid="uid://iuqsdtvuin5f" path="res://pngs/hud/Q.png" id="15_tfptk"]
+[ext_resource type="Resource" uid="uid://bhqsh7e1r5p6j" path="res://resources/equipamentos/mochila.tres" id="16_b7fts"]
 [ext_resource type="Resource" uid="uid://cqpd7h4d4le4q" path="res://resources/equipamentos/capacete teste.tres" id="16_tfptk"]
 [ext_resource type="ArrayMesh" uid="uid://byprytsspewtj" path="res://meshes/FinalBaseMesh.obj" id="18_k3nvp"]
 
@@ -33,6 +34,11 @@ reflected_light_source = 1
 tonemap_mode = 2
 fog_depth_end = 3552.2
 volumetric_fog_density = 0.01
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_b7fts"]
+vertices = PackedVector3Array(-74.5, 0.5, -8.75, -47.25, 0.5, -8.75, -47, 0.5, -10, -74.5, 0.5, -74.5, -17.5, 0.5, -10, -17.25, 0.5, -11, -15.25, 0.5, -74.5, -15.25, 0.5, -11, 21.5, 0.5, -11, 21.5, 0.5, -74.5, 23.75, 0.5, -9, 22, 0.5, -8.75, 22.25, 0.5, -1, 46.25, 0.5, -1, 23.75, 0.5, -10.75, 46.5, 0.5, 0, 74.5, 0.5, 0, 74.5, 0.5, -74.5, 5.25, 0.5, -0.75, 7, 0.5, -1, 6.75, 0.5, -8.75, -6, 0.5, -8.75, -6.25, 0.5, -7.75, 5.25, 0.5, 1, -47, 0.5, -7.75, -74.5, 0.5, 74.5, 6.75, 0.5, 74.5, 7, 0.5, 1.25, 46.25, 0.5, 1.25, 74.5, 0.5, 74.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 6), PackedInt32Array(6, 2, 3), PackedInt32Array(6, 7, 5), PackedInt32Array(6, 9, 7), PackedInt32Array(7, 9, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(14, 8, 9), PackedInt32Array(13, 10, 14), PackedInt32Array(16, 15, 13), PackedInt32Array(13, 14, 16), PackedInt32Array(16, 14, 9), PackedInt32Array(16, 9, 17), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 22), PackedInt32Array(20, 22, 21), PackedInt32Array(24, 23, 0), PackedInt32Array(0, 23, 26), PackedInt32Array(0, 26, 25), PackedInt32Array(26, 23, 27), PackedInt32Array(18, 23, 22), PackedInt32Array(22, 23, 24), PackedInt32Array(0, 1, 24), PackedInt32Array(20, 11, 19), PackedInt32Array(19, 11, 12), PackedInt32Array(15, 16, 28), PackedInt32Array(28, 16, 29), PackedInt32Array(27, 28, 26), PackedInt32Array(26, 28, 29)]
+edge_max_error = 2.51
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lquwl"]
 size = Vector3(150, 1, 150)
@@ -191,13 +197,13 @@ nome_item = "teste corpo a corpo"
 quantidade = 1
 imagem = ExtResource("15_tfptk")
 mesh = SubResource("TorusMesh_wfyr4")
-impacto = 2.0
+impacto = 2.5
 tipo = "Armas"
 subtipo = "Corpo a corpo"
 alcance = 5
 semiauto = true
 velocidade_ataque = 1.0
-dano = 10
+dano = 30
 durabilidade = 100
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
@@ -401,14 +407,12 @@ reciclavel = true
 imagem = ExtResource("15_hegun")
 mesh = SubResource("PrismMesh_fco5v")
 material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_0k61o"), SubResource("Resource_stnar"), SubResource("Resource_wcl0m")])
-tipo = "Utilidades"
-subtipo = "Cura"
+tipo = "Arma de fogo"
 qntmaxima = 30
 alcance = 50
 tipo_municao = "Munição - fuzil"
 velocidade_ataque = 0.5
 dano = 20
-slots_hotkey = 1
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [sub_resource type="Resource" id="Resource_eqmtf"]
@@ -1711,60 +1715,10 @@ velocidade_ataque = 0.5
 dano = 20
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_o7kph"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 1/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_tfptk")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_f5hwa"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 2/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_k3nvp")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_7v253"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Comp fuzil 3/3"
-quantidade = 3
-stackavel = true
-imagem = ExtResource("15_mn6q8")
-mesh = SubResource("CylinderMesh_b7fts")
-tipo = "Material"
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
-[sub_resource type="Resource" id="Resource_7ko68"]
-resource_local_to_scene = true
-script = ExtResource("12_hegun")
-nome_item = "Fuzil automático"
-quantidade = 1
-reciclavel = true
-imagem = ExtResource("15_hegun")
-mesh = SubResource("PrismMesh_fco5v")
-material_reciclado = Array[ExtResource("12_hegun")]([SubResource("Resource_o7kph"), SubResource("Resource_f5hwa"), SubResource("Resource_7v253")])
-tipo = "Arma de fogo"
-qntmaxima = 30
-alcance = 50
-tipo_municao = "Munição - fuzil"
-velocidade_ataque = 0.5
-dano = 20
-metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
-
 [sub_resource type="BoxMesh" id="BoxMesh_50x8b"]
 size = Vector3(1, 0.5, 1)
 
-[sub_resource type="Resource" id="Resource_ugegf"]
+[sub_resource type="Resource" id="Resource_o7kph"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Munição fuzil"
@@ -1775,7 +1729,7 @@ mesh = SubResource("BoxMesh_50x8b")
 tipo = "Munição - fuzil"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
-[sub_resource type="Resource" id="Resource_hwt2n"]
+[sub_resource type="Resource" id="Resource_f5hwa"]
 resource_local_to_scene = true
 script = ExtResource("12_hegun")
 nome_item = "Munição fuzil"
@@ -1792,7 +1746,7 @@ size = Vector3(1, 1.8, 1)
 [node name="main" type="Node3D"]
 
 [node name="pers" parent="." instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.537479, 0)
 
 [node name="sol" type="Node3D" parent="."]
 transform = Transform3D(0.70710677, 0, 0.70710677, -0.5378485, 0.6491827, 0.5378485, -0.45904145, -0.76063263, 0.45904145, 0, 0, 0)
@@ -1815,55 +1769,58 @@ offset_bottom = 23.0
 [node name="relogio" type="Timer" parent="sol"]
 autostart = true
 
-[node name="cenário" type="Node3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_b7fts")
 
-[node name="chao" type="StaticBody3D" parent="cenário"]
+[node name="chao" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 collision_layer = 4
 collision_mask = 3
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/chao"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/chao"]
 shape = SubResource("BoxShape3D_lquwl")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/chao"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/chao"]
 mesh = SubResource("BoxMesh_7mycd")
 
-[node name="parede" type="StaticBody3D" parent="cenário"]
+[node name="parede" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9335, 0, 0)
 collision_layer = 4
 collision_mask = 3
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/parede"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/parede"]
 mesh = SubResource("BoxMesh_a7rub")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/parede"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/parede"]
 shape = SubResource("BoxShape3D_a7rub")
 
-[node name="parede2" type="StaticBody3D" parent="cenário"]
+[node name="parede2" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5652, 4.59512, -8.75994)
 collision_layer = 4
 collision_mask = 3
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/parede2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/parede2"]
 mesh = SubResource("BoxMesh_q8ief")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/parede2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/parede2"]
 shape = SubResource("BoxShape3D_8d387")
 
-[node name="parede3" type="StaticBody3D" parent="cenário"]
+[node name="parede3" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.24682, 5.00041, -9.90761)
 collision_layer = 4
 collision_mask = 3
 metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/parede3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/parede3"]
 mesh = SubResource("BoxMesh_mn4ff")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cenário/parede3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/parede3"]
 shape = SubResource("BoxShape3D_d2uin")
+
+[node name="cenário" type="Node3D" parent="."]
 
 [node name="angulo" type="StaticBody3D" parent="cenário"]
 transform = Transform3D(-3.0908634e-08, 3.0908634e-08, 1.0000001, 0.7071071, 0.7071071, 0, -0.7071071, 0.7071071, -4.3711392e-08, 31.0479, 6.44213, 38.0504)
@@ -1886,6 +1843,27 @@ shape = SubResource("BoxShape3D_ap273")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="cenário/angulo2"]
 mesh = SubResource("BoxMesh_8d387")
+
+[node name="objs cenario" type="Node3D" parent="cenário"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.768, 0, 1.444)
+
+[node name="Fridge_mini" parent="cenário/objs cenario" instance=ExtResource("4_a7rub")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.182418, 0)
+collision_layer = 4
+collision_mask = 3
+
+[node name="Chair" parent="cenário/objs cenario" instance=ExtResource("5_8kplt")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 2.09501, -0.00522482, 2.03152)
+collision_layer = 4
+collision_mask = 3
+
+[node name="Dresser" parent="cenário/objs cenario" instance=ExtResource("6_ao1ln")]
+transform = Transform3D(2.035, 0, 0, 0, 2.035, 0, 0, 0, 2.035, -4.13157, 0, 0)
+collision_layer = 4
+collision_mask = 3
+
+[node name="caixa" parent="cenário/objs cenario" instance=ExtResource("3_mn6q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.998201, 0.93045604, -2.6995072)
 
 [node name="spawn inimigo" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0421815, 7.66411, -9.91901)
@@ -1913,27 +1891,6 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
-
-[node name="objs cenario" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.768, 0, 1.444)
-
-[node name="Fridge_mini" parent="objs cenario" instance=ExtResource("4_a7rub")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.182418, 0)
-collision_layer = 4
-collision_mask = 3
-
-[node name="Chair" parent="objs cenario" instance=ExtResource("5_8kplt")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 2.09501, -0.00522482, 2.03152)
-collision_layer = 4
-collision_mask = 3
-
-[node name="Dresser" parent="objs cenario" instance=ExtResource("6_ao1ln")]
-transform = Transform3D(2.035, 0, 0, 0, 2.035, 0, 0, 0, 2.035, -4.13157, 0, 0)
-collision_layer = 4
-collision_mask = 3
-
-[node name="caixa" parent="objs cenario" instance=ExtResource("3_mn6q8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.998201, 0.93045604, -2.6995072)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -1981,115 +1938,115 @@ item = SubResource("Resource_qaw6y")
 
 [node name="arma6" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.42424, 1, 9.841352)
-item = SubResource("Resource_qjce3")
+item = ExtResource("16_b7fts")
 
 [node name="arma7" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.733139, 1, 9.841352)
-item = SubResource("Resource_314kn")
+item = SubResource("Resource_qjce3")
 
 [node name="arma8" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.733139, 1, 16.074615)
-item = SubResource("Resource_a5dkx")
+item = SubResource("Resource_314kn")
 
 [node name="arma9" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1381025, 1, 16.074615)
-item = SubResource("Resource_a3hew")
+item = SubResource("Resource_a5dkx")
 
 [node name="arma10" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.390522, 1, 13.299311)
-item = SubResource("Resource_ew4nk")
+item = SubResource("Resource_a3hew")
 
 [node name="arma11" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.699421, 1, 13.299311)
-item = SubResource("Resource_nwq5v")
+item = SubResource("Resource_ew4nk")
 
 [node name="arma12" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.699421, 1, 19.532574)
-item = SubResource("Resource_sst3m")
+item = SubResource("Resource_nwq5v")
 
 [node name="arma13" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.104384, 1, 19.532574)
-item = SubResource("Resource_trrng")
+item = SubResource("Resource_sst3m")
 
 [node name="arma14" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.390522, 1, 9.841352)
-item = SubResource("Resource_7je30")
+item = SubResource("Resource_trrng")
 
 [node name="arma15" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.699421, 1, 9.841352)
-item = SubResource("Resource_lwnpk")
+item = SubResource("Resource_7je30")
 
 [node name="arma16" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.699421, 1, 16.074615)
-item = SubResource("Resource_0rydk")
+item = SubResource("Resource_lwnpk")
 
 [node name="arma17" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.104384, 1, 16.074615)
-item = SubResource("Resource_kmhm0")
+item = SubResource("Resource_0rydk")
 
 [node name="arma18" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.534977, 1, 13.299311)
-item = SubResource("Resource_ofxae")
+item = SubResource("Resource_kmhm0")
 
 [node name="arma19" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.843876, 1, 13.299311)
-item = SubResource("Resource_sub6v")
+item = SubResource("Resource_ofxae")
 
 [node name="arma20" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.843876, 1, 19.532574)
-item = SubResource("Resource_7d330")
+item = SubResource("Resource_sub6v")
 
 [node name="arma21" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.24884, 1, 19.532574)
-item = SubResource("Resource_2d8bt")
+item = SubResource("Resource_7d330")
 
 [node name="arma22" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.534977, 1, 9.841352)
-item = SubResource("Resource_7e12n")
+item = SubResource("Resource_2d8bt")
 
 [node name="arma23" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.843876, 1, 9.841352)
-item = SubResource("Resource_grnm5")
+item = SubResource("Resource_7e12n")
 
 [node name="arma24" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.843876, 1, 16.074615)
-item = SubResource("Resource_tkkr5")
+item = SubResource("Resource_grnm5")
 
 [node name="arma25" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.24884, 1, 16.074615)
-item = SubResource("Resource_xkhnl")
+item = SubResource("Resource_tkkr5")
 
 [node name="arma26" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.501259, 1, 13.299311)
-item = SubResource("Resource_e4hx6")
+item = SubResource("Resource_xkhnl")
 
 [node name="arma27" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.810158, 1, 13.299311)
-item = SubResource("Resource_ldwsb")
+item = SubResource("Resource_e4hx6")
 
 [node name="arma28" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.810158, 1, 19.532574)
-item = SubResource("Resource_dat8i")
+item = SubResource("Resource_ldwsb")
 
 [node name="arma29" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.215122, 1, 19.532574)
-item = SubResource("Resource_emag2")
+item = SubResource("Resource_dat8i")
 
 [node name="arma30" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.501259, 1, 9.841352)
-item = SubResource("Resource_ugpph")
+item = SubResource("Resource_emag2")
 
 [node name="arma31" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.810158, 1, 9.841352)
-item = SubResource("Resource_towew")
+item = SubResource("Resource_ugpph")
 
 [node name="arma32" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.810158, 1, 16.074615)
-item = SubResource("Resource_ll4ie")
+item = SubResource("Resource_towew")
 
 [node name="arma33" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.215122, 1, 16.074615)
-item = SubResource("Resource_7ko68")
+item = SubResource("Resource_ll4ie")
 
 [node name="arma2" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7029133, 1, 11.576611)
@@ -2097,11 +2054,11 @@ item = ExtResource("16_tfptk")
 
 [node name="item3" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 1.8232307)
-item = SubResource("Resource_ugegf")
+item = SubResource("Resource_o7kph")
 
 [node name="item4" parent="." instance=ExtResource("8_ap273")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.343397, 1, 6.3238077)
-item = SubResource("Resource_hwt2n")
+item = SubResource("Resource_f5hwa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.958625, 0.9147961, 3.9173946)

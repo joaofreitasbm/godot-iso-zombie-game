@@ -37,7 +37,8 @@ class_name itens
 	"Mochila",
 	
 	#"Utilidades",
-	"Lanterna",
+	"Acionaveis", # <<<< coisas que funcionem como on/off ou botão. 
+	"Utilizaveis", #     on/off = lanterna, radio, etc. botão = acionador de c4 ou perfume
 	
 	#"Consumiveis",
 	"Cura",
@@ -47,7 +48,7 @@ class_name itens
 	"Munição - pistola",
 	
 	#"Craft"		| MATERIAL DE PROCESSAMENTO NÃO VAI SER USADO AGORA
-	"Material", # < | VAI SERVIR DE INGREDIENTE PRA CRIAR ITEM DE CRAFT
+	"Material", #   | VAI SERVIR DE INGREDIENTE PRA CRIAR ITEM DE CRAFT
 	"Receita") var subtipo: String
 
 

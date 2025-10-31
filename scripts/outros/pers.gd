@@ -68,20 +68,6 @@ var debuffs: Array[Resource] ## AVALIAR NECESSIDADE DE FAZER UMA CLASSE DE DEBUF
 var segurando_q: bool
 var tempo_q: float
 
-# animações
-@onready var anim_player = $visual/persteste/AnimationPlayer
-enum anim_states {
-	IDLE,
-	ANDANDO,
-	CORRENDO,
-	CAPOEIRA,
-	TPOSE
-}
-
-var state_anterior = anim_states.IDLE
-var anim_state_atual = anim_states.IDLE
-var trocando_anim: bool = false
-
 @onready var inimigo = preload("res://tscn/inimigo/inim.tscn")
 
 var inimigos = 0
@@ -96,7 +82,7 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	opacidade()
 	
-	print(velandar)
+	#print(velandar)
 
 	# lógica de movimentação:
 	if not is_on_floor(): velocity += get_gravity() * delta
@@ -189,7 +175,7 @@ func _physics_process(delta: float) -> void:
 	# controle e posicionamento da camera
 	if Input.is_action_just_pressed("mouse+"): cam.size -= 1 
 	elif Input.is_action_just_pressed("mouse-"): cam.size += 1
-	cam.size = clamp(cam.size, 5, 50)
+	cam.size = clamp(cam.size, 5, 100)
 
 
 
@@ -258,32 +244,7 @@ func _physics_process(delta: float) -> void:
 	)
 
 
-func mudar_anim_state(novo_state):
-	if trocando_anim == true:
-		return
-		
-	if anim_state_atual == novo_state:
-		return
-	
-	state_anterior = anim_state_atual
-	anim_state_atual = novo_state
-	_reproduzir_anim()
 
-func _reproduzir_anim():
-	if trocando_anim:
-		match anim_state_atual:
-			anim_states.IDLE:
-				anim_player.play("idle")
-			anim_states.ANDANDO:
-				anim_player.play("andando")
-			anim_states.CORRENDO:
-				anim_player.play("correndo")
-			anim_states.TPOSE:
-				anim_player.play("t pose")
-			anim_states.CAPOEIRA:
-				anim_player.play("capoeira")
-	
-	trocando_anim = false
 	
 func alvo2d(): 
 	mirando = true

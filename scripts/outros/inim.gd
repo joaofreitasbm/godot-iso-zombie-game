@@ -22,12 +22,16 @@ var timer_stun: float
 @onready var gamemode := get_node("/root/main/spawn inimigo")
 var idle: bool = true
 var area := false
-#var direcao := Vector3.ZERO
 var velocity_y := 0.0
 var timer_update := 0.0
 var pos_alvo: Vector3
+
 # Referência cacheada (não chame get_tree().get_nodes_in_group() sempre)
 static var inimigos := []
+
+# LOD
+var timer_lod: float = 0.0
+var update_lod: float = 0.5
 
 enum estados {
 	OCIOSO,
@@ -36,9 +40,12 @@ enum estados {
 
 var estado_atual = estados.OCIOSO
 
+@export var estado_distancia: String = ""
+
+
 func _ready() -> void:
 	inimigos.append(self)
-	set_physics_process(true)
+	set_physics_process(false)
 
 func _exit_tree() -> void:
 	inimigos.erase(self)
@@ -47,14 +54,62 @@ func _process(delta: float) -> void:
 	if saude <= 0:
 		queue_free()
 	#ativar_stencil() < desativado por enquanto, não apagar
+	
+	# posição inimigo:
+	#> 30: = 900 desativar completamente (POTENCIA = X^2)
+	#<= 30: ativar lógica sem animações e modelos
+	#<= 20: ativar animações e modelos
 
+
+	timer_lod += delta # avaliar forma de parar esse calculo quando inimigo estiver longe
+	if timer_lod >= update_lod:
+
+		var distancia = global_position.distance_squared_to(pers.global_position)
+
+		# FORA DA ZONA DE CARREGAMENTO, ACIMA DE 50m.
+		# aqui o inimigo é completamente desligado
+		if distancia > 2500 and estado_distancia != "longe":
+			set_physics_process(false)
+			$CollisionShape3D.disabled = true
+			$"detectar/detectar pers".disabled = true
+			self.hide()
+			$visual/persteste/AnimationPlayer.active = false
+			timer_lod = -5 # timer de 5 segundos até checar novamente
+			estado_distancia = "longe"
+			
+
+		# Entrando na zona de carregamento, abaixo dos 50m 
+		# aqui tudo exceto a lógica do inimigo continua desligado
+		if distancia <= 2500 and estado_distancia != "perto":
+			self.show()
+			set_physics_process(false)
+			$CollisionShape3D.disabled = true
+			$"detectar/detectar pers".disabled = true
+			$visual/persteste/AnimationPlayer.active = false
+			$Label3D.text = str("+20m")
+			timer_lod = -1 # timer de 2 segundos até checar novamente
+			estado_distancia = "perto"
+			
+
+		# ativar animações (logica já deve estar ativada do passo anterior)
+		if distancia <= 400 and estado_distancia != "visivel": #20m
+			set_physics_process(true)
+			$CollisionShape3D.disabled = false
+			$"detectar/detectar pers".disabled = false
+			$visual/persteste/AnimationPlayer.active = true
+			$Label3D.text = str("-20m")
+			timer_lod = -1 
+			estado_distancia = "visivel"
 
 
 func _physics_process(delta: float) -> void:
 	
+	
+	$visual/persteste/AnimationPlayer.play("Armature|mixamo_com|Layer0")
+	
 	#if not is_on_floor(): velocity = get_gravity()
 
-	$visual/persteste/AnimationPlayer.play("Armature|mixamo_com|Layer0")
+	
 	
 	
 	
@@ -75,7 +130,7 @@ func _physics_process(delta: float) -> void:
 	
 	timer_logica += delta
 	if timer_logica >= update_logica and !stun:
-		#atualizar_ia() < desativado por enquanto, nao apagar
+		#atualizar_ia() #< desativado por enquanto, nao apagar
 		#movimentar_navimesh(pers.global_position)
 		#look_at(pos_alvo.lerp(pos_alvo, 0.1))
 		timer_logica = 0
@@ -118,6 +173,8 @@ func ativar_stencil():
 func atualizar_ia():
 	
 	if area: atacar(pers)
+	
+	
 	#movimentar_navimesh(pers.global_position)
 	logica_raycast()
 

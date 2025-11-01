@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cc787tq3ba81c"]
+[gd_scene load_steps=25 format=3 uid="uid://cc787tq3ba81c"]
 
 [ext_resource type="Script" uid="uid://b2p8ewidoyyhr" path="res://scripts/outros/sol.gd" id="2_hegun"]
 [ext_resource type="Texture2D" uid="uid://dnb7w1f3qg1xc" path="res://textures/texture_10.png" id="2_mn4ff"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://cyq0rlnx2dixp" path="res://resources/blueprints/bp_itens.gd" id="7_ap273"]
 [ext_resource type="Texture2D" uid="uid://bgyybom8vnira" path="res://meshes/caixa_TEXTURA CAIXA.png" id="8_8d387"]
 [ext_resource type="Script" uid="uid://dhoamrgqc0j36" path="res://scripts/outros/hud1.gd" id="8_q8ief"]
+[ext_resource type="Texture2D" uid="uid://bl5t6nlxojray" path="res://pngs/comp fuzil 1.png" id="9_mn4ff"]
+[ext_resource type="Texture2D" uid="uid://b1pfy4qogbxjh" path="res://pngs/mfuzil.png" id="10_d2uin"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -53,6 +55,34 @@ mesh = SubResource("CylinderMesh_vlf5e")
 tipo = "Equipamentos"
 subtipo = "Mochila"
 slots_mochila = 5
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="SphereMesh" id="SphereMesh_mn4ff"]
+
+[sub_resource type="Resource" id="Resource_d2uin"]
+resource_local_to_scene = true
+script = ExtResource("7_ap273")
+nome_item = "capacete teste"
+quantidade = 1
+stackavel = true
+imagem = ExtResource("9_mn4ff")
+mesh = SubResource("SphereMesh_mn4ff")
+tipo = "Equipamentos"
+subtipo = "Cabeça"
+slots_hotkey = 2
+metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
+
+[sub_resource type="BoxMesh" id="BoxMesh_50x8b"]
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="Resource" id="Resource_uf0e4"]
+script = ExtResource("7_ap273")
+nome_item = "Munição fuzil"
+quantidade = 5
+stackavel = true
+imagem = ExtResource("10_d2uin")
+mesh = SubResource("BoxMesh_50x8b")
+tipo = "Munição - fuzil"
 metadata/_custom_type_script = "uid://cyq0rlnx2dixp"
 
 [node name="main" type="Node3D"]
@@ -148,6 +178,14 @@ theme_override_font_sizes/font_size = 12
 
 [node name="item" parent="." instance=ExtResource("6_ao1ln")]
 item = SubResource("Resource_mn4ff")
+
+[node name="item2" parent="." instance=ExtResource("6_ao1ln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3323693, 0, 0)
+item = SubResource("Resource_d2uin")
+
+[node name="item3" parent="." instance=ExtResource("6_ao1ln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.68082, 0, 0)
+item = SubResource("Resource_uf0e4")
 
 [node name="inim" parent="." instance=ExtResource("6_8kplt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3616753, 1.0023432, 10.480986)

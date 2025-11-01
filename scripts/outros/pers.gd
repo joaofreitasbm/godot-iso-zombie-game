@@ -16,10 +16,6 @@ var listaopac: Array = []
 var ultimoalvo
 
 # Inventario/equipamento/UI
-@export var inventario: Array[itens]
-@onready var inventario_max: int = 10 + slots["mochila"].slots_mochila if slots["mochila"] != null else 10
-@onready var hotkey_max: int = 0 + slots["mochila"].slots_hotkey if slots["mochila"] != null else 0
-var lista_de_receitas: Array[itens]
 @export var slots: Dictionary[String, Resource] = {
 	# armas, utilidades e consumiveis
 	"primaria": null,
@@ -40,6 +36,8 @@ var lista_de_receitas: Array[itens]
 	"luvas": null,
 	"mochila": null,
 }
+@export var inventario = null
+var lista_de_receitas: Array[itens]
 
 # Variaveis relacionadas ao inventario
 @onready var pers = self
@@ -57,12 +55,18 @@ var itemdrop: Resource = preload("res://tscn/item.tscn")
 # Saúde/status
 @onready var velandar: float = 2.0
 var saude: int = 100
-var folego: float = 100
-var fome: float = 100
-var sede: float = 100
+var saude_max: int = 100
+var folego: int = 100
+var folego_max: int = 100
+var fome: float = 100.0
+var sede: float = 100.0
 var fadiga: float = (fome + sede) / 2
 var sanidade: int = 100
 var debuffs: Array[Resource] ## AVALIAR NECESSIDADE DE FAZER UMA CLASSE DE DEBUFFS
+@onready var inventario_max: int = 0
+@onready var hotkey_max: int = 0 
+#@onready var inventario_max: int = 10 + slots["mochila"].slots_mochila if slots["mochila"] != null else 10
+#@onready var hotkey_max: int = 0 + slots["mochila"].slots_hotkey if slots["mochila"] != null else 0
 
 # Auxiliar da tecla Q
 var segurando_q: bool
@@ -297,8 +301,16 @@ func opacidade():
 
 
 func adicionar_item(novo_item: itens) -> bool: # FUNCIONANDO EM TESTE
-	# Adiciona um item ao inventário, retornando true se conseguiu ou false se o inventário estiver cheio.
 
+	# Adiciona um item ao inventário, retornando true se conseguiu ou false se o inventário estiver cheio.
+	for i in slots:
+		if novo_item.subtipo.to_lower() == i and slots[i] == null:
+			slots[i] = novo_item
+			UI.atualizarinventarioUI()
+			UI.atualizarequipUI()
+			atualizarstatus()
+			return true
+	
 	# 🔹 Verifica se é uma receita
 	if novo_item.tipo == "Receita":
 		lista_de_receitas.append(novo_item)
@@ -307,7 +319,10 @@ func adicionar_item(novo_item: itens) -> bool: # FUNCIONANDO EM TESTE
 		return true
 
 	# 🔹 Verifica se há espaço
-	var slots_ocupados := inventario.size()
+	if inventario == null:
+		return false
+		
+	var slots_ocupados = inventario.size()
 	if slots_ocupados >= inventario_max:
 		print("Inventário cheio, não foi possível adicionar ", novo_item.nome_item)
 		return false
@@ -340,6 +355,7 @@ func adicionar_item(novo_item: itens) -> bool: # FUNCIONANDO EM TESTE
 
 
 func largar_item(item: itens) -> bool:
+	print("iniciou largar")
 	# Checar se o item é null
 	if item == null:
 		return false
@@ -411,7 +427,9 @@ func _executar_largar(item: itens, qtd: int) -> void:
 	
 	# Se a quantidade original zerou, remove do inventário
 	if item.quantidade <= 0:
-		pers.inventario.erase(item)
+		for i in pers.slots:
+			if pers.slots[i] == item:
+				pers.slots[i] = null
 	
 	UI.atualizarinventarioUI()
 
@@ -522,3 +540,21 @@ func _on_recarga_timeout() -> void:
 	#hotkey = 0
 	#pass
    
+func atualizarstatus() -> void:
+	inventario_max = 0
+	hotkey_max = 0
+	
+	for i in slots:
+		if slots[i] != null:
+			if slots[i].subtipo == "Mochila":
+				inventario_max += slots[i].slots_mochila
+				hotkey_max += slots[i].slots_hotkey
+				inventario = slots["mochila"].itens_guardados
+			if slots[i].subtipo in ["Cabeça", "Superior", "Inferior", "Cintura",
+									"Botas", "Face", "Luvas"]:
+				print("ok")
+			
+		#if slots[i] == null:
+			#if i == "Mochila":
+				#inventario = null
+		

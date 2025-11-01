@@ -14,7 +14,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if skip: return
-	if pers.inventario.is_empty() or indice >= pers.inventario.size():
+	
+	if pers.inventario == null:
+		return
+		
+	elif pers.inventario.is_empty() or indice >= pers.inventario.size():
 		$Button/nome.text = "Vazio"
 		$Button/tipo.text = "-"
 		$Button/subtipo.text = "-"

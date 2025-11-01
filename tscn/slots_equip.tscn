@@ -12,9 +12,10 @@ script = ExtResource("1_kgegt")
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
+mouse_filter = 1
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_mi3o5")
-button_mask = 2
+button_mask = 3
 icon = ExtResource("1_omwxd")
 alignment = 0
 expand_icon = true
@@ -33,4 +34,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Vazio"
 
+[node name="popup" type="PopupMenu" parent="."]
+
+[connection signal="mouse_entered" from="Button" to="." method="hover_on"]
+[connection signal="mouse_exited" from="Button" to="." method="hover_off"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="id_pressed" from="popup" to="." method="_on_popup_id_pressed"]

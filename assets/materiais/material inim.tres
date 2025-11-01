@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d133ae5d2yxwh"]
+
+[resource]
+resource_name = "Alpha_Body_MAT"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.30798686, 0.61579585, 0.67822284, 1)
+emission_enabled = true

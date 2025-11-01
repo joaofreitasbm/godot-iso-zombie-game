@@ -19,7 +19,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if !skip:
 		for i in pers.slots:
-			print(i)
 			if i == str(self.name) and pers.slots[i] == null:
 				item.text = "Vazio"
 				item.add_theme_color_override("font_color", Color(0.248, 0.248, 0.248, 1.0))
@@ -36,11 +35,11 @@ func _process(delta: float) -> void:
 	skip = true
 
 
-# desequipar item do slot
+# desequipar item do slot quando clicar com o botão direito
 func _on_button_pressed() -> void:
 	for i in pers.slots:
 		if i == str(self.name) and pers.slots[i] != null:
 			pers.slots[i] = null
 			UI.atualizarequipUI()
+			UI.atualizarinventarioUI()
 			UI.atualizarhudUI()
-	pass # Replace with function body.

@@ -15,6 +15,13 @@ var ultima_pos: Vector3
 @onready var navi_agent: NavigationAgent3D = $NavigationAgent3D
 
 
+# referencias
+@onready var anim_player := $visual/persteste/AnimationPlayer
+@onready var colisao := $CollisionShape3D
+@onready var detectar := $"detectar/detectar pers"
+
+
+
 @onready var stun: bool = false
 var timer_stun: float
 @onready var stencil: bool = false
@@ -69,10 +76,10 @@ func _process(delta: float) -> void:
 		if distancia <= 400 and estado_distancia != "visivel": #20m
 			self.show()
 			set_physics_process(true)
-			$visual/persteste/AnimationPlayer.play("Global/parado")
-			$CollisionShape3D.disabled = false
-			$"detectar/detectar pers".disabled = false
-			$visual/persteste/AnimationPlayer.active = true
+			anim_player.play("Global/capoeira")
+			colisao.disabled = false
+			detectar.disabled = false
+			anim_player.active = true
 			$Label3D.text = str("-20m")
 			timer_lod = -10
 			estado_distancia = "visivel"
@@ -84,11 +91,11 @@ func _process(delta: float) -> void:
 		elif distancia <= 2500 and distancia > 400 and estado_distancia != "perto":
 			self.hide()
 			set_physics_process(false)
-			$CollisionShape3D.disabled = true
-			$"detectar/detectar pers".disabled = true
-			$visual/persteste/AnimationPlayer.active = false
+			colisao.disabled = true
+			detectar.disabled = true
+			anim_player.active = false
 			$Label3D.text = str("+20m")
-			timer_lod = -1 # timer de 2 segundos até checar novamente
+			timer_lod = -1 # timer de 1 segundos até checar novamente
 			estado_distancia = "perto"
 			return
 
@@ -96,10 +103,10 @@ func _process(delta: float) -> void:
 		# aqui o inimigo é completamente desligado
 		elif distancia > 2500 and estado_distancia != "longe":
 			set_physics_process(false)
-			$CollisionShape3D.disabled = true
-			$"detectar/detectar pers".disabled = true
+			colisao.disabled = true
+			detectar.disabled = true
 			self.hide()
-			$visual/persteste/AnimationPlayer.active = false
+			anim_player.active = false
 			timer_lod = -10 # timer de 5 segundos até checar novamente
 			estado_distancia = "longe"
 			return
@@ -137,7 +144,7 @@ func _physics_process(delta: float) -> void:
 	if timer_logica >= update_logica and !stun:
 		#atualizar_ia() #< desativado por enquanto, nao apagar
 		#movimentar_navimesh(pers.global_position)
-		#look_at(pos_alvo.lerp(pos_alvo, 0.1))
+		#look_at(pos_alvo.lerp(pos_alvo, 0.1)) TALVEZ NEM PRECISE, BASTA ALTERAR A ROTAÇÃO CONFORME A DIREÇÃO
 		timer_logica = 0
 #
 	if stun:

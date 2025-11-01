@@ -22,6 +22,16 @@ func _process(_delta: float) -> void:
 		$Button/tipo.add_theme_color_override("font_color", Color(0.248, 0.248, 0.248, 1.0))
 		$Button/subtipo.add_theme_color_override("font_color", Color(0.248, 0.248, 0.248, 1.0))
 		
+	elif pers.inventario[indice] in pers.slots.values():
+		$Button/nome.text = str(pers.inventario[indice].nome_item)
+		$Button/tipo.text = str(pers.inventario[indice].tipo)
+		$Button/subtipo.text = str(pers.inventario[indice].subtipo)
+		if pers.inventario[indice].stackavel and pers.inventario[indice].quantidade > 1:
+			$Button/nome.text = "%s x%d" % [pers.inventario[indice].nome_item, pers.inventario[indice].quantidade]
+		$Button/nome.add_theme_color_override("font_color", Color(0.537, 0.735, 1.0, 1.0))
+		$Button/tipo.add_theme_color_override("font_color", Color(0.537, 0.735, 1.0, 1.0))
+		$Button/subtipo.add_theme_color_override("font_color", Color(0.537, 0.735, 1.0, 1.0))
+	
 	else: 
 		$Button/nome.text = str(pers.inventario[indice].nome_item)
 		$Button/tipo.text = str(pers.inventario[indice].tipo)
@@ -117,6 +127,7 @@ func _on_submenu_id_pressed(id: int) -> void:
 	if aux == str("Equipar no slot: ", (pers.inventario[indice].subtipo)): # FUNCIONANDO
 		pers.slots[pers.inventario[indice].subtipo.to_lower()] = pers.inventario[indice]
 		UI.atualizarequipUI()
+		UI.atualizarinventarioUI()
 		prints("subtipo:", pers.inventario[indice].subtipo)
 		prints("slots:", pers.slots)
 

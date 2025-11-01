@@ -4,6 +4,7 @@ extends Area3D
 var area: bool = false # controlado pelos sinais no final do código (entrou/saiu da área)
 
 @onready var pers: CharacterBody3D = get_tree().get_root().get_node("main/pers")
+@onready var pers_label: Label3D = get_tree().get_root().get_node("main/pers/utilidades/Label3D")
 @onready var inventarioUI: VBoxContainer = get_tree().get_root().get_node("main/pers/UI/invcontainer/Inventário [TAB]")
 @onready var UI: Control = get_tree().get_root().get_node("main/pers/UI")
 
@@ -19,6 +20,7 @@ func _process(_delta: float) -> void:
 	if pers.adicionar_item(item.duplicate(true)):
 		UI.atualizarhudUI()
 		UI.atualizarinventarioUI()
+		pers_label.text = str("")
 		queue_free()
 	else:
 		$PopupPanel.position = $PopupPanel.get_global_mouse_position() - Vector2(65, 0)
@@ -29,9 +31,11 @@ func _process(_delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
+		pers_label.text = str("Pressione E para interagir")
 		area = true
 		
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group("Player"):
+		pers_label.text = str("")
 		area = false

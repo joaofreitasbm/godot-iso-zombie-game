@@ -66,22 +66,23 @@ func _process(delta: float) -> void:
 
 		var distancia = global_position.distance_squared_to(pers.global_position)
 
-		# FORA DA ZONA DE CARREGAMENTO, ACIMA DE 50m.
-		# aqui o inimigo é completamente desligado
-		if distancia > 2500 and estado_distancia != "longe":
-			set_physics_process(false)
-			$CollisionShape3D.disabled = true
-			$"detectar/detectar pers".disabled = true
-			self.hide()
-			$visual/persteste/AnimationPlayer.active = false
-			timer_lod = -5 # timer de 5 segundos até checar novamente
-			estado_distancia = "longe"
-			
+		if distancia <= 400 and estado_distancia != "visivel": #20m
+			self.show()
+			set_physics_process(true)
+			$visual/persteste/AnimationPlayer.play("Global/parado")
+			$CollisionShape3D.disabled = false
+			$"detectar/detectar pers".disabled = false
+			$visual/persteste/AnimationPlayer.active = true
+			$Label3D.text = str("-20m")
+			timer_lod = -10
+			estado_distancia = "visivel"
+			return
 
+		# ativar animações (logica já deve estar ativada do passo anterior)
 		# Entrando na zona de carregamento, abaixo dos 50m 
 		# aqui tudo exceto a lógica do inimigo continua desligado
-		if distancia <= 2500 and estado_distancia != "perto":
-			self.show()
+		elif distancia <= 2500 and distancia > 400 and estado_distancia != "perto":
+			self.hide()
 			set_physics_process(false)
 			$CollisionShape3D.disabled = true
 			$"detectar/detectar pers".disabled = true
@@ -89,23 +90,27 @@ func _process(delta: float) -> void:
 			$Label3D.text = str("+20m")
 			timer_lod = -1 # timer de 2 segundos até checar novamente
 			estado_distancia = "perto"
-			
+			return
 
-		# ativar animações (logica já deve estar ativada do passo anterior)
-		if distancia <= 400 and estado_distancia != "visivel": #20m
-			set_physics_process(true)
-			$CollisionShape3D.disabled = false
-			$"detectar/detectar pers".disabled = false
-			$visual/persteste/AnimationPlayer.active = true
-			$Label3D.text = str("-20m")
-			timer_lod = -1 
-			estado_distancia = "visivel"
+		# FORA DA ZONA DE CARREGAMENTO, ACIMA DE 50m.
+		# aqui o inimigo é completamente desligado
+		elif distancia > 2500 and estado_distancia != "longe":
+			set_physics_process(false)
+			$CollisionShape3D.disabled = true
+			$"detectar/detectar pers".disabled = true
+			self.hide()
+			$visual/persteste/AnimationPlayer.active = false
+			timer_lod = -10 # timer de 5 segundos até checar novamente
+			estado_distancia = "longe"
+			return
+
+
 
 
 func _physics_process(delta: float) -> void:
 	
 	
-	$visual/persteste/AnimationPlayer.play("Armature|mixamo_com|Layer0")
+	#$visual/persteste/AnimationPlayer.play("Global/capoeira")
 	
 	#if not is_on_floor(): velocity = get_gravity()
 
